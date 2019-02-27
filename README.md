@@ -4,10 +4,24 @@
 
 1.  Installer NVM: https://aur.archlinux.org/packages/nvm/
 2.  Sett opp Node for NVM
-`nvm use node`
+```
+nvm install node
+nvm use node
+```
 3.  Installer Framework7 globalt
-`nvm exec npm install -g framework7-cli`
-4.  (For dev) Skru av ServiceWorkers i nettleseren.
+```
+nvm exec npm install -g framework7-cli
+```
+4.  Klon repo
+```
+git clone https://github.com/askbk/inmarket-frontend.git
+```
+5.  Installer moduler
+```
+cd inmarket-frontend
+nvm exec npm install
+```
+6.  (For dev) Skru av ServiceWorkers i nettleseren.
 
 ## Framework7 CLI Options
 
