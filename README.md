@@ -1,5 +1,14 @@
 # InMarket
 
+## Setup
+
+1.  Installer NVM: https://aur.archlinux.org/packages/nvm/
+2.  Sett opp Node for NVM
+`nvm use node`
+3.  Installer Framework7 globalt
+`nvm exec npm install -g framework7-cli`
+4.  (For dev) Skru av ServiceWorkers i nettleseren.
+
 ## Framework7 CLI Options
 
 Framework7 app created with following options:
@@ -29,9 +38,9 @@ Framework7 app created with following options:
 
 ## NPM Scripts
 
-* `npm start` - run development server
-* `npm run build-prod` - build web app for production
-* `npm run build-cordova-prod` - build cordova's `www` folder from and build cordova app
+* `nvm exec npm start` - run development server
+* `nvm exec npm run build-prod` - build web app for production
+* `nvm exec npm run build-cordova-prod` - build cordova's `www` folder from and build cordova app
 ## PWA
 
 This is a PWA. Don't forget to check what is inside of your `service-worker.js`. It is also recommended that you disable service worker (or enable "Update on reload") in browser dev tools during development.
