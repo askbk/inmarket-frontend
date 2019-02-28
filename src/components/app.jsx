@@ -84,6 +84,7 @@ export default class extends React.Component {
             <List>
               <ListItem panelClose="right" link="/about/" title="About"/>
               <ListItem panelClose="right" link="/form/" title="Form"/>
+              <ListItem panelClose="right" link="/nettverk/" title="Nettverk"/>
             </List>
           </Page>
         </Panel>

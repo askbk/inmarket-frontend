@@ -2,6 +2,7 @@
 import HomePage from '../pages/home.jsx';
 import AboutPage from '../pages/about.jsx';
 import FormPage from '../pages/form.jsx';
+import NetworkPage from '../pages/network.jsx';
 
 
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
@@ -21,8 +22,10 @@ var routes = [
     path: '/form/',
     component: FormPage,
   },
-
-
+  {
+    path: '/nettverk/',
+    component: NetworkPage
+  },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
