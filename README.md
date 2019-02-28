@@ -23,6 +23,17 @@ nvm exec npm install
 ```
 6.  (For dev) Skru av ServiceWorkers i nettleseren.
 
+## Sette opp dummy API for utvikling
+1.  Klon https://github.com/benhowdle89/reqres.git
+2.  Installer pakker
+```
+nvm exec npm install
+```
+3.  Kjør server (port 5000)
+```
+cd reqres
+nvm run app.js
+```
 ## Framework7 CLI Options
 
 Framework7 app created with following options:
