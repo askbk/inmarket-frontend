@@ -89,3 +89,10 @@ framework7 generate-assets --ui
 
 Love Framework7? Support project by donating or pledging on patreon:
 https://patreon.com/vladimirkharlampidi
+
+
+# Nyttige linker
+## Dummy REST API for å teste frontend-kode
+https://reqres.in/
+## Standard for format på API
+https://jsonapi.org/format/
