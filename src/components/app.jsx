@@ -33,7 +33,7 @@ export default class extends React.Component {
       // Framework7 Parameters
       f7params: {
         id: 'io.framework7.myapp', // App bundle ID
-        name: 'InMarket', // App name
+        name: 'InMarket', // App name,
         theme: 'auto', // Automatic theme detection
         // App root data
         data: function () {
@@ -48,7 +48,6 @@ export default class extends React.Component {
 
         // App routes
         routes: routes,
-
 
         // Register service worker
         serviceWorker: this.$device.cordova ? {} : {
@@ -90,7 +89,7 @@ export default class extends React.Component {
         </Panel>
 
         {/* Your main view, should have "view-main" class */}
-        <View main className="safe-areas" url="/" />
+        <View main pushState className="safe-areas" url="/" />
 
         {/* Popup */}
         <Popup id="my-popup">
