@@ -31,37 +31,41 @@ export default class extends React.Component {
         return (
             <Page name="registrering">
               <Navbar title="Registrering" backLink="Back"></Navbar>
-              <BlockTitle>Registrer deg som</BlockTitle>
-              <List>
-                  <ListButton>Bruker</ListButton>
-                  <ListButton>Bedrift</ListButton>
-              </List>
-              <List>
-                <ListInput
-                  label="Name"
-                  type="text"
-                  placeholder="Your name"
-                ></ListInput>
+              <View url="/registrering/1">
+                  <BlockTitle>Registrer deg som</BlockTitle>
+                  <List>
+                      <ListButton>Bruker</ListButton>
+                      <ListButton>Bedrift</ListButton>
+                  </List>
+              </View>
+              <View url="/registrering/2">
+                  <List>
+                      <ListInput
+                      label="Name"
+                      type="text"
+                      placeholder="Your name"
+                      ></ListInput>
 
-                <ListInput
-                  label="E-mail"
-                  type="email"
-                  placeholder="E-mail"
-                ></ListInput>
+                      <ListInput
+                      label="E-mail"
+                      type="email"
+                      placeholder="E-mail"
+                      ></ListInput>
 
-                <ListInput
-                  label="Password"
-                  type="password"
-                  placeholder="Password"
-                ></ListInput>
+                      <ListInput
+                      label="Password"
+                      type="password"
+                      placeholder="Password"
+                      ></ListInput>
 
-                <ListInput
-                  label="Birth date"
-                  type="date"
-                  placeholder="Birth day"
-                  defaultValue="2014-04-30"
-                ></ListInput>
-            </List>
+                      <ListInput
+                      label="Birth date"
+                      type="date"
+                      placeholder="Birth day"
+                      defaultValue="2014-04-30"
+                      ></ListInput>
+                  </List>
+              </View>
             </Page>
         )
     }
