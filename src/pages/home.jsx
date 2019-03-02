@@ -49,7 +49,7 @@ export default class extends React.Component {
                     <Button fill raised popupOpen="#my-popup">Popup</Button>
                   </Col>
                   <Col width="50">
-                    <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
+                    <Button fill raised href="/logginn/">Login Screen</Button>
                   </Col>
                 </Row>
               </Block>
