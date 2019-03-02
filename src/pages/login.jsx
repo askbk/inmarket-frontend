@@ -49,7 +49,7 @@ export default class extends React.Component {
               </List>
               <List>
                 <ListButton onClick={this.signIn.bind(this)}>Logg inn</ListButton>
-                <ListButton>Registrer deg</ListButton>
+                <ListButton href="/registrering/">Registrer deg</ListButton>
               </List>
             </Page>
         )
