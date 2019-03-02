@@ -18,8 +18,8 @@ export default class extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: "fdsa",
-            password: "dsaf"
+            username: "",
+            password: ""
         }
     }
 
@@ -29,18 +29,18 @@ export default class extends React.Component {
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput
-                  label="Username"
+                  label="Brukernavn"
                   type="text"
-                  placeholder="Your username"
+                  placeholder="E-posten din"
                   value={this.state.username}
                   onInput={(e) => {
                     this.setState({ username: e.target.value});
                   }}
                 />
                 <ListInput
-                  label="Password"
+                  label="Passord"
                   type="password"
-                  placeholder="Your password"
+                  placeholder="Passordet ditt"
                   value={this.state.password}
                   onInput={(e) => {
                     this.setState({ password: e.target.value});
@@ -48,8 +48,8 @@ export default class extends React.Component {
                 />
               </List>
               <List>
-                <ListButton onClick={this.signIn.bind(this)}>Sign In</ListButton>
-                <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
+                <ListButton onClick={this.signIn.bind(this)}>Logg inn</ListButton>
+                <ListButton>Registrer deg</ListButton>
               </List>
             </Page>
         )
@@ -62,9 +62,5 @@ export default class extends React.Component {
       app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
         router.navigate("/");
       });
-    }
-
-    alertLoginData() {
-      this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password);
     }
 }
