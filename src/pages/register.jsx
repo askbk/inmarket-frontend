@@ -39,67 +39,9 @@ export default class extends React.Component {
         let regpage;
         switch (this.state.step) {
             case 0:
-                return <RegPage1></RegPage1>;
-                break;
-            case 1:
-                return (
-                    <Block>
-                        <BlockHeader>Basisinformasjon</BlockHeader>
-                        <List>
-                            <ListInput
-                            label="Name"
-                            type="text"
-                            placeholder="Your name"
-                            ></ListInput>
-
-                            <ListInput
-                            label="E-mail"
-                            type="email"
-                            placeholder="E-mail"
-                            ></ListInput>
-
-                            <ListInput
-                            label="Password"
-                            type="password"
-                            placeholder="Password"
-                            ></ListInput>
-
-                            <ListInput
-                            label="Birth date"
-                            type="date"
-                            placeholder="Birth day"
-                            defaultValue="2014-04-30"
-                            ></ListInput>
-                        </List>
-                    </Block>
-                )
-                    break;
-            default:
-                break;
-
-        }
-    }
-
-    signIn() {
-      const self = this;
-      const app = self.$f7;
-      const router = self.$f7router;
-      app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-        router.navigate("/");
-      });
-    }
-}
-
-
-class RegPage1 extends React.Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return (
-            <Page name="registrering">
-                <Navbar title="Registrering" backLink="Back"></Navbar>
+            return (
+                <Page name="registrering1">
+                    <Navbar title="Registrering" backLink="Back"></Navbar>
                     <Block>
                         <BlockHeader>Registrer deg som</BlockHeader>
                         <Row>
@@ -128,7 +70,57 @@ class RegPage1 extends React.Component {
                             </Col>
                         </Row>
                     </Block>
-            </Page>
-        )
+                </Page>
+            )
+                break;
+            case 1:
+                return (
+                    <Page name="info">
+                        <Navbar title="Registrering" backLink="Back"></Navbar>
+                        <Block>
+                            <BlockHeader>Basisinformasjon</BlockHeader>
+                            <List>
+                                <ListInput
+                                label="Name"
+                                type="text"
+                                placeholder="Your name"
+                                ></ListInput>
+
+                                <ListInput
+                                label="E-mail"
+                                type="email"
+                                placeholder="E-mail"
+                                ></ListInput>
+
+                                <ListInput
+                                label="Password"
+                                type="password"
+                                placeholder="Password"
+                                ></ListInput>
+
+                                <ListInput
+                                label="Birth date"
+                                type="date"
+                                placeholder="Birth day"
+                                defaultValue="2014-04-30"
+                                ></ListInput>
+                            </List>
+                        </Block>
+                    </Page>
+                )
+                    break;
+            default:
+                break;
+
+        }
+    }
+
+    signIn() {
+      const self = this;
+      const app = self.$f7;
+      const router = self.$f7router;
+      app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
+        router.navigate("/");
+      });
     }
 }
