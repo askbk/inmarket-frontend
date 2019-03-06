@@ -22,9 +22,9 @@ export default class extends React.Component {
         let userdata;
         if (this.state.user) {
             console.log(this.state.user);
-            // userdata = this.state.user.map(data =>
-            //     <ListItem title={user.first_name}></ListItem>
-            // )
+            userdata = Object.keys(this.state.user).map(key =>
+                <ListItem key={key} title={this.state.user[key]}></ListItem>
+            )
         } else {
             userdata = <ListItem title="nje"></ListItem>;
             console.log(this.state.user);
