@@ -3,7 +3,8 @@ import HomePage from '../pages/home.jsx';
 import AboutPage from '../pages/about.jsx';
 import FormPage from '../pages/form.jsx';
 import NetworkPage from '../pages/network.jsx';
-
+import LoginPage from '../pages/login.jsx';
+import RegisterPage from '../pages/register.jsx';
 
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
@@ -25,6 +26,14 @@ var routes = [
   {
     path: '/nettverk/',
     component: NetworkPage
+  },
+  {
+      path: '/logginn/',
+      component: LoginPage
+  },
+  {
+      path: '/registrering/',
+      component: RegisterPage
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
