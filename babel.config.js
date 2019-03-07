@@ -18,6 +18,9 @@ module.exports = {
   ],
   plugins: [
     // "@babel/plugin-transform-runtime",
-    '@babel/plugin-syntax-dynamic-import',
+    "transform-class-properties",
+    "@babel/plugin-proposal-class-properties"
   ],
 };
+
+/*"transform-class-properties" trengs for å bruke class properties*/

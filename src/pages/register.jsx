@@ -32,17 +32,13 @@ export default class extends React.Component {
                 /*Navn på person og navn på bruker*/
                 name: null,
                 email: null,
-
+                password: null,
                 phone: null,
-                /*Brukes for undervisningssted og høyest utdanning*/
+                /*Brukes for undervisningssted og høyest utdanning; når bedrifts ansatt blir det brukt for bedriften du jobber i*/
                 text1: null,
-                /*Brukes for linje/studie*/
+                /*Brukes for linje/studie, som bedriftsansatt blir det brukt som stilling*/
                 text2: null,
-
                 social_worker : false
-
-
-
             },
 
             bedrift:{
@@ -58,6 +54,41 @@ export default class extends React.Component {
 
 
     }
+
+
+
+    submitForm(){
+        const user = this.state.user;
+        const bedrift = this.state.bedrift;
+        let data = {}
+        switch(userType){
+            case 0:
+                data = { name: user.name, password: user.password, phone: user.phone, email: user.email, undervisningssted: user.text1, linje: user.text2}
+                break;
+            case 1:
+                data = { name: user.name, password: user.password,  phone: user.phone, email: user.email, undervisningssted: user.text1, linje: user.text2}
+                break;
+            case 2:
+                data = { name: user.name, password: user.password,  phone: user.phone, email: user.email, highest_education: user.text1, linje: user.text2, social_worker : user.social_worker}
+                break;
+            case 3:
+                data = { name: user.name, password: user.password,  phone: user.phone, email: user.email, bedrift_navn: bedrift.name, org: bedrift.org, code: bedrift.code, url: bedrift.webpage}
+                break;
+            case 4:
+                data = { name: user.name, password: user.password, phone: user.phone, email: user.email, bedrift_navn: user.text1, stilling: user.text2}
+                break;
+        }
+
+        /*Nå skal dataen være klar for å bli */
+    }
+/*
+    onSubmit = e => {
+        e.preventDefault();
+        const {data, isFormValid} = this.props.formwork;
+        if (isFormValid) {
+            // Do something with `data`
+        }
+    };*/
 
     render() {
         let regpage;
@@ -99,6 +130,9 @@ export default class extends React.Component {
                 break;
             case 1:
                 return (
+                    <form onSubmit={this.onSubmit}>
+
+
                     <Page name="info">
                         <Navbar title="Registrering" backLink="Back"></Navbar>
                         <Block>
@@ -180,23 +214,53 @@ export default class extends React.Component {
 
                                 }
 
-
+                                {this.state.user.userType !== 4 &&
                                 <ListInput
                                     label="Linje/studie"
                                     type="text"
                                     placeholder="Ditt navn (valgfritt)"
                                     value={this.state.user.text2}
                                     onInput={(e) => {
-                                        this.setState({user:{ text2: e.target.value}});
+                                        this.setState({user: {text2: e.target.value}});
+                                    }}
+                                ></ListInput>
+                                }
+
+                                {this.state.user.userType === 4 &&
+                                <ListInput
+                                    label="Bedriftens organisasjonsnummer som du jobber i"
+                                    type="text"
+                                    placeholder=""
+                                    value={this.state.user.text1}
+                                    onInput={(e) => {
+                                        this.setState({user: {text1: e.target.value}});
                                     }}
                                 ></ListInput>
 
+
+                                }
+
+                                {this.state.user.userType === 4 &&
+
+                                <ListInput
+                                    label="Stilling"
+                                    type="text"
+                                    placeholder=""
+                                    value={this.state.user.text2}
+                                    onInput={(e) => {
+                                        this.setState({user: {text2: e.target.value}});
+                                    }}
+                                ></ListInput>
+
+                                }
 
 
                             </List>
 
                         </Block>
                     </Page>
+                        <input type="submit" value="Submit" />
+                    </form>
                 )
                     break;
             case 2:
