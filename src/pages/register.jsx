@@ -56,6 +56,7 @@ export default class extends React.Component {
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.submitRegistration = this.submitRegistration.bind(this);
     }
 /*
     onSubmit = e => {
@@ -66,14 +67,36 @@ export default class extends React.Component {
         }
     };*/
 
+    submitRegistration() {
+        console.log("submitting...");
+        console.log(this.state.user);
+        fetch("http://localhost:5000/api/register", {
+            method: "post",
+            body: JSON.stringify(this.state.user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            console.log("submitted");
+            return res.json();
+        }).then(eyah => {
+            console.log(eyah);
+        }).catch((err) => {
+            console.error(err);
+        })
+    }
+
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        this.setState({
-            user: {
-                [name]: value
+        this.setState(prevState => {
+            return {
+                user: {
+                    ...prevState.user,
+                    [name]: value
+                }
             }
         });
     }
@@ -115,10 +138,10 @@ export default class extends React.Component {
                     </Page>
                 )
                 break;
-                
+
             default:
                 return (
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.submitRegistration}>
 
                     <Page name="info">
                         <Navbar title="Registrering" backLink="Back"></Navbar>
@@ -267,9 +290,9 @@ export default class extends React.Component {
                                     ></ListInput>
                                 }
                             </List>
+                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
                         </Block>
                     </Page>
-                        <input type="submit" value="Submit" />
                     </form>
                 )
                 break;
