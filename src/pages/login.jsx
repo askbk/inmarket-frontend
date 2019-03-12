@@ -56,11 +56,27 @@ export default class extends React.Component {
     }
 
     signIn() {
-      const self = this;
-      const app = self.$f7;
-      const router = self.$f7router;
-      app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-        router.navigate("/");
-      });
+        const router = this.$f7router;
+        fetch("http://localhost:5000/api/login", {
+            method: "post",
+            body: JSON.stringify(
+                {
+                    "email": this.state.username,
+                    "password": this.state.password
+                }
+            ),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            return res.json();
+        }).then(tok => {
+            if (tok.error) {
+                console.error(tok.error);
+            } else if (tok.token) {
+                localStorage.jwt = tok.token;
+                router.navigate("/");
+            }
+        });
     }
 }
