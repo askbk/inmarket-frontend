@@ -55,9 +55,7 @@ export default class extends React.Component {
 
     }
 
-
-
-    submitForm(){
+    onSubmit(){
         const user = this.state.user;
         const bedrift = this.state.bedrift;
         let data = {}
@@ -374,14 +372,4 @@ export default class extends React.Component {
                                 defaultValue="2014-04-30"
                                 ></ListInput>
     */
-
-    signIn() {
-      const self = this;
-      const app = self.$f7;
-      const router = self.$f7router;
-      app.dialog.alert(`Username: ${self.state.username}<br>Password: ${self.state.password}`, () => {
-        router.navigate("/");
-      });
-    }
 }
-
