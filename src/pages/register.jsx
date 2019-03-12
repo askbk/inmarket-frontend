@@ -29,33 +29,31 @@ export default class extends React.Component {
         this.state = {
             user: {
                 userType: null,
-                /*Navn på person og navn på bruker*/
+                //  Basisinformasjon for den som registrerer brukeren
                 name: null,
                 email: null,
                 password: null,
                 phone: null,
-                /*Brukes for undervisningssted og høyest utdanning; når bedrifts ansatt blir det brukt for bedriften du jobber i*/
-                text1: null,
-                /*Brukes for linje/studie, som bedriftsansatt blir det brukt som stilling*/
-                text2: null,
-                social_worker : false
-            },
-
-            bedrift:{
-                name: null,
+                //  Brukes for undervisningssted og høyest utdanning
+                school: null,
+                program: null,
+                //  Stilling dersom man er bedriftsansatt
+                position: null,
+                //  Bedriften man registrerer/jobber for
+                company_name: null,
                 org: null,
+                //  Rabattkode for bedrifter
                 code: null,
+                //  Nettside for bedrifter
                 webpage: null,
-
-
             },
             step: 0
         }
 
-
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    onSubmit(){
+    submitForm(){
         const user = this.state.user;
         const bedrift = this.state.bedrift;
         let data = {}
@@ -87,6 +85,18 @@ export default class extends React.Component {
             // Do something with `data`
         }
     };*/
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            user: {
+                [name]: value
+            }
+        });
+    }
 
     render() {
         let regpage;
@@ -140,21 +150,19 @@ export default class extends React.Component {
                                 <ListInput
                                     label="E-post"
                                     type="email"
+                                    name="email"
                                     placeholder="E-post"
                                     value={this.state.user.email}
-                                    onInput={(e) => {
-                                        this.setState({user:{ email: e.target.value}});
-                                    }}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 <ListInput
                                     label="Password"
                                     type="password"
+                                    name="password"
                                     placeholder="Passord"
                                     value={this.state.user.password}
-                                    onInput={(e) => {
-                                        this.setState({user:{ password: e.target.value}});
-                                    }}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                             </List>
@@ -168,21 +176,19 @@ export default class extends React.Component {
                                 <ListInput
                                 label="Navn"
                                 type="text"
+                                name="name"
                                 placeholder="Ditt navn (valgfritt)"
                                 value={this.state.user.name}
-                                onInput={(e) => {
-                                    this.setState({user:{ name: e.target.value}});
-                                }}
+                                onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 <ListInput
                                 label="Telefonnummer"
                                 type="tel"
+                                name="phone"
                                 placeholder="Ditt telefon nummer (valgfritt)"
                                 value={this.state.user.phone}
-                                onInput={(e) => {
-                                    this.setState({user:{ phone: e.target.value}});
-                                }}>
+                                onInput={this.handleInputChange}>
                                 </ListInput>
 
 
@@ -190,24 +196,22 @@ export default class extends React.Component {
                                 <ListInput
                                     label="Undervisningssted (valgfritt)"
                                     type="text"
+                                    name="school"
                                     placeholder=""
-                                    value={this.state.user.text1}
-                                    onInput={(e) => {
-                                        this.setState({user:{ text1: e.target.value}});
-                                    }}
+                                    value={this.state.user.school}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 }
                                 {this.state.user.userType === 2 &&
 
                                 <ListInput
-                                    label="Høyest utdanning"
+                                    label="Høyeste utdanning"
                                     type="text"
+                                    name="school"
                                     placeholder="Videregående/universitet/høyskole (valgfritt)"
-                                    value={this.state.user.text1}
-                                    onInput={(e) => {
-                                        this.setState({user:{ text1: e.target.value}});
-                                    }}
+                                    value={this.state.user.school}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 }
@@ -216,11 +220,10 @@ export default class extends React.Component {
                                 <ListInput
                                     label="Linje/studie"
                                     type="text"
-                                    placeholder="Ditt navn (valgfritt)"
-                                    value={this.state.user.text2}
-                                    onInput={(e) => {
-                                        this.setState({user: {text2: e.target.value}});
-                                    }}
+                                    name="program"
+                                    placeholder="Linje/studie (valgfritt)"
+                                    value={this.state.user.program}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
                                 }
 
@@ -228,11 +231,10 @@ export default class extends React.Component {
                                 <ListInput
                                     label="Bedriftens organisasjonsnummer som du jobber i"
                                     type="text"
+                                    name="org"
                                     placeholder=""
-                                    value={this.state.user.text1}
-                                    onInput={(e) => {
-                                        this.setState({user: {text1: e.target.value}});
-                                    }}
+                                    value={this.state.user.org}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
 
@@ -243,18 +245,14 @@ export default class extends React.Component {
                                 <ListInput
                                     label="Stilling"
                                     type="text"
+                                    name="position"
                                     placeholder=""
-                                    value={this.state.user.text2}
-                                    onInput={(e) => {
-                                        this.setState({user: {text2: e.target.value}});
-                                    }}
+                                    value={this.state.user.position}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 }
-
-
                             </List>
-
                         </Block>
                     </Page>
                         <input type="submit" value="Submit" />
@@ -285,7 +283,7 @@ export default class extends React.Component {
                                     placeholder="Passord"
                                     value={this.state.user.password}
                                     onInput={(e) => {
-                                        this.setState({user:{ passord: e.target.value}});
+                                        this.setState({user:{ password: e.target.value}});
                                     }}
                                 ></ListInput>
 
@@ -320,9 +318,9 @@ export default class extends React.Component {
                                     label="Bedriftens navn"
                                     type="text"
                                     placeholder=""
-                                    value={this.state.bedrift.name}
+                                    value={this.state.user.name}
                                     onInput={(e) => {
-                                        this.setState({bedrift:{ email: e.target.value}});
+                                        this.setState({user:{ email: e.target.value}});
                                     }}
                                 ></ListInput>
 
@@ -330,9 +328,9 @@ export default class extends React.Component {
                                     label="Bedriftens organisasjonsnummer"
                                     type="text"
                                     placeholder=""
-                                    value={this.state.bedrift.org}
+                                    value={this.state.user.org}
                                     onInput={(e) => {
-                                        this.setState({bedrift:{ org: e.target.value}});
+                                        this.setState({user:{ org: e.target.value}});
                                     }}
                                 ></ListInput>
                                 <ListInput
@@ -341,16 +339,16 @@ export default class extends React.Component {
                                     placeholder=""
                                     value={this.state.bedrift.code}
                                     onInput={(e) => {
-                                        this.setState({bedrift:{ code: e.target.value}});
+                                        this.setState({user:{ code: e.target.value}});
                                     }}
                                 ></ListInput>
                                 <ListInput
                                     label="Bedriftens nettside"
                                     type="url"
                                     placeholder="(valgfritt)"
-                                    value={this.state.bedrift.webpage}
+                                    value={this.state.user.webpage}
                                     onInput={(e) => {
-                                        this.setState({bedrift:{webpage : e.target.value}});
+                                        this.setState({user:{webpage : e.target.value}});
                                     }}
                                 ></ListInput>
 
