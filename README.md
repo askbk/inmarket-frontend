@@ -61,11 +61,26 @@ Framework7 app created with following options:
 }
 ```
 
+# Git-konvensjoner
+
+branches:
+- master: oppdateres kun ved deployment (skal de merges med dev)
+- dev: utviklings-branchen, oppdateres jenvlig
+- feat/feature-name: en branch som lager/forbedrer en feature (skal branches fra dev) 
+- design/area-name: en branch som inneholder re-design av allerede eksisterende elementer (skal branches fra dev)
+- fix/bug-name: en branch som fikser en bug i dev (skal branches fra dev)
+
+Pull request:
+- Minst to utviklere må se gjennom en pull request
+- Det skal alltid pushe til dev (aldri direkte til master)
+- Bruk alltid "Squash-and-merge" 
+
 ## NPM Scripts
 
 * `nvm exec npm start` - run development server
 * `nvm exec npm run build-prod` - build web app for production
 * `nvm exec npm run build-cordova-prod` - build cordova's `www` folder from and build cordova app
+
 ## PWA
 
 This is a PWA. Don't forget to check what is inside of your `service-worker.js`. It is also recommended that you disable service worker (or enable "Update on reload") in browser dev tools during development.
