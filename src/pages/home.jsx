@@ -1,4 +1,5 @@
 import React from 'react';
+import Profile from '../components/network/Profile/Profile.jsx'
 import {
   Page,
   Navbar,
@@ -25,6 +26,7 @@ export default class extends React.Component {
     render() {
         return (
             <Page name="home">
+            <Profile/>
               {/* Top Navbar */}
               <Navbar sliding={false}>
                 <NavTitle sliding>InMarket</NavTitle>
@@ -54,6 +56,7 @@ export default class extends React.Component {
                 </Row>
               </Block>
             </Page>
+
         )
     }
 }
