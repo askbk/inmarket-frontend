@@ -9,25 +9,25 @@ export default class extends React.Component {
 
   render(){
 
-    const information = "Endre Medhus, Junior";
+    const information = "Endre Medhus, Junior Consulting";
     const contactRequest = true;
 
 
     return (
-      <div className="row">
-        <div className = 'profileImageNetworkContainer'>
-          <img className="profileImageNetwork" src=""></img>
-        </div>
-        <div className = "profileInformationNetworkContainer">
-          <div className="row">
-            <h1>{information}</h1>
+        
+      <div className = 'profileInformationContainer'>
+          <div className = 'profileImageNetworkContainer'>
+            <img src="" />
           </div>
-          <div className="row">
-            <p>{contactRequest ? "Har sendt deg en kontaktforespørsel" : ""}</p>
+          <div className = "profileInformationNetworkContainer">
+            <div className="profileInformationNetworkName">
+              <p>{information}</p>
+            </div>
+            <div className="profileInformationNetworkRequest">
+              <p>{contactRequest ? "Har sendt deg en kontaktforespørsel" : ""}</p>
+            </div>
           </div>
-        </div>
       </div>
-
     );
   }
 }

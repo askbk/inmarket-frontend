@@ -1,5 +1,8 @@
 import React from 'react';
-import Profile from '../components/network/Profile/Profile.jsx'
+import Profile from '../components/network/Profile/Profile.jsx';
+import Buttons from '../components/network/Buttons/Buttons.jsx';
+import ProfileInformation from '../components/network/ProfileInformation/ProfileInformation.jsx';
+
 import {
   Page,
   Navbar,

@@ -1,5 +1,4 @@
-import React from 'react';
-import {Button, Row, Col, Block} from 'framework7-react';
+import {Button} from 'framework7-react';
 import './Buttons.css'
 
 export default class extends React.Component {
@@ -12,8 +11,8 @@ export default class extends React.Component {
 
     return (
       <div className="buttonsContainer">
-        <Button small className="svartButton" fill>Aksepter</Button>
-        <Button small fill>Ikke Aksepter</Button>
+        <Button className="svartButton" fill>Aksepter</Button>
+        <Button fill>Ikke Aksepter</Button>
       </div>
     );
   }

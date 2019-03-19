@@ -1,7 +1,43 @@
+.profileInformationContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .profileImageNetworkContainer {
-  width: 30%
+  min-width: 120px;
+  flex: 1;
 }
 
 .profileInformationNetworkContainer{
-  width: 70%
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 4;
+}
+
+.profileInformationNetworkName{
+  flex: 1;
+  font-size: medium;
+}
+
+.profileInformationNetworkRequest{
+  flex: 1;
+  font-size: small;
+}
+
+@media screen and (max-width: 600px){
+  .profileInformationNetoworkContainer{
+    flex-direction: column;
+  }
+
+  .profileInformationNetworkName p{
+    font-size: 12px;
+    margin: 10px 0;
+  }
+
+  .profileInformationNetworkRequest p{
+    font-size: 10px;
+    margin: 0;
+  }
 }

@@ -13,14 +13,14 @@ export default class extends React.Component {
 
 
     return (
-      <div className="row">
-        <div className = 'profileInformationContainer'>
-          <ProfileInformation/>
+        <div className="profileContainer">
+          <div className = 'profileProfileInformationContainer'>
+            <ProfileInformation/>
+          </div>
+          <div className = 'profileButtonContainer'>
+            <Buttons/>
+          </div>
         </div>
-        <div className = 'profileButtonContainer'>
-          <Buttons/>
-        </div>
-      </div>
     );
   }
 }
