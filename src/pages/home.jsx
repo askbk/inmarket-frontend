@@ -26,18 +26,13 @@ export default class extends React.Component {
         return (
             <Page name="home">
               {/* Top Navbar */}
-              <Navbar sliding={false}>
-                <NavTitle sliding>InMarket</NavTitle>
-                <NavRight>
-                  <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="right" />
-                </NavRight>
-              </Navbar>
-              {/* Toolbar */}
+              {/* Page content */}
+              
               <Toolbar bottom>
                 <Link>Left Link</Link>
                 <Link>Right Link</Link>
               </Toolbar>
-              {/* Page content */}
+
               <Block strong>
                 <p>Here is your blank Framework7 app.</p>
               </Block>

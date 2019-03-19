@@ -1,29 +1,14 @@
 import React from 'react';
 import {
   App,
-  Panel,
-  Views,
-  View,
   Statusbar,
-  Popup,
-  Page,
-  Navbar,
-  Toolbar,
-  NavRight,
-  Link,
-  Block,
-  BlockTitle,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListItem,
-  ListInput,
-  ListButton,
-  BlockFooter
 } from 'framework7-react';
 
 import cordovaApp from '../js/cordova-app';
 import routes from '../js/routes';
+
+//import components
+import Header from '../components/Header/Header';
 
 export default class extends React.Component {
   constructor() {
@@ -80,37 +65,8 @@ export default class extends React.Component {
       <App params={ this.state.f7params }>
         {/* Status bar overlay for fullscreen mode*/}
         <Statusbar></Statusbar>
-
+        <Header />
         {/* Right panel with reveal effect*/}
-        <Panel right cover themeDark>
-          <Page>
-            <Navbar title="Right Panel"/>
-            <List>
-              <ListItem panelClose="right" link="/about/" title="About"/>
-              <ListItem panelClose="right" link="/form/" title="Form"/>
-              <ListItem panelClose="right" link="/nettverk/" title="Nettverk"/>
-            </List>
-          </Page>
-        </Panel>
-
-        {/* Your main view, should have "view-main" class */}
-        <View main pushState className="safe-areas" url="/" />
-
-        {/* Popup */}
-        <Popup id="my-popup">
-          <View>
-            <Page>
-              <Navbar title="Popup">
-                <NavRight>
-                  <Link popupClose>Close</Link>
-                </NavRight>
-              </Navbar>
-              <Block>
-                <p>Popup content goes here.</p>
-              </Block>
-            </Page>
-          </View>
-        </Popup>
       </App>
     )
   }
