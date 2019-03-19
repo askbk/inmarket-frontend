@@ -1,5 +1,6 @@
+import React from 'react';
 import {Button} from 'framework7-react';
-import './Buttons.css'
+import './TopButton.css';
 
 export default class extends React.Component {
 
@@ -10,9 +11,8 @@ export default class extends React.Component {
   render(){
 
     return (
-      <div className="buttonsContainer">
-        <Button className="svartButton" fill>Aksepter</Button>
-        <Button fill>Ikke Aksepter</Button>
+      <div className="topButtonContainer">
+        <Button className="topButton" fill>Kontakter</Button>
       </div>
     );
   }

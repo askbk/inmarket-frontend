@@ -2,6 +2,8 @@ import React from 'react';
 import Profile from '../components/network/Profile/Profile.jsx';
 import Buttons from '../components/network/Buttons/Buttons.jsx';
 import ProfileInformation from '../components/network/ProfileInformation/ProfileInformation.jsx';
+import TopButton from '../components/network/TopButton/TopButton.jsx';
+import NetworkView from '../components/network/NetworkView/NetworkView.jsx';
 
 import {
   Page,
@@ -29,7 +31,7 @@ export default class extends React.Component {
     render() {
         return (
             <Page name="home">
-            <Profile/>
+            <NetworkView/>
               {/* Top Navbar */}
               <Navbar sliding={false}>
                 <NavTitle sliding>InMarket</NavTitle>
