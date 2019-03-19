@@ -7,8 +7,9 @@
 .profileImageNetworkContainer {
   display: flex;
   align-content: center;
-  justify-content: center;
-  min-width: 120px;
+  justify-content: left;
+  padding: 15px 5px;
+  min-width: 100px;
   flex: 1;
 }
 
@@ -20,6 +21,8 @@
 }
 
 .profileInformationNetworkName{
+  display: flex;
+  align-items: flex-end;
   flex: 1;
   font-size: medium;
 }
@@ -30,9 +33,11 @@
 }
 
 .profileInformationImage{
+  object-fit: cover;
   max-height: 96px;
-  max-width: 96px;
+  width: 96px;
   border-radius: 50%;
+  border: 2px solid #c08d42;
 }
 
 @media screen and (max-width: 600px){
@@ -44,7 +49,7 @@
 
   .profileInformationNetworkName p{
     font-size: 12px;
-    margin: 10px 0;
+    margin: 0 0;
   }
 
   .profileInformationNetworkRequest p{
