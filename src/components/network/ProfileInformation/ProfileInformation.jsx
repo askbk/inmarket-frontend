@@ -1,6 +1,9 @@
 import React from 'react';
 import './ProfileInformation.css';
 
+//import picture
+import ProfilePic from '../../../../assets-src/IMG_1318.jpg';
+
 export default class extends React.Component {
 
   constructor(props){
@@ -17,7 +20,7 @@ export default class extends React.Component {
         
       <div className = 'profileInformationContainer'>
           <div className = 'profileImageNetworkContainer'>
-            <img src="" />
+            <img className='profileInformationImage' src={ProfilePic} />
           </div>
           <div className = "profileInformationNetworkContainer">
             <div className="profileInformationNetworkName">

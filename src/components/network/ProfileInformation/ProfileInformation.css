@@ -5,6 +5,9 @@
 }
 
 .profileImageNetworkContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
   min-width: 120px;
   flex: 1;
 }
@@ -26,8 +29,16 @@
   font-size: small;
 }
 
+.profileInformationImage{
+  max-height: 96px;
+  max-width: 96px;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 600px){
-  .profileInformationNetoworkContainer{
+  
+  .profileInformationNetworkContainer{
+    display: flex;
     flex-direction: column;
   }
 

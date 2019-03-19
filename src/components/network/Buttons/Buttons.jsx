@@ -12,8 +12,8 @@ export default class extends React.Component {
 
     return (
       <div className="buttonsContainer">
-        <Button small className="svartButton" fill>Aksepter</Button>
-        <Button small fill>Ikke Aksepter</Button>
+        <Button small className=" button svartButton" fill>Aksepter</Button>
+        <Button small className="button" fill>Ikke Aksepter</Button>
       </div>
     );
   }
