@@ -1,4 +1,10 @@
 import React from 'react';
+import Profile from '../components/network/Profile/Profile.jsx';
+import Buttons from '../components/network/Buttons/Buttons.jsx';
+import ProfileInformation from '../components/network/ProfileInformation/ProfileInformation.jsx';
+import TopButton from '../components/network/TopButton/TopButton.jsx';
+import NetworkView from '../components/network/NetworkView/NetworkView.jsx';
+
 import {
   Page,
   Navbar,
@@ -25,6 +31,7 @@ export default class extends React.Component {
     render() {
         return (
             <Page name="home">
+            <NetworkView/>
               {/* Top Navbar */}
               {/* Page content */}
               
@@ -49,6 +56,7 @@ export default class extends React.Component {
                 </Row>
               </Block>
             </Page>
+
         )
     }
 }

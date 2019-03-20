@@ -1,0 +1,61 @@
+.profileInformationContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.profileImageNetworkContainer {
+  display: flex;
+  align-content: center;
+  justify-content: left;
+  padding: 8px 5px;
+  min-width: 80px;
+  flex: 1;
+}
+
+.profileInformationNetworkContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 4;
+}
+
+.profileInformationNetworkName{
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  font-size: medium;
+  width: 100%;
+}
+
+.profileInformationNetworkRequest{
+  flex: 1;
+  font-size: small;
+  width: 100%;
+}
+
+.profileInformationImage{
+  object-fit: cover;
+  max-height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  border: 2px solid #c08d42;
+}
+
+@media screen and (max-width: 750px){
+  
+  .profileInformationNetworkContainer{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profileInformationNetworkName p{
+    font-size: 12px;
+    margin: 0 0;
+  }
+
+  .profileInformationNetworkRequest p{
+    font-size: 10px;
+    margin: 0;
+  }
+}

@@ -1,0 +1,10 @@
+.networkViewOuterContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.networkViewInnerContainer{
+    width: 100%;
+    max-width: 1000px;
+}

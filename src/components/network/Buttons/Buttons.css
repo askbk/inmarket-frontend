@@ -1,0 +1,18 @@
+.buttonsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.svartButton{
+    background: black;
+}
+
+.button{
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 0;
+}
