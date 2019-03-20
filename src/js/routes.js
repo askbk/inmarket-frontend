@@ -6,7 +6,6 @@ import NetworkPage from '../pages/network.jsx';
 import LoginPage from '../pages/login.jsx';
 import RegisterPage from '../pages/register.jsx';
 import ProfilePage from '../pages/profile.jsx'
-
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
