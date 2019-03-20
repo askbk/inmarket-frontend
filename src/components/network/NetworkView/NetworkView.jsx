@@ -13,14 +13,16 @@ export default class extends React.Component {
   render(){
 
     return (
-      <div className="networkViewContainer">
-        <div className="networkViewTopButtonContainer">
-            <TopButton/>
+        <div className="networkViewOuterContainer">
+            <div className="networkViewInnerContainer">
+                <div className="networkViewTopButtonContainer">
+                    <TopButton/>
+                </div>
+                <div className="networkViewProfileContainer">
+                    <Profile/>
+                </div>
+            </div>
         </div>
-        <div className="networkViewProfileContainer">
-            <Profile/>
-        </div>
-      </div>
     );
   }
 }

@@ -8,8 +8,8 @@
   display: flex;
   align-content: center;
   justify-content: left;
-  padding: 15px 5px;
-  min-width: 100px;
+  padding: 8px 5px;
+  min-width: 80px;
   flex: 1;
 }
 
@@ -25,22 +25,24 @@
   align-items: flex-end;
   flex: 1;
   font-size: medium;
+  width: 100%;
 }
 
 .profileInformationNetworkRequest{
   flex: 1;
   font-size: small;
+  width: 100%;
 }
 
 .profileInformationImage{
   object-fit: cover;
-  max-height: 96px;
-  width: 96px;
+  max-height: 70px;
+  width: 70px;
   border-radius: 50%;
   border: 2px solid #c08d42;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 750px){
   
   .profileInformationNetworkContainer{
     display: flex;

@@ -1,7 +1,7 @@
 .profileContainer{
   display: flex;
   flex-direction: row;
-  height: 130px;
+  height: 90px;
 }
 
 .profileProfileInformationContainer{

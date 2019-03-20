@@ -12,7 +12,7 @@ export default class extends React.Component {
 
   render(){
 
-    const information = "Endre Medhus, Junior Consulting";
+    const information = "Endre, Junior Consulting";
     const contactRequest = true;
 
 
