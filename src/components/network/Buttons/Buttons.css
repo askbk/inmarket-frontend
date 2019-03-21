@@ -5,14 +5,11 @@
     align-content: center;
 }
 
-.svartButton{
-    background: black;
-}
-
-.button{
+.networkButton{
     font-size: 10px;
     display: flex;
     justify-content: center;
     border: none;
-    border-radius: 0;
+    margin: 5px;
+    color: black;
 }

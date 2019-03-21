@@ -12,3 +12,16 @@
 }
 
 /* Your app custom styles here */
+.color-theme-red{
+  --f7-theme-color: #bb0000;
+  --f7-theme-color-rgb: 187, 0, 0;
+  --f7-theme-color-shade: #ac0000;
+  --f7-theme-color-tint: #d40000;
+}
+
+.color-theme-green{
+  --f7-theme-color: #78AB46;
+  --f7-theme-color-rgb: 120, 171, 70;
+  --f7-theme-color-shade: #6e9d40;
+  --f7-theme-color-tint: #82b74f;
+}
