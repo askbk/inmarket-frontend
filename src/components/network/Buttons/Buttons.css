@@ -5,11 +5,16 @@
     align-content: center;
 }
 
-.networkButton{
+.networkButton, .networkContactButton, .networkRequestButton, .networkViewButton{
     font-size: 10px;
     display: flex;
     justify-content: center;
     border: none;
     margin: 5px;
     color: black;
+}
+
+.networkContactButton, .networkRequestButton, .networkViewButton{
+    background: black;
+    color: white;
 }

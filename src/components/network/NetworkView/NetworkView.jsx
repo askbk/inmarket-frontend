@@ -18,7 +18,7 @@ export default class extends React.Component {
                 <div className="networkViewSearchbarContainer">
                     <NetworkSearchBar/>
                 </div>
-                <List>
+                <List noHairlines noHairlinesBetween>
                   <ListItem title="">
                     <div className="networkViewProfileContainer">
                       <Profile/>

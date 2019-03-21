@@ -25,3 +25,10 @@
   --f7-theme-color-shade: #6e9d40;
   --f7-theme-color-tint: #82b74f;
 }
+
+.color-theme-orange{
+  --f7-theme-color: #e47833;
+  --f7-theme-color-rgb: 228, 120, 51;
+  --f7-theme-color-shade: #e16a1f;
+  --f7-theme-color-tint: #e68243;
+}

@@ -13,13 +13,29 @@ export default class extends React.Component {
 
   render(){
 
+    const noContact = (
+      <Chip className = "avatarNetworkLabel color-theme-red" text="Ingen kontakt"/>
+    )
+
+    const request = (
+      <Chip className = "avatarNetworkLabel avatarNetworkRequestLabel color-theme-green" text="Ber om kontakt"/>
+    )
+
+    const contact = (
+      <Chip className = "avatarNetworkLabel color-theme-green" text="Har kontakt"/>
+    )
+
+    const requested = (
+      <Chip className = "avatarNetworkLabel color-theme-orange" text="Forespurt"/>
+    )
+
     return (
       <div className="avatarNetworkContainer">
         <div className = 'avatarNetworkImageContainer'>
           <img className='avatarNetworkImage' src={ProfilePic} />
         </div>
         <div className="avatarNetworkLabelContainer">
-          <Chip className = "avatarNetworkRequestLabel color-theme-green" text="Ber om kontakt"/>
+          {request}
         </div>
       </div>
     );
