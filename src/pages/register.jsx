@@ -20,7 +20,9 @@ import {
   CardFooter,
   CardContent,
   Col,
-  Views
+  Views,
+  Tabs,
+  Tab
 } from 'framework7-react';
 
 export default class extends React.Component {
@@ -34,6 +36,7 @@ export default class extends React.Component {
                 email: '',
                 password: "",
                 phone: "",
+                municipality: "",
 
                 //  Brukes for undervisningssted og høyest utdanning
                 school: "",
@@ -51,21 +54,12 @@ export default class extends React.Component {
 
                 //  Nettside for bedrifter
                 webpage: "",
-            },
-            step: 0
+            }
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
     }
-/*
-    onSubmit = e => {
-        e.preventDefault();
-        const {data, isFormValid} = this.props.formwork;
-        if (isFormValid) {
-            // Do something with `data`
-        }
-    };*/
 
     submitRegistration() {
         console.log("submitting...");
@@ -102,53 +96,16 @@ export default class extends React.Component {
     }
 
     render() {
-        switch (this.state.user.userType) {
-            case -1:
-                return (
-                    <Page name="registrering1">
-                        <Navbar title="Registrering" backLink="Back"></Navbar>
-                        <Block>
-                            <BlockHeader>Registrer deg som</BlockHeader>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={0} onClick={() => {this.setState({user: {...this.state.user, userType: 0}})}}>Videregående elev</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={1} onClick={() => {this.setState({user: {...this.state.user, userType: 1}})}}>Student</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={2} onClick={() => {this.setState({user: {...this.state.user, userType: 2}})}}>Arbeidsledig</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={3} onClick={() => {this.setState({user: {...this.state.user, userType: 3}})}}>Bedrift</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={4} onClick={() => {this.setState({user: {...this.state.user, userType: 4}})}}>Bedriftsansatt</Button>
-                                </Col>
-                            </Row>
-                        </Block>
-                    </Page>
-                )
-                break;
 
-            default:
-                return (
-                    <form onSubmit={this.submitRegistration}>
+        return (
+            <Page name="info">
+                <Navbar title="Registrering" backLink="Back"></Navbar>
 
-                    <Page name="info">
-                        <Navbar title="Registrering" backLink="Back"></Navbar>
+                <Tabs>
+                    <Tab id="tab-basis" className="page-content" tabActive>
                         <Block>
                             <BlockHeader>Basisinformasjon</BlockHeader>
-                            <List>
-
+                            <List form>
                                 <ListInput
                                     label="E-post"
                                     type="email"
@@ -167,119 +124,161 @@ export default class extends React.Component {
                                     onInput={this.handleInputChange}
                                 ></ListInput>
 
-                            </List>
-                        </Block>
-
-                        <Block>
-                            <BlockHeader>Valgfri ekstrainformasjon</BlockHeader>
-                            <List>
-
                                 <ListInput
-                                label="Navn"
-                                type="text"
-                                name="name"
-                                placeholder="Ditt navn (valgfritt)"
-                                value={this.state.user.name}
-                                onInput={this.handleInputChange}
+                                    label="Navn"
+                                    type="text"
+                                    name="name"
+                                    placeholder="Ditt navn (valgfritt)"
+                                    value={this.state.user.name}
+                                    onInput={this.handleInputChange}
                                 ></ListInput>
 
                                 <ListInput
-                                label="Telefonnummer"
-                                type="tel"
-                                name="phone"
-                                placeholder="Ditt telefon nummer (valgfritt)"
-                                value={this.state.user.phone}
-                                onInput={this.handleInputChange}>
-                                </ListInput>
+                                    label="Telefonnummer"
+                                    type="tel"
+                                    name="phone"
+                                    placeholder="Ditt telefonnummer (valgfritt)"
+                                    value={this.state.user.phone}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
 
-                                {(this.state.user.userType === 0 || this.state.user.userType === 1) &&
-                                    //  Dersom student eller elev
-                                    <ListInput
-                                        label="Undervisningssted (valgfritt)"
-                                        type="text"
-                                        name="school"
-                                        placeholder=""
-                                        value={this.state.user.school}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                                <ListInput
+                                    label="Kommune"
+                                    type="text"
+                                    name="municipality"
+                                    placeholder="Din kommune (valgfritt)"
+                                    value={this.state.user.municipality}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+                            </List>
 
-                                {this.state.user.userType === 2 &&
-                                    //  Dersom arbeidsledig
-                                    <ListInput
-                                        label="Høyeste utdanning"
-                                        type="text"
-                                        name="school"
-                                        placeholder="Videregående/universitet/høyskole (valgfritt)"
-                                        value={this.state.user.school}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                            <Button raised fill large tabLink="#tab-usertype">Neste</Button>
+                        </Block>
+                    </Tab>
 
-                                {this.state.user.userType !== 3 && this.state.user.userType !== 4 &&
-                                    //  Dersom elev, student eller arbeidsledig
-                                    <ListInput
-                                        label="Linje/studie"
-                                        type="text"
-                                        name="program"
-                                        placeholder="Linje/studie (valgfritt)"
-                                        value={this.state.user.program}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                    <Tab id="tab-usertype" className="page-content">
+                        <Block>
+                            <BlockHeader>Registrer deg som</BlockHeader>
+                            <Row>
+                                <Col>
+                                    <Button raised fill userType={0} tabLink="#tab-student">Videregående elev</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Button raised fill userType={1} tabLink="#tab-student">Student</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Button raised fill userType={2} tabLink="#tab-unemployed">Arbeidsledig</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Button raised fill userType={3} tabLink="#tab-company">Bedrift</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Button raised fill userType={4} tabLink="#tab-company">Bedriftsansatt</Button>
+                                </Col>
+                            </Row>
+                        </Block>
+                    </Tab>
 
-                                {this.state.userType === 3 &&
-                                    //  Dersom bedrift
-                                    <ListInput
-                                        label="Bedriftens navn"
-                                        type="text"
-                                        name="company"
-                                        placeholder=""
-                                        value={this.state.user.org}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                    <Tab id="tab-student" className="page-content">
+                        <Block>
+                            <List form>
+                                <ListInput
+                                    label="Undervisningssted (valgfritt)"
+                                    type="text"
+                                    name="school"
+                                    placeholder=""
+                                    value={this.state.user.school}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
 
-                                {(this.state.user.userType === 3  || this.state.user.userType === 4) &&
-                                    //  Dersom bedrift eller bedriftsansatt
-                                    <ListInput
-                                        label="Bedriftens organisasjonsnummer"
-                                        type="text"
-                                        name="org"
-                                        placeholder=""
-                                        value={this.state.user.org}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                                <ListInput
+                                    label="Linje/studie"
+                                    type="text"
+                                    name="program"
+                                    placeholder="Linje/studie (valgfritt)"
+                                    value={this.state.user.program}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+                            </List>
 
-                                {this.state.user.userType === 4 &&
-                                    //  Dersom bedriftsansatt
-                                    <ListInput
-                                        label="Stilling"
-                                        type="text"
-                                        name="position"
-                                        placeholder=""
-                                        value={this.state.user.position}
-                                        onInput={this.handleInputChange}
-                                    ></ListInput>
-                                }
+                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
+                        </Block>
+                    </Tab>
 
-                                {this.state.userType === 3 &&
-                                    //  Dersom bedrift
-                                    <ListInput
+                    <Tab id="tab-unemployed" className="page-content">
+                        <Block>
+                            <List form>
+                                <ListInput
+                                    label="Høyeste utdanning"
+                                    type="text"
+                                    name="school"
+                                    placeholder="Videregående/universitet/høyskole (valgfritt)"
+                                    value={this.state.user.school}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+
+                                <ListInput
+                                    label="Linje/studie"
+                                    type="text"
+                                    name="program"
+                                    placeholder="Linje/studie (valgfritt)"
+                                    value={this.state.user.program}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+                            </List>
+                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
+                        </Block>
+                    </Tab>
+
+                    <Tab id="tab-company" className="page-content">
+                        <Block>
+                            <List form>
+                                <ListInput
+                                    label="Bedriftens navn"
+                                    type="text"
+                                    name="company"
+                                    placeholder=""
+                                    value={this.state.user.org}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+
+                                <ListInput
+                                    label="Bedriftens organisasjonsnummer"
+                                    type="text"
+                                    name="org"
+                                    placeholder=""
+                                    value={this.state.user.org}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+
+                                <ListInput
+                                    label="Stilling"
+                                    type="text"
+                                    name="position"
+                                    placeholder=""
+                                    value={this.state.user.position}
+                                    onInput={this.handleInputChange}
+                                ></ListInput>
+
+                                <ListInput
                                     label="Kode"
                                     type="text"
                                     placeholder=""
-                                    value={this.state.bedrift.code}
+                                    value={this.state.user.code}
                                     onInput={(e) => {
                                         this.setState({user:{ code: e.target.value}});
                                     }}
-                                    ></ListInput>
-                                }
+                                ></ListInput>
 
-                                {this.state.userType === 3 &&
-                                    //  Dersom bedrift
-                                    <ListInput
+                                <ListInput
                                     label="Bedriftens nettside"
                                     type="url"
                                     placeholder="(valgfritt)"
@@ -287,23 +286,13 @@ export default class extends React.Component {
                                     onInput={(e) => {
                                         this.setState({user:{webpage : e.target.value}});
                                     }}
-                                    ></ListInput>
-                                }
+                                ></ListInput>
                             </List>
                             <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
                         </Block>
-                    </Page>
-                    </form>
-                )
-                break;
-        }
+                    </Tab>
+                </Tabs>
+            </Page>
+        )
     }
-    /*
-    <ListInput
-                                label="Birth date"
-                                type="date"
-                                placeholder="Fødselsdato"
-                                defaultValue="2014-04-30"
-                                ></ListInput>
-    */
 }
