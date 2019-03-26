@@ -35,7 +35,7 @@ export default class extends React.Component {
           <img className='avatarNetworkImage' src={ProfilePic} />
         </div>
         <div className="avatarNetworkLabelContainer">
-          {request}
+          {requested}
         </div>
       </div>
     );
