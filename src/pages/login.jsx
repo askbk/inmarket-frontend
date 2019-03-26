@@ -14,6 +14,10 @@ import {
     BlockFooter
 } from 'framework7-react';
 
+import Logo from '../../assets-src/Navbar/inMarketlogo.png';
+
+import '../css/login.css';
+
 export default class extends React.Component {
     constructor() {
         super();
@@ -25,7 +29,8 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Page noToolbar noNavbar noSwipeback loginScreen>
+            <Page noToolbar noNavbar noSwipeback loginScreen className="theme-dark">
+              <img className='loginPageLogo' src={Logo} />
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput
@@ -36,6 +41,7 @@ export default class extends React.Component {
                   onInput={(e) => {
                     this.setState({ username: e.target.value});
                   }}
+                  className="loginListInput"
                 />
                 <ListInput
                   label="Passord"
