@@ -22,8 +22,13 @@ import {
   Col,
   Views,
   Tabs,
-  Tab
+  Tab,
+  Toolbar,
+  Link
 } from 'framework7-react';
+
+import RegisterUser from '../components/RegisterPage/RegisterUser/RegisterUser.jsx';
+import RegisterCompany from '../components/RegisterPage/RegisterCompany/RegisterCompany.jsx';
 
 export default class extends React.Component {
     constructor() {
@@ -98,199 +103,17 @@ export default class extends React.Component {
     render() {
 
         return (
-            <Page name="info">
-                <Navbar title="Registrering" backLink="Back"></Navbar>
+            <Page noNavbar>
+                {/*<Navbar title="Registrering" backLink="Back"></Navbar>*/}
+                <Toolbar tabbar position="top">
+                    <Link tabLink="#tab-user" tabLinkActive text="Bruker"></Link>
+                    <Link tabLink="#tab-company" text="Virksomhet"></Link>
+                </Toolbar>
 
                 <Tabs>
-                    <Tab id="tab-basis" className="page-content" tabActive>
-                        <Block>
-                            <BlockHeader>Basisinformasjon</BlockHeader>
-                            <List form>
-                                <ListInput
-                                    label="E-post"
-                                    type="email"
-                                    name="email"
-                                    placeholder="E-post"
-                                    value={this.state.user.email}
-                                    onChange={this.handleInputChange}
-                                ></ListInput>
+                    <RegisterUser />
 
-                                <ListInput
-                                    label="Password"
-                                    type="password"
-                                    name="password"
-                                    placeholder="Passord"
-                                    value={this.state.user.password || ""}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Navn"
-                                    type="text"
-                                    name="name"
-                                    placeholder="Ditt navn (valgfritt)"
-                                    value={this.state.user.name}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Telefonnummer"
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="Ditt telefonnummer (valgfritt)"
-                                    value={this.state.user.phone}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Kommune"
-                                    type="text"
-                                    name="municipality"
-                                    placeholder="Din kommune (valgfritt)"
-                                    value={this.state.user.municipality}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-                            </List>
-
-                            <Button raised fill large tabLink="#tab-usertype">Neste</Button>
-                        </Block>
-                    </Tab>
-
-                    <Tab id="tab-usertype" className="page-content">
-                        <Block>
-                            <BlockHeader>Registrer deg som</BlockHeader>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={0} tabLink="#tab-student">Videregående elev</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={1} tabLink="#tab-student">Student</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={2} tabLink="#tab-unemployed">Arbeidsledig</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={3} tabLink="#tab-company">Bedrift</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button raised fill userType={4} tabLink="#tab-company">Bedriftsansatt</Button>
-                                </Col>
-                            </Row>
-                        </Block>
-                    </Tab>
-
-                    <Tab id="tab-student" className="page-content">
-                        <Block>
-                            <List form>
-                                <ListInput
-                                    label="Undervisningssted (valgfritt)"
-                                    type="text"
-                                    name="school"
-                                    placeholder=""
-                                    value={this.state.user.school}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Linje/studie"
-                                    type="text"
-                                    name="program"
-                                    placeholder="Linje/studie (valgfritt)"
-                                    value={this.state.user.program}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-                            </List>
-
-                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
-                        </Block>
-                    </Tab>
-
-                    <Tab id="tab-unemployed" className="page-content">
-                        <Block>
-                            <List form>
-                                <ListInput
-                                    label="Høyeste utdanning"
-                                    type="text"
-                                    name="school"
-                                    placeholder="Videregående/universitet/høyskole (valgfritt)"
-                                    value={this.state.user.school}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Linje/studie"
-                                    type="text"
-                                    name="program"
-                                    placeholder="Linje/studie (valgfritt)"
-                                    value={this.state.user.program}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-                            </List>
-                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
-                        </Block>
-                    </Tab>
-
-                    <Tab id="tab-company" className="page-content">
-                        <Block>
-                            <List form>
-                                <ListInput
-                                    label="Bedriftens navn"
-                                    type="text"
-                                    name="company"
-                                    placeholder=""
-                                    value={this.state.user.org}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Bedriftens organisasjonsnummer"
-                                    type="text"
-                                    name="org"
-                                    placeholder=""
-                                    value={this.state.user.org}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Stilling"
-                                    type="text"
-                                    name="position"
-                                    placeholder=""
-                                    value={this.state.user.position}
-                                    onInput={this.handleInputChange}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Kode"
-                                    type="text"
-                                    placeholder=""
-                                    value={this.state.user.code}
-                                    onInput={(e) => {
-                                        this.setState({user:{ code: e.target.value}});
-                                    }}
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Bedriftens nettside"
-                                    type="url"
-                                    placeholder="(valgfritt)"
-                                    value={this.state.user.webpage}
-                                    onInput={(e) => {
-                                        this.setState({user:{webpage : e.target.value}});
-                                    }}
-                                ></ListInput>
-                            </List>
-                            <Button raised fill large onClick={this.submitRegistration}>Registrer</Button>
-                        </Block>
-                    </Tab>
+                    <RegisterCompany />
                 </Tabs>
             </Page>
         )
