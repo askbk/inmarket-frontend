@@ -1,0 +1,32 @@
+.profileTextInformationNetworkContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 4;
+  }
+  
+  .profileTextInformationNetworkName, .profileTextInformationNetworkInstitution{
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+    width: 100%;
+  }
+
+  .profileTextInformationNetworkName{
+      font-size: small;
+  }
+
+  .profileTextInformationNetworkName p, .profileTextInformationNetworkInstitution p{
+      margin: 0;
+  }
+
+  .profileTextInformationNetworkProgressContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  

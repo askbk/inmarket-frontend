@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import pictures
-import temp from '../../../../assets-src/ProfilePage/temp.png';
+import temp from '../../../../assets-src/CompanyPage/DefaultCompanyPage.png';
 
 //import styling
 import './ProfilePageHeader.css';

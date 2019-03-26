@@ -10,10 +10,30 @@ export default class extends React.Component {
 
   render(){
 
+    const noContact = (
+      <Button small className="networkContactButton" fill>Kontakt</Button>
+    );
+
+    const request = (
+      <div>
+        <Button small className="networkRequestButton color-theme-green" fill>Aksepter</Button>
+        <Button small className="networkRequestButton color-theme-red" fill>Avlys</Button>
+      </div>
+    );
+
+    const contact = (
+      <div>
+        <Button small className="networkViewButton" fill>Se logg</Button>
+        <Button small className="networkViewButton" fill>Inviter</Button>
+      </div>
+    );
+
+    const requested = (<div></div>);
+
+
     return (
       <div className="buttonsContainer">
-        <Button small className=" button svartButton" fill>Aksepter</Button>
-        <Button small className="button" fill>Ikke Aksepter</Button>
+        {requested}
       </div>
     );
   }
