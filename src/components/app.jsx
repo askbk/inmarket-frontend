@@ -8,7 +8,7 @@ import cordovaApp from '../js/cordova-app';
 import routes from '../js/routes';
 
 //import components
-import Header from '../components/Header/Header';
+import Navbar from '../components/Navbar/Navbar';
 
 export default class extends React.Component {
   constructor() {
@@ -65,7 +65,7 @@ export default class extends React.Component {
       <App params={ this.state.f7params }>
         {/* Status bar overlay for fullscreen mode*/}
         <Statusbar></Statusbar>
-        <Header />
+        <Navbar />
         {/* Right panel with reveal effect*/}
       </App>
     )
