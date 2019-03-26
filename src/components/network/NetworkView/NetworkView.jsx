@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button} from 'framework7-react';
 import Profile from '../Profile/Profile.jsx';
-import TopButton from '../TopButton/TopButton.jsx';
+import NetworkSearchBar from '../NetworkSearchbar/NetworkSearchbar.jsx';
+import {List, ListItem} from 'framework7-react';
 import './NetworkView.css';
 
 export default class extends React.Component {
@@ -15,12 +15,26 @@ export default class extends React.Component {
     return (
         <div className="networkViewOuterContainer">
             <div className="networkViewInnerContainer">
-                <div className="networkViewTopButtonContainer">
-                    <TopButton/>
+                <div className="networkViewSearchbarContainer">
+                    <NetworkSearchBar/>
                 </div>
-                <div className="networkViewProfileContainer">
-                    <Profile/>
-                </div>
+                <List noHairlines noHairlinesBetween>
+                  <ListItem title="">
+                    <div className="networkViewProfileContainer">
+                      <Profile/>
+                    </div>
+                  </ListItem>
+                  <ListItem title="">
+                    <div className="networkViewProfileContainer">
+                      <Profile/>
+                    </div>
+                  </ListItem>
+                  <ListItem title="">
+                    <div className="networkViewProfileContainer">
+                      <Profile/>
+                    </div>
+                  </ListItem>
+                </List>
             </div>
         </div>
     );

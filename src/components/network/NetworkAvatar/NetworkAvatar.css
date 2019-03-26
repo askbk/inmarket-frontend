@@ -1,0 +1,43 @@
+
+.avatarNetworkContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+    padding: 9px 10px;
+    position: relative;
+}
+
+.avatarNetworkImageContainer {
+    display: flex;
+    align-content: center;
+    justify-content: left;
+    position: absolute;
+    width: 100%;
+    flex: 1;
+  }
+
+  .avatarNetworkImage{
+    object-fit: cover;
+    max-height: 100px;
+    width: 90px;
+  }
+
+  .avatarNetworkLabelContainer{
+    position: absolute;
+    bottom: 9px;
+    width: 90px;
+  }
+
+  .avatarNetworkLabel{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 4px;
+    height: 20px;
+    color: black;
+    font-size: 10px;
+  }
+
+  .avatarNetworkRequestLabel{
+      font-size: 8.5px;
+  }

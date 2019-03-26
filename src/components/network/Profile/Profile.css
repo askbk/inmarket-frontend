@@ -1,7 +1,7 @@
 .profileContainer{
   display: flex;
   flex-direction: row;
-  height: 90px;
+  height: 130px;
 }
 
 .profileProfileInformationContainer{
@@ -9,6 +9,7 @@
   align-items: center;
   order: 1;
   flex: 4; 
+
 }
 
 .profileButtonContainer{
