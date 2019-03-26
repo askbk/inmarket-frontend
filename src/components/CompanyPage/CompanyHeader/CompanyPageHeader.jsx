@@ -3,6 +3,9 @@ import React from 'react';
 //import pictures
 import CompanyPagePic from '../../../../assets-src/CompanyPage/DefaultCompanyPage.png';
 
+//import components
+import StarRatings from '../../../../node_modules/react-star-ratings';
+
 //import styling
 import './CompanyPageHeader.css';
 
@@ -15,6 +18,9 @@ const companyPageHeader = (props) => (
     </span>
     <span className="companyPageHeaderText-2">Teknologi, kompetansebygging {/* props.subtext */}
     </span>
+    <div className="profileTextInformationNetworkProgressContainer">
+            <StarRatings starDimension="20px" starSpacing="2px" rating={4.2} starRatedColor="#c08d42" starEmptyColor="black"/>
+    </div>
     <span className="companyPageHeaderText-3">
     Torggata 15, 0181 Oslo {/* props.adress */}
     </span>

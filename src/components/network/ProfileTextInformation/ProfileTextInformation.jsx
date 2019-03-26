@@ -1,10 +1,10 @@
 import React from 'react';
 import './ProfileTextInformation.css';
-import StarRatings from '../../../../node_modules/react-star-ratings';
-
 
 //import picture
 import ProfilePic from '../../../../assets-src/IMG_1318.jpg';
+
+import StarRatings from '../../../../node_modules/react-star-ratings';
 
 export default class extends React.Component {
 
