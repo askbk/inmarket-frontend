@@ -1,0 +1,81 @@
+.companyPageHeaderContainer {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.companyPageHeaderPic img{
+  width: 200px;
+  height: 200px;
+}
+
+.companyPageLeftRow {
+  width: auto;
+  padding-right: 15px;
+}
+
+.companyPageRightRow {
+  width: 30%;
+}
+
+.companyPageHeaderText-1 {
+  padding-top: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px;
+  display: block;
+}
+
+.companyPageHeaderText-2 {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  padding-bottom: 15px;
+  display: block;
+}
+
+.companyPageHeaderText-3 {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  text-decoration: underline;
+  display: block;
+}
+
+
+
+@media (max-width: 574px){
+  .companyPageHeaderContainer {
+    flex-direction: row;
+    align-content: center;
+  }
+
+  .companyPageHeaderPic img{
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .companyPageHeaderText-1 {
+    padding-top: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    display: block;
+  }
+
+  .companyPageHeaderText-2 {
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    padding-bottom: 15px;
+    display: block;
+  }
+
+  .companyPageHeaderText-3 {
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    padding-bottom: 15px;
+    display: block;
+  }
+  .companyPageRightRow {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}

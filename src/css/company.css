@@ -1,0 +1,14 @@
+.companyPageButtonContainer {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 769px){
+ 
+  .companyPageButtonContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}

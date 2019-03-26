@@ -8,7 +8,7 @@ import  Network from '../../../assets-src/SidebarIcons/network.png';
 import Saved from '../../../assets-src/SidebarIcons/saved.png';
 
 //import stylesheet
-import './Header.css';
+import './Navbar.css';
 
 
 //import Framework 7 files
