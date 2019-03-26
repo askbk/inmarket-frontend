@@ -1,4 +1,4 @@
-.companyPageButton {
+.styledPageButton {
   background-color: black;
   color: white;
   border: 1px solid #c08d42; 
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 769px){
-  .companyPageButton {
+  .styledPageButton {
     margin-top: 10px;
   }
 }

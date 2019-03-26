@@ -1,12 +1,11 @@
 import React from 'react';
 
 //import styling
-import '../css/company.css';
+import '../css/profile.css';
 
 //import components
 import Button from '../components/UI/Button/StyledButton';
-import Header from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
-import CompanyPageInformation from '../components/CompanyPage/CompanyInformation/CompanyPageInformation';
+import Header from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
 
 import {
   Page,
@@ -32,15 +31,14 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Page name="home" className="companyPage">
+            <Page name="home" className="profilePage">
                 <div>
                   <Header />
                 </div>
-                <Row className="companyPageButtonContainer">
+                <Row className="profilePageButtonContainer">
                   <Button>SE LOGG</Button>
                   <Button>SE ANSATTE</Button>
                 </Row>
-                <CompanyPageInformation />
             </Page>
 
         )
