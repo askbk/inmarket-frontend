@@ -10,6 +10,7 @@ import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
 import CompanyPage from '../pages/company.jsx';
+import ConversationsPage from '../pages/conversations.jsx';
 
 var routes = [
   {
@@ -47,6 +48,10 @@ var routes = [
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
+  },
+  {
+    path: '/conversations/',
+    component: ConversationsPage,
   },
   {
     path: '/request-and-load/user/:userId/',

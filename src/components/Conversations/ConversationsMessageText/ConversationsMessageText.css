@@ -1,0 +1,26 @@
+.block.inset.conversationsMessageTextInnerContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;;
+    min-height: 80px;
+}
+
+.conversationsMessageTextTimeContainer{
+    display: flex;
+    margin-left: auto;
+    align-content: flex-end;
+}
+
+.conversationsMessageTextContentContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+.conversationsMessageTextNameContainer h1, .ConversationsMessageTextMessageContainer p{
+    margin: 0;
+}
+
+.conversationsMessageTextTime{
+
+}

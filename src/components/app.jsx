@@ -7,6 +7,13 @@ import {
 import cordovaApp from '../js/cordova-app';
 import routes from '../js/routes';
 
+//import fontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faThumbsUp, faThumbsDown);
+
 //import components
 import Navbar from '../components/Navbar/Navbar';
 

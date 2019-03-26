@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from '../Profile/Profile.jsx';
-import NetworkSearchBar from '../NetworkSearchbar/NetworkSearchbar.jsx';
+import Searchbar from '../../shared/Searchbar/Searchbar.jsx';
 import {List, ListItem} from 'framework7-react';
 import './NetworkView.css';
 
@@ -16,7 +16,7 @@ export default class extends React.Component {
         <div className="networkViewOuterContainer">
             <div className="networkViewInnerContainer">
                 <div className="networkViewSearchbarContainer">
-                    <NetworkSearchBar/>
+                    <Searchbar/>
                 </div>
                 <List noHairlines noHairlinesBetween>
                   <ListItem title="">

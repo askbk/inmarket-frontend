@@ -1,0 +1,18 @@
+.conversationsViewContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.conversationsViewInnerContainer{
+    width: 100%;
+    max-width: 600px;
+}
+
+.conversationsViewSearchbarContainer{
+    width: 100%;
+}
+
+.conversationsViewMessageContainer{
+    width: 100%;
+}

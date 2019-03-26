@@ -1,6 +1,6 @@
 import React from 'react';
 import {Searchbar} from 'framework7-react';
-import './NetworkSearchbar.css';
+import './Searchbar.css';
 
 export default class extends React.Component {
 
