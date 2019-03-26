@@ -1,0 +1,49 @@
+.Match{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contactButton a{
+  margin-bottom: .5rem;
+}
+
+.avatarContainer{
+    padding: 10px 10px;
+    position: relative;
+}
+
+.avatarImage {
+    flex: 1;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+
+.profileTextName, .profileTextInstitution{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: smaller;
+  width: 100%;
+}
+
+.profileTextName{
+    font-size: medium;
+}
+
+.profileTextName p, .profileTextInstitution p{
+    margin: 0;
+}
+
+.profileTextProgressContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0;
+}
