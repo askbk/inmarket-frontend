@@ -2,7 +2,7 @@
 .avatarMessageContainer{
     display: flex;
     position: relative;
-    height: 110px;
+    height: 90px;
 }
 
 .avatarMessageImageContainer{
@@ -12,8 +12,8 @@
 /*høyden skal være samme som i avatarMessageContainer*/
 .avatarMessageImage{
     object-fit: cover;
-    width:110px;
-    height:110px; 
+    width:90px;
+    height:90px; 
     border-radius: 50%;
 }
 

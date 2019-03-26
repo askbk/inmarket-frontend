@@ -19,18 +19,18 @@ export default class extends React.Component {
             <div className="conversationsViewSearchbarContainer">
                 <Searchbar/>
             </div>
-            <List noHairlines noHairlinesBetween>
-                <ListItem title="">
+            <List noHairlines noHairlinesBetween className="conversationsViewList">
+                <ListItem className="conversationsViewListItem" title="">
                     <div className="conversationsViewMessageContainer">
                         <ConversationsMessage/>
                     </div>
                 </ListItem>
-                <ListItem title="">
+                <ListItem className="conversationsViewListItem" title="">
                     <div className="conversationsViewMessageContainer">
                         <ConversationsMessage/>
                     </div>
                 </ListItem>
-                <ListItem title="">
+                <ListItem className="conversationsViewListItem" title="">
                     <div className="conversationsViewMessageContainer">
                         <ConversationsMessage/>
                     </div>

@@ -24,3 +24,11 @@
     stroke: #bb0000;
     stroke-width: 20;
 }
+
+@media screen and (max-width: 500px){
+    .conversationsMessageReactButton{
+        font-size: 20px;
+        min-width: 30px;
+        min-height: 30px;
+    }
+}

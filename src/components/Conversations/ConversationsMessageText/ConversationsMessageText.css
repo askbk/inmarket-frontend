@@ -3,6 +3,8 @@
     flex-direction: row;
     border-radius: 20px;;
     min-height: 80px;
+    background-color: #1f1f1f;
+    margin: 5px 5px 5px 10px;
 }
 
 .conversationsMessageTextTimeContainer{
@@ -17,10 +19,18 @@
     min-height: 80px;
 }
 
-.conversationsMessageTextNameContainer h1, .ConversationsMessageTextMessageContainer p{
+.conversationsMessageTextNameContainer h1, .conversationsMessageTextMessageContainer p{
     margin: 0;
 }
 
-.conversationsMessageTextTime{
+.conversationsMessageTextNameContainer h1{
+    font-size: 16px;
+}
 
+.conversationsMessageTextMessageContainer p{
+    font-size: 12px;
+}
+
+.conversationsMessageTextTime{
+    font-size: 12px;
 }
