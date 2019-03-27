@@ -1,0 +1,20 @@
+.conversationsMessageInnerContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.conversationsMessageAvatarOuterContainer{
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0 0 0;
+}
+
+.conversationMessageTextOuterContainer{
+    flex: 1;
+}
+
+.conversationMessageReactIconOuterContainer{
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,52 @@
+
+.avatarMessageContainer{
+    display: flex;
+    position: relative;
+    height: 6rem;
+}
+
+.avatarMessageImageContainer{
+    display: flex;
+}
+
+/*høyden skal være samme som i avatarMessageContainer*/
+.avatarMessageImage{
+    object-fit: cover;
+    width:6rem;
+    height:6rem; 
+    border-radius: 50%;
+}
+
+.avatarMessageLabelContainer{
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+}
+
+.avatarMessageLabel{
+    font-size: 0.5rem;
+    height: 1.25rem;
+    color: black;
+    border-radius: 4px;
+    border: 1px black solid;
+    margin: 0;
+}
+
+@media screen and (max-width: 500px){
+    .avatarMessageContainer{
+        height: 4.25rem;
+    }
+
+    .avatarMessageImage{
+        width:4.25rem;
+        height:4.25rem; 
+        border-radius: 50%;
+    }
+
+    .avatarMessageLabel{
+        font-size: 0.5rem;
+        height: 0.75rem;
+    }
+}

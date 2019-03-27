@@ -1,0 +1,27 @@
+.conversationsViewContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.conversationsViewList{
+    
+}
+
+.conversationsViewListItem{
+    background-color: #181818;
+}
+
+.conversationsViewInnerContainer{
+    width: 100%;
+    max-width: 600px;
+    background-color: #181818;
+}
+
+.conversationsViewSearchbarContainer{
+    width: 100%;
+}
+
+.conversationsViewMessageContainer{
+    width: 100%;
+}

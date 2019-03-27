@@ -1,6 +1,6 @@
 import React from 'react';
 import {Searchbar} from 'framework7-react';
-import './NetworkSearchbar.css';
+import './Searchbar.css';
 
 export default class extends React.Component {
 
@@ -13,7 +13,7 @@ export default class extends React.Component {
     //Få component til å rerendres ved resizing av vindu
     const isMobile = window.innerWidth < 540;
 
-    const placeholder= isMobile ? "Søk etter personer" : "Søk etter personer, aktiviteter eller tjenester";
+    const placeholder = "Søk i meldinger";
 
     return (
       <div className="SearchBarContainer">
