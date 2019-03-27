@@ -17,13 +17,15 @@ export default class extends React.Component {
       <Chip className = "avatarMessageLabel color-theme-red" text="Ingen kontakt"/>
     )
 
+    const numberOfMinutes = "10 min"
+
     return (
       <div className="avatarMessageContainer">
         <div className = 'avatarMessageImageContainer'>
           <img className='avatarMessageImage' src={ProfilePic} />
         </div>
         <div className="avatarMessageLabelContainer">
-            <Chip className = "avatarMessageLabel color-theme-red" text="Ingen"/>
+            <Chip className = "avatarMessageLabel color-theme-green" text={numberOfMinutes}/>
         </div>
       </div>
     );

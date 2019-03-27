@@ -2,7 +2,7 @@
 .avatarMessageContainer{
     display: flex;
     position: relative;
-    height: 90px;
+    height: 6rem;
 }
 
 .avatarMessageImageContainer{
@@ -12,8 +12,8 @@
 /*høyden skal være samme som i avatarMessageContainer*/
 .avatarMessageImage{
     object-fit: cover;
-    width:90px;
-    height:90px; 
+    width:6rem;
+    height:6rem; 
     border-radius: 50%;
 }
 
@@ -24,10 +24,23 @@
 }
 
 .avatarMessageLabel{
-    font-size: 8px;
-    height: 20px;
+    font-size: 0.5rem;
+    height: 1.25rem;
     color: black;
     border-radius: 4px;
     border: 1px black solid;
     margin: 0;
+}
+
+@media screen and (max-width: 500px){
+    .avatarMessageContainer{
+        height: 5rem;
+    }
+
+    .avatarMessageImage{
+        width:5rem;
+        height:5rem; 
+        border-radius: 50%;
+    }
+
 }

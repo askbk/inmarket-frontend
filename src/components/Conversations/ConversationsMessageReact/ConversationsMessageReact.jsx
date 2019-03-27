@@ -28,7 +28,7 @@ export default class extends React.Component {
     return (
         <div className="conversationsMessageReactButtonInnerContainer">
             <Button className="conversationsMessageReactButton">
-                <FontAwesomeIcon className={thumbsDownClass} icon={thumbsDownIcon}/>
+                <FontAwesomeIcon className={thumbsUpClass} icon={thumbsUpIcon}/>
             </Button>
         </div>
     );

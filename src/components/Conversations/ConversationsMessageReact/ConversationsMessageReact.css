@@ -1,23 +1,23 @@
 .conversationsMessageReactButtonInnerContainer{
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .conversationsMessageReactButton{
     padding: 0;
-    font-size: 30px;
-    min-width: 50px;
-    min-height: 50px;
+    font-size: 2rem;
+    min-width: 3rem;
+    min-height: 3rem;
 }
 
 .conversationsMessageReactIcon{
-   color: #1c1c1d;
+   color: #1f1f1f;
    height: 100%;
    width: 100%;
 }
 
 .conversationsMessageThumbsUp{
     stroke: #78AB46;
-    stroke-width: 20;
+    stroke-width: 10;
 }
 
 .conversationsMessageThumbsDown{
@@ -27,8 +27,8 @@
 
 @media screen and (max-width: 500px){
     .conversationsMessageReactButton{
-        font-size: 20px;
-        min-width: 30px;
-        min-height: 30px;
+        font-size: 1.25rem;
+        min-width: 2rem;
+        min-height: 2rem;
     }
 }
