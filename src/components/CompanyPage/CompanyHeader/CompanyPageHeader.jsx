@@ -3,6 +3,9 @@ import React from 'react';
 //import pictures
 import CompanyPagePic from '../../../../assets-src/CompanyPage/DefaultCompanyPage.png';
 
+//import components
+import StarRatings from '../../../../node_modules/react-star-ratings';
+
 //import styling
 import './CompanyPageHeader.css';
 

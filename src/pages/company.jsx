@@ -4,7 +4,7 @@ import React from 'react';
 import '../css/company.css';
 
 //import components
-import Button from '../components/CompanyPage/Button/CompanyPageButton';
+import Button from '../components/UI/Button/StyledButton';
 import Header from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
 import CompanyPageInformation from '../components/CompanyPage/CompanyInformation/CompanyPageInformation';
 
@@ -40,7 +40,9 @@ export default class extends React.Component {
                   <Button>SE LOGG</Button>
                   <Button>SE ANSATTE</Button>
                 </Row>
-                <CompanyPageInformation />
+                <CompanyPageInformation>
+                  
+                </CompanyPageInformation>
             </Page>
 
         )
