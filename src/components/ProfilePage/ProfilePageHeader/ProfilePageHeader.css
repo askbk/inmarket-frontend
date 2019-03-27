@@ -40,8 +40,6 @@
   display: block;
 }
 
-
-
 @media (max-width: 574px){
   .profilePageHeaderContainer {
     flex-direction: row;

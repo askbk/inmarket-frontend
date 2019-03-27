@@ -40,7 +40,9 @@ export default class extends React.Component {
                   <Button>SE LOGG</Button>
                   <Button>SE ANSATTE</Button>
                 </Row>
-                <CompanyPageInformation />
+                <CompanyPageInformation>
+                  
+                </CompanyPageInformation>
             </Page>
 
         )

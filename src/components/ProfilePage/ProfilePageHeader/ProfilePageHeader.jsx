@@ -1,7 +1,10 @@
 import React from 'react';
 
 //import pictures
-import temp from '../../../../assets-src/CompanyPage/DefaultCompanyPage.png';
+import temp from '../../../../assets-src/ProfilePage/temp.png';
+
+//import component
+import StarRatings from '../../../../node_modules/react-star-ratings';
 
 //import styling
 import './ProfilePageHeader.css';
@@ -17,8 +20,11 @@ const profilePageHeader = (props) => (
     <span className="profilePageHeaderText-2">Masterstudent, NTNU
  {/* props.subtext */}
     </span>
+    <div className="profileTextInformationNetworkProgressContainer">
+            <StarRatings starDimension="20px" starSpacing="2px" rating={4.7} starRatedColor="#c08d42" starEmptyColor="black"/>
+    </div>
     <span className="profilePageHeaderText-3">
-    Torggata 15, 0181 Oslo {/* props.adress */}
+   Tidligere arbeidsplasser {/* props.adress */}
     </span>
     </div>
     </div>
