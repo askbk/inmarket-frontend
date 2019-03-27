@@ -11,7 +11,7 @@ export default class extends React.Component {
   render(){
 
     const name = "Endre Braut Medhus";
-    const content = "This is a message for everyone who goes a";// long way at following what we do and how things are getting along with each other circumstances are pushing us to renew.";
+    const content = "This is a message for everyone who goes a long way at following what we do and how things are getting along with each other circumstances are pushing us to renew.";
     const time = "12.03";
 
     return (

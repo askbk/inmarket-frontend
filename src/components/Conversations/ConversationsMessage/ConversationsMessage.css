@@ -6,7 +6,8 @@
 
 .conversationsMessageAvatarOuterContainer{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding: 0.75rem 0 0 0;
 }
 
 .conversationMessageTextOuterContainer{
