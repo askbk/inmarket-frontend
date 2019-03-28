@@ -123,6 +123,10 @@ export default class extends React.Component {
                         </List>
 
                         <Block>
+                            <TermsCheckbox />
+                        </Block>
+
+                        <Block>
                             <Row>
                                 <Col width="50">
                                     <Button raised fill large tabLink="#tab-company-basis">Tilbake</Button>

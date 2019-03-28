@@ -159,6 +159,10 @@ export default class extends React.Component {
                         </Block>
 
                         <Block>
+                            <TermsCheckbox />
+                        </Block>
+
+                        <Block>
                             <Row>
                                 <Col width="50">
                                     <Button raised fill large tabLink="#tab-user-basis">Tilbake</Button>
