@@ -24,8 +24,12 @@ import {
   Tabs,
   Tab,
   Toolbar,
-  Link
+  Link,
+  Radio,
+  Input
 } from 'framework7-react';
+
+import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
 
 export default class extends React.Component {
     constructor() {
@@ -45,6 +49,7 @@ export default class extends React.Component {
 
                     <Tab id="tab-user-basis" tabActive>
                         <List form>
+
                             <ListInput
                                 label="E-post"
                                 type="email"
@@ -53,17 +58,17 @@ export default class extends React.Component {
                             ></ListInput>
 
                             <ListInput
+                                label="Fullt navn"
+                                type="text"
+                                name="name"
+                                placeholder="Fornavn etternavn (valgfritt)"
+                            ></ListInput>
+
+                            <ListInput
                                 label="Password"
                                 type="password"
                                 name="password"
                                 placeholder="Passord"
-                            ></ListInput>
-
-                            <ListInput
-                                label="Navn"
-                                type="text"
-                                name="name"
-                                placeholder="Ditt navn (valgfritt)"
                             ></ListInput>
 
                             <ListInput
@@ -87,20 +92,71 @@ export default class extends React.Component {
                     </Tab>
 
                     <Tab id="tab-user-extra">
-                        <List form>
-                            <ListInput
-                                label="Undervisningssted (valgfritt)"
-                                type="text"
-                                name="school"
-                                placeholder=""
-                            ></ListInput>
-                            <ListInput
-                                label="Linje/studie"
-                                type="text"
-                                name="program"
-                                placeholder="Linje/studie (valgfritt)"
-                            ></ListInput>
+
+                        <List>
+                            <ListItem radio title="Elev" name="user-type-radio" value=""></ListItem>
+                            <ListItem radio title="Student" value="" name="user-type-radio"></ListItem>
+                            <ListItem radio title="Arbeidssøker" value="" name="user-type-radio"></ListItem>
                         </List>
+                        <Block>
+                            <Row>
+                                <Col>
+                                    <Input
+                                        label="Kompetanse 1"
+                                        type="text"
+                                        name="competence-input-1"
+                                        placeholder="Kompetanse 1"
+                                        outline
+                                    ></Input>
+                                </Col>
+                                <Col>
+                                    <Input
+                                        label="Interesse 1"
+                                        type="text"
+                                        name="interest-input-1"
+                                        placeholder="Interesse 1"
+                                    ></Input>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Input
+                                        label="Kompetanse 1"
+                                        type="text"
+                                        name="competence-input-1"
+                                        placeholder="Kompetanse 1"
+                                        outline
+                                    ></Input>
+                                </Col>
+                                <Col>
+                                    <Input
+                                        label="Interesse 1"
+                                        type="text"
+                                        name="interest-input-1"
+                                        placeholder="Interesse 1"
+                                    ></Input>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Input
+                                        label="Kompetanse 1"
+                                        type="text"
+                                        name="competence-input-1"
+                                        placeholder="Kompetanse 1"
+                                        outline
+                                    ></Input>
+                                </Col>
+                                <Col>
+                                    <Input
+                                        label="Interesse 1"
+                                        type="text"
+                                        name="interest-input-1"
+                                        placeholder="Interesse 1"
+                                    ></Input>
+                                </Col>
+                            </Row>
+                        </Block>
 
                         <Block>
                             <Row>
