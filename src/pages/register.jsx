@@ -104,8 +104,8 @@ export default class extends React.Component {
 
         return (
             <Page noNavbar>
-                {/*<Navbar title="Registrering" backLink="Back"></Navbar>*/}
-                <Toolbar tabbar position="top">
+                <Navbar title="Registrering" backLink="Back" themeDark></Navbar>
+                <Toolbar tabbar slot="fixed" position="top">
                     <Link tabLink="#tab-user" tabLinkActive text="Bruker"></Link>
                     <Link tabLink="#tab-company" text="Virksomhet"></Link>
                 </Toolbar>
