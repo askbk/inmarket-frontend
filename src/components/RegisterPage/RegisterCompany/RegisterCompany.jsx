@@ -34,45 +34,106 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Tab id="tab-company" labels className="page-content">
+            <Tab id="tab-company" labels className="">
+
                 <Block>
+                    <h1>Hello</h1>
                     <p>Engasjer folk i arbeidet dere gjør og øk samtidig sjansen for å finne de beste ansatte for din bedrift.​</p>
-                    <List form>
-                        <ListInput
-                            label="Bedriftens navn"
-                            type="text"
-                            name="company"
-                            placeholder=""
-                        ></ListInput>
-
-                        <ListInput
-                            label="Bedriftens organisasjonsnummer"
-                            type="text"
-                            name="org"
-                            placeholder=""
-                        ></ListInput>
-
-                        <ListInput
-                            label="Stilling"
-                            type="text"
-                            name="position"
-                            placeholder=""
-                        ></ListInput>
-
-                        <ListInput
-                            label="Kode"
-                            type="text"
-                            placeholder=""
-                        ></ListInput>
-
-                        <ListInput
-                            label="Bedriftens nettside"
-                            type="url"
-                            placeholder="(valgfritt)"
-                        ></ListInput>
-                    </List>
-                    <Button raised fill large>Registrer</Button>
                 </Block>
+
+                <Tabs>
+
+                    <Tab id="tab-company-basis" tabActive>
+                        <List form>
+                            <ListInput
+                                label="Bedriftens navn"
+                                type="text"
+                                name="company"
+                                placeholder=""
+                            ></ListInput>
+
+                            <ListInput
+                                label="Bedriftens organisasjonsnummer"
+                                type="text"
+                                name="org"
+                                placeholder=""
+                            ></ListInput>
+
+                            <ListInput
+                                label="E-post"
+                                type="email"
+                                name="email"
+                                placeholder="E-post"
+                            ></ListInput>
+
+                            <ListInput
+                                label="Passord"
+                                type="password"
+                                name="password"
+                                placeholder="Passord"
+                            ></ListInput>
+                        </List>
+
+                        <Block>
+                            <Button raised fill large tabLink="#tab-company-extra">Neste</Button>
+                        </Block>
+                    </Tab>
+
+                    <Tab id="tab-company-extra">
+                        <List form>
+                            <ListInput
+                                label="Navn"
+                                type="text"
+                                name="name"
+                                placeholder="Ditt navn (valgfritt)"
+                            ></ListInput>
+
+                            <ListInput
+                                label="Telefonnummer"
+                                type="tel"
+                                name="phone"
+                                placeholder="Ditt telefonnummer (valgfritt)"
+                            ></ListInput>
+
+                            <ListInput
+                                label="Kommune"
+                                type="text"
+                                name="municipality"
+                                placeholder="Din kommune (valgfritt)"
+                            ></ListInput>
+
+                            <ListInput
+                                label="Stilling"
+                                type="text"
+                                name="position"
+                                placeholder=""
+                            ></ListInput>
+
+                            <ListInput
+                                label="Kode"
+                                type="text"
+                                placeholder=""
+                            ></ListInput>
+
+                            <ListInput
+                                label="Bedriftens nettside"
+                                type="url"
+                                placeholder="(valgfritt)"
+                            ></ListInput>
+                        </List>
+
+                        <Block>
+                            <Row>
+                                <Col width="50">
+                                    <Button raised fill large tabLink="#tab-company-basis">Tilbake</Button>
+                                </Col>
+                                <Col width="50">
+                                    <Button raised fill large>Registrer</Button>
+                                </Col>
+                            </Row>
+                        </Block>
+                    </Tab>
+                </Tabs>
             </Tab>
         )
     }

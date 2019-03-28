@@ -34,13 +34,15 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Tab id="tab-user" tabActive>
+            <Tab id="tab-user" tabActive className="">
+
                 <Block>
                     <h1>Vi åpner dørene for deg.</h1>
                     <p>Lag en gratis bruker for å komme deg ut i arbeidslivet.​</p>
                 </Block>
 
                 <Tabs>
+
                     <Tab id="tab-user-basis" tabActive>
                         <List form>
                             <ListInput
@@ -78,31 +80,37 @@ export default class extends React.Component {
                                 placeholder="Din kommune (valgfritt)"
                             ></ListInput>
                         </List>
-                        
+
                         <Block>
                             <Button raised fill large tabLink="#tab-user-extra">Neste</Button>
                         </Block>
                     </Tab>
 
-                    <Tab id="tab-user-extra" className="page-content" >
+                    <Tab id="tab-user-extra">
+                        <List form>
+                            <ListInput
+                                label="Undervisningssted (valgfritt)"
+                                type="text"
+                                name="school"
+                                placeholder=""
+                            ></ListInput>
+                            <ListInput
+                                label="Linje/studie"
+                                type="text"
+                                name="program"
+                                placeholder="Linje/studie (valgfritt)"
+                            ></ListInput>
+                        </List>
+
                         <Block>
-                            <List form>
-                                <ListInput
-                                    label="Undervisningssted (valgfritt)"
-                                    type="text"
-                                    name="school"
-                                    placeholder=""
-                                ></ListInput>
-
-                                <ListInput
-                                    label="Linje/studie"
-                                    type="text"
-                                    name="program"
-                                    placeholder="Linje/studie (valgfritt)"
-                                ></ListInput>
-                            </List>
-
-                            <Button raised fill large>Registrer</Button>
+                            <Row>
+                                <Col width="50">
+                                    <Button raised fill large tabLink="#tab-user-basis">Tilbake</Button>
+                                </Col>
+                                <Col width="50">
+                                    <Button raised fill large>Registrer</Button>
+                                </Col>
+                            </Row>
                         </Block>
                     </Tab>
                 </Tabs>
