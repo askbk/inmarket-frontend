@@ -1,0 +1,56 @@
+.block.inset.conversationsActivitiesTextInnerContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;;
+    min-height: 3rem;
+    background-color: #1f1f1f;
+    margin: 5px 5px 5px 10px;
+    color: #fff;
+}
+
+.conversationsActivitiesTextTimeContainer{
+    display: flex;
+    margin-left: auto;
+    align-content: flex-end;
+}
+
+.conversationsActivitiesTextContentContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 3rem;
+}
+
+.conversationsActivitiesTextHeaderContainer h1, .conversationsActivitiesTextMessageContainer p{
+    margin: 0;
+}
+
+.conversationsActivitiesTextHeaderContainer h1{
+    font-size: 1rem;
+}
+
+.conversationsActivitiesTextMessageContainer p{
+    font-size: 0.75rem;
+}
+
+.conversationsActivitiesTextTime{
+    font-size: 0.75rem;
+}
+
+.activitiesTextAddress{
+    text-decoration: underline;
+}
+
+.activitiesTextInformation{
+    margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 500px){
+    .conversationsActivitiesTextHeaderContainer h1{
+        font-size: 0.75rem;
+    }
+
+    .conversationsActivitiesTextMessageContainer p{
+        font-size: 0.6rem;
+    }
+
+}

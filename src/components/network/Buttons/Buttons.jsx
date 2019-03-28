@@ -33,7 +33,7 @@ export default class extends React.Component {
 
     return (
       <div className="buttonsContainer">
-        {requested}
+        {contact}
       </div>
     );
   }
