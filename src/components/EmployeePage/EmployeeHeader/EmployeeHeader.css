@@ -1,0 +1,35 @@
+.employeeHeaderContainer {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.employeePic img{
+  width: 200px;
+  height: 200px;
+}
+
+.employeeLeftRow {
+  width: auto;
+  padding-right: 15px;
+}
+
+.employeeRightRow {
+  width: 30%;
+}
+
+.employeeName {
+  padding-top: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px;
+  display: block;
+}
+
+.employeePosition {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  padding-bottom: 15px;
+  display: block;
+}
