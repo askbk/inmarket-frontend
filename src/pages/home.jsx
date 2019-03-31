@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  BlockTitle,
+  Swiper,
   Page,
   Link,
   Toolbar,
@@ -37,7 +37,6 @@ class Home extends React.Component {
               {/* Top Navbar */}
               {/* Page content */}
               <VideosContainer users={users}/>
-              <BlockTitle>Matches</BlockTitle>
               <MatchesContainer users={users}/>
               <Toolbar bottom>
                 <Link>Left Link</Link>

@@ -6,9 +6,7 @@ import {
   Button
 } from 'framework7-react';
 
-
 import './Match.css';
-
 
 //import temp data
 import ProfilePic from '../../../../assets-src/IMG_1318.jpg';
