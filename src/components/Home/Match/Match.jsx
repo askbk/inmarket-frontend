@@ -3,7 +3,6 @@ import StarRatings from '../../../../node_modules/react-star-ratings';
 
 import {
   Card,
-  Chip,
   Button
 } from 'framework7-react';
 
