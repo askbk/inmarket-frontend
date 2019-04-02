@@ -23,7 +23,7 @@ import {
   Views
 } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Register extends React.Component {
     constructor() {
@@ -108,7 +108,7 @@ class Register extends React.Component {
             case -1:
                 return (
                     <Page name="registrering1">
-                        <Navbar title="Registrering" backLink="Back"></Navbar>
+                        <Header backLink/>
                         <Block>
                             <BlockHeader>Registrer deg som</BlockHeader>
                             <Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Page, Navbar, Block, List, ListItem } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Request extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Request extends React.Component {
     const user = this.state.user;
     return (
       <Page>
-        <Navbar title={`${user.firstName} ${user.lastName}`} backLink="Back" />
+        <Header backLink/>
         <Block strong>
           {user.about}
         </Block>

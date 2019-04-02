@@ -14,7 +14,7 @@ import {
     BlockFooter
 } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Login extends React.Component {
     constructor() {
@@ -28,6 +28,7 @@ class Login extends React.Component {
     render() {
         return (
             <Page noToolbar noNavbar noSwipeback loginScreen>
+              <Header backLink/>
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput

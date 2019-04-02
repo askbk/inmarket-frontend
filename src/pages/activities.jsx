@@ -3,7 +3,7 @@ import Framework7 from 'framework7/framework7.esm.bundle.js';
 import { Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-react';
 import ActivitiesView from '../components/Activities/ActivitiesView/ActivitiesView.jsx';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Activities extends React.Component {
     constructor() {
@@ -14,6 +14,7 @@ class Activities extends React.Component {
 
         return (
             <Page className="theme-dark">
+            <Header backLink/>
               <ActivitiesView/>
             </Page>
         )

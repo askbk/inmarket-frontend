@@ -13,11 +13,12 @@ import {
   Block
 } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
+
 
 const Form = () => (
   <Page name="form">
-    <Navbar title="Form" backLink="Back"></Navbar>
+    <Header backLink/>
 
     <BlockTitle>Form Example</BlockTitle>
     <List noHairlinesMd>
