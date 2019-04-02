@@ -1,5 +1,6 @@
 import React from 'react';
-import './ConversationsMessage.css';
+import {Link} from 'framework7-react';
+import '../../../css/conversationsActivitiesInstanceShared.css';
 import ConversationsMessageAvatar from '../ConversationsMessageAvatar/ConversationsMessageAvatar.jsx';
 import ConversationsMessageText from '../ConversationsMessageText/ConversationsMessageText.jsx';
 import ConversationsMessageReact from '../ConversationsMessageReact/ConversationsMessageReact.jsx';
@@ -13,17 +14,19 @@ export default class extends React.Component {
   render(){
 
     return (
-      <div className="conversationsMessageInnerContainer">
-        <div className="conversationsMessageAvatarOuterContainer">
+      <Link className="conversationsMessageLink">
+      <div className="conversationsActivitiesInstanceInnerContainer">
+        <div className="conversationsActivitiesAvatarOuterContainer">
             <ConversationsMessageAvatar/>
         </div>
-        <div className="conversationMessageTextOuterContainer">
+        <div className="conversationActivitiesTextOuterContainer">
             <ConversationsMessageText/>
         </div>
-        <div className="conversationMessageReactIconOuterContainer">
+        <div className="conversationActivitiesReactOuterContainer">
             <ConversationsMessageReact/>
         </div>
       </div>
+      </Link>
     );
   }
 }
