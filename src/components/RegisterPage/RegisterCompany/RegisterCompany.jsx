@@ -27,6 +27,8 @@ import {
   Link
 } from 'framework7-react';
 
+import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
+
 export default class extends React.Component {
     constructor() {
         super();
