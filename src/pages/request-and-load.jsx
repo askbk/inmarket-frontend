@@ -1,7 +1,9 @@
 import React from 'react';
 import { Page, Navbar, Block, List, ListItem } from 'framework7-react';
 
-export default class extends React.Component {
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+class Request extends React.Component {
   constructor(props) {
     super(props);
 
@@ -33,3 +35,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default Request;

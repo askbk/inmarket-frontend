@@ -8,13 +8,14 @@ import Button from '../components/shared/Button/StyledButton';
 import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
 import ProfileInformation from '../components/shared/InformationBox/InformationBox';
 import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
+import WithNav from '../components/shared/hoc/WithNav.jsx'
 
 import {
   Page,
   Row,
 } from 'framework7-react';
 
-export default class extends React.Component {
+class ProfilePage extends React.Component {
     constructor() {
         super();
         this.state= {
@@ -43,3 +44,5 @@ export default class extends React.Component {
         )
     }
 }
+
+export default ProfilePage;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Page, Navbar, Block } from 'framework7-react';
 
-export default () => (
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+const NotFound = () => (
   <Page>
     <Navbar title="Not found" backLink="Back" />
     <Block strong>
@@ -10,3 +12,5 @@ export default () => (
     </Block>
   </Page>
 );
+
+export default NotFound;

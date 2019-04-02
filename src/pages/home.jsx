@@ -18,7 +18,9 @@ import {
   Button
 } from 'framework7-react';
 
-export default class extends React.Component {
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+class Home extends React.Component {
     constructor() {
         super();
     }
@@ -28,7 +30,7 @@ export default class extends React.Component {
             <Page name="home">
               {/* Top Navbar */}
               {/* Page content */}
-              
+
               <Toolbar bottom>
                 <Link>Left Link</Link>
                 <Link>Right Link</Link>
@@ -54,3 +56,5 @@ export default class extends React.Component {
         )
     }
 }
+
+export default WithNav(Home);

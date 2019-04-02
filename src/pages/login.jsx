@@ -14,7 +14,9 @@ import {
     BlockFooter
 } from 'framework7-react';
 
-export default class extends React.Component {
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+class Login extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -80,3 +82,5 @@ export default class extends React.Component {
         });
     }
 }
+
+export default Login;
