@@ -4,26 +4,14 @@ import React from 'react';
 import '../css/profile.css';
 
 //import components
-import Button from '../components/UI/Button/StyledButton';
+import Button from '../components/shared/Button/StyledButton';
 import Header from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
-import ProfileInformation from '../components/ProfilePage/ProfilePageInformation/ProfilePageInformation';
+import ProfileInformation from '../components/shared/InformationBox/InformationBox';
 import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
 
 import {
   Page,
-  Navbar,
-  NavLeft,
-  NavTitle,
-  NavTitleLarge,
-  NavRight,
-  Link,
-  Toolbar,
-  Block,
-  BlockTitle,
-  List,
-  ListItem,
   Row,
-  Col,
 } from 'framework7-react';
 
 export default class extends React.Component {

@@ -33,7 +33,6 @@ export default class extends React.Component {
 
         return (
             <Page>
-              <Navbar title="Nettverk" backLink="Back" />
               <NetworkView/>
               <BlockTitle strong>Ditt nettverk</BlockTitle>
               <List>
