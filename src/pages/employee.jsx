@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //import components
-import Header from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
+import EmployeeHeader from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
 import Button from '../components/shared/Button/StyledButton';
 import InformationBox from '../components/shared/InformationBox/InformationBox';
 
@@ -30,7 +30,7 @@ class Employee extends Component {
     return (
     <Page name="home" className="employeePage">
     <div>
-    <Header
+    <EmployeeHeader
           pic={this.state.pic}
           position={this.state.position}
           name={this.state.name}

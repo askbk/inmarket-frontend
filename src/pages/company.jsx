@@ -5,7 +5,7 @@ import '../css/company.css';
 
 //import components
 import Button from '../components/shared/Button/StyledButton';
-import Header from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
+import CompanyHeader from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
 import CompanyPageInformation from '../components/shared/InformationBox/InformationBox';
 
 import {
@@ -22,7 +22,7 @@ export default class extends React.Component {
         return (
             <Page name="home" className="companyPage">
                 <div>
-                  <Header />
+                  <CompanyHeader />
                 </div>
                 <Row className="companyPageButtonContainer">
                   <Button>SE LOGG</Button>
