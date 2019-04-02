@@ -13,7 +13,7 @@ export default class extends React.Component {
     const header = "Intervju - InMarket";
     const date = "12.03.19";
     const time = "1400-1500";
-    const informationText = "Dette er litt informasjon om hva aktiviteten kommer til å gå ut på.";
+    const informationText = "";//Dette er litt informasjon om hva aktiviteten kommer til å gå ut på.";
     var information = (<div></div>);
     if (informationText !== ""){
         information = (
