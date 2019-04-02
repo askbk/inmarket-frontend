@@ -7,8 +7,11 @@ import {
 import './Video.css';
 
 const Video = (props) => (
-  <Card className="Video" strong>
-   {props.user.first_name + ' ' + props.user.last_name}
+  <Card className="video" strong>
+   <img className="videoThumbnail"src={props.user.avatar} />
+   <div className="videoTitle">
+   Tittel - Bedrift
+   </div>
   </Card>
 );
 
