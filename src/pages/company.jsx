@@ -13,7 +13,9 @@ import {
   Row,
 } from 'framework7-react';
 
-export default class extends React.Component {
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+class Company extends React.Component {
     constructor() {
         super();
     }
@@ -36,3 +38,5 @@ export default class extends React.Component {
         )
     }
 }
+
+export default Company;

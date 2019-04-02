@@ -23,7 +23,9 @@ import {
   Views
 } from 'framework7-react';
 
-export default class extends React.Component {
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+class Register extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -307,3 +309,5 @@ export default class extends React.Component {
                                 ></ListInput>
     */
 }
+
+export default Register;

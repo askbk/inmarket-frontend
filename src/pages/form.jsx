@@ -13,7 +13,9 @@ import {
   Block
 } from 'framework7-react';
 
-export default () => (
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+const Form = () => (
   <Page name="form">
     <Navbar title="Form" backLink="Back"></Navbar>
 
@@ -171,3 +173,5 @@ export default () => (
     </List>
   </Page>
 );
+
+export default Form;

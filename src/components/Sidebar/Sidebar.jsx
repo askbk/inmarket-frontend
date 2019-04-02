@@ -18,7 +18,7 @@ const Sidebar = () => (
     <Page>
       <List>
           {/* Must implement edit profile tab and insert here */}
-        <ListItem panelClose="right" link="/about/" title='REDIGER PROFIL' media={EditProfile} />
+        <ListItem panelClose="right" link="/about/" title='REDIGER PROFIL' media={EditProfile}/>
           {/* Must implement settings tab and insert here */}
         <ListItem panelClose="right" link="/form/" title='INNSTILLINGER' media={Settings}/>
           {/* Must implement network tab and insert here */}

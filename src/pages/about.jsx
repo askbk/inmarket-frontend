@@ -1,8 +1,10 @@
 import React from 'react';
 import { Page, Navbar, Block, BlockTitle } from 'framework7-react';
 
-export default () => (
-  <Page>
+import WithNav from '../components/shared/hoc/WithNav.jsx'
+
+const About = () => (
+  <Page name="about">
     <Navbar title="About" backLink="Back" />
     <BlockTitle>About My App</BlockTitle>
     <Block strong>
@@ -16,3 +18,5 @@ export default () => (
     </Block>
   </Page>
 );
+
+export default WithNav(About);

@@ -16,7 +16,6 @@ import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 library.add(fab, faThumbsUp, faThumbsDown);
 
 import Sidebar from './Sidebar/Sidebar.jsx';
-import Header from './Header/Header.jsx';
 
 export default class extends React.Component {
   constructor() {
@@ -74,7 +73,6 @@ export default class extends React.Component {
         {/* Status bar overlay for fullscreen mode*/}
         <Statusbar></Statusbar>
         <Sidebar />
-        <Header />
         {/* Your main view, should have "view-main" class */}
         <View main pushState className="safe-areas" url="/" />
         {/* Right panel with reveal effect*/}
