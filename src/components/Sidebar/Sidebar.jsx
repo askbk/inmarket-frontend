@@ -2,12 +2,10 @@ import React from 'react'
 import {
   List,
   ListItem,
-  Navbar,
   Page,
   Panel,
 } from 'framework7-react';
 
-import Logo from '../../../assets-src/Navbar/inMarketlogo.png';
 import EditProfile from '../../../assets-src/SidebarIcons/editProfile.png';
 import  Settings from '../../../assets-src/SidebarIcons/settings.png';
 import  Network from '../../../assets-src/SidebarIcons/network.png';
@@ -18,7 +16,7 @@ const Sidebar = () => (
     <Page>
       <List>
           {/* Must implement edit profile tab and insert here */}
-        <ListItem panelClose="right" link="/about/" title='REDIGER PROFIL' media={EditProfile} />
+        <ListItem panelClose="right" link="/about/" title='REDIGER PROFIL' media={EditProfile}/>
           {/* Must implement settings tab and insert here */}
         <ListItem panelClose="right" link="/form/" title='INNSTILLINGER' media={Settings}/>
           {/* Must implement network tab and insert here */}

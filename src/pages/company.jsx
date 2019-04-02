@@ -13,14 +13,17 @@ import {
   Row,
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+
+class Company extends React.Component {
     constructor() {
         super();
     }
 
     render() {
         return (
-            <Page name="home" className="companyPage">
+            <Page name="company" className="companyPage">
+                <Header backLink title="Company"/>
                 <div>
                   <CompanyHeader />
                 </div>
@@ -36,3 +39,5 @@ export default class extends React.Component {
         )
     }
 }
+
+export default Company;

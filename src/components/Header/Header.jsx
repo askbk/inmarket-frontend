@@ -11,6 +11,7 @@ import {
   Navbar,
   List,
   ListItem,
+  NavLeft,
   NavTitle,
   NavRight,
   Link,
@@ -20,6 +21,7 @@ import {
 class Header extends Component {
   render() {
     return (
+      <React.Fragment>
         <Navbar className="navbar" sliding={false}>
           <div className="navbarcontent">
                 <img className="navbarlogo" src={Logo} />
@@ -30,6 +32,8 @@ class Header extends Component {
                 </NavRight>
           </div>
         </Navbar>
+        {this.props.backLink && <Navbar backLink="Back" title={this.props.title}/>}
+        </React.Fragment>
     );
   }
 }

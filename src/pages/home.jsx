@@ -18,17 +18,21 @@ import {
   Button
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+
+class Home extends React.Component {
     constructor() {
         super();
     }
 
     render() {
         return (
+          <React.Fragment>
             <Page name="home">
+            <Header />
               {/* Top Navbar */}
               {/* Page content */}
-              
+
               <Toolbar bottom>
                 <Link>Left Link</Link>
                 <Link>Right Link</Link>
@@ -50,7 +54,9 @@ export default class extends React.Component {
                 </Row>
               </Block>
             </Page>
-
+          </React.Fragment>
         )
     }
 }
+
+export default Home;

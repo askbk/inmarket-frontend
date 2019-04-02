@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import EmployeeHeader from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
 import Button from '../components/shared/Button/StyledButton';
 import InformationBox from '../components/shared/InformationBox/InformationBox';
+import Header from '../components/Header/Header.jsx'
 
 //import picture
 import TempPic from '../../assets-src/EmployeePage/temp2.png';
@@ -29,6 +30,7 @@ class Employee extends Component {
   render() {
     return (
     <Page name="home" className="employeePage">
+    <Header backLink title="Employee"/>
     <div>
     <EmployeeHeader
           pic={this.state.pic}
