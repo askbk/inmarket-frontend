@@ -13,6 +13,20 @@ export default class extends React.Component {
         return (
             <React.Fragment>
                 <ListInput
+                    label="E-post"
+                    type="email"
+                    name="email"
+                    placeholder="E-post"
+                ></ListInput>
+
+                <ListInput
+                    label="Passord"
+                    type="password"
+                    name="password"
+                    placeholder="Passord"
+                ></ListInput>
+                
+                <ListInput
                     label="Fullt navn"
                     type="text"
                     name="name"

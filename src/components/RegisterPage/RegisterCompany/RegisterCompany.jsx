@@ -13,6 +13,7 @@ import {
 } from 'framework7-react';
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
+import InterestsFields from '../InterestsFields/InterestsFields.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
 
 export default class extends React.Component {
@@ -46,21 +47,11 @@ export default class extends React.Component {
                                 name="org"
                                 placeholder=""
                             ></ListInput>
-
-                            <ListInput
-                                label="E-post"
-                                type="email"
-                                name="email"
-                                placeholder="E-post"
-                            ></ListInput>
-
-                            <ListInput
-                                label="Passord"
-                                type="password"
-                                name="password"
-                                placeholder="Passord"
-                            ></ListInput>
                         </List>
+
+                        <Block>
+                            <InterestsFields />
+                        </Block>
 
                         <Block>
                             <Button raised fill large tabLink="#tab-company-extra">Neste</Button>

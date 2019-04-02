@@ -33,20 +33,6 @@ export default class extends React.Component {
                 <Tabs>
                     <Tab id="tab-user-basis" tabActive>
                         <List form>
-                            <ListInput
-                                label="E-post"
-                                type="email"
-                                name="email"
-                                placeholder="E-post"
-                            ></ListInput>
-
-                            <ListInput
-                                label="Password"
-                                type="password"
-                                name="password"
-                                placeholder="Passord"
-                            ></ListInput>
-
                             <BasisInformationInput />
                         </List>
 
