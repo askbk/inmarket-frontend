@@ -8,7 +8,7 @@ import Button from '../components/shared/Button/StyledButton';
 import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
 import ProfileInformation from '../components/shared/InformationBox/InformationBox';
 import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 import {
   Page,
@@ -28,6 +28,7 @@ class ProfilePage extends React.Component {
     render() {
         return (
             <Page name="home" className="profilePage">
+                <Header backLink/>
                 <div>
                   <ProfilePageHeader />
                 </div>

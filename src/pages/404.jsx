@@ -1,11 +1,11 @@
 import React from 'react';
 import { Page, Navbar, Block } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 const NotFound = () => (
   <Page>
-    <Navbar title="Not found" backLink="Back" />
+  <Header backLink/>
     <Block strong>
       <p>Sorry</p>
       <p>Requested content not found.</p>

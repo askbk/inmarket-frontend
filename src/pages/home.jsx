@@ -18,7 +18,7 @@ import {
   Button
 } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Home extends React.Component {
     constructor() {
@@ -27,7 +27,9 @@ class Home extends React.Component {
 
     render() {
         return (
+          <React.Fragment>
             <Page name="home">
+            <Header />
               {/* Top Navbar */}
               {/* Page content */}
 
@@ -52,9 +54,9 @@ class Home extends React.Component {
                 </Row>
               </Block>
             </Page>
-
+          </React.Fragment>
         )
     }
 }
 
-export default WithNav(Home);
+export default Home;

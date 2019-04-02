@@ -1,11 +1,12 @@
 import React from 'react';
 import { Page, Navbar, Block, BlockTitle } from 'framework7-react';
 
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 const About = () => (
+<React.Fragment>
   <Page name="about">
-    <Navbar title="About" backLink="Back" />
+  <Header backLink/>
     <BlockTitle>About My App</BlockTitle>
     <Block strong>
       <p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>
@@ -17,6 +18,7 @@ const About = () => (
       <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
     </Block>
   </Page>
+  </React.Fragment>
 );
 
-export default WithNav(About);
+export default About;

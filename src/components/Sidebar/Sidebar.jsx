@@ -2,12 +2,10 @@ import React from 'react'
 import {
   List,
   ListItem,
-  Navbar,
   Page,
   Panel,
 } from 'framework7-react';
 
-import Logo from '../../../assets-src/Navbar/inMarketlogo.png';
 import EditProfile from '../../../assets-src/SidebarIcons/editProfile.png';
 import  Settings from '../../../assets-src/SidebarIcons/settings.png';
 import  Network from '../../../assets-src/SidebarIcons/network.png';

@@ -3,7 +3,7 @@ import Framework7 from 'framework7/framework7.esm.bundle.js';
 import { Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-react';
 
 import NetworkView from '../components/network/NetworkView/NetworkView.jsx';
-import WithNav from '../components/shared/hoc/WithNav.jsx'
+import Header from '../components/Header/Header.jsx'
 
 class Network extends React.Component {
     constructor() {
@@ -34,13 +34,16 @@ class Network extends React.Component {
         }
 
         return (
+          <React.Fragment>
             <Page>
+            <Header backLink/>
               <NetworkView/>
               <BlockTitle strong>Ditt nettverk</BlockTitle>
               <List>
                 {networkList}
               </List>
             </Page>
+            </React.Fragment>
         )
     }
 }
