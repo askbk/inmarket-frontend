@@ -9,33 +9,34 @@ import Video from '../Video/Video.jsx'
 
 import './VideosContainer.css';
 
-const VideosContainer = (props) => (
-  <Swiper className="videoSwiper" navigation autoplay loop params={{
-    autoplay: {
-      delay: 6000
-    },
-    loop: {
-      loopedSlides: 5
-    },
-    speed:500,
-    slidesPerView: 5,
-    spaceBetween: 30,
-    breakpoints: {
-      360: {
-        slidesPerView: 1,
-        spaceBetween: 15
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 15
-      },
-      1024: {
+class VideosContainer extends React.Component {
+  componentDidMount(){
+    this.forceUpdate()
+  }
+
+  render(){
+    return(
+      <Swiper className="videoSwiper" navigation autoplay params={{
+        autoplay: {
+          delay: 7000
+        },
+        speed:900,
         slidesPerView: 3,
-        spaceBetween: 15
-      }
-    }}}>
-      {props.users.map(u=> <SwiperSlide key={u.id}><Video user={u} /></SwiperSlide>)}
-  </Swiper>
-);
+        spaceBetween: 30,
+        breakpoints: {
+          540: {
+            slidesPerView: 1,
+            spaceBetween: 15
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 15
+          }
+        }}}>
+          {this.props.users.map(u=> <SwiperSlide key={u.id}><Video user={u} /></SwiperSlide>)}
+      </Swiper>
+    )
+  }
+};
 
 export default VideosContainer;
