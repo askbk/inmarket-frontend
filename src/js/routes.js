@@ -10,7 +10,6 @@ import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
 import CompanyPage from '../pages/company.jsx';
 import ConversationsPage from '../pages/conversations.jsx';
-import ProfilePage from '../pages/profilepage.jsx'
 import ActivitiesPage from '../pages/activities.jsx';
 import ProfilePage from '../pages/profilepage.jsx';
 import EmployeePage from '../pages/employee.jsx';
