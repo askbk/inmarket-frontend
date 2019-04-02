@@ -32,7 +32,7 @@ class Header extends Component {
                 </NavRight>
           </div>
         </Navbar>
-        {this.props.backLink && <Navbar backLink="Back" />}
+        {this.props.backLink && <Navbar backLink="Back" title={this.props.title}/>}
         </React.Fragment>
     );
   }

@@ -34,7 +34,7 @@ class Profile extends React.Component {
 
         return (
             <Page>
-              <Header backLink/>
+              <Header backLink title="Profil"/>
               <Navbar title="Profil" backLink="Back" />
               <BlockTitle strong>Profil</BlockTitle>
               <List>

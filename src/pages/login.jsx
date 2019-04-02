@@ -28,7 +28,7 @@ class Login extends React.Component {
     render() {
         return (
             <Page noToolbar noNavbar noSwipeback loginScreen>
-              <Header backLink/>
+              <Header backLink title="Logg inn"/>
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput

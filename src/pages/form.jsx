@@ -17,8 +17,8 @@ import Header from '../components/Header/Header.jsx'
 
 
 const Form = () => (
-  <Page name="form">
-    <Header backLink/>
+  <Page name="Settings">
+    <Header backLink title="Settings"/>
 
     <BlockTitle>Form Example</BlockTitle>
     <List noHairlinesMd>

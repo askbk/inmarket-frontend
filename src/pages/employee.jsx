@@ -30,7 +30,7 @@ class Employee extends Component {
   render() {
     return (
     <Page name="home" className="employeePage">
-    <Header backLink/>
+    <Header backLink title="Employee"/>
     <div>
     <EmployeeHeader
           pic={this.state.pic}

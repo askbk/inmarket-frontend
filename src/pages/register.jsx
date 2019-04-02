@@ -107,8 +107,8 @@ class Register extends React.Component {
         switch (this.state.user.userType) {
             case -1:
                 return (
-                    <Page name="registrering1">
-                        <Header backLink/>
+                    <Page name="registrering">
+                        <Header backLink title="Registrering"/>
                         <Block>
                             <BlockHeader>Registrer deg som</BlockHeader>
                             <Row>

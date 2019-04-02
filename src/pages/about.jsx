@@ -6,7 +6,7 @@ import Header from '../components/Header/Header.jsx'
 const About = () => (
 <React.Fragment>
   <Page name="about">
-  <Header backLink/>
+  <Header backLink title="Rediger profil"/>
     <BlockTitle>About My App</BlockTitle>
     <Block strong>
       <p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>

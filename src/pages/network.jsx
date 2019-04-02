@@ -36,7 +36,7 @@ class Network extends React.Component {
         return (
           <React.Fragment>
             <Page>
-            <Header backLink/>
+            <Header backLink title="Nettverk"/>
               <NetworkView/>
               <BlockTitle strong>Ditt nettverk</BlockTitle>
               <List>

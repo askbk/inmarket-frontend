@@ -28,7 +28,7 @@ class ProfilePage extends React.Component {
     render() {
         return (
             <Page name="home" className="profilePage">
-                <Header backLink/>
+                <Header backLink title="Profil"/>
                 <div>
                   <ProfilePageHeader />
                 </div>

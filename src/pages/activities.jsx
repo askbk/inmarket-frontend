@@ -14,7 +14,7 @@ class Activities extends React.Component {
 
         return (
             <Page className="theme-dark">
-            <Header backLink/>
+            <Header backLink title="Activities"/>
               <ActivitiesView/>
             </Page>
         )

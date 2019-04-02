@@ -22,8 +22,8 @@ class Company extends React.Component {
 
     render() {
         return (
-            <Page name="home" className="companyPage">
-                <Header backLink/>
+            <Page name="company" className="companyPage">
+                <Header backLink title="Company"/>
                 <div>
                   <CompanyHeader />
                 </div>
