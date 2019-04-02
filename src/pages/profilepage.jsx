@@ -5,7 +5,7 @@ import '../css/profile.css';
 
 //import components
 import Button from '../components/shared/Button/StyledButton';
-import Header from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
+import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
 import ProfileInformation from '../components/shared/InformationBox/InformationBox';
 import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
 
@@ -28,7 +28,7 @@ export default class extends React.Component {
         return (
             <Page name="home" className="profilePage">
                 <div>
-                  <Header />
+                  <ProfilePageHeader />
                 </div>
                 <Row className="profilePageButtonContainer">
                   <Button>SE LOGG</Button>
