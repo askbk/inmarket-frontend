@@ -5,7 +5,7 @@ import '../css/company.css';
 
 //import components
 import Button from '../components/shared/Button/StyledButton';
-import Header from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
+import CompanyHeader from '../components/CompanyPage/CompanyHeader/CompanyPageHeader';
 import CompanyPageInformation from '../components/shared/InformationBox/InformationBox';
 
 import {
@@ -13,16 +13,19 @@ import {
   Row,
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+
+class Company extends React.Component {
     constructor() {
         super();
     }
 
     render() {
         return (
-            <Page name="home" className="companyPage">
+            <Page name="company" className="companyPage">
+                <Header backLink title="Company"/>
                 <div>
-                  <Header />
+                  <CompanyHeader />
                 </div>
                 <Row className="companyPageButtonContainer">
                   <Button>SE LOGG</Button>
@@ -36,3 +39,5 @@ export default class extends React.Component {
         )
     }
 }
+
+export default Company;

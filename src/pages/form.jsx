@@ -13,9 +13,12 @@ import {
   Block
 } from 'framework7-react';
 
-export default () => (
-  <Page name="form">
-    <Navbar title="Form" backLink="Back"></Navbar>
+import Header from '../components/Header/Header.jsx'
+
+
+const Form = () => (
+  <Page name="Settings">
+    <Header backLink title="Settings"/>
 
     <BlockTitle>Form Example</BlockTitle>
     <List noHairlinesMd>
@@ -171,3 +174,5 @@ export default () => (
     </List>
   </Page>
 );
+
+export default Form;
