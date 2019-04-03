@@ -72,7 +72,7 @@ export default class extends React.Component {
       <App params={ this.state.f7params }>
         {/* Status bar overlay for fullscreen mode*/}
         <Statusbar></Statusbar>
-        <Navbar />
+        <Navbar/>
         {/* Right panel with reveal effect*/}
       </App>
     )

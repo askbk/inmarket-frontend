@@ -13,6 +13,7 @@ import ConversationsPage from '../pages/conversations.jsx';
 import ActivitiesPage from '../pages/activities.jsx';
 import ProfilePage from '../pages/profilepage.jsx';
 import EmployeePage from '../pages/employee.jsx';
+import ChatPage from '../pages/chatPage.jsx';
 
 var routes = [
   {
@@ -62,6 +63,10 @@ var routes = [
   {
     path: '/activities/',
     component: ActivitiesPage,
+  },
+  {
+    path: '/chat/:chatId',
+    component: ChatPage,
   },
   {
     path: '/request-and-load/user/:userId/',

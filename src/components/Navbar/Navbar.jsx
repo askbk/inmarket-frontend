@@ -55,8 +55,8 @@ class Header extends Component {
                   <Link panelOpen="right"><NavTitle className="navbartitle">MENU</NavTitle></Link>
                 </NavRight>
           </div>
-              </Navbar>
-              {/* Toolbar */}
+        </Navbar>
+        {/* Toolbar */}
         {/* Your main view, should have "view-main" class */}
         <View main pushState className="safe-areas" url="/" />
        </React.Fragment>
