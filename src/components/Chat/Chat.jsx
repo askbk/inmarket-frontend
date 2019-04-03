@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, Navbar, Messagebar, Link, Messages, MessagesTitle, MessagebarAttachments, MessagebarAttachment, MessagebarSheet, MessagebarSheetImage, Message} from 'framework7-react';
 import Framework7 from 'framework7';
+import './Chat.css';
 
 export default class extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class extends React.Component {
         attachments: [],
         sheetVisible: false,
         typingMessage: null,
+        text: "",
         messagesData: [
           {
             type: 'sent',
@@ -104,15 +106,17 @@ export default class extends React.Component {
     }
     render() {
 
-        const person = "Ask";
+        const person = "Endre Braut Medhus";
         
       return (
         <Page>
+          <Navbar className = "chatNavbar" backLink = "Back" title = {person}/>
           <Messagebar
             placeholder={this.placeholder}
             ref={(el) => {this.messagebarComponent = el}}
             attachmentsVisible={this.attachmentsVisible}
             sheetVisible={this.state.sheetVisible}
+            onInput={() => {this.setState({text: this.messagebar.getValue})}}
           >
             <Link
               iconIos="f7:camera_fill"
@@ -244,6 +248,7 @@ export default class extends React.Component {
     sendMessage() {
       const self = this;
       const text = self.messagebar.getValue().replace(/\n/g, '<br>').trim();
+      console.log(text);
       const messagesToSend = [];
       self.state.attachments.forEach((attachment) => {
         messagesToSend.push({
@@ -268,7 +273,7 @@ export default class extends React.Component {
         messagesData: [...self.state.messagesData, ...messagesToSend],
       });
       self.messagebar.clear();
-  
+      /*
       // Focus area
       if (text.length) self.messagebar.focus();
   
@@ -276,8 +281,8 @@ export default class extends React.Component {
       if (self.state.responseInProgress) return;
       self.setState({
         responseInProgress: true,
-      })
-      setTimeout(() => {
+      })*/
+      /*setTimeout(() => {
         const answer = self.state.answers[Math.floor(Math.random() * self.state.answers.length)];
         const person = self.state.people[Math.floor(Math.random() * self.state.people.length)];
         self.setState({
@@ -286,6 +291,7 @@ export default class extends React.Component {
             avatar: person.avatar,
           },
         });
+        
         setTimeout(() => {
           self.setState({
             messagesData: [...self.state.messagesData, {
@@ -298,6 +304,6 @@ export default class extends React.Component {
             responseInProgress: false,
           });
         }, 4000);
-      }, 1000);
+      }, 1000);*/
     }
   };

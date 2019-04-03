@@ -13,8 +13,11 @@ export default class extends React.Component {
 
   render(){
 
+    const person_id = "1";
+    const url = 'http://localhost:8080/#!/chat/' + person_id;
+
     return (
-      <Link className="conversationsMessageLink">
+      <Link className="conversationsMessageLink" external href = {url}>
       <div className="conversationsActivitiesInstanceInnerContainer">
         <div className="conversationsActivitiesAvatarOuterContainer">
             <ConversationsMessageAvatar/>
