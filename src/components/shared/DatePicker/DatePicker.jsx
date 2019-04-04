@@ -20,6 +20,8 @@ import {
   color: 'white',
   border: '1px solid #c08d42',
   marginBottom: '10px',
+  minWidth: 'fit-content',
+  maxWidth: '100px',
 };
 
 const inputStyling = {
@@ -28,7 +30,7 @@ const inputStyling = {
   border: '1px solid #c08d42',
   width: '100%', 
   marginBottom: '15px',
-  borderRadius: '5px'
+  borderRadius: '5px',
 };
 
 const datePicker = (props) => (
@@ -59,7 +61,7 @@ const datePicker = (props) => (
     <Button style={styling}><span className="dateContent">2019</span></Button>
     </Col>
     </Row>
-    <Row style={{width: '50%'}}>
+    <Row style={{width: '50%'}} className="dateTimeContainer">
     <Col>
     <span className="dateContent">Kl. start:</span>
       </Col>
@@ -67,7 +69,7 @@ const datePicker = (props) => (
       <span className="dateContent">&nbsp;&nbsp;Kl.slutt</span>
       </Col>
     </Row>
-    <Row style={{width: '50%'}}>
+    <Row style={{width: '50%'}} className="dateTimeContainer">
     <Col>
       <Button style={styling}><span className="dateContent">12</span></Button>
     </Col>
