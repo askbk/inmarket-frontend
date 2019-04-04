@@ -5,6 +5,11 @@
   justify-content: center;
 }
 
+.datePickerContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (max-width: 769px){
  
   .employeePageButtonContainer {

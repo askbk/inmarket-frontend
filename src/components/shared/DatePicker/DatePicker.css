@@ -1,0 +1,16 @@
+.dateContent {
+  font-size: 12px;
+}
+
+.dateGrid {
+  width: 50%;
+}
+
+.dateDesc {
+  height: 40px;
+}
+
+.datePic img{
+  height: 40px;
+  width: 40px;
+}
