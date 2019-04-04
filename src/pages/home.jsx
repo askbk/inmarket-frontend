@@ -1,56 +1,52 @@
 import React from 'react';
 
 import {
+  Swiper,
   Page,
-  Navbar,
-  NavLeft,
-  NavTitle,
-  NavTitleLarge,
-  NavRight,
   Link,
   Toolbar,
-  Block,
-  BlockTitle,
-  List,
-  ListItem,
-  Row,
-  Col,
-  Button
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+import VideosContainer from '../components/Home/VideosContainer/VideosContainer.jsx';
+import MatchesContainer from '../components/Home/MatchesContainer/MatchesContainer.jsx';
+
+class Home extends React.Component {
     constructor() {
         super();
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:5000/api/users?page=1").then(res => {
+            return res.json();
+        }).then(users => {
+            this.setState({data:users.data});
+        });
     }
 
     render() {
+        const users = this.state.data
+
         return (
+          <React.Fragment>
             <Page name="home">
+            <Header />
               {/* Top Navbar */}
               {/* Page content */}
-              
+              <VideosContainer users={users}/>
+              <MatchesContainer users={users}/>
               <Toolbar bottom>
                 <Link>Left Link</Link>
                 <Link>Right Link</Link>
               </Toolbar>
 
-              <Block strong>
-                <p>Here is your blank Framework7 app.</p>
-              </Block>
-
-              <BlockTitle>Modals</BlockTitle>
-              <Block strong>
-                <Row>
-                  <Col width="50">
-                    <Button fill raised popupOpen="#my-popup">Popup</Button>
-                  </Col>
-                  <Col width="50">
-                    <Button fill raised href="/logginn/">Login Screen</Button>
-                  </Col>
-                </Row>
-              </Block>
             </Page>
-
+          </React.Fragment>
         )
     }
 }
+
+export default Home;

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   App,
   Statusbar,
+  View
 } from 'framework7-react';
 
 import cordovaApp from '../js/cordova-app';
@@ -14,8 +15,7 @@ import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 
 library.add(fab, faThumbsUp, faThumbsDown);
 
-//import components
-import Navbar from '../components/Navbar/Navbar';
+import Sidebar from './Sidebar/Sidebar.jsx';
 
 export default class extends React.Component {
   constructor() {
@@ -72,7 +72,9 @@ export default class extends React.Component {
       <App params={ this.state.f7params }>
         {/* Status bar overlay for fullscreen mode*/}
         <Statusbar></Statusbar>
-        <Navbar />
+        <Sidebar />
+        {/* Your main view, should have "view-main" class */}
+        <View main pushState className="safe-areas" url="/" />
         {/* Right panel with reveal effect*/}
       </App>
     )

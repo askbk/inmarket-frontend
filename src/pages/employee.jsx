@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 //import components
-import Header from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
+import EmployeeHeader from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
 import Button from '../components/shared/Button/StyledButton';
 import InformationBox from '../components/shared/InformationBox/InformationBox';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
+import Header from '../components/Header/Header.jsx'
 
 //import picture
 import TempPic from '../../assets-src/EmployeePage/temp2.png';
@@ -32,8 +33,9 @@ class Employee extends Component {
   render() {
     return (
     <Page name="home" className="employeePage">
+    <Header backLink title="Employee"/>
     <div>
-    <Header
+    <EmployeeHeader
           pic={this.state.pic}
           position={this.state.position}
           name={this.state.name}

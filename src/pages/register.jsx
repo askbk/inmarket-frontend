@@ -23,7 +23,9 @@ import {
   Views
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+
+class Register extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -105,8 +107,8 @@ export default class extends React.Component {
         switch (this.state.user.userType) {
             case -1:
                 return (
-                    <Page name="registrering1">
-                        <Navbar title="Registrering" backLink="Back"></Navbar>
+                    <Page name="registrering">
+                        <Header backLink title="Registrering"/>
                         <Block>
                             <BlockHeader>Registrer deg som</BlockHeader>
                             <Row>
@@ -307,3 +309,5 @@ export default class extends React.Component {
                                 ></ListInput>
     */
 }
+
+export default Register;

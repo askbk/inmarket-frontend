@@ -14,7 +14,9 @@ import {
     BlockFooter
 } from 'framework7-react';
 
-export default class extends React.Component {
+import Header from '../components/Header/Header.jsx'
+
+class Login extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -26,6 +28,7 @@ export default class extends React.Component {
     render() {
         return (
             <Page noToolbar noNavbar noSwipeback loginScreen>
+              <Header backLink title="Logg inn"/>
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput
@@ -80,3 +83,5 @@ export default class extends React.Component {
         });
     }
 }
+
+export default Login;
