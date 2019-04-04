@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import EmployeeHeader from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
 import Button from '../components/shared/Button/StyledButton';
 import InformationBox from '../components/shared/InformationBox/InformationBox';
+import DatePicker from '../components/shared/DatePicker/DatePicker';
 import Header from '../components/Header/Header.jsx'
 
 //import picture
@@ -16,6 +17,7 @@ import '../css/employee.css';
 import {
   Page,
   Row,
+  Col,
 } from 'framework7-react';
 
 class Employee extends Component {
@@ -24,7 +26,8 @@ class Employee extends Component {
     this.state = {
       pic: TempPic,
       position: "Daglig Leder, InMarket AS",
-      name: "Chris Africa, 34"
+      name: "Chris Africa, 34",
+      showDate: false,
     };
   }
   render() {
@@ -40,7 +43,10 @@ class Employee extends Component {
     </div>
     <Row className="employeePageButtonContainer">
       <Button>SE LOGG</Button>
-      <Button>FORESPØR</Button>
+      <Button clicked={ () => this.setState({showDate: !this.state.showDate})}>FORESPØR</Button>
+    </Row>
+    <Row className="datePickerContainer">
+      {this.state.showDate ? <DatePicker /> : null}
     </Row>
     <InformationBox>
       Lorem Ipsum

@@ -1,0 +1,31 @@
+.dateContent {
+  font-size: 12px;
+  max-width: 10%;
+}
+
+.dateGrid {
+  width: 50%;
+}
+
+.dateDesc {
+  height: 40px;
+}
+
+.dateCol {
+  display: flex;
+}
+
+.datePic img{
+  height: 40px;
+  width: 40px;
+}
+
+@media (max-width: 793px){
+  .dateGrid {
+    width: 95%;
+  }
+
+  .dateTimeContainer {
+   margin: 0 auto;
+  }
+}
