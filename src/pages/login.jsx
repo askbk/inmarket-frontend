@@ -15,9 +15,10 @@ import {
 } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx'
+import Logo from '../../assets-src/Navbar/inMarketlogo.png';
+import '../css/login.css';
 
-class Login extends React.Component {
-    constructor() {
+class Login extends React.Component {    constructor() {
         super();
         this.state = {
             username: "",
@@ -27,8 +28,9 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Page noToolbar noNavbar noSwipeback loginScreen>
+            <Page noToolbar noNavbar noSwipeback loginScreen themeDark>
               <Header backLink title="Logg inn"/>
+              <img className='loginPageLogo' src={Logo} />
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput
@@ -39,6 +41,7 @@ class Login extends React.Component {
                   onInput={(e) => {
                     this.setState({ username: e.target.value});
                   }}
+                  className="loginListInput"
                 />
                 <ListInput
                   label="Passord"
