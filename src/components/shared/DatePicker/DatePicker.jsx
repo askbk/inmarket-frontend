@@ -86,7 +86,7 @@ class DatePicker extends Component {
       <span className="dateContent">Kl. start:</span>
         </Col>
         <Col>
-        <span className="dateContent">&nbsp;&nbsp;Kl.slutt</span>
+        <span className="dateContent">&nbsp;&nbsp;&nbsp;Kl.slutt</span>
         </Col>
       </Row>
       <Row style={{width: '50%'}} className="dateTimeContainer">
