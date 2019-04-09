@@ -2,6 +2,7 @@ import React from 'react';
 
 //import styling
 import '../css/profile.css';
+import '../css/toolbar.css';
 
 //import components
 import Button from '../components/shared/Button/StyledButton';
@@ -13,6 +14,8 @@ import Header from '../components/Header/Header.jsx'
 import {
   Page,
   Row,
+  Toolbar,
+  Link
 } from 'framework7-react';
 
 class ProfilePage extends React.Component {
@@ -40,6 +43,12 @@ class ProfilePage extends React.Component {
                 {this.state.profileText}
                 </ProfileInformation>
                 <ProfileSkills skills={this.state.skills} />
+                <Toolbar className="bottomToolbar" tabbar labels bottom>
+                  <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
+                  <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
+                  <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
+                  <Link className="bottomToolbarLink toolbarIcon" tabLinkActive href="/profilepage/" iconF7="person_round" />
+                </Toolbar>
             </Page>
 
         )

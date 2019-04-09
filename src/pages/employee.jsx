@@ -12,12 +12,15 @@ import TempPic from '../../assets-src/EmployeePage/temp2.png';
 
 //import styling
 import '../css/employee.css';
+import '../css/toolbar.css';
 
 //import components from framework7
 import {
   Page,
   Row,
   Col,
+  Toolbar,
+  Link
 } from 'framework7-react';
 
 class Employee extends Component {
@@ -51,6 +54,12 @@ class Employee extends Component {
     <InformationBox>
       Lorem Ipsum
     </InformationBox>
+    <Toolbar className="bottomToolbar" tabbar labels bottom>
+      <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
+      <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
+      <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
+      <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
+    </Toolbar>
     </Page>
     );
   }

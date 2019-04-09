@@ -25,10 +25,10 @@ class Header extends Component {
         <Navbar className="navbar" sliding={false}>
           <div className="navbarcontent">
                 <img className="navbarlogo" src={Logo} />
-                <NavTitle className="navbartitle">NAVN</NavTitle>
-                <NavTitle className="navbartitle">NOTIFIKASJONER</NavTitle>
+                <NavTitle className="navbartitle"><Link href="/profilepage/">Navn Navnesen</Link></NavTitle>
+                <NavTitle className="navbartitle"><Link href="/conversations/" iconF7="chat"/></NavTitle>
                 <NavRight className="navright">
-                  <Link panelOpen="right"><NavTitle className="navbartitle">MENU</NavTitle></Link>
+                  <Link panelOpen="right" iconF7="menu"></Link>
                 </NavRight>
           </div>
         </Navbar>
