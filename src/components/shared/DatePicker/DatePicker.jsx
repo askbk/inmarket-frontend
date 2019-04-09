@@ -108,7 +108,7 @@ class DatePicker extends Component {
         {this.state.startDateClicked ? <SingleDatePicker
         placeholder="Velg startdato"
         date={this.state.startDate} // momentPropTypes.momentObj or null
-        onDateChange={date => this.setState({ startDate })} // PropTypes.func.isRequired
+        onDateChange={date => this.setState({ startDate: date, startDateClicked: false })} // PropTypes.func.isRequired
         focused={this.state.focused} // PropTypes.bool
         onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
         id="your_unique_id" // PropTypes.string.isRequired,
@@ -116,7 +116,7 @@ class DatePicker extends Component {
         {this.state.endDateClicked ? <SingleDatePicker
         placeholder="Velg sluttdato"
         date={this.state.endDate} // momentPropTypes.momentObj or null
-        onDateChange={date => this.setState({ endDate })} // PropTypes.func.isRequired
+        onDateChange={date => this.setState({ endDate: date, endDateClicked: false })} // PropTypes.func.isRequired
         focused={this.state.focused} // PropTypes.bool
         onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
         id="your_unique_id" // PropTypes.string.isRequired,
