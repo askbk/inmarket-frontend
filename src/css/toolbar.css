@@ -1,0 +1,7 @@
+.toolbar-inner {
+  justify-content: space-evenly;
+}
+
+.tabbar a.link {
+  width: 25%;
+}

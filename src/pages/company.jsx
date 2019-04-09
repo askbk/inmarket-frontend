@@ -2,6 +2,7 @@ import React from 'react';
 
 //import styling
 import '../css/company.css';
+import '../css/toolbar.css';
 
 //import components
 import Button from '../components/shared/Button/StyledButton';
@@ -11,7 +12,9 @@ import CompanyPageInformation from '../components/shared/InformationBox/Informat
 import {
   Page,
   Row,
-} from 'framework7-react';
+  Toolbar,
+  Link
+  } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx'
 
@@ -34,6 +37,12 @@ class Company extends React.Component {
                 <CompanyPageInformation>
                 InMarket er en brukerstyrt plattform som på app og nettiside lar bedrifter møte potensielle arbeidstakere ved bruk av automatiserte systemer.
                 </CompanyPageInformation>
+                <Toolbar className="bottomToolbar" tabbar labels bottom>
+                  <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
+                  <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
+                  <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
+                  <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
+                </Toolbar>
             </Page>
 
         )

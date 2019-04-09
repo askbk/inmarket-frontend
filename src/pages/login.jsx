@@ -11,10 +11,16 @@ import {
     LoginScreen,
     LoginScreenTitle,
     ListButton,
-    BlockFooter
+    BlockFooter,
+    Toolbar,
+    Link
 } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx'
+import Logo from '../../assets-src/Navbar/inMarketlogo.png';
+import '../css/login.css';
+
+import '../css/toolbar.css';
 
 class Login extends React.Component {
     constructor() {
@@ -27,8 +33,9 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Page noToolbar noNavbar noSwipeback loginScreen>
+            <Page noToolbar noNavbar noSwipeback loginScreen themeDark>
               <Header backLink title="Logg inn"/>
+              <img className='loginPageLogo' src={Logo} />
               <LoginScreenTitle>Logg inn</LoginScreenTitle>
               <List form>
                 <ListInput
@@ -39,6 +46,7 @@ class Login extends React.Component {
                   onInput={(e) => {
                     this.setState({ username: e.target.value});
                   }}
+                  className="loginListInput"
                 />
                 <ListInput
                   label="Passord"
@@ -54,6 +62,12 @@ class Login extends React.Component {
                 <ListButton onClick={this.signIn.bind(this)}>Logg inn</ListButton>
                 <ListButton href="/registrering/">Registrer deg</ListButton>
               </List>
+              <Toolbar className="bottomToolbar" tabbar labels bottom>
+                <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
+                <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
+                <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
+                <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
+              </Toolbar>
             </Page>
         )
     }

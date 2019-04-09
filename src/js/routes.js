@@ -14,6 +14,7 @@ import ActivitiesPage from '../pages/activities.jsx';
 import ProfilePage from '../pages/profilepage.jsx';
 import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
+import DatePicker from '../components/shared/DatePicker/DatePicker';
 
 var routes = [
   {
@@ -23,6 +24,10 @@ var routes = [
   {
     path: '/employee',
     component: EmployeePage,
+  },
+  {
+    path: '/REMOVETHISLATER',
+    component: DatePicker
   },
   {
     path: '/company',
