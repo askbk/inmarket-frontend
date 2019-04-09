@@ -23,16 +23,44 @@ export default class extends React.Component {
                 chat_id: '2',
                 chat_name: 'Casper Feng',
                 last_message: 'Hallo',
-                time_stamp: '2019-04-06T12:03:34',
+                time_stamp: '2019-04-09T10:03:34',
                 avatar_img: '../../../../assets-src/IMG_1318.jpg',
             },
             {
                 chat_id: '3',
                 chat_name: 'Edvard Bakken',
                 last_message: 'Heisann hvordan går det?',
-                time_stamp: '2019-05-06T23:03:34',
+                time_stamp: '2018-10-09T12:19:34',
                 avatar_img: '../../../../assets-src/IMG_1318.jpg',
             },
+            {
+                chat_id: '4',
+                chat_name: 'Ask Kolltveit',
+                last_message: 'Hallo',
+                time_stamp: '2019-04-09T13:40:34',
+                avatar_img: '../../../../assets-src/IMG_1318.jpg',
+            },
+            {
+                chat_id: '5',
+                chat_name: 'Filip Tangen',
+                last_message: 'Heisann hvordan går det?',
+                time_stamp: '2019-04-09T12:19:34',
+                avatar_img: '../../../../assets-src/IMG_1318.jpg',
+            },
+            {
+                chat_id: '6',
+                chat_name: 'Chris Africa',
+                last_message: 'Hallo',
+                time_stamp: '2019-04-09T10:03:34',
+                avatar_img: '../../../../assets-src/IMG_1318.jpg',
+            },
+            {
+                chat_id: '7',
+                chat_name: 'Ola Nordmann',
+                last_message: 'Heisann hvordan går det?',
+                time_stamp: '2018-12-19T12:19:34',
+                avatar_img: '../../../../assets-src/IMG_1318.jpg',
+            }
         ]
     }
   }
@@ -46,7 +74,7 @@ export default class extends React.Component {
                 <Searchbar/>
             </div>
             <List noHairlines noHairlinesBetween className="conversationsActivitiesViewList">
-                {this.state.chats.sort((a, b) => (new Date(a.time_stamp) > new Date(b.time_stamp))).map((chat, index) => (
+                {this.state.chats.sort((a, b) => (new Date(b.time_stamp) - new Date(a.time_stamp))).map((chat, index) => (
                     <ListItem className="conversationsActivitiesViewListItem" key = {index} title="">
                         <div className="conversationsActivitiesViewInstanceContainer">
                             <ConversationsMessage
