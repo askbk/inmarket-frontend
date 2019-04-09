@@ -13,17 +13,21 @@ export default class extends React.Component {
 
   render(){
 
-    const person_id = "1";
-    const url = 'http://localhost:8080/#!/chat/' + person_id;
-
+    const url = '/conversations/' + this.props.chat_id;
+    
     return (
-      <Link className="conversationsMessageLink" external href = {url}>
+      <Link className="conversationsMessageLink" href = {url}>
       <div className="conversationsActivitiesInstanceInnerContainer">
         <div className="conversationsActivitiesAvatarOuterContainer">
-            <ConversationsMessageAvatar/>
+            <ConversationsMessageAvatar 
+              time_stamp = {this.props.time_stamp} 
+              avatar_img = {this.props.avatar_img} />
         </div>
         <div className="conversationActivitiesTextOuterContainer">
-            <ConversationsMessageText/>
+            <ConversationsMessageText 
+              chat_name = {this.props.chat_name} 
+              last_message = {this.props.last_message} 
+              time_stamp = {this.props.time_stamp}/>
         </div>
         <div className="conversationActivitiesReactOuterContainer">
             <ConversationsMessageReact/>

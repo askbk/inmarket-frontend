@@ -65,7 +65,7 @@ var routes = [
     component: ActivitiesPage,
   },
   {
-    path: '/chat/:chatId',
+    path: '/conversations/:chatId',
     component: ChatPage,
   },
   {
