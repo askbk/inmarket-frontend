@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import DatePickerCustomHeader from '../components/shared/DatePicker/DatePickerCustomHeader'
 
 import ReactDOM from 'react-dom';
-import DatePicker from 'react-mobile-datepicker';
 //import components
 import EmployeeHeader from '../components/EmployeePage/EmployeeHeader/EmployeeHeader.jsx';
 import Button from '../components/shared/Button/StyledButton';
 import InformationBox from '../components/shared/InformationBox/InformationBox';
-/*import DatePicker from '../components/shared/DatePicker/DatePicker';*/
+import DatePicker from '../components/shared/DatePicker/DatePicker';
 import Header from '../components/Header/Header.jsx'
 
 //import picture
@@ -40,67 +39,7 @@ const monthMap = {
   '11': 'Nov',
   '12': 'Dec',
 };*/
-const monthMap = {
-  '1': 'Jan',
-  '2': 'Feb',
-  '3': 'Mar',
-  '4': 'Apr',
-  '5': 'Mai',
-  '6': 'Jun',
-  '7': 'Jul',
-  '8': 'Aug',
-  '9': 'Sep',
-  '10': 'Okt',
-  '11': 'Nov',
-  '12': 'Dec',
-};
 
-const monthMapFull = {
-  '1': 'januar',
-  '2': 'februar',
-  '3': 'mars',
-  '4': 'april',
-  '5': 'mai',
-  '6': 'juni',
-  '7': 'july',
-  '8': 'august',
-  '9': 'september',
-  '10': 'oktober',
-  '11': 'november',
-  '12': 'desember',
-};
-
-function getDateWith5Minutes(date){
-  let minutes = Math.ceil(date.getMinutes()/5)*5;
-  date.setMinutes(minutes);
-}
-function getMinutes(date){
-  let minutes = date.getMinutes();
-  if(parseInt(minutes) < 10){
-    minutes = "0" + minutes;
-  }
-  return minutes;
-}
-
-function dateFormat(date){
-  let year = date.getFullYear();
-  if(year === new Date().getFullYear()){
-    year = "";
-  }
-  return " "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + getMinutes(date);
-}
-
-function dateFormatFromAndTo(from,to){
-  let fromString = dateFormat(from);
-  let toString = "";
-  if(from.getFullYear() === to.getFullYear() && from.getMonth() === to.getMonth() && from.getDate() === to.getDate()){
-    toString = " kl " + to.getHours() + ":" + getMinutes(to);
-  }
-  else {
-    toString = dateFormat(to);
-  }
-  return "" + fromString + " til " + toString;
-}
 
 class Employee extends Component {
   constructor(){
@@ -110,56 +49,10 @@ class Employee extends Component {
       position: "Daglig Leder, InMarket AS",
       name: "Chris Africa, 34",
       showDate: false,
-      startDate: null,
-      endDate: null,
-      selectedDate: 0,
-      isOpen: false,
-      value : new Date(),
-      confirmText: "Gå til neste",
-
-
     };
   }
 
 
-  handleClick (selected) {
-    /*Datepickeren har lavere z-index enn det framework-7 bruker. så vi må tvinge den til å bli høyere*/
-    let datepickers = document.getElementsByClassName("datepicker-modal");
-    for (let i = 0; i < datepickers.length; i++) {
-      datepickers[i].style.zIndex = "100000";
-    }
-
-    let value = null;
-    if(selected === 1){
-      value = this.state.startDate ? this.state.startDate : new Date();
-    }
-    else if(selected === 2){
-      value = this.state.endDate ? (this.state.startDate ? this.state.startDate : new Date()) : new Date();
-    }
-
-    this.setState({ isOpen: true, selectedDate:selected, value:value });
-  }
-
-  handleCancel ()  {
-    this.setState({ isOpen: false });
-  }
-
-  handleSelect (time)  {
-    if(this.state.selectedDate === 1){
-      let endDate = this.state.endDate;
-      if(this.state.endDate === null){
-        if(endDate === null){
-          endDate = time;
-        }
-      }
-      this.setState({ startDate:time, endDate:endDate, value:time, isOpen: true, selectedDate:2 , confirmText:"Ferdig"});
-
-
-    }
-    else if(this.state.selectedDate === 2){
-      this.setState({ endDate:time, isOpen: false, confirmText:"Gå til neste" });
-    }
-  }
 /* <a
             className="select-btn"
             onClick={this.handleClick.bind(this)}>
@@ -187,69 +80,13 @@ min={this.state.selectedDate === 2 ? this.state.startDate : new Date(1970, 0, 1)
 
       <Row className="dateButtonContainer margin">
 
-        <h3>Velg dato</h3>
-
-        <Button clicked={() => {this.handleClick(1)}} style={{ backgroundColor: 'black',
-          color: 'white',
-          border: '1px solid #c08d42',
-          marginBottom: '10px',
-          minWidth: 'fit-content',
-        maxWidth:"100%!important"}}><span>{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Velg dato her"}</span></Button>
-      </Row>
+       </Row>
 
 
-      <Row>
+      <Row><DatePicker/>
 
 
 
-
-
-        <DatePicker
-            value={getDateWith5Minutes(this.state.value)}
-            headerFormat={"DD/MM/YYYY hh:mm"}
-            showCaption={true}
-
-            isOpen={this.state.isOpen}
-            onSelect={(time) =>{this.handleSelect(time)}}
-            onCancel={()=>{this.handleCancel()}}
-            customHeader={<DatePickerCustomHeader startDate={this.state.startDate ? this.state.startDate : new Date()} endDate={this.state.endDate ? this.state.endDate : new Date()} selected ={this.state.selectedDate}/>}
-            confirmText={this.state.confirmText}
-            cancelText={"Avbryt"}
-            theme={"dark"}
-            dateConfig={{
-
-              'year': {
-                format: 'YYYY',
-                caption: 'År',
-                step: 1,
-              },
-              'month': {
-                format: value => monthMap[value.getMonth() + 1],
-                caption: 'Måned',
-                step: 1,
-              },
-              'date': {
-                format: 'D',
-                caption: 'Dag',
-                step: 1,
-              },
-
-
-
-              'hour': {
-                format: 'hh',
-                caption: 'Time',
-                step: 1,
-              },
-              'minute': {
-                format: 'mm',
-                caption: 'Min',
-                step: 5,
-              },
-            }}/>
-
-        <DatePicker
-        />
       </Row>
     <InformationBox>
       Lorem Ipsum

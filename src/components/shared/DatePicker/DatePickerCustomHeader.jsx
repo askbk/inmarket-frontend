@@ -30,13 +30,28 @@ const monthMapFull = {
     '12': 'desember',
 };
 
+function getMinutes(date){
+    let minutes = date.getMinutes();
+    if(parseInt(minutes) < 10){
+        minutes = "0" + minutes;
+    }
+    return minutes;
+}
+
+function getHours(date){
+    let minutes = date.getHours();
+    if(parseInt(minutes) < 10){
+        minutes = "0" + minutes;
+    }
+    return minutes;
+}
 
 function dateFormat(date){
     let year = date.getFullYear();
     if(year === new Date().getFullYear()){
         year = "";
     }
-    return "den "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + date.getMinutes();
+    return " "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + getHours(date) + ":" + getMinutes(date);
 }
 
 class DatePickerCustomHeader extends Component {
