@@ -70,25 +70,36 @@ const monthMapFull = {
   '12': 'desember',
 };
 
+function getDateWith5Minutes(date){
+  let minutes = Math.ceil(date.getMinutes()/5)*5;
+  date.setMinutes(minutes);
+}
+function getMinutes(date){
+  let minutes = date.getMinutes();
+  if(parseInt(minutes) < 10){
+    minutes = "0" + minutes;
+  }
+  return minutes;
+}
 
 function dateFormat(date){
   let year = date.getFullYear();
   if(year === new Date().getFullYear()){
     year = "";
   }
-  return "den "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + date.getMinutes();
+  return " "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + getMinutes(date);
 }
 
 function dateFormatFromAndTo(from,to){
   let fromString = dateFormat(from);
   let toString = "";
   if(from.getFullYear() === to.getFullYear() && from.getMonth() === to.getMonth() && from.getDate() === to.getDate()){
-    toString = " kl " + to.getHours() + ":" + to.getMinutes();
+    toString = " kl " + to.getHours() + ":" + getMinutes(to);
   }
   else {
     toString = dateFormat(to);
   }
-  return "" + fromString + " til: " + toString;
+  return "" + fromString + " til " + toString;
 }
 
 class Employee extends Component {
@@ -141,12 +152,12 @@ class Employee extends Component {
           endDate = time;
         }
       }
-      this.setState({ startDate:time, endDate:endDate, value:time, isOpen: true, selectedDate:2 });
+      this.setState({ startDate:time, endDate:endDate, value:time, isOpen: true, selectedDate:2 , confirmText:"Ferdig"});
 
 
     }
     else if(this.state.selectedDate === 2){
-      this.setState({ endDate:time, isOpen: false });
+      this.setState({ endDate:time, isOpen: false, confirmText:"Gå til neste" });
     }
   }
 /* <a
@@ -154,7 +165,7 @@ class Employee extends Component {
             onClick={this.handleClick.bind(this)}>
           select timecustomHeader{<button>Test</button>}
         </a>
-
+min={this.state.selectedDate === 2 ? this.state.startDate : new Date(1970, 0, 1)}
 
          */
 
@@ -183,17 +194,7 @@ class Employee extends Component {
           border: '1px solid #c08d42',
           marginBottom: '10px',
           minWidth: 'fit-content',
-          maxWidth: '100px',}}><span className="dateContent">{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Velg dato her"}</span></Button>
-
-        <h3>Til</h3>
-
-        <Button clicked={() => {this.handleClick(2)}} style={{ backgroundColor: 'black',
-          color: 'white',
-          border: '1px solid #c08d42',
-          marginBottom: '10px',
-          minWidth: 'fit-content',
-          maxWidth: '100px',}}><span className="dateContent">{this.state.endDate ? dateFormat(this.state.endDate) : "Velg dato her"}</span></Button>
-
+        maxWidth:"100%!important"}}><span>{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Velg dato her"}</span></Button>
       </Row>
 
 
@@ -204,14 +205,15 @@ class Employee extends Component {
 
 
         <DatePicker
-            value={this.state.value}
+            value={getDateWith5Minutes(this.state.value)}
             headerFormat={"DD/MM/YYYY hh:mm"}
             showCaption={true}
+
             isOpen={this.state.isOpen}
             onSelect={(time) =>{this.handleSelect(time)}}
             onCancel={()=>{this.handleCancel()}}
             customHeader={<DatePickerCustomHeader startDate={this.state.startDate ? this.state.startDate : new Date()} endDate={this.state.endDate ? this.state.endDate : new Date()} selected ={this.state.selectedDate}/>}
-            confirmText={"Gå til neste"}
+            confirmText={this.state.confirmText}
             cancelText={"Avbryt"}
             theme={"dark"}
             dateConfig={{
@@ -242,7 +244,7 @@ class Employee extends Component {
               'minute': {
                 format: 'mm',
                 caption: 'Min',
-                step: 1,
+                step: 5,
               },
             }}/>
 
