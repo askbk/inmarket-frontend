@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import DatePickerCustomHeader from '../components/shared/DatePicker/DatePickerCustomHeader'
 
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-mobile-datepicker';
@@ -76,7 +76,19 @@ function dateFormat(date){
   if(year === new Date().getFullYear()){
     year = "";
   }
-  return ""  + date.getDate() + "." +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + date.getMinutes();
+  return "den "  + date.getDate() + ". " +  monthMapFull[(parseInt(date.getMonth())+1)] + " " + year + " kl " + date.getHours() + ":" + date.getMinutes();
+}
+
+function dateFormatFromAndTo(from,to){
+  let fromString = dateFormat(from);
+  let toString = "";
+  if(from.getFullYear() === to.getFullYear() && from.getMonth() === to.getMonth() && from.getDate() === to.getDate()){
+    toString = " kl " + to.getHours() + ":" + to.getMinutes();
+  }
+  else {
+    toString = dateFormat(to);
+  }
+  return "" + fromString + " til: " + toString;
 }
 
 class Employee extends Component {
@@ -89,18 +101,32 @@ class Employee extends Component {
       showDate: false,
       startDate: null,
       endDate: null,
+      selectedDate: 0,
       isOpen: false,
+      value : new Date(),
+      confirmText: "Gå til neste",
+
+
     };
   }
 
 
-  handleClick () {
+  handleClick (selected) {
     /*Datepickeren har lavere z-index enn det framework-7 bruker. så vi må tvinge den til å bli høyere*/
     let datepickers = document.getElementsByClassName("datepicker-modal");
     for (let i = 0; i < datepickers.length; i++) {
       datepickers[i].style.zIndex = "100000";
     }
-    this.setState({ isOpen: true });
+
+    let value = null;
+    if(selected === 1){
+      value = this.state.startDate ? this.state.startDate : new Date();
+    }
+    else if(selected === 2){
+      value = this.state.endDate ? (this.state.startDate ? this.state.startDate : new Date()) : new Date();
+    }
+
+    this.setState({ isOpen: true, selectedDate:selected, value:value });
   }
 
   handleCancel ()  {
@@ -108,9 +134,29 @@ class Employee extends Component {
   }
 
   handleSelect (time)  {
-    this.setState({ startDate:time, isOpen: false });
-  }
+    if(this.state.selectedDate === 1){
+      let endDate = this.state.endDate;
+      if(this.state.endDate === null){
+        if(endDate === null){
+          endDate = time;
+        }
+      }
+      this.setState({ startDate:time, endDate:endDate, value:time, isOpen: true, selectedDate:2 });
 
+
+    }
+    else if(this.state.selectedDate === 2){
+      this.setState({ endDate:time, isOpen: false });
+    }
+  }
+/* <a
+            className="select-btn"
+            onClick={this.handleClick.bind(this)}>
+          select timecustomHeader{<button>Test</button>}
+        </a>
+
+
+         */
 
   render() {
     return (
@@ -130,51 +176,49 @@ class Employee extends Component {
 
       <Row className="dateButtonContainer margin">
 
-        <h3>Velg når det skal starte</h3>
+        <h3>Velg dato</h3>
 
-        <Button clicked={this.handleClick.bind(this)} style={{ backgroundColor: 'black',
+        <Button clicked={() => {this.handleClick(1)}} style={{ backgroundColor: 'black',
           color: 'white',
           border: '1px solid #c08d42',
           marginBottom: '10px',
           minWidth: 'fit-content',
-          maxWidth: '100px',}}><span className="dateContent">{this.state.startDate ? dateFormat(this.state.startDate) : "Velg dato her"}</span></Button>
+          maxWidth: '100px',}}><span className="dateContent">{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Velg dato her"}</span></Button>
 
-        <h3>Velg når det skal slutte</h3>
+        <h3>Til</h3>
 
-        <Button clicked={this.handleClick.bind(this)} style={{ backgroundColor: 'black',
+        <Button clicked={() => {this.handleClick(2)}} style={{ backgroundColor: 'black',
           color: 'white',
           border: '1px solid #c08d42',
           marginBottom: '10px',
           minWidth: 'fit-content',
-          maxWidth: '100px',}}><span className="dateContent">{this.state.startDate ? dateFormat(this.state.startDate) : "Velg dato her"}</span></Button>
+          maxWidth: '100px',}}><span className="dateContent">{this.state.endDate ? dateFormat(this.state.endDate) : "Velg dato her"}</span></Button>
 
       </Row>
 
 
       <Row>
-        <a
-            className="select-btn"
-            onClick={this.handleClick.bind(this)}>
-          select time
-        </a>
+
 
 
 
 
         <DatePicker
-            value={this.state.startDate ? this.state.startDate : new Date()}
-            headerFormat={"Når det tarter: DD/MM/YYYY hh:mm"}
+            value={this.state.value}
+            headerFormat={"DD/MM/YYYY hh:mm"}
             showCaption={true}
             isOpen={this.state.isOpen}
-            onSelect={(time) =>{this.handleSelect(time).bind(this)}}
-            onCancel={()=>{this.handleCancel}}
+            onSelect={(time) =>{this.handleSelect(time)}}
+            onCancel={()=>{this.handleCancel()}}
+            customHeader={<DatePickerCustomHeader startDate={this.state.startDate ? this.state.startDate : new Date()} endDate={this.state.endDate ? this.state.endDate : new Date()} selected ={this.state.selectedDate}/>}
             confirmText={"Gå til neste"}
-            cancelText={"stop"}
-            theme={"android-dark"}
+            cancelText={"Avbryt"}
+            theme={"dark"}
             dateConfig={{
-              'date': {
-                format: 'D',
-                caption: 'Dag',
+
+              'year': {
+                format: 'YYYY',
+                caption: 'År',
                 step: 1,
               },
               'month': {
@@ -182,11 +226,13 @@ class Employee extends Component {
                 caption: 'Måned',
                 step: 1,
               },
-              'year': {
-                format: 'YYYY',
-                caption: 'År',
+              'date': {
+                format: 'D',
+                caption: 'Dag',
                 step: 1,
               },
+
+
 
               'hour': {
                 format: 'hh',
