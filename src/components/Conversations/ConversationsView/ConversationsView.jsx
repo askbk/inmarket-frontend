@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../../css/conversationsActivitiesViewShared.css';
-import Searchbar from '../../shared/Searchbar/Searchbar.jsx';
 import ConversationsMessage from '../ConversationsMessage/ConversationsMessage';
-import {List, ListItem} from 'framework7-react';
+import {List, ListItem, Searchbar} from 'framework7-react';
 
 
 export default class extends React.Component {
@@ -11,6 +10,7 @@ export default class extends React.Component {
     super(props);
 
     this.state = {
+        searchbarContent: "",
         chats: [
             {
               chat_id: '1',
@@ -65,16 +65,21 @@ export default class extends React.Component {
     }
   }
 
+  handleChange(e) {
+    const value = e.target.value;
+    this.setState({searchbarContent: value});
+  }
+
   render(){
 
     return (
     <div className="conversationsActivitiesViewContainer">
         <div className="conversationsActivitiesViewInnerContainer">
             <div className="conversationsActivitiesViewSearchbarContainer">
-                <Searchbar/>
+                <Searchbar onChange={this.handleChange.bind(this)}/>
             </div>
             <List noHairlines noHairlinesBetween className="conversationsActivitiesViewList">
-                {this.state.chats.sort((a, b) => (new Date(b.time_stamp) - new Date(a.time_stamp))).map((chat, index) => (
+                {this.state.chats.filter((a) => a.chat_name.includes(this.state.searchbarContent)).sort((a, b) => (new Date(b.time_stamp) - new Date(a.time_stamp))).map((chat, index) => (
                     <ListItem className="conversationsActivitiesViewListItem" key = {index} title="">
                         <div className="conversationsActivitiesViewInstanceContainer">
                             <ConversationsMessage

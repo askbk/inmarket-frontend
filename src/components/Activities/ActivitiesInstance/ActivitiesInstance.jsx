@@ -15,7 +15,6 @@ export default class extends React.Component {
   }
 
   formatDate(start_date, end_date, frequency){
-    console.log(frequency);
     const WEEKDAYS = ['man', 'tirs', 'ons', 'tor', 'fre'];
     let workdays = "";
     let formattedDate = "";
@@ -48,11 +47,8 @@ export default class extends React.Component {
 
   formatTimeStamp(start_date, start_time){
     const now = new Date(Date.now());
-    console.log(now.getTime());
     const time = new Date(start_date + " " + start_time);
-    console.log(time.getTime());
     let timeSinceInt = parseInt((time.getTime() - now.getTime())/(1000*60)) ;
-    console.log(timeSinceInt);
     let timeSinceStr = "";
     if (timeSinceInt > 60*24){
       timeSinceInt = parseInt(timeSinceInt / (60*24));
