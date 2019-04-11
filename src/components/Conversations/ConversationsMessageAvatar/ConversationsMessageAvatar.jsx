@@ -16,15 +16,20 @@ export default class extends React.Component {
     /*const noContact = (
       <Chip className = "avatarMessageLabel color-theme-red" text="Ingen kontakt"/>
     )*/
-
-    const tid = this.props.time_stamp.split(' ')[1];
+    
+    const liste = this.props.time_stamp.split(' ');
     let chipClass = 'avatarMessageLabel ';
-    if (tid === 'min'){
+    if(liste.length > 1){
+      const tid = liste[1];
+      if (tid === 'min'){
+        chipClass += 'color-theme-green';
+      } else if (tid === 'time' || tid === 'timer'){
+        chipClass += 'color-theme-orange';
+      } else if (tid === 'dag' || tid === 'dager'){
+        chipClass += 'color-theme-red';
+      }
+    } else{
       chipClass += 'color-theme-green';
-    } else if (tid === 'time' || tid === 'timer'){
-      chipClass += 'color-theme-orange';
-    } else if (tid === 'dag' || tid === 'dager'){
-      chipClass += 'color-theme-red';
     }
 
     return (

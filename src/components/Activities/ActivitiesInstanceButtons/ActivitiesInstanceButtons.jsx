@@ -10,18 +10,17 @@ export default class extends React.Component {
 
   render(){
 
-    const accepted = true;
-    const canceled = false;
+    const state = this.props.state;
     var acceptButtonClass = "activitiesInstanceButton";
     var postponedButtonClass = "activitiesInstanceButton regularActivitiesInstanceButton";
     var canceledButtonClass = "activitiesInstanceButton";
 
-    if(accepted){
+    if(state === 'accepted'){
         acceptButtonClass += " acceptedButton color-theme-green";
     } else{
         acceptButtonClass += " regularActivitiesInstanceButton";
     }
-    if(canceled){
+    if(state === 'cancelled'){
         canceledButtonClass += " canceledButton color-theme-red";
     } else{
         canceledButtonClass += " regularActivitiesInstanceButton";
@@ -30,9 +29,9 @@ export default class extends React.Component {
 
     return (
       <div className="activitiesInstanceButtonsInnerContainer">
-        <Button small outline className={acceptButtonClass} fill >{accepted ? "Akseptert" : "Aksepter"}</Button>
+        <Button small outline className={acceptButtonClass} fill >{state === 'accepted' ? "Akseptert" : "Aksepter"}</Button>
         <Button small outline className={postponedButtonClass} fill>Utsett</Button>
-        <Button small outline className={canceledButtonClass} fill>{canceled ? "Avbrutt" : "Avbryt"}</Button>
+        <Button small outline className={canceledButtonClass} fill>{state === 'cancelled' ? "Avbrutt" : "Avbryt"}</Button>
       </div>
     );
   }
