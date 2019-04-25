@@ -18,7 +18,12 @@ export default class extends React.Component {
         
       <div className = 'profileInformationContainer'>
           <NetworkAvatar/>
-          <ProfileTextInformation/>
+          <ProfileTextInformation 
+            name = {this.props.name} 
+            birth ={this.props.birth} 
+            role = {this.props.role} 
+            workplace = {this.props.workplace} 
+            rating = {this.props.rating}/>
       </div>
     );
   }
