@@ -3,8 +3,9 @@ import React, {Component} from 'react';
 //import styling
 import './DatePicker.css';
 
-//import picture
+//import pictures
 import Location from '../../../../assets-src/DatePicker/Location.png';
+import Edit from '../../../../assets-src/DatePicker/Edit.png';
 
 //import airbnb datepicker
 import 'react-dates/initialize';
@@ -20,33 +21,22 @@ import {
   Col,
   Button
 } from 'framework7-react';
-
-//for styling purposes
- const styling = {
-  backgroundColor: 'black',
-  color: 'white',
-  border: '1px solid #c08d42',
-  marginBottom: '10px',
-  minWidth: 'fit-content',
-  maxWidth: '100px',
-};
-
-const inputStyling = {
-  backgroundColor: 'black',
-  color: 'white',
-  border: '1px solid #c08d42',
-  width: '100%', 
-  marginBottom: '15px',
-  borderRadius: '5px',
-};
-
 class DatePicker extends Component {
   constructor(props){
     super(props);
     this.state = {
       startDateClicked: false,
       endDateClicked: false,
+      editLocation: false,
+      location: '',
+      description: '',
     };
+    this.submitActivity = this.submitActivity.bind(this);
+  }
+
+  submitActivity(){
+    //send inn relecant info til databasen
+    return;
   }
 
   render(){
@@ -62,23 +52,23 @@ class DatePicker extends Component {
       </Row>
       <Row>
       <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-      <Button style={styling}><span className="dateContent">{this.state.startDate ? this.state.startDate.date() : 1}</span></Button>
+      <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.date() : 1}</span></Button>
       </Col>
       <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-     <Button style={styling}><span className="dateContent">{this.state.startDate ? this.state.startDate.month()+1 : 2}</span></Button>
+     <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.month()+1 : 2}</span></Button>
       </Col>
       <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-      <Button style={styling}><span className="dateContent">{this.state.startDate ? this.state.startDate.year() : 2019}</span></Button>
+      <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.year() : 2019}</span></Button>
       </Col>
       {":"}
         <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button style={styling}><span className="dateContent">{this.state.endDate ? this.state.endDate.date() : 1}</span></Button>
+      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.date() : 1}</span></Button>
       </Col>
       <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button style={styling}><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getMonth()+1: 2}</span></Button>
+      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getMonth()+1: 2}</span></Button>
       </Col>
       <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button style={styling}><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getYear()+1900 : 2019}</span></Button>
+      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getYear()+1900 : 2019}</span></Button>
       </Col>
       </Row>
       <Row style={{width: '50%'}} className="dateTimeContainer">
@@ -86,22 +76,33 @@ class DatePicker extends Component {
       <span className="dateContent">Kl. start:</span>
         </Col>
         <Col>
-        <span className="dateContent">&nbsp;&nbsp;&nbsp;Kl.slutt</span>
+        <span className="dateContent">&nbsp;&nbsp;&nbsp;&nbsp;Kl.slutt</span>
         </Col>
       </Row>
       <Row style={{width: '50%'}} className="dateTimeContainer">
       <Col>
-        <Button style={styling}><span className="dateContent">12</span></Button>
+        <Button className="fieldStyling"><span className="dateContent">12</span></Button>
       </Col>
       <Col>
-        <Button style={styling}><span className="dateContent">30</span></Button>
+        <Button className="fieldStyling"><span className="dateContent">30</span></Button>
       </Col>
       {":"}
       <Col>
-        <Button style={styling}><span className="dateContent">14</span></Button>
+        <Button 
+        className="fieldStyling">
+        <span className="dateContent">
+        14
+        </span>
+        </Button>
       </Col>
       <Col>
-        <Button style={styling}><span className="dateContent">30</span></Button>
+        <Button 
+        className="fieldStyling">
+        <span 
+        className="dateContent">
+        30
+        </span>
+        </Button>
       </Col>
       <Row>
         <Col>
@@ -126,11 +127,35 @@ class DatePicker extends Component {
       </Row>
       <Row>
         <Col>
-       <textarea className="dateDesc" type="text" maxLength={300} style={inputStyling} placeholder="Placeholder" />
+       <textarea className="dateDesc inputStyling" type="text" maxLength={300} placeholder="Placeholder" value={this.state.description} onChange={(e) => {
+         this.setState({description: e.target.value});
+       }}/>
        </Col>
       </Row>
       <Row>
-        <Col style={{width: '25%'}}><span className="datePic"><img src={Location}/></span></Col>
+        <Col>
+        <span className="datePic" style={{ display: 'inline'}}>
+          <img src={Location}/>
+        </span>
+        <textarea 
+          className="locationDesc" 
+          type="text" maxLength={300} 
+          style={{ display: 'inline'}} 
+          value={this.state.location} 
+          onChange={(e) => {
+            this.state.editLocation && this.setState({location: e.target.value})
+        }} />
+        <span className="datePic" style={{ display: 'inline'}}>
+        <img 
+          src={Edit} 
+          onClick={() => {
+            this.setState({editLocation: !this.state.editLocation});
+          }}/>
+          </span>
+        </Col>
+      </Row>
+      <Row>
+        <Button className="fieldStyling" style={{margin: '0 auto', marginTop: '20px'}} onClick={() => this.submitActivity()}>Forespør</Button>
       </Row>
     </Block>
     );
