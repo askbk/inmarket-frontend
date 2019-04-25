@@ -13,11 +13,24 @@ export default class extends React.Component {
 
   render(){
 
-    const noContact = (
+    /*const noContact = (
       <Chip className = "avatarMessageLabel color-theme-red" text="Ingen kontakt"/>
-    )
-
-    const numberOfMinutes = "10 min"
+    )*/
+    
+    const liste = this.props.time_stamp.split(' ');
+    let chipClass = 'avatarMessageLabel ';
+    if(liste.length > 1){
+      const tid = liste[1];
+      if (tid === 'min'){
+        chipClass += 'color-theme-green';
+      } else if (tid === 'time' || tid === 'timer'){
+        chipClass += 'color-theme-orange';
+      } else if (tid === 'dag' || tid === 'dager'){
+        chipClass += 'color-theme-red';
+      }
+    } else{
+      chipClass += 'color-theme-green';
+    }
 
     return (
       <div className="avatarMessageContainer">
@@ -25,7 +38,7 @@ export default class extends React.Component {
           <img className='avatarMessageImage' src={ProfilePic} />
         </div>
         <div className="avatarMessageLabelContainer">
-            <Chip className = "avatarMessageLabel color-theme-green" text={numberOfMinutes}/>
+            <Chip className = {chipClass} text={this.props.time_stamp}/>
         </div>
       </div>
     );
