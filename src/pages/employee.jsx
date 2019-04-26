@@ -49,6 +49,8 @@ class Employee extends Component {
       position: "Daglig Leder, InMarket AS",
       name: "Chris Africa, 34",
       showDate: false,
+      startDate: null,
+      endDate: null
     };
   }
 
@@ -61,6 +63,12 @@ class Employee extends Component {
 min={this.state.selectedDate === 2 ? this.state.startDate : new Date(1970, 0, 1)}
 
          */
+
+  dateOnChange(d1, d2){
+
+  }
+
+
 
   render() {
     return (
@@ -78,12 +86,18 @@ min={this.state.selectedDate === 2 ? this.state.startDate : new Date(1970, 0, 1)
       <Button clicked={ () => this.setState({showDate: !this.state.showDate})}>FORESPØR</Button>
     </Row>
 
+      {this.state.showDate ?
+
       <Row className="dateButtonContainer margin">
-
+        <h2>Velg dato:</h2>
+        <DatePicker onChange={(d1,d2)=>{this.dateOnChange(d1,d2)}}/>
        </Row>
+          : <div></div>
+
+      }
 
 
-      <Row><DatePicker/>
+      <Row>
 
 
 

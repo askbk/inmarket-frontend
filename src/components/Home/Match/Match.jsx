@@ -31,7 +31,7 @@ const Match = (props) => (
         </div>
     </div>
     {/* hacky styling for now */}
-    <Button style={{margin: '0 0 .5rem 0'}} fill>Kontakt</Button>
+    <Button href="/employee/" style={{margin: '0 0 .5rem 0'}} fill>Kontakt</Button>
   </Card>
 );
 

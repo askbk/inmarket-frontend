@@ -141,6 +141,8 @@ class DatePicker extends Component {
     else if(this.state.selectedDate === 2){
       this.setState({ endDate:time, isOpen: false,selectedDate:0 });
     }
+
+    this.props.onChange(this.state.startDate, this.state.endDate);
   }
 
   renderFromDate(dateConfig){
@@ -205,7 +207,7 @@ class DatePicker extends Component {
     return(
 <div>
   <Button className="styledPageButton" onClick={() => {this.handleClick()}} style={{
-    maxWidth:"100%!important"}}><span>{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Velg dato"}</span></Button>
+    maxWidth:"1000px"}}><span>{this.state.startDate ? dateFormatFromAndTo(this.state.startDate,this.state.endDate) : "Dato"}</span></Button>
   {this.renderFromDate(dateConfig)}
   {this.renderToDate(dateConfig)}
 </div>
