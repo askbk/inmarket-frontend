@@ -65,7 +65,7 @@ min={this.state.selectedDate === 2 ? this.state.startDate : new Date(1970, 0, 1)
          */
 
   dateOnChange(d1, d2){
-
+    this.setState({startDate:d1, endDate:d2});
   }
 
 
