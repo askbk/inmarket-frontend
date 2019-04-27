@@ -61,7 +61,7 @@ export default class extends React.Component {
   }
 
 handleChange(e) {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     this.setState({searchbarContent: value});
 }
 
@@ -77,7 +77,7 @@ handleChange(e) {
                 <ListItem title= "Nothing found"/>
             </List>
             <List noHairlines noHairlinesBetween className="search-list searchbar-found conversationsActivitiesViewList">
-                {this.state.activities.filter((a) => a.header.includes(this.state.searchbarContent))
+                {this.state.activities.filter((a) => a.header.toLowerCase().includes(this.state.searchbarContent))
                 .filter((a) => (new Date(a.end_date + ' ' + a.end_time) >= new Date(Date.now())))
                 .sort((a, b) => (new Date(a.start_date + ' ' + a.start_time) - new Date(b.start_date + ' ' + b.start_time)))
                 .map((activity, index) =>(
