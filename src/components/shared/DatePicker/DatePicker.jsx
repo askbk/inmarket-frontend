@@ -5,7 +5,7 @@ import './DatePicker.css';
 
 //import pictures
 import Location from '../../../../assets-src/DatePicker/Location.png';
-import Edit from '../../../../assets-src/DatePicker/Edit.png';
+import Edit from '../../../../assets-src/DatePicker/edit.png';
 
 //import airbnb datepicker
 import 'react-dates/initialize';
@@ -88,7 +88,7 @@ class DatePicker extends Component {
       </Col>
       {":"}
       <Col>
-        <Button 
+        <Button
         className="fieldStyling">
         <span className="dateContent">
         14
@@ -96,9 +96,9 @@ class DatePicker extends Component {
         </Button>
       </Col>
       <Col>
-        <Button 
+        <Button
         className="fieldStyling">
-        <span 
+        <span
         className="dateContent">
         30
         </span>
@@ -137,17 +137,17 @@ class DatePicker extends Component {
         <span className="datePic" style={{ display: 'inline'}}>
           <img src={Location}/>
         </span>
-        <textarea 
-          className="locationDesc" 
-          type="text" maxLength={300} 
-          style={{ display: 'inline'}} 
-          value={this.state.location} 
+        <textarea
+          className="locationDesc"
+          type="text" maxLength={300}
+          style={{ display: 'inline'}}
+          value={this.state.location}
           onChange={(e) => {
             this.state.editLocation && this.setState({location: e.target.value})
         }} />
         <span className="datePic" style={{ display: 'inline'}}>
-        <img 
-          src={Edit} 
+        <img
+          src={Edit}
           onClick={() => {
             this.setState({editLocation: !this.state.editLocation});
           }}/>
