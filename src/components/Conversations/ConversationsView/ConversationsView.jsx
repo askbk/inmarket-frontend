@@ -66,7 +66,7 @@ export default class extends React.Component {
   }
 
   handleChange(e) {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     this.setState({searchbarContent: value});
   }
 
@@ -79,7 +79,7 @@ export default class extends React.Component {
                 <Searchbar onChange={this.handleChange.bind(this)}/>
             </div>
             <List noHairlines noHairlinesBetween className="conversationsActivitiesViewList">
-                {this.state.chats.filter((a) => a.chat_name.includes(this.state.searchbarContent)).sort((a, b) => (new Date(b.time_stamp) - new Date(a.time_stamp))).map((chat, index) => (
+                {this.state.chats.filter((a) => a.chat_name.toLowerCase().includes(this.state.searchbarContent)).sort((a, b) => (new Date(b.time_stamp) - new Date(a.time_stamp))).map((chat, index) => (
                     <ListItem className="conversationsActivitiesViewListItem" key = {index} title="">
                         <div className="conversationsActivitiesViewInstanceContainer">
                             <ConversationsMessage
@@ -91,21 +91,6 @@ export default class extends React.Component {
                         </div>
                     </ListItem>
                 ))}
-                {/*<ListItem className="conversationsActivitiesViewListItem" title="">
-                    <div className="conversationsActivitiesViewInstanceContainer">
-                        <ConversationsMessage/>
-                    </div>
-                </ListItem>
-                <ListItem className="conversationsActivitiesViewListItem" title="">
-                    <div className="conversationsActivitiesViewInstanceContainer">
-                        <ConversationsMessage/>
-                    </div>
-                </ListItem>
-                <ListItem className="conversationsActivitiesViewListItem" title="">
-                    <div className="conversationsActivitiesViewInstanceContainer">
-                        <ConversationsMessage/>
-                    </div>
-                </ListItem>*/}
             </List>
         </div>
     </div>

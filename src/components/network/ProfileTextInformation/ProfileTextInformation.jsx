@@ -12,21 +12,28 @@ export default class extends React.Component {
     super(props);
   }
 
+  getAge(birth){
+    const birthdate = new Date(birth);
+    const now = new Date(Date.now());
+    return parseInt((now.getTime() - birthdate.getTime())/(1000*60*60*24*365));
+  }
+
   render(){
 
-    const name = "Endre Medhus, 21";
-    const institution = "Konsulent, Junior Consulting";
+    const age = this.getAge(this.props.birth).toString();
+    const basic_info = this.props.name + ", " + age;
+    const work_info = this.props.role + ", " + this.props.workplace;
 
     return (
     <div className = "profileTextInformationNetworkContainer">
         <div className="profileTextInformationNetworkName">
-            <p>{name}</p>
+            <p>{basic_info}</p>
         </div>
         <div className="profileTextInformationNetworkInstitution">
-            <p>{institution}</p>
+            <p>{work_info}</p>
         </div>
         <div className="profileTextInformationNetworkProgressContainer">
-            <StarRatings starDimension="20px" starSpacing="2px" rating={4.2} starRatedColor="#c08d42" starEmptyColor="black"/>
+            <StarRatings starDimension="20px" starSpacing="2px" rating={this.props.rating} starRatedColor="#c08d42" starEmptyColor="black"/>
         </div>
     </div>
     );
