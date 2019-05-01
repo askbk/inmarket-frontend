@@ -17,27 +17,29 @@
 }
 
 .profilePageRightRow {
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
 
 .profilePageHeaderText-1 {
   padding-top: 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 24px;
-  display: block;
+  display: flex;
 }
 
 .profilePageHeaderText-2 {
   font-family: Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
   padding-bottom: 15px;
-  display: block;
+  display: flex;
 }
 
 .profilePageHeaderText-3 {
   font-family: Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
-  display: block;
+  display: flex;
 }
 
 @media (max-width: 574px){

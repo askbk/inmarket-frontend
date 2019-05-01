@@ -18,6 +18,13 @@ import '../css/app.css';
 // Import App Component
 import App from '../components/app.jsx';
 
+// Import Fontawesome Icons
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faEdit)
+
 // Init F7 Vue Plugin
 Framework7.use(Framework7React)
 

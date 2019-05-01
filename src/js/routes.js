@@ -54,7 +54,7 @@ var routes = [
       component: RegisterPage
   },
   {
-      path: '/profilepage',
+      path: '/profilepage/',
       component: ProfilePage
   },
   {
