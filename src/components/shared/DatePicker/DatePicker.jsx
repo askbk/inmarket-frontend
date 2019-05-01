@@ -105,12 +105,16 @@ function dateFormatFromAndTo(from, to) {
 class DatePicker extends Component {
   constructor(props) {
     super(props);
+
+    let now = new Date();
+    now.setTime(now.getTime() - 100000);
     this.state = {
       startDate: null,
       endDate: null,
       selectedDate: 0,
       isOpen: false,
-      value: new Date()
+      value: new Date(),
+      now: now
     };
   }
 
@@ -136,10 +140,8 @@ class DatePicker extends Component {
   handleSelect(time) {
     if (this.state.selectedDate === 1) {
       let endDate = this.state.endDate;
-      if (this.state.endDate === null) {
-        if (endDate === null) {
-          endDate = time;
-        }
+      if (endDate === null) {
+        endDate = time;
       }
       this.setState({
         startDate: time,
@@ -148,11 +150,11 @@ class DatePicker extends Component {
         isOpen: true,
         selectedDate: 2
       });
+      this.props.onChange(time, endDate);
     } else if (this.state.selectedDate === 2) {
       this.setState({ endDate: time, isOpen: false, selectedDate: 0 });
+      this.props.onChange(this.state.startDate, time);
     }
-
-    this.props.onChange(this.state.startDate, this.state.endDate);
   }
 
   renderFromDate(dateConfig) {
@@ -167,6 +169,7 @@ class DatePicker extends Component {
         onCancel={() => {
           this.handleCancel();
         }}
+        min={this.state.now}
         customHeader={
           <DatePickerCustomHeader
             startDate={this.state.startDate ? this.state.startDate : new Date()}
@@ -193,6 +196,7 @@ class DatePicker extends Component {
         onCancel={() => {
           this.handleCancel();
         }}
+        min={this.state.startDate ? this.state.startDate : this.state.now}
         customHeader={
           <DatePickerCustomHeader
             startDate={this.state.startDate ? this.state.startDate : new Date()}
@@ -240,10 +244,12 @@ class DatePicker extends Component {
     return (
       <div>
         <Button
-          className="styledPageButton"
           onClick={() => {
             this.handleClick();
           }}
+          className={
+            this.props.reStyle ? this.props.reStyle : "styledPageButton"
+          }
           style={{
             maxWidth: "1000px"
           }}
@@ -251,6 +257,8 @@ class DatePicker extends Component {
           <span>
             {this.state.startDate
               ? dateFormatFromAndTo(this.state.startDate, this.state.endDate)
+              : this.props.text
+              ? this.props.text
               : "Dato"}
           </span>
         </Button>
