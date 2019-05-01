@@ -2,5 +2,9 @@
   display: flex;
   justify-content: space-between;
   width: 250px;
+  margin: 0 1.5rem;
+}
+
+.profileSkillMargin{
   margin: 0 auto;
 }

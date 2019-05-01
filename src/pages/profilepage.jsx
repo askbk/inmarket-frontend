@@ -70,6 +70,20 @@ class ProfilePage extends React.Component {
       }
     }
 
+    handleChecked(e, text){
+      const checked = e.target.checked;
+      this.setState((state) => {
+        let newActiveSkills = state.activeSkills;
+        if(checked && state.activeSkills.length < 3){
+          newActiveSkills.concat(text)
+        } else {
+          newActiveSkills = newActiveSkills.filter(a => a !== text)
+        }
+        return {activeSkills: newActiveSkills}
+      })
+      console.log(this.state.activeSkills)
+    }
+
     render() {
 
       const {profileText, skills, activeSkills, previousWork, popupOpen, currentForm, firstName, lastName, birthday, role, institution, formerEmployers} = this.state;
@@ -121,7 +135,7 @@ class ProfilePage extends React.Component {
       } else if (currentForm === 'bio'){
         form = (<BioForm onChange = {this.handleChange.bind(this)} bio = {profileText}/>)
       } else{
-        form = (<ProfilePageSkillsForm activeSkills={activeSkills} handleAdd={this.handleChange.bind(this)} skills={skills}/>);
+        form = (<ProfilePageSkillsForm onChecked={this.handleChecked.bind(this)} activeSkills={activeSkills} handleAdd={this.handleChange.bind(this)} skills={skills}/>);
       }
 
         return (

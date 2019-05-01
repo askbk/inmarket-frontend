@@ -27,6 +27,11 @@
   width: 25rem;
 }
 
+.profileSkillsContainer{
+  display: flex;
+  flex-direction: row;
+}
+
 .ProfilePageSkillsFormAddButtonContainer{
   margin: 1.2em 0;
 }
