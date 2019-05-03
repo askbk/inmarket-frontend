@@ -87,12 +87,13 @@ class Login extends React.Component {
             }
         }).then(res => {
             return res.json();
-        }).then(tok => {
-            if (tok.error) {
-                console.error(tok.error);
-            } else if (tok.token) {
-                localStorage.jwt = tok.token;
+        }).then(res => {
+            if (res.jwt) {
+                localStorage.jwt = res.jwt;
                 router.navigate("/");
+            } else {
+                // TODO: Let user know that login attempt was unsuccessful
+                console.error("No jwt in response - are your credentials correct?");
             }
         });
     }
