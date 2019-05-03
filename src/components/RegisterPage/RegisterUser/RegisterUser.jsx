@@ -45,9 +45,45 @@ export default class extends React.Component {
                         <List>
                             <React.Fragment>
                                 <ListItem>Velg det som passer best:</ListItem>
-                                <ListItem radio title="Elev" name="user-type-radio" value=""></ListItem>
-                                <ListItem radio title="Student" value="" name="user-type-radio"></ListItem>
-                                <ListItem radio title="Arbeidssøker" value="" name="user-type-radio"></ListItem>
+                                {/* TODO: bad practice in onClick props. rewrite*/}
+                                <ListItem
+                                    radio
+                                    title="Arbeidssøker"
+                                    name="user-type-radio"
+                                    value="jobseeker"
+                                    checked={this.props.userType === "jobseeker"}
+                                    onClick={
+                                        () => {
+                                            this.props.onInputChange(
+                                                {
+                                                    target: {
+                                                        value:"jobseeker",
+                                                        name: "userType"
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                ></ListItem>
+                                <ListItem
+                                    radio
+                                    title="Bedriftsansatt"
+                                    name="user-type-radio"
+                                    value="employee"
+                                    checked={this.props.userType === "employee"}
+                                    onClick={
+                                        () => {
+                                            this.props.onInputChange(
+                                                {
+                                                    target: {
+                                                        value:"employee",
+                                                        name: "userType"
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                ></ListItem>
                             </React.Fragment>
                         </List>
 
