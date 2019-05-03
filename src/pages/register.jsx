@@ -117,12 +117,6 @@ class Register extends React.Component {
 
                     <RegisterCompany />
                 </Tabs>
-                <Toolbar className="bottomToolbar" tabbar labels bottom>
-                  <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
-                </Toolbar>
             </Page>
         )
     }
