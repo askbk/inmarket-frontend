@@ -18,8 +18,8 @@ import BasisInformationInput from '../BasisInformationInput/BasisInformationInpu
 import InterestsFields from '../InterestsFields/InterestsFields.jsx';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -33,7 +33,7 @@ export default class extends React.Component {
                 <Tabs>
                     <Tab id="tab-user-basis" tabActive>
                         <List form>
-                            <BasisInformationInput />
+                            <BasisInformationInput onInputChange={this.props.onInputChange}/>
                         </List>
 
                         <Block>
@@ -65,7 +65,7 @@ export default class extends React.Component {
                                     <Button raised fill large tabLink="#tab-user-basis">Tilbake</Button>
                                 </Col>
                                 <Col width="50">
-                                    <Button raised fill large>Registrer</Button>
+                                    <Button raised fill large onClick={this.props.onRegisterClick}>Registrer</Button>
                                 </Col>
                             </Row>
                         </Block>

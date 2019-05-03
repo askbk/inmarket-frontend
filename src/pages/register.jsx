@@ -39,6 +39,7 @@ class Register extends React.Component {
         this.state = {
             user: {
                 // either company, jobseeker or employee
+                // TODO: interface does not permit creation of employees. need to implement.
                 userType: "",
 
                 //  Basisinformasjon for den som registrerer brukeren
@@ -47,7 +48,6 @@ class Register extends React.Component {
                 birthDate: "",
                 phoneNumber: "",
                 municipality: "",
-                profileDescription: "",
 
                 // Credentials
                 email: "",
@@ -78,7 +78,7 @@ class Register extends React.Component {
     submitRegistration() {
         console.log("submitting...");
         console.log(this.state.user);
-        fetch("http://localhost:5000/api/register", {
+        fetch("http://localhost:5000/api/users", {
             method: "post",
             body: JSON.stringify(this.state.user),
             headers: {
@@ -98,6 +98,7 @@ class Register extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
@@ -118,9 +119,9 @@ class Register extends React.Component {
                 </Toolbar>
 
                 <Tabs>
-                    <RegisterUser />
+                    <RegisterUser onInputChange={this.handleInputChange} onRegisterClick={this.submitRegistration}/>
 
-                    <RegisterCompany />
+                    <RegisterCompany onInputChange={this.handleInputChange}/>
                 </Tabs>
             </Page>
         )
