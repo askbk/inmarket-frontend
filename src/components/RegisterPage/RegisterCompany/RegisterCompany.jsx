@@ -68,16 +68,9 @@ export default class extends React.Component {
                             {/* wrap inputs in fragment to remove ul parent element */}
                             <React.Fragment>
                                 <ListInput
-                                    label="Stilling"
-                                    type="text"
-                                    name="position"
-                                    placeholder=""
-                                    ></ListInput>
-
-                                <ListInput
                                     label="Kode"
                                     type="text"
-                                    placeholder=""
+                                    placeholder="Hvis bedriften din har en kode, oppgi den her"
                                     ></ListInput>
 
                                 <ListInput

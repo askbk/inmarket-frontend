@@ -25,12 +25,19 @@ export default class extends React.Component {
                     name="password"
                     placeholder="Passord"
                 ></ListInput>
-                
+
                 <ListInput
-                    label="Fullt navn"
+                    label="Fornavn"
                     type="text"
                     name="name"
-                    placeholder="Fornavn og etternavn (valgfritt)"
+                    placeholder="Skriv inn fornavnet ditt her"
+                ></ListInput>
+
+                <ListInput
+                    label="Etternavn"
+                    type="text"
+                    name="name"
+                    placeholder="Skriv inn etternavnet ditt her"
                 ></ListInput>
 
                 <ListInput
