@@ -61,6 +61,7 @@ class Employee extends Component {
         {this.state.showDate ? (
           <Row className="dateButtonContainer margin">
             <h2>Velg dato:</h2>
+
             <DatePicker
               onChange={(d1, d2) => {
                 this.dateOnChange(d1, d2);
