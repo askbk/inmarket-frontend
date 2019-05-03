@@ -105,12 +105,20 @@ function dateFormatFromAndTo(from, to) {
 class DatePicker extends Component {
   constructor(props) {
     super(props);
+
+    let now = new Date();
+    /* DatePickerReact er settet til min={this.state.now} som gjør at man ikke kan velge verdier lavere enn dette.
+    new Date() gir nåtid, men da kan man ikke velge nåtid, så vi trenger å minuse litt fra nåtiden.
+    100000 = 100 s, tilfeldig valgt tall egentlig
+    */
+    now.setTime(now.getTime() - 100000);
     this.state = {
       startDate: null,
       endDate: null,
       selectedDate: 0,
       isOpen: false,
-      value: new Date()
+      value: new Date(),
+      now: now
     };
   }
 
@@ -133,14 +141,17 @@ class DatePicker extends Component {
     this.setState({ isOpen: false, selectedDate: 0 });
   }
 
+  /*Handle select skjer når man trykker på "Gå til neste" eller "ferdig"*/
   handleSelect(time) {
+
+    //Når man er ferdig å velge startDate
     if (this.state.selectedDate === 1) {
+      //Hvis endDate ikke har blitt valgt enda så kan den midertidlig være den samme som startDate
       let endDate = this.state.endDate;
-      if (this.state.endDate === null) {
-        if (endDate === null) {
-          endDate = time;
-        }
+      if (endDate === null) {
+        endDate = time;
       }
+
       this.setState({
         startDate: time,
         endDate: endDate,
@@ -148,11 +159,17 @@ class DatePicker extends Component {
         isOpen: true,
         selectedDate: 2
       });
-    } else if (this.state.selectedDate === 2) {
-      this.setState({ endDate: time, isOpen: false, selectedDate: 0 });
-    }
 
-    this.props.onChange(this.state.startDate, this.state.endDate);
+      //Send endringene videre til parent
+      this.props.onChange(time, endDate);
+    }
+    //Når man er ferdig å velge startDate og endDate
+    else if (this.state.selectedDate === 2) {
+      this.setState({ endDate: time, isOpen: false, selectedDate: 0 });
+
+      //Send endringene videre til parent
+      this.props.onChange(this.state.startDate, time);
+    }
   }
 
   renderFromDate(dateConfig) {
@@ -167,6 +184,7 @@ class DatePicker extends Component {
         onCancel={() => {
           this.handleCancel();
         }}
+        min={this.state.now}
         customHeader={
           <DatePickerCustomHeader
             startDate={this.state.startDate ? this.state.startDate : new Date()}
@@ -193,6 +211,7 @@ class DatePicker extends Component {
         onCancel={() => {
           this.handleCancel();
         }}
+        min={this.state.startDate ? this.state.startDate : this.state.now}
         customHeader={
           <DatePickerCustomHeader
             startDate={this.state.startDate ? this.state.startDate : new Date()}
@@ -240,10 +259,12 @@ class DatePicker extends Component {
     return (
       <div>
         <Button
-          className="styledPageButton"
           onClick={() => {
             this.handleClick();
           }}
+          className={
+            this.props.reStyle ? this.props.reStyle : "styledPageButton"
+          }
           style={{
             maxWidth: "1000px"
           }}
@@ -251,6 +272,8 @@ class DatePicker extends Component {
           <span>
             {this.state.startDate
               ? dateFormatFromAndTo(this.state.startDate, this.state.endDate)
+              : this.props.text
+              ? this.props.text
               : "Dato"}
           </span>
         </Button>
