@@ -34,6 +34,8 @@ class Employee extends Component {
 
   dateOnChange(d1, d2) {
     this.setState({ startDate: d1, endDate: d2 });
+    console.log(this.state.startDate);
+    console.log(this.state.endDate);  
   }
 
   render() {
