@@ -43,9 +43,12 @@ export default class extends React.Component {
 
                     <Tab id="tab-user-extra">
                         <List>
-                            <ListItem radio title="Elev" name="user-type-radio" value=""></ListItem>
-                            <ListItem radio title="Student" value="" name="user-type-radio"></ListItem>
-                            <ListItem radio title="Arbeidssøker" value="" name="user-type-radio"></ListItem>
+                            <React.Fragment>
+                                <ListItem>Velg det som passer best:</ListItem>
+                                <ListItem radio title="Elev" name="user-type-radio" value=""></ListItem>
+                                <ListItem radio title="Student" value="" name="user-type-radio"></ListItem>
+                                <ListItem radio title="Arbeidssøker" value="" name="user-type-radio"></ListItem>
+                            </React.Fragment>
                         </List>
 
                         <Block>

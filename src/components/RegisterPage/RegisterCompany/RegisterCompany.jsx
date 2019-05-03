@@ -34,19 +34,22 @@ export default class extends React.Component {
 
                     <Tab id="tab-company-basis" tabActive>
                         <List form>
-                            <ListInput
-                                label="Bedriftens navn"
-                                type="text"
-                                name="company"
-                                placeholder=""
-                            ></ListInput>
+                            {/* wrap inputs in fragment to remove ul parent element */}
+                            <React.Fragment>
+                                <ListInput
+                                    label="Bedriftens navn"
+                                    type="text"
+                                    name="company"
+                                    placeholder=""
+                                    ></ListInput>
 
-                            <ListInput
-                                label="Bedriftens organisasjonsnummer"
-                                type="text"
-                                name="org"
-                                placeholder=""
-                            ></ListInput>
+                                <ListInput
+                                    label="Bedriftens organisasjonsnummer"
+                                    type="text"
+                                    name="org"
+                                    placeholder=""
+                                    ></ListInput>
+                            </React.Fragment>
                         </List>
 
                         <Block>
@@ -62,24 +65,27 @@ export default class extends React.Component {
                         <List form>
                             <BasisInformationInput />
 
-                            <ListInput
-                                label="Stilling"
-                                type="text"
-                                name="position"
-                                placeholder=""
-                            ></ListInput>
+                            {/* wrap inputs in fragment to remove ul parent element */}
+                            <React.Fragment>
+                                <ListInput
+                                    label="Stilling"
+                                    type="text"
+                                    name="position"
+                                    placeholder=""
+                                    ></ListInput>
 
-                            <ListInput
-                                label="Kode"
-                                type="text"
-                                placeholder=""
-                            ></ListInput>
+                                <ListInput
+                                    label="Kode"
+                                    type="text"
+                                    placeholder=""
+                                    ></ListInput>
 
-                            <ListInput
-                                label="Bedriftens nettside"
-                                type="url"
-                                placeholder="(valgfritt)"
-                            ></ListInput>
+                                <ListInput
+                                    label="Bedriftens nettside"
+                                    type="url"
+                                    placeholder="(valgfritt)"
+                                    ></ListInput>
+                            </React.Fragment>
                         </List>
 
                         <Block>
