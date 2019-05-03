@@ -38,27 +38,33 @@ class Register extends React.Component {
         super();
         this.state = {
             user: {
-                userType: -1,
+                // either company, jobseeker or employee
+                userType: "",
+
                 //  Basisinformasjon for den som registrerer brukeren
-                name: "",
-                email: '',
-                password: "",
-                phone: "",
+                firstName: "",
+                lastName: "",
+                birthDate: "",
+                phoneNumber: "",
                 municipality: "",
+                profileDescription: "",
+
+                // Credentials
+                email: "",
+                password: "",
 
                 //  Brukes for undervisningssted og høyest utdanning
-                school: "",
-                program: "",
+                education: "",
 
                 //  Stilling dersom man er bedriftsansatt
                 position: "",
 
                 //  Bedriften man registrerer/jobber for
-                company_name: "",
-                org: "",
+                name: "",
+                orgNumber: "",
 
                 //  Rabattkode for bedrifter
-                code: "",
+                registrationCode: "",
 
                 //  Nettside for bedrifter
                 webpage: "",
