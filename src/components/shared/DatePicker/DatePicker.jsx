@@ -107,6 +107,10 @@ class DatePicker extends Component {
     super(props);
 
     let now = new Date();
+    /* DatePickerReact er settet til min={this.state.now} som gjør at man ikke kan velge verdier lavere enn dette.
+    new Date() gir nåtid, men da kan man ikke velge nåtid, så vi trenger å minuse litt fra nåtiden.
+    100000 = 100 s, tilfeldig valgt tall egentlig
+    */
     now.setTime(now.getTime() - 100000);
     this.state = {
       startDate: null,
@@ -137,12 +141,17 @@ class DatePicker extends Component {
     this.setState({ isOpen: false, selectedDate: 0 });
   }
 
+  /*Handle select skjer når man trykker på "Gå til neste" eller "ferdig"*/
   handleSelect(time) {
+
+    //Når man er ferdig å velge startDate
     if (this.state.selectedDate === 1) {
+      //Hvis endDate ikke har blitt valgt enda så kan den midertidlig være den samme som startDate
       let endDate = this.state.endDate;
       if (endDate === null) {
         endDate = time;
       }
+
       this.setState({
         startDate: time,
         endDate: endDate,
@@ -150,9 +159,15 @@ class DatePicker extends Component {
         isOpen: true,
         selectedDate: 2
       });
+
+      //Send endringene videre til parent
       this.props.onChange(time, endDate);
-    } else if (this.state.selectedDate === 2) {
+    }
+    //Når man er ferdig å velge startDate og endDate
+    else if (this.state.selectedDate === 2) {
       this.setState({ endDate: time, isOpen: false, selectedDate: 0 });
+
+      //Send endringene videre til parent
       this.props.onChange(this.state.startDate, time);
     }
   }
