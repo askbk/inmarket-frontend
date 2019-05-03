@@ -40,12 +40,12 @@ class Register extends React.Component {
             user: {
                 // either company, jobseeker or employee
                 // TODO: interface does not permit creation of employees. need to implement.
-                userType: "",
+                userType: "jobseeker",
 
                 //  Basisinformasjon for den som registrerer brukeren
                 firstName: "",
                 lastName: "",
-                birthDate: "",
+                // birthDate: "",
                 phoneNumber: "",
                 municipality: "",
 
@@ -85,10 +85,7 @@ class Register extends React.Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            console.log("submitted");
             return res.json();
-        }).then(eyah => {
-            console.log(eyah);
         }).catch((err) => {
             console.error(err);
         })
@@ -98,7 +95,7 @@ class Register extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        console.log(`${name}: ${value}`);
+        // console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
@@ -119,9 +116,15 @@ class Register extends React.Component {
                 </Toolbar>
 
                 <Tabs>
-                    <RegisterUser onInputChange={this.handleInputChange} onRegisterClick={this.submitRegistration}/>
+                    <RegisterUser
+                        onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        userType={this.state.user.userType}
+                    />
 
-                    <RegisterCompany onInputChange={this.handleInputChange}/>
+                    <RegisterCompany
+                        onInputChange={this.handleInputChange}
+                    />
                 </Tabs>
             </Page>
         )
