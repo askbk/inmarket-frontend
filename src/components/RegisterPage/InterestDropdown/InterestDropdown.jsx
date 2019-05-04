@@ -9,7 +9,7 @@ export default class extends React.Component {
         super(props);
     }
 
-    {/* TODO: Fix styling. list-style-type has to be set to none manually here for some reason.*/ }
+    // TODO: Fix styling. list-style-type has to be set to none manually here for some reason.
     render() {
         return (
             <ListInput
