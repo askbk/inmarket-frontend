@@ -3,12 +3,75 @@ import Framework7 from 'framework7/framework7.esm.bundle.js';
 import {
   Row,
   Col,
-  Input
+  Input,
+  List,
+  ListItem
 } from 'framework7-react';
+
+import InterestDropdown from '../InterestDropdown/InterestDropdown.jsx';
 
 export default class extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            interests: [
+                { id: 0, name: "Avengers", selectedBy: false },
+                { id: 1, name: "Fotball", selectedBy: false },
+                { id: 2, name: "Hagearbeid", selectedBy: false }
+            ],
+            skills: [
+                { id: 0, name: "Skrive ting", selectedBy: false },
+                { id: 1, name: "Microsoft Word", selectedBy: false },
+                { id: 2, name: "Snekre", selectedBy: false }
+            ],
+            selectValues: {}
+        }
+
+        this.handleInterestChange = this.handleInterestChange.bind(this);
+        this.handleSkillChange = this.handleSkillChange.bind(this);
+    }
+
+    handleInterestChange(e) {
+        const interestId = e.target.value,
+            selectName = e.target.name;
+
+        this.setState(state => {
+            const currentlySelected = state.selectValues[selectName];
+            if (currentlySelected) {
+                //  make currently selected interest available again
+                state.interests[currentlySelected].selectedBy = false;
+
+            }
+            //  make new selection unavailable
+            state.interests[interestId].selectedBy = selectName;
+
+            //  store the new selected value for the dropdown
+            state.selectValues[selectName] = interestId;
+
+            return state;
+        });
+    }
+
+    handleSkillChange(e) {
+        const skillId = e.target.value,
+            selectName = e.target.name;
+
+        this.setState(state => {
+            const currentlySelected = state.selectValues[selectName];
+            if (currentlySelected) {
+                //  make currently selected skill available again
+                state.skills[currentlySelected].selectedBy = false;
+
+            }
+            //  make new selection unavailable
+            state.skills[skillId].selectedBy = selectName;
+
+            //  store the new selected value for the dropdown
+            state.selectValues[selectName] = skillId;
+
+            return state;
+        });
     }
 
     render() {
@@ -16,59 +79,36 @@ export default class extends React.Component {
             <React.Fragment>
                 <Row>
                     <Col>
-                        <Input
-                            label="Kompetanse 1"
-                            type="text"
-                            name="competence-input-1"
-                            placeholder="Kompetanse 1"
-                            outline
-                        ></Input>
+                        <List>
+                            {
+                                [1, 2, 3].map((e, index) => (
+                                    <InterestDropdown
+                                        handleSelectChange={this.handleInterestChange}
+                                        options={this.state.interests}
+                                        name={"interest-input-" + index}
+                                        placeholder={"Interesse " + (index + 1)}
+                                        keyname="interest"
+                                        key={"InterestDropdown" + index}
+                                        />
+                                ))
+                            }
+                        </List>
                     </Col>
                     <Col>
-                        <Input
-                            label="Interesse 1"
-                            type="text"
-                            name="interest-input-1"
-                            placeholder="Interesse 1"
-                        ></Input>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Input
-                            label="Kompetanse 1"
-                            type="text"
-                            name="competence-input-1"
-                            placeholder="Kompetanse 1"
-                            outline
-                        ></Input>
-                    </Col>
-                    <Col>
-                        <Input
-                            label="Interesse 1"
-                            type="text"
-                            name="interest-input-1"
-                            placeholder="Interesse 1"
-                        ></Input>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Input
-                            label="Kompetanse 1"
-                            type="text"
-                            name="competence-input-1"
-                            placeholder="Kompetanse 1"
-                            outline
-                        ></Input>
-                    </Col>
-                    <Col>
-                        <Input
-                            label="Interesse 1"
-                            type="text"
-                            name="interest-input-1"
-                            placeholder="Interesse 1"
-                        ></Input>
+                        <List>
+                            {
+                                [1, 2, 3].map((e, index) => (
+                                    <InterestDropdown
+                                        handleSelectChange={this.handleSkillChange}
+                                        options={this.state.skills}
+                                        name={"skill-input-" + index}
+                                        placeholder={"Ferdighet " + (index + 1)}
+                                        keyname="skill"
+                                        key={"SkillDropdown" + index}
+                                        />
+                                ))
+                            }
+                        </List>
                     </Col>
                 </Row>
             </React.Fragment>
