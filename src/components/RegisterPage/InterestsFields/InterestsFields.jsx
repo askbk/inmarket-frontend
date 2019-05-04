@@ -32,6 +32,23 @@ export default class extends React.Component {
         this.handleSkillChange = this.handleSkillChange.bind(this);
     }
 
+    // TODO: change api endpoint. figure out a good name.
+    componentDidMount() {
+        fetch("http://localhost:5000/api/characteristics").then(res => {
+            return res.json();
+        }).then(res => {
+            this.setState(state => {
+                return {
+                    ...state,
+                    skills: res.skills,
+                    interests: res.interests
+                }
+            });
+        }).catch(error => {
+            console.error(`Error when fetching skills/interests: ${error}`);
+        })
+    }
+
     handleInterestChange(e) {
         const interestId = e.target.value,
             selectName = e.target.name;
