@@ -11,8 +11,8 @@ import {
 import InterestDropdown from '../InterestDropdown/InterestDropdown.jsx';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             interests: [
@@ -49,6 +49,9 @@ export default class extends React.Component {
             //  store the new selected value for the dropdown
             state.selectValues[selectName] = interestId;
 
+            //  Pass selected interests to parent component
+            this.props.interestsChanged(state.interests);
+
             return state;
         });
     }
@@ -69,6 +72,9 @@ export default class extends React.Component {
 
             //  store the new selected value for the dropdown
             state.selectValues[selectName] = skillId;
+
+            //  pass selected skills to parent component
+            this.props.skillsChanged(state.skills);
 
             return state;
         });

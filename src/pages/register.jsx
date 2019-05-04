@@ -68,19 +68,39 @@ class Register extends React.Component {
 
                 //  Nettside for bedrifter
                 webpage: "",
+
+                skills: [],
+                interests: []
             }
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
+        this.skillsChanged = this.skillsChanged.bind(this);
+        this.interestsChanged = this.interestsChanged.bind(this);
     }
 
     submitRegistration() {
-        console.log("submitting...");
-        console.log(this.state.user);
+        const user = this.state.user;
+
+        console.log(user);
+
+        const skillIds = this.state.user.skills
+        .filter(skill => {return skill.selectedBy})
+        .map(skill => {return skill.id;})
+
+        const interestIds = this.state.user.interests
+        .filter(interest => {return interest.selectedBy})
+        .map(interest => {return interest.id;})
+
+        user.skills = skillIds;
+        user.interests = interestIds;
+
+        console.log(user);
+
         fetch("http://localhost:5000/api/users", {
             method: "post",
-            body: JSON.stringify(this.state.user),
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -107,6 +127,28 @@ class Register extends React.Component {
         });
     }
 
+    skillsChanged(skills) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    skills: skills
+                }
+            }
+        });
+    }
+
+    interestsChanged(interests) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    interests: interests
+                }
+            }
+        });
+    }
+
     render() {
         return (
             <Page noNavbar>
@@ -119,6 +161,8 @@ class Register extends React.Component {
                     <RegisterUser
                         onInputChange={this.handleInputChange}
                         onRegisterClick={this.submitRegistration}
+                        skillsChanged={this.skillsChanged}
+                        interestsChanged={this.interestsChanged}
                         userType={this.state.user.userType}
                     />
 
