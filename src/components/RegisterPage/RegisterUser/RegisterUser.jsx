@@ -117,7 +117,7 @@ export default class extends React.Component {
                                     <Button raised fill large tabLink="#tab-user-basis">Tilbake</Button>
                                 </Col>
                                 <Col width="50">
-                                    <Button raised fill large onClick={this.props.onRegisterClick}>Registrer</Button>
+                                    <Button raised fill large onClick={this.props.onRegisterClick} id="userRegisterButton">Registrer</Button>
                                 </Col>
                             </Row>
                         </Block>

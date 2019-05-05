@@ -80,11 +80,12 @@ class Register extends React.Component {
         this.interestsChanged = this.interestsChanged.bind(this);
     }
 
-    submitRegistration() {
+    submitRegistration(e) {
         const user = this.state.user;
 
-        console.log(user);
-
+        if (e.target.id === "companyRegisterButton") {
+            user.userType = "company";
+        }
         const skillIds = this.state.user.skills
         .filter(skill => {return skill.selectedBy})
         .map(skill => {return skill.id;})
@@ -168,6 +169,8 @@ class Register extends React.Component {
 
                     <RegisterCompany
                         onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        userType={this.state.user.userType}
                     />
                 </Tabs>
             </Page>
