@@ -2,7 +2,6 @@ import React from 'react';
 import './ProfileInformation.css';
 
 //import picture
-import ProfilePic from '../../../../assets-src/IMG_1318.jpg';
 import NetworkAvatar from '../NetworkAvatar/NetworkAvatar.jsx';
 import ProfileTextInformation from '../ProfileTextInformation/ProfileTextInformation.jsx';
 
