@@ -16,14 +16,14 @@ export default class extends React.Component {
 
         this.state = {
             interests: [
-                { id: 0, name: "Avengers", selectedBy: false },
-                { id: 1, name: "Fotball", selectedBy: false },
-                { id: 2, name: "Hagearbeid", selectedBy: false }
+                { id: 1, name: "Avengers", selectedBy: false },
+                { id: 2, name: "Fotball", selectedBy: false },
+                { id: 3, name: "Hagearbeid", selectedBy: false }
             ],
             skills: [
-                { id: 0, name: "Skrive ting", selectedBy: false },
-                { id: 1, name: "Microsoft Word", selectedBy: false },
-                { id: 2, name: "Snekre", selectedBy: false }
+                { id: 1, name: "Skrive ting", selectedBy: false },
+                { id: 2, name: "Microsoft Word", selectedBy: false },
+                { id: 3, name: "Snekre", selectedBy: false }
             ],
             selectValues: {}
         }
@@ -32,16 +32,27 @@ export default class extends React.Component {
         this.handleSkillChange = this.handleSkillChange.bind(this);
     }
 
-    // TODO: change api endpoint. figure out a good name.
     componentDidMount() {
-        fetch("http://localhost:5000/api/characteristics").then(res => {
+        fetch("http://localhost:5000/api/qualities").then(res => {
             return res.json();
         }).then(res => {
             this.setState(state => {
+                const skills = res.skills.map(skill => {
+                    return {
+                        ...skill, selectedBy: false
+                    }
+                });
+
+                const interests = res.interests.map(interests => {
+                    return {
+                        ...interests, selectedBy: false
+                    }
+                });
+
                 return {
                     ...state,
-                    skills: res.skills,
-                    interests: res.interests
+                    skills: skills,
+                    interests: interests
                 }
             });
         }).catch(error => {

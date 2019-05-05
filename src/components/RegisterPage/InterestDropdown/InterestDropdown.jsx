@@ -31,7 +31,7 @@ export default class extends React.Component {
                         option.selectedBy === this.props.name
                     }).map(option => (
                         <option
-                            value={option.id}
+                            value={option.id-1}
                             key={this.props.keyname + option.id}>
                             {option.name}
                         </option>
