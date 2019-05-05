@@ -47,25 +47,8 @@ export default class extends React.Component {
                                     type="text"
                                     name="org"
                                     placeholder=""
-                                    ></ListInput>
-                            </React.Fragment>
-                        </List>
+                                ></ListInput>
 
-                        <Block>
-                            <InterestsFields />
-                        </Block>
-
-                        <Block>
-                            <Button raised fill large tabLink="#tab-company-extra">Neste</Button>
-                        </Block>
-                    </Tab>
-
-                    <Tab id="tab-company-extra">
-                        <List form>
-                            <BasisInformationInput />
-
-                            {/* wrap inputs in fragment to remove ul parent element */}
-                            <React.Fragment>
                                 <ListInput
                                     label="Kode"
                                     type="text"
@@ -78,6 +61,16 @@ export default class extends React.Component {
                                     placeholder="(valgfritt)"
                                     ></ListInput>
                             </React.Fragment>
+                        </List>
+
+                        <Block>
+                            <Button raised fill large tabLink="#tab-company-extra">Neste</Button>
+                        </Block>
+                    </Tab>
+
+                    <Tab id="tab-company-extra">
+                        <List form>
+                            <BasisInformationInput />
                         </List>
 
                         <Block>

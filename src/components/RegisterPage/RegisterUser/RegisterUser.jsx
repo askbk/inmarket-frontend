@@ -101,7 +101,7 @@ export default class extends React.Component {
                                 <p>Velg dine interesser og ferdigheter</p> :
                                 <p>Velg hva slags arbeidstakere du ser etter</p>
                             }
-                            <InterestsFields
+                            <QualityFields
                                 skillsChanged={this.props.skillsChanged}
                                 interestsChanged={this.props.interestsChanged}
                                 />
