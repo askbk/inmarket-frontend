@@ -38,51 +38,75 @@ class Register extends React.Component {
         super();
         this.state = {
             user: {
-                userType: -1,
+                // either company, jobseeker or employee
+                // TODO: interface does not permit creation of employees. need to implement.
+                userType: "jobseeker",
+
                 //  Basisinformasjon for den som registrerer brukeren
-                name: "",
-                email: '',
-                password: "",
-                phone: "",
+                firstName: "",
+                lastName: "",
+                // birthDate: "",
+                phoneNumber: "",
                 municipality: "",
 
+                // Credentials
+                email: "",
+                password: "",
+
                 //  Brukes for undervisningssted og høyest utdanning
-                school: "",
-                program: "",
+                education: "",
 
                 //  Stilling dersom man er bedriftsansatt
                 position: "",
 
                 //  Bedriften man registrerer/jobber for
-                company_name: "",
-                org: "",
+                name: "",
+                orgNumber: "",
 
                 //  Rabattkode for bedrifter
-                code: "",
+                registrationCode: "",
 
                 //  Nettside for bedrifter
                 webpage: "",
+
+                skills: [],
+                interests: []
             }
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
+        this.skillsChanged = this.skillsChanged.bind(this);
+        this.interestsChanged = this.interestsChanged.bind(this);
     }
 
-    submitRegistration() {
-        console.log("submitting...");
-        console.log(this.state.user);
-        fetch("http://localhost:5000/api/register", {
+    submitRegistration(e) {
+        const user = this.state.user;
+
+        if (e.target.id === "companyRegisterButton") {
+            user.userType = "company";
+        }
+        const skillIds = this.state.user.skills
+        .filter(skill => {return skill.selectedBy})
+        .map(skill => {return skill.id;})
+
+        const interestIds = this.state.user.interests
+        .filter(interest => {return interest.selectedBy})
+        .map(interest => {return interest.id;})
+
+        user.skills = skillIds;
+        user.interests = interestIds;
+
+        console.log(user);
+
+        fetch("http://localhost:5000/api/users", {
             method: "post",
-            body: JSON.stringify(this.state.user),
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            console.log("submitted");
             return res.json();
-        }).then(eyah => {
-            console.log(eyah);
         }).catch((err) => {
             console.error(err);
         })
@@ -92,12 +116,35 @@ class Register extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        // console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
                 user: {
                     ...prevState.user,
                     [name]: value
+                }
+            }
+        });
+    }
+
+    skillsChanged(skills) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    skills: skills
+                }
+            }
+        });
+    }
+
+    interestsChanged(interests) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    interests: interests
                 }
             }
         });
@@ -112,9 +159,19 @@ class Register extends React.Component {
                 </Toolbar>
 
                 <Tabs>
-                    <RegisterUser />
+                    <RegisterUser
+                        onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        skillsChanged={this.skillsChanged}
+                        interestsChanged={this.interestsChanged}
+                        userType={this.state.user.userType}
+                    />
 
-                    <RegisterCompany />
+                    <RegisterCompany
+                        onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        userType={this.state.user.userType}
+                    />
                 </Tabs>
             </Page>
         )

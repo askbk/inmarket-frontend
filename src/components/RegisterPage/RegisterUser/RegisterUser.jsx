@@ -15,25 +15,33 @@ import {
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
-import InterestsFields from '../InterestsFields/InterestsFields.jsx';
+import QualityFields from '../QualityFields/QualityFields.jsx';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
             <Tab id="tab-user" tabActive>
-                <Block>
-                    <h1>Vi åpner dørene for deg.</h1>
-                    <p>Lag en gratis bruker for å komme deg ut i arbeidslivet.​</p>
-                </Block>
+                {this.props.userType === "jobseeker" ?
+                    <Block>
+                        <h1>Vi åpner dørene for deg.</h1>
+                        <p>Lag en gratis bruker for å komme deg ut i arbeidslivet.​</p>
+                    </Block>
+                :
+                    <Block>
+                        <h1>Hello</h1>
+                        <p>Engasjer folk i arbeidet dere gjør og øk samtidig sjansen for å finne de beste ansatte for din bedrift.​</p>
+                    </Block>
+                }
+
 
                 <Tabs>
                     <Tab id="tab-user-basis" tabActive>
                         <List form>
-                            <BasisInformationInput />
+                            <BasisInformationInput onInputChange={this.props.onInputChange}/>
                         </List>
 
                         <Block>
@@ -45,14 +53,58 @@ export default class extends React.Component {
                         <List>
                             <React.Fragment>
                                 <ListItem>Velg det som passer best:</ListItem>
-                                <ListItem radio title="Elev" name="user-type-radio" value=""></ListItem>
-                                <ListItem radio title="Student" value="" name="user-type-radio"></ListItem>
-                                <ListItem radio title="Arbeidssøker" value="" name="user-type-radio"></ListItem>
+                                {/* TODO: bad practice in onClick props. rewrite*/}
+                                <ListItem
+                                    radio
+                                    title="Arbeidssøker"
+                                    name="user-type-radio"
+                                    value="jobseeker"
+                                    checked={this.props.userType === "jobseeker"}
+                                    onClick={
+                                        () => {
+                                            this.props.onInputChange(
+                                                {
+                                                    target: {
+                                                        value:"jobseeker",
+                                                        name: "userType"
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                ></ListItem>
+                                <ListItem
+                                    radio
+                                    title="Bedriftsansatt"
+                                    name="user-type-radio"
+                                    value="employee"
+                                    checked={this.props.userType === "employee"}
+                                    onClick={
+                                        () => {
+                                            this.props.onInputChange(
+                                                {
+                                                    target: {
+                                                        value:"employee",
+                                                        name: "userType"
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                ></ListItem>
                             </React.Fragment>
                         </List>
 
                         <Block>
-                            <InterestsFields />
+                            {
+                                this.props.userType === "jobseeker" ?
+                                <p>Velg dine interesser og ferdigheter</p> :
+                                <p>Velg hva slags arbeidstakere du ser etter</p>
+                            }
+                            <QualityFields
+                                skillsChanged={this.props.skillsChanged}
+                                interestsChanged={this.props.interestsChanged}
+                                />
                         </Block>
 
                         <Block>
@@ -65,7 +117,7 @@ export default class extends React.Component {
                                     <Button raised fill large tabLink="#tab-user-basis">Tilbake</Button>
                                 </Col>
                                 <Col width="50">
-                                    <Button raised fill large>Registrer</Button>
+                                    <Button raised fill large onClick={this.props.onRegisterClick} id="userRegisterButton">Registrer</Button>
                                 </Col>
                             </Row>
                         </Block>

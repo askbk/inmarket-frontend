@@ -13,12 +13,11 @@ import {
 } from 'framework7-react';
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
-import InterestsFields from '../InterestsFields/InterestsFields.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -39,22 +38,36 @@ export default class extends React.Component {
                                 <ListInput
                                     label="Bedriftens navn"
                                     type="text"
-                                    name="company"
+                                    name="name"
                                     placeholder=""
+                                    onChange={this.props.onInputChange}
                                     ></ListInput>
 
                                 <ListInput
                                     label="Bedriftens organisasjonsnummer"
                                     type="text"
-                                    name="org"
+                                    name="orgNumber"
                                     placeholder=""
+                                    onChange={this.props.onInputChange}
+                                ></ListInput>
+
+                                <ListInput
+                                    label="Kode"
+                                    type="text"
+                                    name="registrationCode"
+                                    placeholder="Hvis bedriften din har en kode, oppgi den her"
+                                    onChange={this.props.onInputChange}
+                                    ></ListInput>
+
+                                <ListInput
+                                    label="Bedriftens nettside"
+                                    type="url"
+                                    name="webpage"
+                                    placeholder="(valgfritt)"
+                                    onChange={this.props.onInputChange}
                                     ></ListInput>
                             </React.Fragment>
                         </List>
-
-                        <Block>
-                            <InterestsFields />
-                        </Block>
 
                         <Block>
                             <Button raised fill large tabLink="#tab-company-extra">Neste</Button>
@@ -63,29 +76,7 @@ export default class extends React.Component {
 
                     <Tab id="tab-company-extra">
                         <List form>
-                            <BasisInformationInput />
-
-                            {/* wrap inputs in fragment to remove ul parent element */}
-                            <React.Fragment>
-                                <ListInput
-                                    label="Stilling"
-                                    type="text"
-                                    name="position"
-                                    placeholder=""
-                                    ></ListInput>
-
-                                <ListInput
-                                    label="Kode"
-                                    type="text"
-                                    placeholder=""
-                                    ></ListInput>
-
-                                <ListInput
-                                    label="Bedriftens nettside"
-                                    type="url"
-                                    placeholder="(valgfritt)"
-                                    ></ListInput>
-                            </React.Fragment>
+                            <BasisInformationInput onInputChange={this.props.onInputChange}/>
                         </List>
 
                         <Block>
@@ -98,7 +89,7 @@ export default class extends React.Component {
                                     <Button raised fill large tabLink="#tab-company-basis">Tilbake</Button>
                                 </Col>
                                 <Col width="50">
-                                    <Button raised fill large>Registrer</Button>
+                                    <Button raised fill large onClick={this.props.onRegisterClick} id="companyRegisterButton">Registrer</Button>
                                 </Col>
                             </Row>
                         </Block>

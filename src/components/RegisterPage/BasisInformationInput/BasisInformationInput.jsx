@@ -5,8 +5,8 @@ import {
 } from 'framework7-react';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -17,6 +17,7 @@ export default class extends React.Component {
                     type="email"
                     name="email"
                     placeholder="E-post"
+                    onChange={this.props.onInputChange}
                 ></ListInput>
 
                 <ListInput
@@ -24,20 +25,31 @@ export default class extends React.Component {
                     type="password"
                     name="password"
                     placeholder="Passord"
+                    onChange={this.props.onInputChange}
                 ></ListInput>
-                
+
                 <ListInput
-                    label="Fullt navn"
+                    label="Fornavn"
                     type="text"
-                    name="name"
-                    placeholder="Fornavn og etternavn (valgfritt)"
+                    name="firstName"
+                    placeholder="Skriv inn fornavnet ditt her"
+                    onChange={this.props.onInputChange}
+                ></ListInput>
+
+                <ListInput
+                    label="Etternavn"
+                    type="text"
+                    name="lastName"
+                    placeholder="Skriv inn etternavnet ditt her"
+                    onChange={this.props.onInputChange}
                 ></ListInput>
 
                 <ListInput
                     label="Telefonnummer"
                     type="tel"
-                    name="phone"
+                    name="phoneNumber"
                     placeholder="Ditt telefonnummer (valgfritt)"
+                    onChange={this.props.onInputChange}
                 ></ListInput>
 
                 <ListInput
@@ -45,6 +57,7 @@ export default class extends React.Component {
                     type="text"
                     name="municipality"
                     placeholder="Din kommune (valgfritt)"
+                    onChange={this.props.onInputChange}
                 ></ListInput>
             </React.Fragment>
         )
