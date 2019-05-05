@@ -8,7 +8,7 @@ import {
   ListItem
 } from 'framework7-react';
 
-import InterestDropdown from '../InterestDropdown/InterestDropdown.jsx';
+import QualityDropdown from '../QualityDropdown/QualityDropdown.jsx';
 
 export default class extends React.Component {
     constructor(props) {
@@ -116,7 +116,7 @@ export default class extends React.Component {
                         <List>
                             {
                                 [1, 2, 3].map((e, index) => (
-                                    <InterestDropdown
+                                    <QualityDropdown
                                         handleSelectChange={this.handleInterestChange}
                                         options={this.state.interests}
                                         name={"interest-input-" + index}
@@ -132,7 +132,7 @@ export default class extends React.Component {
                         <List>
                             {
                                 [1, 2, 3].map((e, index) => (
-                                    <InterestDropdown
+                                    <QualityDropdown
                                         handleSelectChange={this.handleSkillChange}
                                         options={this.state.skills}
                                         name={"skill-input-" + index}

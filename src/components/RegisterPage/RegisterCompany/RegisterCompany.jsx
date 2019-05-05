@@ -13,7 +13,6 @@ import {
 } from 'framework7-react';
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
-import InterestsFields from '../InterestsFields/InterestsFields.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
 
 export default class extends React.Component {

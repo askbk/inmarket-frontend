@@ -15,7 +15,7 @@ import {
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
-import InterestsFields from '../InterestsFields/InterestsFields.jsx';
+import QualityFields from '../QualityFields/QualityFields.jsx';
 
 export default class extends React.Component {
     constructor(props) {
