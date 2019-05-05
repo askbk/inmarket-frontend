@@ -2,6 +2,13 @@
   
 }
 
+.profilePageEditButtonsContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .profilePageButtonContainer {
   flex-wrap: wrap;
   flex-direction: row;
@@ -9,9 +16,25 @@
   justify-content: center;
 }
 
-.profilePageModalButton{
+.skillButtonsContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.removeSkillButton{
+  margin-left: 1rem;
+  
+}
+
+.profilePagePopupButton{
   border: none;
   background: white;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.profilePagePopupButton:hover{
+  cursor: pointer;
 }
 
 .profilePageFormContainer{

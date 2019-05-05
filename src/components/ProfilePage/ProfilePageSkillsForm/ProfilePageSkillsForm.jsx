@@ -26,7 +26,7 @@ handleAdd(text){
     </Col>*/}
           </Row>
           <div>
-            <ProfileSkills onChecked={this.props.onChecked} editIsActive={true} activeSkills={this.props.activeSkills} skills = {this.props.skills}/>
+            <ProfileSkills removeSkill={this.props.removeSkill} onChecked={this.props.onChecked} editIsActive={true} activeSkills={this.props.activeSkills} skills = {this.props.skills}/>
           </div>
           <ProfilePageAddNewSkill handleAdd={this.handleAdd.bind(this)}/>
         </div>

@@ -36,22 +36,22 @@ class ProfilePage extends React.Component {
             profileText: "Jeg er tidligere finalist i Norsk Informatikkolympiade, tar mastergrad i datateknologi ved NTNU, og har hovedansvaret for utvikling av InMarkets nettsider og app.",
             skills: [{text: "Hacking", rating: 4.1}, {text: "Programmering", rating: 5.0}, {text:"Lederegenskaper", rating: 4.3}],
             activeSkills: ["Hacking", "Programmering"],
-            previousWork: '',
+            rating: 4.5,
             popupOpen: false,
             currentForm: "",
             firstName: "Ask",
             lastName: "Kolltveit",
-            birthday: "",
-            role: "",
-            institution: "",
+            birthday: "1997-01-01",
+            role: "Teknologidirektør",
+            institution: "Inmarket AS",
             formerEmployers: ""
           }
         }
 
     handleChange(data, information_type){
-      console.log(data);
-      if(information_type === "bio"){
+      if(information_type === "BIO"){
         this.setState({profileText: data});
+        console.log(this.state.profileText)
       } else if (information_type === "First Name"){
         this.setState({firstName: data});
       } else if (information_type === "Last Name"){
@@ -72,27 +72,34 @@ class ProfilePage extends React.Component {
 
     handleChecked(e, text){
       const checked = e.target.checked;
-      this.setState((state) => {
-        let newActiveSkills = state.activeSkills;
-        if(checked && state.activeSkills.length < 3){
-          newActiveSkills.concat(text)
-        } else {
-          newActiveSkills = newActiveSkills.filter(a => a !== text)
-        }
-        return {activeSkills: newActiveSkills}
-      })
-      console.log(this.state.activeSkills)
+      let newActiveSkills = this.state.activeSkills;
+      if(newActiveSkills.length >= 3){
+        e.target.checked = false;
+      }
+      if(checked && newActiveSkills.length < 3){
+        newActiveSkills.push(text);
+      } else if (!checked){
+        newActiveSkills = newActiveSkills.filter(a => a != text);
+      }
+      this.setState({activeSkills: newActiveSkills})
+    }
+
+    removeSkill(e, text){
+      let newSkills = this.state.skills.filter(a => a.text != text);
+      let newActiveSkills = this.state.activeSkills.filter(a => a != text);
+      this.setState({skills: newSkills, activeSkills: newActiveSkills})
     }
 
     render() {
 
-      const {profileText, skills, activeSkills, previousWork, popupOpen, currentForm, firstName, lastName, birthday, role, institution, formerEmployers} = this.state;
+      const {profileText,rating, skills, activeSkills, popupOpen, currentForm, firstName, lastName, birthday, role, institution, formerEmployers} = this.state;
+
 
       const isCurrentUser = true;
 
       let profilePageHeader = (
         <div>
-          <ProfilePageHeader />
+          <ProfilePageHeader firstName={firstName} lastName={lastName} birthday={birthday} rating={rating} role={role} institution={institution} formerEmployers={formerEmployers}/>
         </div>
       );
 
@@ -108,18 +115,24 @@ class ProfilePage extends React.Component {
 
       if(isCurrentUser){
         profilePageHeader = (
-        <button className = "profilePageModalButton" onClick={()=>this.setState({popupOpen: true, currentForm:'about'})}>
+        <div className="profilePageEditButtonsContainer">
+        <button className = "profilePagePopupButton" onClick={()=>this.setState({popupOpen: true, currentForm:'about'})}>
           {profilePageHeader}
-        </button>);
+        </button>
+        </div>);
         profileInformation = (
-          <button className = "profilePageModalButton" onClick={()=>this.setState({popupOpen: true, currentForm:'bio'})}>
+          <div className="profilePageEditButtonsContainer">
+          <button className = "profilePagePopupButton" onClick={()=>this.setState({popupOpen: true, currentForm:'bio'})}>
             {profileInformation}
           </button>
+          </div>
         );
         profileSkills = (
-          <button className = "profilePageModalButton" onClick={()=>this.setState({popupOpen: true, currentForm:'skills'})}>
+          <div className="profilePageEditButtonsContainer">
+          <button className = "profilePagePopupButton" onClick={()=>this.setState({popupOpen: true, currentForm:'skills'})}>
             {profileSkills}
           </button>
+          </div>
         );
       } 
       
@@ -135,7 +148,7 @@ class ProfilePage extends React.Component {
       } else if (currentForm === 'bio'){
         form = (<BioForm onChange = {this.handleChange.bind(this)} bio = {profileText}/>)
       } else{
-        form = (<ProfilePageSkillsForm onChecked={this.handleChecked.bind(this)} activeSkills={activeSkills} handleAdd={this.handleChange.bind(this)} skills={skills}/>);
+        form = (<ProfilePageSkillsForm removeSkill={this.removeSkill.bind(this)} onChecked={this.handleChecked.bind(this)} activeSkills={activeSkills} handleAdd={this.handleChange.bind(this)} skills={skills}/>);
       }
 
         return (
