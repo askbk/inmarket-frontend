@@ -10,7 +10,6 @@ import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/Profi
 import ProfileInformation from '../components/shared/InformationBox/InformationBox';
 import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
 import Header from '../components/Header/Header.jsx'
-import Modal from '../components/ProfilePage/ProfilePageHeaderModal/ProfilePageHeaderModal';
 import AboutForm from '../components/ProfilePage/ProfilePageAboutForm/ProfilePageAboutForm';
 import BioForm from '../components/ProfilePage/ProfilePageBioForm/ProfilePageBioForm';
 import ProfilePageSkillsForm from '../components/ProfilePage/ProfilePageSkillsForm/ProfilePageSkillsForm';
@@ -23,10 +22,7 @@ import {
   Popup,
   Navbar,
   NavRight,
-  NavLeft,
-  Block,
-  ListInput,
-  List
+  NavLeft
 } from 'framework7-react';
 
 class ProfilePage extends React.Component {
