@@ -1,163 +1,287 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 //import styling
-import './DatePicker.css';
+import "./DatePicker.css";
 
-//import pictures
-import Location from '../../../../assets-src/DatePicker/Location.png';
-import Edit from '../../../../assets-src/DatePicker/edit.png';
+//import picture
+import Location from "../../../../assets-src/DatePicker/Location.png";
 
-//import airbnb datepicker
-import 'react-dates/initialize';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
-import moment from 'moment';
-moment.locale('nb');
+//Import datepicker
+import DatePickerCustomHeader from "./DatePickerCustomHeader";
+import DatePickerReact from "react-mobile-datepicker";
 
 //import Framework7 grid-components
-import {
-  Block,
-  Row,
-  Col,
-  Button
-} from 'framework7-react';
+import { Block, Row, Col, Button } from "framework7-react";
+const monthMap = {
+  "1": "Jan",
+  "2": "Feb",
+  "3": "Mar",
+  "4": "Apr",
+  "5": "Mai",
+  "6": "Jun",
+  "7": "Jul",
+  "8": "Aug",
+  "9": "Sep",
+  "10": "Okt",
+  "11": "Nov",
+  "12": "Dec"
+};
+
+const monthMapFull = {
+  "1": "januar",
+  "2": "februar",
+  "3": "mars",
+  "4": "april",
+  "5": "mai",
+  "6": "juni",
+  "7": "july",
+  "8": "august",
+  "9": "september",
+  "10": "oktober",
+  "11": "november",
+  "12": "desember"
+};
+
+function IntervalsWith5(minutes) {
+  return Math.ceil(minutes / 5) * 5;
+}
+function getMinutes(date) {
+  let minutes = date.getMinutes();
+  if (parseInt(minutes) < 10) {
+    minutes = "0" + minutes;
+  }
+  return minutes;
+}
+
+function getHours(date) {
+  let minutes = date.getHours();
+  if (parseInt(minutes) < 10) {
+    minutes = "0" + minutes;
+  }
+  return minutes;
+}
+
+function dateFormat(date) {
+  let year = date.getFullYear();
+  if (year === new Date().getFullYear()) {
+    year = "";
+  }
+  return (
+    " " +
+    date.getDate() +
+    ". " +
+    monthMapFull[parseInt(date.getMonth()) + 1] +
+    " " +
+    year +
+    " kl " +
+    getHours(date) +
+    ":" +
+    getMinutes(date)
+  );
+}
+
+function dateFormatFromAndTo(from, to) {
+  let fromString = dateFormat(from);
+  let toString = "";
+  if (
+    from.getFullYear() === to.getFullYear() &&
+    from.getMonth() === to.getMonth() &&
+    from.getDate() === to.getDate()
+  ) {
+    toString = "-" + getHours(to) + ":" + getMinutes(to);
+    if (
+      from.getHours() === to.getHours() &&
+      from.getMinutes() === to.getMinutes()
+    ) {
+      toString = "";
+    }
+  } else {
+    toString = " til ";
+    toString += dateFormat(to);
+  }
+  return "" + fromString + "" + toString;
+}
+
 class DatePicker extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+
+    let now = new Date();
+    /* DatePickerReact er settet til min={this.state.now} som gjør at man ikke kan velge verdier lavere enn dette.
+    new Date() gir nåtid, men da kan man ikke velge nåtid, så vi trenger å minuse litt fra nåtiden.
+    100000 = 100 s, tilfeldig valgt tall egentlig
+    */
+    now.setTime(now.getTime() - 100000);
     this.state = {
-      startDateClicked: false,
-      endDateClicked: false,
-      editLocation: false,
-      location: '',
-      description: '',
+      startDate: null,
+      endDate: null,
+      selectedDate: 0,
+      isOpen: false,
+      value: new Date(),
+      now: now
     };
-    this.submitActivity = this.submitActivity.bind(this);
   }
 
-  submitActivity(){
-    //send inn relecant info til databasen
-    return;
+  handleClick() {
+    /*Datepickeren har lavere z-index enn det framework-7 bruker. så vi må tvinge den til å bli høyere*/
+    let datepickers = document.getElementsByClassName("datepicker-modal");
+    for (let i = 0; i < datepickers.length; i++) {
+      datepickers[i].style.zIndex = "100000";
+    }
+
+    let value = null;
+    let now = new Date();
+    now.setMinutes(IntervalsWith5(now.getMinutes()));
+    value = this.state.startDate ? this.state.startDate : now;
+
+    this.setState({ isOpen: true, selectedDate: 1, value: value });
   }
 
-  render(){
-    return(
-      <Block className="dateGrid">
-      <Row>
-        <Col>
-        <span className="dateContent">Dato start:</span>
-        </Col>
-        <Col>
-        <span className="dateContent">&nbsp;&nbsp;Dato slutt:</span>
-        </Col>
-      </Row>
-      <Row>
-      <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-      <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.date() : 1}</span></Button>
-      </Col>
-      <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-     <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.month()+1 : 2}</span></Button>
-      </Col>
-      <Col onClick={() => this.setState({startDateClicked: !this.state.startDateClicked, endDateClicked: false})}>
-      <Button className="fieldStyling"><span className="dateContent">{this.state.startDate ? this.state.startDate.year() : 2019}</span></Button>
-      </Col>
-      {":"}
-        <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.date() : 1}</span></Button>
-      </Col>
-      <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getMonth()+1: 2}</span></Button>
-      </Col>
-      <Col onClick={() => this.setState({endDateClicked: !this.state.endDateClicked, startDateClicked: false})}>
-      <Button className="fieldStyling"><span className="dateContent">{this.state.endDate ? this.state.endDate.toDate().getYear()+1900 : 2019}</span></Button>
-      </Col>
-      </Row>
-      <Row style={{width: '50%'}} className="dateTimeContainer">
-      <Col>
-      <span className="dateContent">Kl. start:</span>
-        </Col>
-        <Col>
-        <span className="dateContent">&nbsp;&nbsp;&nbsp;&nbsp;Kl.slutt</span>
-        </Col>
-      </Row>
-      <Row style={{width: '50%'}} className="dateTimeContainer">
-      <Col>
-        <Button className="fieldStyling"><span className="dateContent">12</span></Button>
-      </Col>
-      <Col>
-        <Button className="fieldStyling"><span className="dateContent">30</span></Button>
-      </Col>
-      {":"}
-      <Col>
+  handleCancel() {
+    this.setState({ isOpen: false, selectedDate: 0 });
+  }
+
+  /*Handle select skjer når man trykker på "Gå til neste" eller "ferdig"*/
+  handleSelect(time) {
+
+    //Når man er ferdig å velge startDate
+    if (this.state.selectedDate === 1) {
+      //Hvis endDate ikke har blitt valgt enda så kan den midertidlig være den samme som startDate
+      let endDate = this.state.endDate;
+      if (endDate === null) {
+        endDate = time;
+      }
+
+      this.setState({
+        startDate: time,
+        endDate: endDate,
+        value: time,
+        isOpen: true,
+        selectedDate: 2
+      });
+
+      //Send endringene videre til parent
+      this.props.onChange(time, endDate);
+    }
+    //Når man er ferdig å velge startDate og endDate
+    else if (this.state.selectedDate === 2) {
+      this.setState({ endDate: time, isOpen: false, selectedDate: 0 });
+
+      //Send endringene videre til parent
+      this.props.onChange(this.state.startDate, time);
+    }
+  }
+
+  renderFromDate(dateConfig) {
+    return (
+      <DatePickerReact
+        value={this.state.value}
+        showCaption={true}
+        isOpen={this.state.selectedDate === 1}
+        onSelect={time => {
+          this.handleSelect(time);
+        }}
+        onCancel={() => {
+          this.handleCancel();
+        }}
+        min={this.state.now}
+        customHeader={
+          <DatePickerCustomHeader
+            startDate={this.state.startDate ? this.state.startDate : new Date()}
+            endDate={this.state.endDate ? this.state.endDate : new Date()}
+            selected={this.state.selectedDate}
+          />
+        }
+        confirmText={"Gå til neste"}
+        cancelText={"Avbryt"}
+        theme={"dark"}
+        dateConfig={dateConfig}
+      />
+    );
+  }
+ 
+ 
+  renderToDate(dateConfig) {
+    return (
+      <DatePickerReact
+        value={this.state.value}
+        showCaption={true}
+        isOpen={this.state.selectedDate === 2}
+        onSelect={time => {
+          this.handleSelect(time);
+        }}
+        onCancel={() => {
+          this.handleCancel();
+        }}
+        min={this.state.startDate ? this.state.startDate : this.state.now}
+        customHeader={
+          <DatePickerCustomHeader
+            startDate={this.state.startDate ? this.state.startDate : new Date()}
+            endDate={this.state.endDate ? this.state.endDate : new Date()}
+            selected={this.state.selectedDate}
+          />
+        }
+        confirmText={"Ferdig"}
+        cancelText={"Avbryt"}
+        theme={"dark"}
+        dateConfig={dateConfig}
+      />
+    );
+  }
+
+  render() {
+    let dateConfig = {
+      year: {
+        format: "YYYY",
+        caption: "År",
+        step: 1
+      },
+      month: {
+        format: value => monthMap[value.getMonth() + 1],
+        caption: "Måned",
+        step: 1
+      },
+      date: {
+        format: "D",
+        caption: "Dag",
+        step: 1
+      },
+      hour: {
+        format: "hh:mm",
+        caption: "Time",
+        step: 1
+      },
+      minute: {
+        format: "mm",
+        caption: "Min",
+        step: 5
+      }
+    };
+
+    return (
+      <div>
         <Button
-        className="fieldStyling">
-        <span className="dateContent">
-        14
-        </span>
-        </Button>
-      </Col>
-      <Col>
-        <Button
-        className="fieldStyling">
-        <span
-        className="dateContent">
-        30
-        </span>
-        </Button>
-      </Col>
-      <Row>
-        <Col>
-        {this.state.startDateClicked ? <SingleDatePicker
-        placeholder="Velg startdato"
-        date={this.state.startDate} // momentPropTypes.momentObj or null
-        onDateChange={date => this.setState({ startDate: date, startDateClicked: false })} // PropTypes.func.isRequired
-        focused={this.state.focused} // PropTypes.bool
-        onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-        id="your_unique_id" // PropTypes.string.isRequired,
-        /> : null}
-        {this.state.endDateClicked ? <SingleDatePicker
-        placeholder="Velg sluttdato"
-        date={this.state.endDate} // momentPropTypes.momentObj or null
-        onDateChange={date => this.setState({ endDate: date, endDateClicked: false })} // PropTypes.func.isRequired
-        focused={this.state.focused} // PropTypes.bool
-        onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-        id="your_unique_id" // PropTypes.string.isRequired,
-        /> : null}
-        </Col>
-      </Row>
-      </Row>
-      <Row>
-        <Col>
-       <textarea className="dateDesc inputStyling" type="text" maxLength={300} placeholder="Placeholder" value={this.state.description} onChange={(e) => {
-         this.setState({description: e.target.value});
-       }}/>
-       </Col>
-      </Row>
-      <Row>
-        <Col>
-        <span className="datePic" style={{ display: 'inline'}}>
-          <img src={Location}/>
-        </span>
-        <textarea
-          className="locationDesc"
-          type="text" maxLength={300}
-          style={{ display: 'inline'}}
-          value={this.state.location}
-          onChange={(e) => {
-            this.state.editLocation && this.setState({location: e.target.value})
-        }} />
-        <span className="datePic" style={{ display: 'inline'}}>
-        <img
-          src={Edit}
           onClick={() => {
-            this.setState({editLocation: !this.state.editLocation});
-          }}/>
+            this.handleClick();
+          }}
+          className={
+            this.props.reStyle ? this.props.reStyle : "styledPageButton"
+          }
+          style={{
+            maxWidth: "1000px"
+          }}
+        >
+          <span>
+            {this.state.startDate
+              ? dateFormatFromAndTo(this.state.startDate, this.state.endDate)
+              : this.props.text
+              ? this.props.text
+              : "Dato"}
           </span>
-        </Col>
-      </Row>
-      <Row>
-        <Button className="fieldStyling" style={{margin: '0 auto', marginTop: '20px'}} onClick={() => this.submitActivity()}>Forespør</Button>
-      </Row>
-    </Block>
+        </Button>
+        {this.renderFromDate(dateConfig)}
+        {this.renderToDate(dateConfig)}
+      </div>
     );
   }
 }

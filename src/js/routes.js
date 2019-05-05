@@ -15,6 +15,7 @@ import ProfilePage from '../pages/profilepage.jsx';
 import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
+import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 
 var routes = [
   {
@@ -27,7 +28,7 @@ var routes = [
   },
   {
     path: '/REMOVETHISLATER',
-    component: DatePicker
+    component: ActivityForm,
   },
   {
     path: '/company',
