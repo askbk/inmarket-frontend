@@ -26,13 +26,11 @@ class Network extends React.Component {
     render() {
         let networkList;
         if (this.state.data) {
-            console.log(this.state.data);
             networkList = this.state.data.map(user =>
                 <ListItem title={user.first_name} key={user.id.toString()}></ListItem>
             )
         } else {
             networkList = <ListItem title="no people here"></ListItem>;
-            console.log(this.state.data);
         }
 
         return (

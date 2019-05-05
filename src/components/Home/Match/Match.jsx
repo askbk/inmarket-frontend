@@ -9,7 +9,7 @@ import {
 import './Match.css';
 
 //import temp data
-import ProfilePic from '../../../../assets-src/IMG_1318.jpg';
+import ProfilePic from '../../../../assets-src/ProfilePage/temp.png';
 const institution = "Konsulent, Junior Consulting";
 
 const Match = (props) => (

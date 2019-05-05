@@ -51,7 +51,6 @@ class ProfilePage extends React.Component {
     handleChange(data, information_type){
       if(information_type === "BIO"){
         this.setState({profileText: data});
-        console.log(this.state.profileText)
       } else if (information_type === "First Name"){
         this.setState({firstName: data});
       } else if (information_type === "Last Name"){
