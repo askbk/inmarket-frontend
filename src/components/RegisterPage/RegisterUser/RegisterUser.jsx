@@ -25,10 +25,18 @@ export default class extends React.Component {
     render() {
         return (
             <Tab id="tab-user" tabActive>
-                <Block>
-                    <h1>Vi åpner dørene for deg.</h1>
-                    <p>Lag en gratis bruker for å komme deg ut i arbeidslivet.​</p>
-                </Block>
+                {this.props.userType === "jobseeker" ?
+                    <Block>
+                        <h1>Vi åpner dørene for deg.</h1>
+                        <p>Lag en gratis bruker for å komme deg ut i arbeidslivet.​</p>
+                    </Block>
+                :
+                    <Block>
+                        <h1>Hello</h1>
+                        <p>Engasjer folk i arbeidet dere gjør og øk samtidig sjansen for å finne de beste ansatte for din bedrift.​</p>
+                    </Block>
+                }
+
 
                 <Tabs>
                     <Tab id="tab-user-basis" tabActive>
