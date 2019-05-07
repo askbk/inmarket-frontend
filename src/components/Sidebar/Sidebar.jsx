@@ -21,7 +21,6 @@ const Sidebar = () => (
         <ListItem panelClose="right" link="/form/" title='INNSTILLINGER' media={Settings}/>
           {/* Must implement network tab and insert here */}
         <ListItem panelClose="right" link="/nettverk/" title='NETTVERK' media={Network}/>
-        {/* Must implement saved tab and insert here */}
       </List>
     </Page>
   </Panel>
