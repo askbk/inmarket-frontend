@@ -25,7 +25,6 @@ class Header extends Component {
         <Navbar className="navbar" sliding={false}>
           <div className="navbarcontent">
                 <img className="navbarlogo" src={Logo} />
-                <NavTitle className="navbartitle"><Link href="/profilepage/">Navn Navnesen</Link></NavTitle>
                 <NavTitle className="navbartitle"><Link href="/conversations/" iconF7="chat"/></NavTitle>
                 <NavRight className="navright">
                   <Link panelOpen="right" iconF7="menu"></Link>
