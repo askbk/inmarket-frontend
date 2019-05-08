@@ -13,33 +13,52 @@ class Home extends React.Component {
         super();
         this.state = {
             data: []
-        }
+        };
     }
 
     componentDidMount() {
-        fetch("http://localhost:5000/api/users?page=1").then(res => {
-            return res.json();
-        }).then(users => {
-            this.setState({data:users.data});
-        });
+        fetch('http://localhost:5000/api/users?page=1')
+            .then(res => {
+                return res.json();
+            })
+            .then(users => {
+                this.setState({ data: users.data });
+            });
     }
 
     render() {
-        const users = this.state.data
+        const users = this.state.data;
 
         return (
-            <Page name="home">
-              <Header />
-              <VideosContainer users={users}/>
-              <MatchesContainer users={users}/>
-              <Toolbar className="bottomToolbar" tabbar labels bottom>
-                <Link className="bottomToolbarLink toolbarIcon" tabLinkActive href="/" iconF7="home" />
-                <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
-                <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
-                <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
-              </Toolbar>
+            <Page name='home'>
+                <Header />
+                <VideosContainer users={users} />
+                <MatchesContainer users={users} />
+                <Toolbar className='bottomToolbar' tabbar labels bottom>
+                    <Link
+                        className='bottomToolbarLink toolbarIcon'
+                        tabLinkActive
+                        href='/'
+                        iconF7='home'
+                    />
+                    <Link
+                        className='bottomToolbarLink toolbarIcon'
+                        href='/nettverk/'
+                        iconF7='search'
+                    />
+                    <Link
+                        className='bottomToolbarLink toolbarIcon'
+                        href='/activities/'
+                        iconF7='email'
+                    />
+                    <Link
+                        className='bottomToolbarLink toolbarIcon'
+                        href='/profilepage/'
+                        iconF7='person_round'
+                    />
+                </Toolbar>
             </Page>
-        )
+        );
     }
 }
 
