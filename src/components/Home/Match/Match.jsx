@@ -2,6 +2,7 @@ import React from 'react';
 import StarRatings from '../../../../node_modules/react-star-ratings';
 
 import { Card, Button } from 'framework7-react';
+import ContactButton from '../ContactButton/ContactButton.jsx';
 
 import './Match.css';
 
@@ -16,10 +17,10 @@ const Match = props => (
 
         <div>
             <div className='profileTextName'>
-                <p>{`${props.user.employee.firstName}`}</p>
+                <p>{`${props.user.firstName}`}</p>
             </div>
             <div className='profileTextInstitution'>
-                <p>{`${props.user.employee.role}, ${props.user.employee.name}`}</p>
+                <p>{`${props.user.role}, ${props.user.name}`}</p>
             </div>
             <div className='profileTextProgressContainer'>
                 <StarRatings
@@ -32,9 +33,7 @@ const Match = props => (
             </div>
         </div>
         {/* hacky styling for now */}
-        <Button href='/employee/' style={{ margin: '0 0 .5rem 0' }} fill>
-            Kontakt
-        </Button>
+        <ContactButton userId={props.user.userId} />
     </Card>
 );
 

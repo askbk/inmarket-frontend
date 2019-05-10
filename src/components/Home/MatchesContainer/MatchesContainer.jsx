@@ -41,8 +41,8 @@ class MatchesContainer extends React.Component {
                 }}
             >
                 {this.props.users.map(u => (
-                    <SwiperSlide key={u.id}>
-                        <Match user={u} />
+                    <SwiperSlide key={u.employee.id}>
+                        <Match user={u.employee} />
                     </SwiperSlide>
                 ))}
             </Swiper>
