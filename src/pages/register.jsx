@@ -1,33 +1,33 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
 import {
-  Page,
-  Navbar,
-  List,
-  ListInput,
-  ListItem,
-  ListButton,
-  Toggle,
-  BlockTitle,
-  Row,
-  Button,
-  Range,
-  Block,
-  BlockHeader,
-  View,
-  Card,
-  CardHeader,
-  CardFooter,
-  CardContent,
-  Col,
-  Views,
-  Tabs,
-  Tab,
-  Toolbar,
-  Link
+    Page,
+    Navbar,
+    List,
+    ListInput,
+    ListItem,
+    ListButton,
+    Toggle,
+    BlockTitle,
+    Row,
+    Button,
+    Range,
+    Block,
+    BlockHeader,
+    View,
+    Card,
+    CardHeader,
+    CardFooter,
+    CardContent,
+    Col,
+    Views,
+    Tabs,
+    Tab,
+    Toolbar,
+    Link
 } from 'framework7-react';
 
-import Header from '../components/Header/Header.jsx'
+import Header from '../components/Header/Header.jsx';
 import RegisterUser from '../components/RegisterPage/RegisterUser/RegisterUser.jsx';
 import RegisterCompany from '../components/RegisterPage/RegisterCompany/RegisterCompany.jsx';
 
@@ -40,39 +40,39 @@ class Register extends React.Component {
             user: {
                 // either company, jobseeker or employee
                 // TODO: interface does not permit creation of employees. need to implement.
-                userType: "jobseeker",
+                userType: 'jobseeker',
 
                 //  Basisinformasjon for den som registrerer brukeren
-                firstName: "",
-                lastName: "",
+                firstName: '',
+                lastName: '',
                 // birthDate: "",
-                phoneNumber: "",
-                municipality: "",
+                phoneNumber: '',
+                municipality: '',
 
                 // Credentials
-                email: "",
-                password: "",
+                email: '',
+                password: '',
 
                 //  Brukes for undervisningssted og høyest utdanning
-                education: "",
+                education: '',
 
                 //  Stilling dersom man er bedriftsansatt
-                position: "",
+                position: '',
 
                 //  Bedriften man registrerer/jobber for
-                name: "",
-                orgNumber: "",
+                name: '',
+                orgNumber: '',
 
                 //  Rabattkode for bedrifter
-                registrationCode: "",
+                registrationCode: '',
 
                 //  Nettside for bedrifter
-                webpage: "",
+                webpage: '',
 
                 skills: [],
                 interests: []
             }
-        }
+        };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
@@ -83,38 +83,49 @@ class Register extends React.Component {
     submitRegistration(e) {
         const user = this.state.user;
 
-        if (e.target.id === "companyRegisterButton") {
-            user.userType = "company";
+        if (e.target.id === 'companyRegisterButton') {
+            user.userType = 'company';
         }
         const skillIds = this.state.user.skills
-        .filter(skill => {return skill.selectedBy})
-        .map(skill => {return skill.id;})
+            .filter(skill => {
+                return skill.selectedBy;
+            })
+            .map(skill => {
+                return skill.id;
+            });
 
         const interestIds = this.state.user.interests
-        .filter(interest => {return interest.selectedBy})
-        .map(interest => {return interest.id;})
+            .filter(interest => {
+                return interest.selectedBy;
+            })
+            .map(interest => {
+                return interest.id;
+            });
 
         user.skills = skillIds;
         user.interests = interestIds;
 
         console.log(user);
 
-        fetch("http://localhost:5000/api/users", {
-            method: "post",
+        fetch('http://localhost:5000/api/users', {
+            method: 'post',
             body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
-            return res.json();
-        }).catch((err) => {
-            console.error(err);
         })
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                console.error(err);
+            });
     }
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value =
+            target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         // console.log(`${name}: ${value}`);
 
@@ -124,7 +135,7 @@ class Register extends React.Component {
                     ...prevState.user,
                     [name]: value
                 }
-            }
+            };
         });
     }
 
@@ -135,7 +146,7 @@ class Register extends React.Component {
                     ...state.user,
                     skills: skills
                 }
-            }
+            };
         });
     }
 
@@ -146,16 +157,16 @@ class Register extends React.Component {
                     ...state.user,
                     interests: interests
                 }
-            }
+            };
         });
     }
 
     render() {
         return (
             <Page noNavbar>
-                <Toolbar tabbar slot="fixed" position="top">
-                    <Link tabLink="#tab-user" tabLinkActive text="Bruker"></Link>
-                    <Link tabLink="#tab-company" text="Virksomhet"></Link>
+                <Toolbar tabbar slot='fixed' position='top'>
+                    <Link tabLink='#tab-user' tabLinkActive text='Bruker' />
+                    <Link tabLink='#tab-company' text='Virksomhet' />
                 </Toolbar>
 
                 <Tabs>
@@ -174,7 +185,7 @@ class Register extends React.Component {
                     />
                 </Tabs>
             </Page>
-        )
+        );
     }
 }
 
