@@ -17,12 +17,14 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/users?page=1')
+        // Currently only fetching employee recommendations for user 1
+        // TODO: fetch for correct user
+        fetch('http://localhost:5000/api/recommendations/1/employees')
             .then(res => {
                 return res.json();
             })
             .then(users => {
-                this.setState({ data: users.data });
+                this.setState({ data: users });
             });
     }
 
@@ -32,7 +34,6 @@ class Home extends React.Component {
         return (
             <Page name='home'>
                 <Header />
-                <VideosContainer users={users} />
                 <MatchesContainer users={users} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link

@@ -7,7 +7,6 @@ import './Match.css';
 
 //import temp data
 import ProfilePic from '../../../../assets-src/ProfilePage/temp.png';
-const institution = 'Konsulent, Junior Consulting';
 
 const Match = props => (
     <Card className='Match' strong>
@@ -17,11 +16,10 @@ const Match = props => (
 
         <div>
             <div className='profileTextName'>
-                {/*Hardcoded age for now*/}
-                <p>{props.user.first_name + ' ' + props.user.last_name}, 21</p>
+                <p>{`${props.user.employee.firstName}`}</p>
             </div>
             <div className='profileTextInstitution'>
-                <p>{institution}</p>
+                <p>{`${props.user.employee.role}, ${props.user.employee.name}`}</p>
             </div>
             <div className='profileTextProgressContainer'>
                 <StarRatings
