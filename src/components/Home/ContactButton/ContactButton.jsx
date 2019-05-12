@@ -19,6 +19,10 @@ class ContactButton extends React.Component {
         const res = await response.json();
         if (res.success) {
             this.setState(state => {return {...state, requestSent: true}});
+
+            setTimeout(() => {
+                this.props.contactRequestSent(this.props.userId);
+            }, 400);
         } else {
             console.error(res.message);
         }
