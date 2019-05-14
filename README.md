@@ -2,69 +2,24 @@
 
 ## Setup
 
-1.  Installer NVM: https://aur.archlinux.org/packages/nvm/
-2.  Sett opp Node for NVM
+1.  Installer Framework7
 ```
-nvm install node
-nvm use node
+npm install -g framework7-cli
 ```
-3.  Installer Framework7 globalt
-```
-nvm exec npm install -g framework7-cli
-```
-4.  Klon repo
+2.  Klon repo
 ```
 git clone https://github.com/askbk/inmarket-frontend.git
 ```
-5.  Installer moduler
+3.  Installer moduler
 ```
 cd inmarket-frontend
-nvm exec npm install
-```
-6.  (For dev) Skru av ServiceWorkers i nettleseren.
-
-## Sette opp dummy API for utvikling
-1.  Klon https://github.com/benhowdle89/reqres.git
-2.  Installer pakker
-```
-nvm exec npm install
-```
-3.  Kjør server (port 5000)
-```
-cd reqres
-nvm run app.js
-```
-## Framework7 CLI Options
-
-Framework7 app created with following options:
-
-```
-{
-  "cwd": "/home/ask/inmarket-frontend",
-  "type": [
-    "cordova",
-    "web",
-    "pwa"
-  ],
-  "name": "InMarket",
-  "pkg": "io.framework7.myapp",
-  "platform": [
-    "ios",
-    "android"
-  ],
-  "framework": "react",
-  "template": "single-view",
-  "cssPreProcessor": false,
-  "customColor": true,
-  "color": "c08d42",
-  "bundler": "webpack"
-}
+npm install
 ```
 
 # Git-konvensjoner
 
 branches:
-- master: oppdateres kun ved deployment (skal de merges med dev)
+- master: oppdateres kun ved deployment
 - dev: utviklings-branchen, oppdateres jenvlig
 - feat/feature-name: en branch som lager/forbedrer en feature (skal branches fra dev) 
 - design/area-name: en branch som inneholder re-design av allerede eksisterende elementer (skal branches fra dev)
@@ -72,14 +27,13 @@ branches:
 
 Pull request:
 - Minst to utviklere må se gjennom en pull request
-- Det skal alltid pushe til dev (aldri direkte til master)
-- Bruk alltid "Squash-and-merge" 
+- Det skal alltid pushes til dev (aldri direkte til master)
 
 ## NPM Scripts
 
-* `nvm exec npm start` - run development server
-* `nvm exec npm run build-prod` - build web app for production
-* `nvm exec npm run build-cordova-prod` - build cordova's `www` folder from and build cordova app
+* `npm start` - run development server
+* `npm run build-prod` - build web app for production
+* `npm run build-cordova-prod` - build cordova app
 
 ## PWA
 
@@ -106,19 +60,10 @@ framework7 generate-assets --ui
 ## Documentation & Resources
 
 * [Framework7 Core Documentation](https://framework7.io/docs/)
-
 * [Framework7 React Documentation](https://framework7.io/react/)
 * [Framework7 Icons Reference](https://framework7.io/icons/)
 * [Community Forum](https://forum.framework7.io)
 
-## Support Framework7
-
-Love Framework7? Support project by donating or pledging on patreon:
-https://patreon.com/vladimirkharlampidi
-
-
 # Nyttige linker
 ## Dummy REST API for å teste frontend-kode
 https://reqres.in/
-## Standard for format på API
-https://jsonapi.org/format/
