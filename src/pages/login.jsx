@@ -92,7 +92,7 @@ class Login extends React.Component {
 
     signIn() {
         const router = this.$f7router;
-        fetch('http://localhost:5000/api/login', {
+        fetch('http://localhost/api/login', {
             method: 'post',
             body: JSON.stringify({
                 email: this.state.username,

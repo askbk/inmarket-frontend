@@ -21,7 +21,7 @@ class Home extends React.Component {
     componentDidMount() {
         // Currently only fetching employee recommendations for user 1
         // TODO: fetch for correct user
-        fetch('http://localhost:5000/api/recommendations/1/employees').then(res => {
+        fetch('http://localhost/api/recommendations/1/employees').then(res => {
             return res.json();
         }).then(users => {
             this.setState({data: users});

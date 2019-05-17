@@ -25,7 +25,7 @@ class Network extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/users?page=2')
+        fetch('http://localhost/api/users?page=2')
             .then(res => {
                 return res.json();
             })

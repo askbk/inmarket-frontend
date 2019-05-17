@@ -9,7 +9,7 @@ class ContactButton extends React.Component {
     }
 
     async sendContactRequest() {
-        const response = await fetch(`http://localhost:5000/api/users/${this.props.userId}/contact`, {
+        const response = await fetch(`http://localhost/api/users/${this.props.userId}/contact`, {
             method: "post",
             headers: {
                 "authorization": localStorage.jwt
