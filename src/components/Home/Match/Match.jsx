@@ -23,19 +23,28 @@ class Match extends React.Component {
             return null;
         }
 
+        const profilePic = this.props.user.profilePicturePath ? this.props.user.profilePicturePath : ProfilePic;
+        
         return (
             <Card className='Match' strong>
                 <div className='avatarContainer'>
-                    <img className='avatarImage' src={ProfilePic}/>
+                    <img className='avatarImage' src={profilePic}/>
                 </div>
 
                 <div>
                     <div className='profileTextName'>
                         <p>{`${this.props.user.firstName}`}</p>
                     </div>
-                    <div className='profileTextInstitution'>
-                        <p>{`${this.props.user.role}, ${this.props.user.name}`}</p>
-                    </div>
+                    { this.props.user.userType === "employee" ?
+
+                        <div className='profileTextInstitution'>
+                            <p>{`${this.props.user.role}, ${this.props.user.name}`}</p>
+                        </div>
+                    :
+                        <div className='profileTextInstitution'>
+                            <p>{`${this.props.user.type}, ${this.props.user.education}`}</p>
+                        </div>
+                    }
                     <div className='profileTextProgressContainer'>
                         <StarRatings
                             starDimension='20px'
