@@ -1,86 +1,89 @@
-
-import HomePage from '../pages/home.jsx';
-import AboutPage from '../pages/about.jsx';
-import FormPage from '../pages/form.jsx';
-import NetworkPage from '../pages/network.jsx';
-import LoginPage from '../pages/login.jsx';
-import RegisterPage from '../pages/register.jsx';
-import DynamicRoutePage from '../pages/dynamic-route.jsx';
-import RequestAndLoad from '../pages/request-and-load.jsx';
-import NotFoundPage from '../pages/404.jsx';
-import CompanyPage from '../pages/company.jsx';
-import ConversationsPage from '../pages/conversations.jsx';
-import ActivitiesPage from '../pages/activities.jsx';
-import ProfilePage from '../pages/profilepage.jsx';
-import Profile from '../pages/profile.jsx';
-import EmployeePage from '../pages/employee.jsx';
-import ChatPage from '../pages/chatPage.jsx';
-import DatePicker from '../components/shared/DatePicker/DatePicker';
+import HomePage from "../pages/home.jsx";
+import AboutPage from "../pages/about.jsx";
+import FormPage from "../pages/form.jsx";
+import NetworkPage from "../pages/network.jsx";
+import LoginPage from "../pages/login.jsx";
+import RegisterPage from "../pages/register.jsx";
+import DynamicRoutePage from "../pages/dynamic-route.jsx";
+import RequestAndLoad from "../pages/request-and-load.jsx";
+import NotFoundPage from "../pages/404.jsx";
+import CompanyPage from "../pages/company.jsx";
+import ConversationsPage from "../pages/conversations.jsx";
+import ActivitiesPage from "../pages/activities.jsx";
+import ProfilePage from "../pages/profilepage.jsx";
+import Profile from "../pages/profile.jsx";
+import EmployeePage from "../pages/employee.jsx";
+import ChatPage from "../pages/chatPage.jsx";
+import DatePicker from "../components/shared/DatePicker/DatePicker";
 
 var routes = [
   {
-    path: '/',
-    component: HomePage,
+    path: "/",
+    component: HomePage
   },
   {
-    path: '/employee',
-    component: EmployeePage,
+    path: "/employee",
+    component: EmployeePage
   },
   {
-    path: '/REMOVETHISLATER',
+    path: "/REMOVETHISLATER",
     component: DatePicker
   },
   {
-    path: '/company',
-    component: CompanyPage,
+    path: "/company",
+    component: CompanyPage
   },
   {
-    path: '/about/',
-    component: AboutPage,
+    path: "/about/",
+    component: AboutPage
   },
   {
-    path: '/form/',
-    component: FormPage,
+    path: "/form/",
+    component: FormPage
   },
   {
-    path: '/nettverk/',
+    path: "/nettverk/",
     component: NetworkPage
   },
   {
-      path: '/logginn/',
-      component: LoginPage
+    path: "/logginn/",
+    component: LoginPage
   },
   {
-      path: '/registrering/',
-      component: RegisterPage
+    path: "/registrering/",
+    component: RegisterPage
   },
   {
-      path: '/profilepage',
-      component: ProfilePage
+    path: "/profilepage",
+    component: ProfilePage
   },
   {
-    path: '/profile/:id',
+    path: "/profile/:id",
     component: Profile
   },
   {
-    path: '/dynamic-route/blog/:blogId/post/:postId/',
-    component: DynamicRoutePage,
+    path: "/profile/",
+    component: Profile
   },
   {
-    path: '/conversations/',
-    component: ConversationsPage,
+    path: "/dynamic-route/blog/:blogId/post/:postId/",
+    component: DynamicRoutePage
   },
   {
-    path: '/activities/',
-    component: ActivitiesPage,
+    path: "/conversations/",
+    component: ConversationsPage
   },
   {
-    path: '/conversations/:chatId',
-    component: ChatPage,
+    path: "/activities/",
+    component: ActivitiesPage
   },
   {
-    path: '/request-and-load/user/:userId/',
-    async: function (routeTo, routeFrom, resolve, reject) {
+    path: "/conversations/:chatId",
+    component: ChatPage
+  },
+  {
+    path: "/request-and-load/user/:userId/",
+    async: function(routeTo, routeFrom, resolve, reject) {
       // Router instance
       var router = this;
 
@@ -94,21 +97,21 @@ var routes = [
       var userId = routeTo.params.userId;
 
       // Simulate Ajax Request
-      setTimeout(function () {
+      setTimeout(function() {
         // We got user data from request
         var user = {
-          firstName: 'Vladimir',
-          lastName: 'Kharlampidi',
-          about: 'Hello, i am creator of Framework7! Hope you like it!',
+          firstName: "Vladimir",
+          lastName: "Kharlampidi",
+          about: "Hello, i am creator of Framework7! Hope you like it!",
           links: [
             {
-              title: 'Framework7 Website',
-              url: 'http://framework7.io',
+              title: "Framework7 Website",
+              url: "http://framework7.io"
             },
             {
-              title: 'Framework7 Forum',
-              url: 'http://forum.framework7.io',
-            },
+              title: "Framework7 Forum",
+              url: "http://forum.framework7.io"
+            }
           ]
         };
         // Hide Preloader
@@ -117,21 +120,21 @@ var routes = [
         // Resolve route to load page
         resolve(
           {
-            component: RequestAndLoad,
+            component: RequestAndLoad
           },
           {
             context: {
-              user: user,
+              user: user
             }
           }
         );
       }, 1000);
-    },
+    }
   },
   {
-    path: '(.*)',
-    component: NotFoundPage,
-  },
+    path: "(.*)",
+    component: NotFoundPage
+  }
 ];
 
 export default routes;

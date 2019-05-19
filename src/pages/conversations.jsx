@@ -22,7 +22,7 @@ class Conversations extends React.Component {
                 <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
                 <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
                 <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
-                <Link className="bottomToolbarLink toolbarIcon" href="/profilepage/" iconF7="person_round" />
+                <Link className="bottomToolbarLink toolbarIcon" href="/profile/me" iconF7="person_round" />
               </Toolbar>
             </Page>
         )
