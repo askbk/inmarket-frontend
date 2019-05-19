@@ -78,8 +78,14 @@ class Home extends React.Component {
                         iconF7='home'/>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
+<<<<<<< HEAD
                         href='/nettverk/'
                         iconF7='search'/>
+=======
+                        href='/sok/'
+                        iconF7='search'
+                    />
+>>>>>>> b3a00e4... Split search and network, new search route
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/activities/'

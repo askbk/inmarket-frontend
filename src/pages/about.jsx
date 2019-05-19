@@ -58,7 +58,7 @@ const About = () => (
             />
             <Link
                 className='bottomToolbarLink toolbarIcon'
-                href='/nettverk/'
+                href='/sok/'
                 iconF7='search'
             />
             <Link
