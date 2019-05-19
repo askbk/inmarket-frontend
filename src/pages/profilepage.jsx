@@ -217,8 +217,7 @@ class ProfilePage extends React.Component {
                 <Header backLink title='Profil' />
                 {profilePageHeader}
                 <Row className='profilePageButtonContainer'>
-                    <Button>SE LOGG</Button>
-                    <Button>SE ANSATTE</Button>
+                    <Link href='/activities/create'> Inviter</Link>
                 </Row>
                 {profileInformation}
                 {profileSkills}

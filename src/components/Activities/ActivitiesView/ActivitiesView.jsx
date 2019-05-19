@@ -14,7 +14,7 @@ export default class extends React.Component {
                     header: 'Inmarket - Intervju',
                     informationText: '',
                     start_date: '2019-02-12',
-                    end_date: '2019-04-10',
+                    end_date: '2019-06-10',
                     start_time: '11:30:00',
                     end_time: '14:05:00',
                     frequency: [true, false, true, true, true],
@@ -25,7 +25,7 @@ export default class extends React.Component {
                     header: 'Inmarket - Prosjekt',
                     informationText: '',
                     start_date: '2019-05-12',
-                    end_date: '2019-05-14',
+                    end_date: '2019-06-14',
                     start_time: '11:30:00',
                     end_time: '14:05:00',
                     frequency: [true, false, true, true, true],
@@ -36,7 +36,7 @@ export default class extends React.Component {
                     header: 'Inmarket - Hospitering',
                     informationText: 'Vi ser veldig frem til å ha deg her.',
                     start_date: '2019-04-11',
-                    end_date: '2019-04-12',
+                    end_date: '2019-06-12',
                     start_time: '11:30:00',
                     end_time: '14:05:00',
                     frequency: [true, false, true, true, true],
@@ -47,7 +47,7 @@ export default class extends React.Component {
                     header: 'Inmarket - Annet',
                     informationText: '',
                     start_date: '2019-04-11',
-                    end_date: '2019-04-15',
+                    end_date: '2019-06-15',
                     start_time: '14:30:00',
                     end_time: '14:05:00',
                     frequency: [true, false, true, false, false],
@@ -62,6 +62,7 @@ export default class extends React.Component {
         const value = e.target.value.toLowerCase();
         this.setState({ searchbarContent: value });
     }
+
 
     render() {
         return (

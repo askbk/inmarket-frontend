@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //import datepicker object
 import DatePicker from '../DatePicker/DatePicker';
 
-import { List, ListInput } from 'framework7-react';
+import {List, ListInput, ListItem, router} from 'framework7-react';
+import Button from '../../shared/Button/StyledButton';
 
-class ActivityForm extends Component {
+class ActivityForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +22,8 @@ class ActivityForm extends Component {
             location: '',
 
             //How long does the activity last?
-            date: new Date(),
+            startDate: null,
+            endDate: null,
 
             //gjentas aktiviteten?
             recurringActivity: true,
@@ -42,18 +44,25 @@ class ActivityForm extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+
+    handleDateChange(start,end){
+        this.setState({startDate:start, endDate:end});
+    }
+
     handleSubmit() {
         //sender verdier til endpoind
     }
 
     render() {
         return (
+            <div>
             <List inlineLabels noHairlinesMd>
                 <ListInput
                     label='Tittel'
                     type='text'
                     name='title'
                     placeholder='Tittel til aktivitet'
+                    onInput={(i)=>{this.setState({title:i})}}
                 />
 
                 <ListInput
@@ -62,37 +71,78 @@ class ActivityForm extends Component {
                     resizable
                     name='description'
                     placeholder='Hva slags arrangement?'
+                    onInput={(i)=>{this.setState({description:i})}}
                 />
-
-                <ListInput
-                    label='Type aktivitet'
-                    type='select'
-                    name='type'
-                    placeholder='Vennligst velg en type aktivitet'
-                >
-                    {/* Fyll inn aktiviteter her */}
-                    <option value='Workshop'>Workshop</option>
-                    <option value='Kurs'>Kurs</option>
-                    <option value='Foredrag'>Foredrag</option>
-                    <option value='Foredrag'>Intervju</option>
-                </ListInput>
 
                 <ListInput
                     label='Lokasjon'
                     type='text'
                     name='location'
                     placeholder='Hvor er aktiviteten?'
+                    onInput={(i)=>{this.setState({location:i})}}
                 />
-                {/* Denne er ikke ferdig */}
-                <DatePicker />
+                {/* Denne er ikke ferdig.*/}
+                <br/>
+                <DatePicker onChange={this.handleDateChange.bind(this)}/>
+                {/*
                 <ListInput
                     label='Gjentagende?'
                     type='text'
                     name='recurringActivity'
                     placeholder='Gjentas aktiviteten?'
                 />
+                */}
+
+
+
             </List>
+
+                <Button style={{margin: '0 auto'}} clicked={this.createActivity.bind(this)}>Inviter</Button>
+            </div>
         );
+    }
+
+    createActivity() {
+        const app = this.$f7;
+
+        const router = this.$f7router;
+
+        let feedback = "";
+        let state = this.state;
+
+        if(state.title === ""){
+            feedback += "<br/> <br/> tittel <br/>";
+        }
+        if(state.description === ""){
+            feedback += " beskrivelse <br/>";
+        }
+        if(state.location === ""){
+            feedback += " lokasjon <br/>";
+        }
+
+        if(state.startDate === null){
+            feedback += " dato <br/>";
+        }
+
+        let success = false;
+        if(feedback !== ""){
+            feedback = `Vennligst fyll ut følgende felter ${feedback}`;
+        }
+        else{
+            feedback = "Aktiviteten har blitt laget";
+            success = true;
+        }
+
+
+        console.log(router);
+        console.log(this);
+
+        app.dialog.alert(`${feedback}`, () => {
+            app.loginScreen.close();
+            if(success){
+                app.views.main.router.back();
+            }
+        });
     }
 }
 

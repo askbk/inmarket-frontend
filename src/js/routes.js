@@ -16,7 +16,7 @@ import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
-
+import ActivityCreate from '../pages/activityCreate'
 var routes = [
   {
     path: '/',
@@ -69,6 +69,10 @@ var routes = [
   {
     path: '/activities/',
     component: ActivitiesPage,
+  },
+  {
+    path: '/activities/create',
+    component: ActivityCreate,
   },
   {
     path: '/conversations/:chatId',
