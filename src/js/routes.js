@@ -12,6 +12,7 @@ import CompanyPage from '../pages/company.jsx';
 import ConversationsPage from '../pages/conversations.jsx';
 import ActivitiesPage from '../pages/activities.jsx';
 import ProfilePage from '../pages/profilepage.jsx';
+import Profile from '../pages/profile.jsx';
 import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
@@ -56,6 +57,10 @@ var routes = [
   {
       path: '/profilepage',
       component: ProfilePage
+  },
+  {
+    path: '/profile/:id',
+    component: Profile
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',

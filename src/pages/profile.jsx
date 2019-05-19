@@ -1,10 +1,17 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
-import { Page, Navbar, Block, BlockTitle, List, ListItem, Toolbar, Link } from 'framework7-react';
+import {Page, Navbar, Block, BlockTitle, List, ListItem, Toolbar, Link, Row} from 'framework7-react';
 
+
+//import components
+import Button from '../components/shared/Button/StyledButton';
+import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
+import ProfileInformation from '../components/shared/InformationBox/InformationBox';
+import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
 import Header from '../components/Header/Header.jsx'
 
 import '../css/toolbar.css';
+
 
 class Profile extends React.Component {
     constructor() {
@@ -15,13 +22,14 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/users/${this.$f7route.params.id}`).then(res => {
+        fetch(`http://localhost:5000/api2/users/${this.$f7route.params.id}`).then(res => {
             return res.json();
         }).then(user => {
             this.setState({user:user.data});
         });
     }
-
+/*{this.state.profileText}
+                <ProfileSkills skills={this.state.skills} />*/
     render() {
         let userdata;
         if (this.state.user) {
@@ -37,8 +45,16 @@ class Profile extends React.Component {
         return (
             <Page>
               <Header backLink title="Profil"/>
-              <Navbar title="Profil" backLink="Back" />
-              <BlockTitle strong>Profil</BlockTitle>
+              <Navbar title="Profil" backLink="Back" /> <div>
+                <ProfilePageHeader />
+            </div>
+                <Row className="profilePageButtonContainer">
+                    <Button>SE LOGG</Button>
+                    <Button>SE ANSATTE</Button>
+                </Row>
+                <ProfileInformation>
+
+                </ProfileInformation>
               <List>
                 {userdata}
               </List>
