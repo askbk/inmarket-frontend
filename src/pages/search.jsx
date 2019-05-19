@@ -11,7 +11,7 @@ import {
     Link
 } from 'framework7-react';
 
-import SearchView from '../components/network/SearchView/SearchView.jsx';
+import SearchView from '../components/SearchPage/SearchView/SearchView.jsx';
 import Header from '../components/Header/Header.jsx';
 
 import '../css/toolbar.css';

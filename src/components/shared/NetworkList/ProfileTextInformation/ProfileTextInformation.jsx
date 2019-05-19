@@ -2,7 +2,7 @@ import React from 'react';
 import './ProfileTextInformation.css';
 
 //import picture
-import StarRatings from '../../../../node_modules/react-star-ratings';
+import StarRatings from '../../../../../node_modules/react-star-ratings';
 
 export default class extends React.Component {
     constructor(props) {

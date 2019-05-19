@@ -3,7 +3,7 @@ import './NetworkAvatar.css';
 import { Chip } from 'framework7-react';
 
 //import picture
-import ProfilePic from '../../../../assets-src/ProfilePage/temp.png';
+import ProfilePic from '../../../../../assets-src/ProfilePage/temp.png';
 
 export default class extends React.Component {
     constructor(props) {

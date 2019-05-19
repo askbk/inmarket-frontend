@@ -12,6 +12,7 @@ import {
 } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx';
+import NetworkView from '../components/NetworkPage/NetworkView/NetworkView.jsx';
 
 import '../css/toolbar.css';
 
@@ -47,7 +48,7 @@ class Network extends React.Component {
             <Page>
                 <Header backLink title='Nettverk' />
                 <BlockTitle strong>Ditt nettverk</BlockTitle>
-                <List>{networkList}</List>
+                <NetworkView />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
@@ -56,7 +57,6 @@ class Network extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        tabLinkActive
                         href='/sok/'
                         iconF7='search'
                     />

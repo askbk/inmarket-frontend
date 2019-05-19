@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Page, Toolbar, Link} from 'framework7-react';
+import { Page, Toolbar, Link } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx';
 import VideosContainer from '../components/Home/VideosContainer/VideosContainer.jsx';
@@ -15,7 +15,9 @@ class Home extends React.Component {
             data: []
         };
 
-        this.handleContactRequestSent = this.handleContactRequestSent.bind(this);
+        this.handleContactRequestSent = this.handleContactRequestSent.bind(
+            this
+        );
     }
 
     componentDidMount() {
@@ -25,16 +27,21 @@ class Home extends React.Component {
             return false;
         }
 
-        const userId = (JSON.parse(atob(localStorage.jwt.split(".")[1]))).sub,
-            recommend = localStorage.userType === "employee" ? "jobseekers" : "employees";
+        const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub,
+            recommend =
+                localStorage.userType === 'employee'
+                    ? 'jobseekers'
+                    : 'employees';
 
-        fetch(`http://localhost/api/recommendations/${userId}/${recommend}`).then(res => {
-            return res.json();
-        }).then(users => {
-            if (users.success) {
-                this.setState({data: users.data});
-            }
-        });
+        fetch(`http://localhost/api/recommendations/${userId}/${recommend}`)
+            .then(res => {
+                return res.json();
+            })
+            .then(users => {
+                if (users.success) {
+                    this.setState({ data: users.data });
+                }
+            });
     }
 
     // Called after a contact request has been successfully sent to the user
@@ -53,8 +60,8 @@ class Home extends React.Component {
 
             return {
                 ...state
-            }
-        })
+            };
+        });
     }
 
     render() {
@@ -62,38 +69,33 @@ class Home extends React.Component {
 
         return (
             <Page name='home'>
-                <Header/>
+                <Header />
                 <MatchesContainer
                     users={users}
-                    contactRequestSent={this.handleContactRequestSent}/>
-                <Toolbar
-                    className='bottomToolbar'
-                    tabbar
-                    labels
-                    bottom>
+                    contactRequestSent={this.handleContactRequestSent}
+                />
+                <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         tabLinkActive
                         href='/'
-                        iconF7='home'/>
+                        iconF7='home'
+                    />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-<<<<<<< HEAD
-                        href='/nettverk/'
-                        iconF7='search'/>
-=======
                         href='/sok/'
                         iconF7='search'
                     />
->>>>>>> b3a00e4... Split search and network, new search route
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/activities/'
-                        iconF7='email'/>
+                        iconF7='email'
+                    />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/profilepage/'
-                        iconF7='person_round'/>
+                        iconF7='person_round'
+                    />
                 </Toolbar>
             </Page>
         );
