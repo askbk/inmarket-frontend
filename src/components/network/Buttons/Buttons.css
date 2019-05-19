@@ -5,7 +5,7 @@
     align-content: center;
 }
 
-.networkButton, .networkContactButton, .networkRequestButton, .networkViewButton{
+.networkButton, .networkContactButton, .networkRequestButton, .searchViewButton{
     font-size: 10px;
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@
     color: black;
 }
 
-.networkContactButton, .networkViewButton{
+.networkContactButton, .searchViewButton{
     background: black;
     color: white;
 }

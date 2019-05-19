@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from '../Profile/Profile.jsx';
 import { List, ListItem, Searchbar } from 'framework7-react';
-import './NetworkView.css';
+import './SearchView.css';
 
 export default class extends React.Component {
     constructor(props) {
@@ -56,9 +56,9 @@ export default class extends React.Component {
 
     render() {
         return (
-            <div className='networkViewOuterContainer'>
-                <div className='networkViewInnerContainer'>
-                    <div className='networkViewSearchbarContainer'>
+            <div className='searchViewOuterContainer'>
+                <div className='searchViewInnerContainer'>
+                    <div className='searchViewSearchbarContainer'>
                         <Searchbar onChange={this.handleChange.bind(this)} />
                     </div>
                     <List noHairlines noHairlinesBetween>
@@ -70,7 +70,7 @@ export default class extends React.Component {
                             )
                             .map((profile, index) => (
                                 <ListItem title='' key={index}>
-                                    <div className='networkViewProfileContainer'>
+                                    <div className='searchViewProfileContainer'>
                                         <Profile
                                             name={profile.name}
                                             birth={profile.birth}

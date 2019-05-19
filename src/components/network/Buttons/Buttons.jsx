@@ -35,10 +35,10 @@ export default class extends React.Component {
 
         const contact = (
             <div>
-                <Button small className='networkViewButton' fill>
+                <Button small className='searchViewButton' fill>
                     Se logg
                 </Button>
-                <Button small className='networkViewButton' fill>
+                <Button small className='searchViewButton' fill>
                     Inviter
                 </Button>
             </div>
