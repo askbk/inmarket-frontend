@@ -18,10 +18,12 @@ export default class extends React.Component {
                         role={this.props.role}
                         workplace={this.props.workplace}
                         rating={this.props.rating}
+                        profilePic={this.props.profilePic}
+                        connectionStatus={this.props.connectionStatus}
                     />
                 </div>
                 <div className='profileButtonContainer'>
-                    <Buttons />
+                    <Buttons connectionStatus={this.props.connectionStatus} />
                 </div>
             </div>
         );

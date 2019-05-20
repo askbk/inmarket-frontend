@@ -25,20 +25,28 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/users?page=2')
+        const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub,
+            recommend =
+                localStorage.userType === 'employee'
+                    ? 'jobseekers'
+                    : 'employees';
+
+        fetch(`http://localhost/api/recommendations/${userId}/${recommend}`)
             .then(res => {
                 return res.json();
             })
             .then(users => {
-                this.setState({ data: users.data });
+                this.setState({ data: users });
             });
     }
 
     render() {
+        const users = this.state.data;
+
         return (
             <Page>
                 <Header backLink title='Søk' />
-                <SearchView />
+                <SearchView prefilledUsers={users} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
