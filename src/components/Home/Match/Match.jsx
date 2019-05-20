@@ -24,7 +24,8 @@ class Match extends React.Component {
         }
 
         const profilePic = this.props.user.profilePicturePath ? this.props.user.profilePicturePath : ProfilePic;
-        
+        const matchDegree = Math.round(this.props.user.cosine * 100);
+
         return (
             <Card className='Match' strong>
                 <div className='avatarContainer'>
@@ -52,6 +53,7 @@ class Match extends React.Component {
                             rating={4.2}
                             starRatedColor='#c08d42'
                             starEmptyColor='black'/>
+                        <p>{matchDegree}% match</p>
                     </div>
                 </div>
                 <ContactButton
