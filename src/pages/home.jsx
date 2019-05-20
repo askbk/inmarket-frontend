@@ -19,6 +19,12 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        // For now it simply won't try to fetch any recommendation if no token
+        // is found.
+        if (!localStorage.jwt) {
+            return false;
+        }
+
         const userId = (JSON.parse(atob(localStorage.jwt.split(".")[1]))).sub,
             recommend = localStorage.userType === "employee" ? "jobseekers" : "employees";
 
@@ -29,8 +35,12 @@ class Home extends React.Component {
         });
     }
 
+    // Called after a contact request has been successfully sent to the user
+    // with the given id. It removes the contacted user from the array of
+    // contact recommendations. This is because the SwiperSlide component in
+    // MatchesContainer is still taking up space, even when it is empty. This is
+    // a brute force solution to that.
     handleContactRequestSent(id) {
-        console.log(id);
         this.setState(state => {
             for (let i = 0; i < state.data.length; i++) {
                 if (state.data[i].id === id) {
