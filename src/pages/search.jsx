@@ -11,6 +11,7 @@ import '../css/toolbar.css';
 import ProfilePic from '../../assets-src/ProfilePage/temp.png';
 const testProfiles = [
     {
+        userId: 1,
         name: 'Endre Braut Medhus',
         birth: '1997-10-11',
         role: 'Konsulent',
@@ -20,6 +21,7 @@ const testProfiles = [
         profilePic: ProfilePic
     },
     {
+        userId: 2,
         name: 'Casper Feng',
         birth: '1996-09-01',
         role: 'Konsulent',
@@ -29,6 +31,7 @@ const testProfiles = [
         profilePic: ProfilePic
     },
     {
+        userId: 3,
         name: 'Kjip Konsult',
         birth: '1988-12-12',
         role: 'Konsulent',
@@ -38,6 +41,7 @@ const testProfiles = [
         profilePic: ProfilePic
     },
     {
+        userId: 4,
         name: 'Edvard Bakken',
         birth: '1994-02-25',
         role: 'Konsulent',
@@ -47,6 +51,7 @@ const testProfiles = [
         profilePic: ProfilePic
     },
     {
+        userId: 5,
         name: 'Ask Kolltveit',
         birth: '1997-09-08',
         role: 'Teknologidirektør',

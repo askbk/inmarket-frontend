@@ -5,7 +5,57 @@ import './Buttons.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.getButtons = this.getButtons.bind();
+        this.state = {
+            requestSent: ''
+        };
+        this.sendContactRequest = this.sendContactRequest.bind(this);
+        this.sendContactRequestReply = this.sendContactRequestReply.bind(this);
+        this.getButtons = this.getButtons.bind(this);
+    }
+
+    async sendContactRequest() {
+        const response = await fetch(
+            `http://localhost/api/users/${this.props.userId}/contact`,
+            {
+                method: 'post',
+                headers: {
+                    authorization: localStorage.jwt
+                }
+            }
+        );
+
+        const res = await response.json();
+        if (res.success) {
+            this.setState(state => {
+                return { ...state, requestSent: 'requested' };
+            });
+        } else {
+            console.error(res.message);
+        }
+    }
+
+    async sendContactRequestReply(reply) {
+        const response = await fetch(
+            `http://localhost/api/users/${this.props.userId}/contact/${reply}`,
+            {
+                method: 'post',
+                headers: {
+                    authorization: localStorage.jwt
+                }
+            }
+        );
+
+        const res = await response.json();
+        if (res.success) {
+            this.setState(state => {
+                return {
+                    ...state,
+                    requestSent: reply === 'accept' ? 'contact' : 'noContact'
+                };
+            });
+        } else {
+            console.error(res.message);
+        }
     }
 
     getButtons(status) {
@@ -16,6 +66,7 @@ export default class extends React.Component {
                         small
                         className='networkContactButton color-theme-green'
                         fill
+                        onClick={this.sendContactRequest}
                     >
                         Kontakt
                     </Button>
@@ -28,6 +79,9 @@ export default class extends React.Component {
                             small
                             className='networkRequestButton color-theme-green'
                             fill
+                            onClick={() =>
+                                this.sendContactRequestReply('accept')
+                            }
                         >
                             Aksepter
                         </Button>
@@ -35,8 +89,9 @@ export default class extends React.Component {
                             small
                             className='networkRequestButton color-theme-red'
                             fill
+                            onClick={() => this.sendContactRequestReply('deny')}
                         >
-                            Avlys
+                            Avslå
                         </Button>
                     </div>
                 );
@@ -54,7 +109,11 @@ export default class extends React.Component {
                 );
                 break;
             case 'requested':
-                return <div />;
+                return (
+                    <Button small className='networkViewButton' disabled>
+                        Sendt
+                    </Button>
+                );
                 break;
             default:
         }
@@ -63,7 +122,11 @@ export default class extends React.Component {
     render() {
         return (
             <div className='buttonsContainer'>
-                {this.getButtons(this.props.connectionStatus)}
+                {this.getButtons(
+                    this.state.requestSent
+                        ? this.state.requestSent
+                        : this.props.connectionStatus
+                )}
             </div>
         );
     }

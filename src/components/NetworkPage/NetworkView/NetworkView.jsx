@@ -33,12 +33,10 @@ export default class extends React.Component {
                         Ditt nettverk
                     </BlockTitle>
 
-                    <div className='networkViewSearchbarContainer'>
-                        <Searchbar
-                            onChange={this.handleChange.bind(this)}
-                            placeholder={'Søk i nettverket ditt'}
-                        />
-                    </div>
+                    <Searchbar
+                        onChange={this.handleChange.bind(this)}
+                        placeholder={'Søk i nettverket ditt'}
+                    />
                     <NetworkList
                         profiles={this.props.networkUsers}
                         searchbarContent={this.state.searchbarContent}

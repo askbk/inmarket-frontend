@@ -13,6 +13,7 @@ export default class extends React.Component {
             <div className='profileContainer'>
                 <div className='profileProfileInformationContainer'>
                     <ProfileInformation
+                        userId={this.props.userId}
                         name={this.props.name}
                         birth={this.props.birth}
                         role={this.props.role}
@@ -23,7 +24,10 @@ export default class extends React.Component {
                     />
                 </div>
                 <div className='profileButtonContainer'>
-                    <Buttons connectionStatus={this.props.connectionStatus} />
+                    <Buttons
+                        userId={this.props.userId}
+                        connectionStatus={this.props.connectionStatus}
+                    />
                 </div>
             </div>
         );

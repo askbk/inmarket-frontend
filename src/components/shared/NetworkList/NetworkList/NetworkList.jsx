@@ -14,6 +14,7 @@ const NetworkList = props => (
                     <ListItem title='' key={index}>
                         <div className='networkListProfileContainer'>
                             <Profile
+                                userId={profile.userId}
                                 name={profile.name}
                                 birth={profile.birth}
                                 role={profile.role}
