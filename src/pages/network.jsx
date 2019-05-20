@@ -1,21 +1,11 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
-import {
-    Page,
-    Navbar,
-    Block,
-    BlockTitle,
-    List,
-    ListItem,
-    Toolbar,
-    Link
-} from 'framework7-react';
+import { Page, Toolbar, Link } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx';
 import NetworkView from '../components/NetworkPage/NetworkView/NetworkView.jsx';
 
 import '../css/toolbar.css';
-import '../css/search.css';
 
 //TODO: Placeholder data - remove later
 import ProfilePic from '../../assets-src/ProfilePage/temp.png';
@@ -111,14 +101,10 @@ class Network extends React.Component {
         return (
             <Page>
                 <Header backLink title='Nettverk' />
-                <BlockTitle medium className='searchTitle'>
-                    Forespørsler
-                </BlockTitle>
-                <NetworkView noSearch profiles={pendingRequests} />
-                <BlockTitle medium className='searchTitle'>
-                    Ditt nettverk
-                </BlockTitle>
-                <NetworkView profiles={networkUsers} />
+                <NetworkView
+                    pendingRequests={pendingRequests}
+                    networkUsers={networkUsers}
+                />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'

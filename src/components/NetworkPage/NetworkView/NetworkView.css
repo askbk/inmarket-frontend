@@ -13,3 +13,8 @@
 .networkViewProfileContainer {
     width: 100%;
 }
+
+.networkTitle {
+    display: flex;
+    justify-content: center;
+}

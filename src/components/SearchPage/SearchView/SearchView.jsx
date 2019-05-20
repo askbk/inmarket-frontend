@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from '../../shared/NetworkList/Profile/Profile.jsx';
-import { Searchbar } from 'framework7-react';
+import { BlockTitle, Searchbar } from 'framework7-react';
 import NetworkList from '../../shared/NetworkList/NetworkList/NetworkList.jsx';
 import './SearchView.css';
 
@@ -14,6 +14,7 @@ export default class extends React.Component {
     }
 
     handleChange(e) {
+        //TODO: Implement proper search from DB
         const value = e.target.value.toLowerCase();
         this.setState({ searchbarContent: value });
     }
@@ -22,6 +23,9 @@ export default class extends React.Component {
         return (
             <div className='searchViewOuterContainer'>
                 <div className='searchViewInnerContainer'>
+                    <BlockTitle medium className='searchTitle'>
+                        Utvid nettverket ditt
+                    </BlockTitle>
                     <div className='searchViewSearchbarContainer'>
                         <Searchbar
                             onChange={this.handleChange.bind(this)}

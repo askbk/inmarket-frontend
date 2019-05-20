@@ -1,21 +1,11 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
-import {
-    Page,
-    Navbar,
-    Block,
-    BlockTitle,
-    List,
-    ListItem,
-    Toolbar,
-    Link
-} from 'framework7-react';
+import { Page, Toolbar, Link } from 'framework7-react';
 
 import SearchView from '../components/SearchPage/SearchView/SearchView.jsx';
 import Header from '../components/Header/Header.jsx';
 
 import '../css/toolbar.css';
-import '../css/search.css';
 
 //TODO: Placeholder data - remove later
 import ProfilePic from '../../assets-src/ProfilePage/temp.png';
@@ -98,9 +88,6 @@ class Search extends React.Component {
         return (
             <Page>
                 <Header backLink title='Søk' />
-                <BlockTitle medium className='searchTitle'>
-                    Utvid nettverket ditt
-                </BlockTitle>
                 <SearchView profiles={profiles} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link

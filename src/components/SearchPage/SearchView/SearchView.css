@@ -9,3 +9,8 @@
     width: 100%;
     max-width: 600px;
 }
+
+.searchTitle {
+    display: flex;
+    justify-content: center;
+}
