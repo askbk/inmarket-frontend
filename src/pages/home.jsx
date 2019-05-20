@@ -31,7 +31,9 @@ class Home extends React.Component {
         fetch(`http://localhost/api/recommendations/${userId}/${recommend}`).then(res => {
             return res.json();
         }).then(users => {
-            this.setState({data: users});
+            if (users.success) {
+                this.setState({data: users.data});
+            }
         });
     }
 
