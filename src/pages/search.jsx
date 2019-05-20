@@ -15,6 +15,57 @@ import SearchView from '../components/SearchPage/SearchView/SearchView.jsx';
 import Header from '../components/Header/Header.jsx';
 
 import '../css/toolbar.css';
+import '../css/search.css';
+
+//TODO: Placeholder data - remove later
+import ProfilePic from '../../assets-src/ProfilePage/temp.png';
+const testProfiles = [
+    {
+        name: 'Endre Braut Medhus',
+        birth: '1997-10-11',
+        role: 'Konsulent',
+        workplace: 'Junior Consulting',
+        rating: 4.2,
+        connectionStatus: 'noContact',
+        profilePic: ProfilePic
+    },
+    {
+        name: 'Casper Feng',
+        birth: '1996-09-01',
+        role: 'Konsulent',
+        workplace: 'Junior Consulting',
+        rating: 4.7,
+        connectionStatus: 'noContact',
+        profilePic: ProfilePic
+    },
+    {
+        name: 'Kjip Konsult',
+        birth: '1988-12-12',
+        role: 'Konsulent',
+        workplace: 'Kjip Consulting',
+        rating: 2.5,
+        connectionStatus: 'contact',
+        profilePic: ProfilePic
+    },
+    {
+        name: 'Edvard Bakken',
+        birth: '1994-02-25',
+        role: 'Konsulent',
+        workplace: 'Junior Consulting',
+        rating: 4.9,
+        connectionStatus: 'request',
+        profilePic: ProfilePic
+    },
+    {
+        name: 'Ask Kolltveit',
+        birth: '1997-09-08',
+        role: 'Teknologidirektør',
+        workplace: 'Inmarket AS',
+        rating: 5.0,
+        connectionStatus: 'requested',
+        profilePic: ProfilePic
+    }
+];
 
 class Search extends React.Component {
     constructor() {
@@ -35,18 +86,22 @@ class Search extends React.Component {
             .then(res => {
                 return res.json();
             })
-            .then(users => {
-                this.setState({ data: users });
+            .then(profiles => {
+                this.setState({ data: profiles });
             });
     }
 
     render() {
-        const users = this.state.data;
+        const profiles =
+            this.state.data.success === 'true' ? this.state.data : testProfiles;
 
         return (
             <Page>
                 <Header backLink title='Søk' />
-                <SearchView prefilledUsers={users} />
+                <BlockTitle medium className='searchTitle'>
+                    Utvid nettverket ditt
+                </BlockTitle>
+                <SearchView profiles={profiles} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'

@@ -1,15 +1,11 @@
-.searchViewOuterContainer{
+.searchViewOuterContainer {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 20px 0;
 }
 
-.searchViewInnerContainer{
+.searchViewInnerContainer {
     width: 100%;
     max-width: 600px;
-}
-
-.searchViewProfileContainer{
-    width: 100%;
 }
