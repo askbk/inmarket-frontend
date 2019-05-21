@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Swiper, SwiperSlide } from 'framework7-react';
+import {Swiper, SwiperSlide} from 'framework7-react';
 
 import Match from '../Match/Match.jsx';
 
@@ -16,11 +16,7 @@ class MatchesContainer extends React.Component {
             <Swiper
                 className='matchSwiper'
                 navigation
-                autoplay
                 params={{
-                    autoplay: {
-                        delay: 5000
-                    },
                     speed: 500,
                     slidesPerView: 5,
                     spaceBetween: 30,
@@ -38,13 +34,14 @@ class MatchesContainer extends React.Component {
                             spaceBetween: 15
                         }
                     }
-                }}
-            >
-                {this.props.users.map(u => (
-                    <SwiperSlide key={u.id}>
-                        <Match user={u} />
-                    </SwiperSlide>
-                ))}
+                }}>
+                {
+                    this.props.users.map(u => (
+                        <SwiperSlide key={u.id}>
+                            <Match user={u} contactRequestSent={this.props.contactRequestSent}/>
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
         );
     }

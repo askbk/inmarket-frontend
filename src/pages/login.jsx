@@ -92,7 +92,7 @@ class Login extends React.Component {
 
     signIn() {
         const router = this.$f7router;
-        fetch('http://localhost:5000/api/login', {
+        fetch('http://localhost/api/login', {
             method: 'post',
             body: JSON.stringify({
                 email: this.state.username,
@@ -108,6 +108,7 @@ class Login extends React.Component {
             .then(res => {
                 if (res.jwt) {
                     localStorage.jwt = res.jwt;
+                    localStorage.userType = res.userType ? res.userType : "jobseeker";
                     router.navigate('/');
                 } else {
                     // TODO: Let user know that login attempt was unsuccessful

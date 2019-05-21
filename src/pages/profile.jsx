@@ -24,7 +24,7 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/users/${this.$f7route.params.id}`)
+        fetch(`http://localhost/api/users/${this.$f7route.params.id}`)
             .then(res => {
                 return res.json();
             })
