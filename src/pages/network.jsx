@@ -8,57 +8,51 @@ import NetworkView from '../components/NetworkPage/NetworkView/NetworkView.jsx';
 import '../css/toolbar.css';
 
 //TODO: Placeholder data - remove later
-import ProfilePic from '../../assets-src/ProfilePage/temp.png';
 const testProfiles = [
     {
-        userId: 1,
-        name: 'Endre Braut Medhus',
-        birth: '1997-10-11',
+        id: 1,
+        firstName: 'Endre',
+        lastName: 'Braut Medhus',
+        birthDate: '1997-10-11',
         role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.2,
-        connectionStatus: 'noContact',
-        profilePic: ProfilePic
+        name: 'Junior Consulting',
+        connectionStatus: 'noContact'
     },
     {
-        userId: 2,
-        name: 'Casper Feng',
-        birth: '1996-09-01',
+        id: 2,
+        firstName: 'Casper',
+        lastName: 'Feng',
+        birthDate: '1996-09-01',
         role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.7,
-        connectionStatus: 'noContact',
-        profilePic: ProfilePic
+        name: 'Junior Consulting',
+        connectionStatus: 'noContact'
     },
     {
-        userId: 3,
-        name: 'Kjip Konsult',
-        birth: '1988-12-12',
+        id: 3,
+        firstName: 'Kjip',
+        lastName: 'Konsult',
+        birthDate: '1988-12-12',
         role: 'Konsulent',
-        workplace: 'Kjip Consulting',
-        rating: 2.5,
-        connectionStatus: 'contact',
-        profilePic: ProfilePic
+        name: 'Kjip Consulting',
+        connectionStatus: 'contact'
     },
     {
-        userId: 4,
-        name: 'Edvard Bakken',
-        birth: '1994-02-25',
+        id: 4,
+        firstName: 'Edvard',
+        lastName: 'Bakken',
+        birthDate: '1994-02-25',
         role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.9,
-        connectionStatus: 'request',
-        profilePic: ProfilePic
+        name: 'Junior Consulting',
+        connectionStatus: 'request'
     },
     {
-        userId: 5,
-        name: 'Ask Kolltveit',
-        birth: '1997-09-08',
+        id: 5,
+        firstName: 'Ask',
+        lastName: 'Kolltveit',
+        birthDate: '1997-09-08',
         role: 'Teknologidirektør',
-        workplace: 'Inmarket AS',
-        rating: 5.0,
-        connectionStatus: 'requested',
-        profilePic: ProfilePic
+        name: 'Inmarket AS',
+        connectionStatus: 'requested'
     }
 ];
 
@@ -78,7 +72,11 @@ class Network extends React.Component {
                 return res.json();
             })
             .then(users => {
-                this.setState({ pendingRequests: users.data });
+                if (users.success) {
+                    this.setState({ pendingRequests: users.data });
+                } else {
+                    console.error(users.message);
+                }
             });
         //TODO: Fetch just pending connections
         fetch('http://localhost/api/users')
@@ -86,7 +84,11 @@ class Network extends React.Component {
                 return res.json();
             })
             .then(users => {
-                this.setState({ networkUsers: users.data });
+                if (users.success) {
+                    this.setState({ networkUsers: users.data });
+                } else {
+                    console.error(users.message);
+                }
             });
     }
 

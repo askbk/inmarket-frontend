@@ -7,61 +7,6 @@ import Header from '../components/Header/Header.jsx';
 
 import '../css/toolbar.css';
 
-//TODO: Placeholder data - remove later
-import ProfilePic from '../../assets-src/ProfilePage/temp.png';
-const testProfiles = [
-    {
-        userId: 1,
-        name: 'Endre Braut Medhus',
-        birth: '1997-10-11',
-        role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.2,
-        connectionStatus: 'noContact',
-        profilePic: ProfilePic
-    },
-    {
-        userId: 2,
-        name: 'Casper Feng',
-        birth: '1996-09-01',
-        role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.7,
-        connectionStatus: 'noContact',
-        profilePic: ProfilePic
-    },
-    {
-        userId: 3,
-        name: 'Kjip Konsult',
-        birth: '1988-12-12',
-        role: 'Konsulent',
-        workplace: 'Kjip Consulting',
-        rating: 2.5,
-        connectionStatus: 'contact',
-        profilePic: ProfilePic
-    },
-    {
-        userId: 4,
-        name: 'Edvard Bakken',
-        birth: '1994-02-25',
-        role: 'Konsulent',
-        workplace: 'Junior Consulting',
-        rating: 4.9,
-        connectionStatus: 'request',
-        profilePic: ProfilePic
-    },
-    {
-        userId: 5,
-        name: 'Ask Kolltveit',
-        birth: '1997-09-08',
-        role: 'Teknologidirektør',
-        workplace: 'Inmarket AS',
-        rating: 5.0,
-        connectionStatus: 'requested',
-        profilePic: ProfilePic
-    }
-];
-
 class Search extends React.Component {
     constructor() {
         super();
@@ -82,19 +27,18 @@ class Search extends React.Component {
                 return res.json();
             })
             .then(profiles => {
-                this.setState({ data: profiles });
+                if (profiles.success) this.setState({ data: profiles.data });
+                else {
+                    console.error(profiles.message);
+                }
             });
     }
 
     render() {
-        const profiles = this.state.data.success
-            ? this.state.data
-            : testProfiles;
-
         return (
             <Page>
                 <Header backLink title='Søk' />
-                <SearchView profiles={profiles} />
+                <SearchView profiles={this.state.data} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
