@@ -22,7 +22,9 @@ const NetworkList = props => (
         {props.profiles &&
             props.profiles
                 .filter(a =>
-                    a.name.toLowerCase().includes(props.searchbarContent)
+                    `${a.firstName} ${a.lastName}`
+                        .toLowerCase()
+                        .includes(props.searchbarContent)
                 )
                 .map((profile, index) => (
                     <ListItem title='' key={index}>

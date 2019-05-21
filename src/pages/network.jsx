@@ -99,6 +99,7 @@ class Network extends React.Component {
     // with the given id, or an accept has been sent. This updates the users
     // connection status, and moves them to the appropriate list.
     // It is used for rerendering the list.
+    // TODO: Implement for deny as well.
     handleContactRequest(id, status) {
         this.setState(state => {
             //TODO: Remove when fetching real data

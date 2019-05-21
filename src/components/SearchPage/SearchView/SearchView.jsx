@@ -14,9 +14,9 @@ export default class extends React.Component {
     }
 
     handleChange(e) {
-        //TODO: Implement proper search from DB
         const value = e.target.value.toLowerCase();
         this.setState({ searchbarContent: value });
+        this.props.search(value);
     }
 
     render() {

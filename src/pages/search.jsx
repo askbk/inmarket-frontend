@@ -15,6 +15,7 @@ class Search extends React.Component {
         };
 
         this.handleContactRequest = this.handleContactRequest.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentDidMount() {
@@ -38,7 +39,8 @@ class Search extends React.Component {
 
     // Called after a contact request has been successfully sent to the user
     // with the given id, or an accept has been sent. This updates the users
-    //connection status, and is used for rerendering the list.
+    // connection status, and is used for rerendering the list.
+    // TODO: Implement appropriate actions for denying requests.
     handleContactRequest(id, status) {
         this.setState(state => {
             for (let i = 0; i < state.data.length; i++) {
@@ -54,6 +56,30 @@ class Search extends React.Component {
         });
     }
 
+    handleSearch(value) {
+        // If no search value, fetch the initial recommended users
+        if (value === '') {
+            this.componentDidMount();
+        } else {
+            fetch(`http://localhost/api/users?search=${value}`, {
+                method: 'get',
+                headers: {
+                    authorization: localStorage.jwt
+                }
+            })
+                .then(res => {
+                    return res.json();
+                })
+                .then(profiles => {
+                    if (profiles.success)
+                        this.setState({ data: profiles.data });
+                    else {
+                        console.error(profiles.message);
+                    }
+                });
+        }
+    }
+
     render() {
         return (
             <Page>
@@ -61,6 +87,7 @@ class Search extends React.Component {
                 <SearchView
                     profiles={this.state.data}
                     contactRequest={this.handleContactRequest}
+                    search={this.handleSearch}
                 />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
