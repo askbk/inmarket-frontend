@@ -27,6 +27,7 @@ export default class extends React.Component {
                     <Buttons
                         userId={this.props.userId}
                         connectionStatus={this.props.connectionStatus}
+                        contactRequest={this.props.contactRequest}
                     />
                 </div>
             </div>

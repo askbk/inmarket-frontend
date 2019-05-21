@@ -16,7 +16,7 @@ const testProfiles = [
         birthDate: '1997-10-11',
         role: 'Konsulent',
         name: 'Junior Consulting',
-        connectionStatus: 'noContact'
+        connectionStatus: 'contact'
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const testProfiles = [
         birthDate: '1996-09-01',
         role: 'Konsulent',
         name: 'Junior Consulting',
-        connectionStatus: 'noContact'
+        connectionStatus: 'requested'
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const testProfiles = [
         birthDate: '1988-12-12',
         role: 'Konsulent',
         name: 'Kjip Consulting',
-        connectionStatus: 'contact'
+        connectionStatus: 'request'
     },
     {
         id: 4,
@@ -52,7 +52,7 @@ const testProfiles = [
         birthDate: '1997-09-08',
         role: 'Teknologidirektør',
         name: 'Inmarket AS',
-        connectionStatus: 'requested'
+        connectionStatus: 'request'
     }
 ];
 
@@ -60,9 +60,12 @@ class Network extends React.Component {
     constructor() {
         super();
         this.state = {
+            //TODO: Remove placeholder
+            testProfiles: testProfiles,
             pendingRequests: [],
             networkUsers: []
         };
+        this.handleContactRequest = this.handleContactRequest.bind(this);
     }
 
     componentDidMount() {
@@ -92,16 +95,45 @@ class Network extends React.Component {
             });
     }
 
+    // Called after a contact request has been successfully sent to the user
+    // with the given id, or an accept has been sent. This updates the users
+    // connection status, and moves them to the appropriate list.
+    // It is used for rerendering the list.
+    handleContactRequest(id, status) {
+        this.setState(state => {
+            //TODO: Remove when fetching real data
+            for (let i = 0; i < state.testProfiles.length; i++) {
+                if (state.testProfiles[i].id === id) {
+                    state.testProfiles[i].connectionStatus = status;
+                    break;
+                }
+            }
+            for (let i = 0; i < state.pendingRequests.length; i++) {
+                if (state.pendingRequests[i].id === id) {
+                    state.pendingRequests[i].connectionStatus = status;
+                    state.networkUsers.push(state.pendingRequests[i]);
+                    state.pendingRequests.splice(i, 1);
+                    break;
+                }
+            }
+            return {
+                ...state
+            };
+        });
+    }
+
     render() {
         //TODO: These should be rewritten when using real data
         const pendingRequests = this.state.pendingRequests.success
             ? this.state.pendingRequests
-            : testProfiles.filter(u =>
+            : this.state.testProfiles.filter(u =>
                   ['request', 'requested'].includes(u.connectionStatus)
               );
         const networkUsers = this.state.networkUsers.success
             ? this.state.networkUsers
-            : testProfiles.filter(u => u.connectionStatus === 'contact');
+            : this.state.testProfiles.filter(
+                  u => u.connectionStatus === 'contact'
+              );
 
         return (
             <Page>
@@ -109,6 +141,7 @@ class Network extends React.Component {
                 <NetworkView
                     pendingRequests={pendingRequests}
                     networkUsers={networkUsers}
+                    contactRequest={this.handleContactRequest}
                 />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link

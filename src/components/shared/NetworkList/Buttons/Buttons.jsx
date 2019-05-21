@@ -32,6 +32,10 @@ export default class extends React.Component {
             this.setState(state => {
                 return { ...state, requestSent: 'requested' };
             });
+
+            setTimeout(() => {
+                this.props.contactRequest(this.props.userId, 'requested');
+            }, 400);
         } else {
             console.error(res.message);
         }
@@ -56,6 +60,9 @@ export default class extends React.Component {
                     requestSent: 'contact'
                 };
             });
+            setTimeout(() => {
+                this.props.contactRequest(this.props.userId, 'contact');
+            }, 400);
         } else {
             console.error(res.message);
         }

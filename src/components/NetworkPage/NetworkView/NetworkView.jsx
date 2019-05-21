@@ -28,6 +28,7 @@ export default class extends React.Component {
                     <NetworkList
                         profiles={this.props.pendingRequests}
                         searchbarContent={''}
+                        contactRequest={this.props.contactRequest}
                     />
                     <BlockTitle medium className='networkTitle'>
                         Ditt nettverk

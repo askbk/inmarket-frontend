@@ -35,6 +35,7 @@ export default class extends React.Component {
                     <NetworkList
                         profiles={this.props.profiles}
                         searchbarContent={this.state.searchbarContent}
+                        contactRequest={this.props.contactRequest}
                     />
                 </div>
             </div>

@@ -42,6 +42,7 @@ const NetworkList = props => (
                                         : statuses[index] /*TODO*/
                                 }
                                 profilePic={ProfilePic /*TODO*/}
+                                contactRequest={props.contactRequest}
                             />
                         </div>
                     </ListItem>
