@@ -1,7 +1,7 @@
 
 import HomePage from '../pages/home.jsx';
 import AboutPage from '../pages/about.jsx';
-import FormPage from '../pages/form.jsx';
+import SettingsPage from '../pages/settings.jsx';
 import NetworkPage from '../pages/network.jsx';
 import LoginPage from '../pages/login.jsx';
 import RegisterPage from '../pages/register.jsx';
@@ -16,6 +16,7 @@ import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
+import FormPage from '../pages/form.jsx';
 
 var routes = [
   {
@@ -39,8 +40,8 @@ var routes = [
     component: AboutPage,
   },
   {
-    path: '/form/',
-    component: FormPage,
+    path: '/settings/',
+    component: SettingsPage,
   },
   {
     path: '/nettverk/',
@@ -73,6 +74,10 @@ var routes = [
   {
     path: '/conversations/:chatId',
     component: ChatPage,
+  },
+  {
+    path: '/form/',
+    component: FormPage,
   },
   {
     path: '/request-and-load/user/:userId/',

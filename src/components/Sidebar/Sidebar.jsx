@@ -20,7 +20,7 @@ const Sidebar = () => (
                 {/* Must implement settings tab and insert here */}
                 <ListItem
                     panelClose='right'
-                    link='/form/'
+                    link='/settings/'
                     title='INNSTILLINGER'
                     media={Settings}
                 />
