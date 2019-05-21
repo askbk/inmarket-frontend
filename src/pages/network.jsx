@@ -92,16 +92,14 @@ class Network extends React.Component {
 
     render() {
         //TODO: These should be rewritten when using real data
-        const pendingRequests =
-            this.state.pendingRequests.success === 'true'
-                ? this.state.pendingRequests
-                : testProfiles.filter(u =>
-                      ['request', 'requested'].includes(u.connectionStatus)
-                  );
-        const networkUsers =
-            this.state.networkUsers.success === 'true'
-                ? this.state.networkUsers
-                : testProfiles.filter(u => u.connectionStatus === 'contact');
+        const pendingRequests = this.state.pendingRequests.success
+            ? this.state.pendingRequests
+            : testProfiles.filter(u =>
+                  ['request', 'requested'].includes(u.connectionStatus)
+              );
+        const networkUsers = this.state.networkUsers.success
+            ? this.state.networkUsers
+            : testProfiles.filter(u => u.connectionStatus === 'contact');
 
         return (
             <Page>

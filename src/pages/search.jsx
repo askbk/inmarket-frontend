@@ -87,8 +87,9 @@ class Search extends React.Component {
     }
 
     render() {
-        const profiles =
-            this.state.data.success === 'true' ? this.state.data : testProfiles;
+        const profiles = this.state.data.success
+            ? this.state.data
+            : testProfiles;
 
         return (
             <Page>
