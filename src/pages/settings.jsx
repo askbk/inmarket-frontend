@@ -24,6 +24,11 @@ import '../css/toolbar.css';
 class Settings extends React.Component {
     constructor() {
         super();
+        this.state = {
+            currentPassword: "",
+            newEmail: "",
+            newPassword: ""
+        }
     }
     render() {
         return (
@@ -32,17 +37,45 @@ class Settings extends React.Component {
 
                 <BlockTitle>Oppdater instillinger</BlockTitle>
                 <List form>
-                    <ListInput label='Gammelt passord' type='password' placeholder='Gammelt passord' />
+                    <ListInput
+                        label='Gammelt passord'
+                        type='password'
+                        placeholder='Gammelt passord'
+                        value={this.state.currentPassword}
+                        onInput={e => {
+                            this.setState({ currentPassword: e.target.value });
+                        }}
+                    />
                 </List>
                 <List form>
-                    <ListInput label='Ny epostadresse' type='email' placeholder='Epostadresse' />
-                    <ListInput label='Ny passord' type='password' placeholder='Passord' />
+                    <ListInput
+                        label='Ny epostadresse'
+                        type='email'
+                        placeholder='Epostadresse'
+                        value={this.state.newEmail}
+                        onInput={e => {
+                            this.setState({ newEmail: e.target.value });
+                        }}
+                    />
+                    <ListInput
+                        label='Ny passord'
+                        type='password'
+                        placeholder='Passord'
+                        value={this.state.newPassword}
+                        onInput={e => {
+                            this.setState({ newPassword: e.target.value });
+                        }}
+                    />
                 </List>
-                <Button>
+                <Button onClick={this.updateSettings.bind(this)}>
                     Lagre innstillinger
                 </Button>
             </Page>
         );
+    }
+
+    updateSettings(){
+        console.log(this)
     }
 }
 
