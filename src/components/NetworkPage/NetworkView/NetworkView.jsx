@@ -27,7 +27,6 @@ export default class extends React.Component {
                     </BlockTitle>
                     <NetworkList
                         profiles={this.props.pendingRequests}
-                        searchbarContent={''}
                         contactRequest={this.props.contactRequest}
                     />
                     <BlockTitle medium className='networkTitle'>
@@ -39,8 +38,11 @@ export default class extends React.Component {
                         placeholder={'Søk i nettverket ditt'}
                     />
                     <NetworkList
-                        profiles={this.props.networkUsers}
-                        searchbarContent={this.state.searchbarContent}
+                        profiles={this.props.networkUsers.filter(a =>
+                            `${a.firstName} ${a.lastName}`
+                                .toLowerCase()
+                                .includes(this.state.searchbarContent)
+                        )}
                     />
                 </div>
             </div>

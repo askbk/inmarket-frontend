@@ -10,26 +10,49 @@ export default class extends React.Component {
     }
 
     getAge(birth) {
-        const birthdate = new Date(birth);
+        if (!birth) {
+            return null;
+        }
+        const birthDate = new Date(birth);
         const now = new Date(Date.now());
         return parseInt(
-            (now.getTime() - birthdate.getTime()) / (1000 * 60 * 60 * 24 * 365)
+            (now.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 365)
         );
     }
 
+    getWorkInfo(role, workplace) {
+        const roleString = role ? role : '';
+        const separator = role && workplace ? ', ' : '';
+        const workplaceString = workplace ? workplace : '';
+        return roleString + separator + workplaceString;
+    }
+
+    getBasicInfo(name, birth) {
+        const nameString = name ? name : '';
+        const separator = name && birth ? ', ' : '';
+        const ageString = birth ? this.getAge(birth).toString() : '';
+        return nameString + separator + ageString;
+    }
+
     render() {
-        const age = this.getAge(this.props.birth).toString();
-        const basic_info = this.props.name + ', ' + age;
-        const work_info = this.props.role + ', ' + this.props.workplace;
+        const basicInfo = this.getBasicInfo(this.props.name, this.props.birth);
+        const workInfo = this.getWorkInfo(
+            this.props.role,
+            this.props.workplace
+        );
 
         return (
             <div className='profileTextInformationNetworkContainer'>
-                <div className='profileTextInformationNetworkName'>
-                    <p>{basic_info}</p>
-                </div>
-                <div className='profileTextInformationNetworkInstitution'>
-                    <p>{work_info}</p>
-                </div>
+                {basicInfo ? (
+                    <div className='profileTextInformationNetworkName'>
+                        <p>{basicInfo}</p>
+                    </div>
+                ) : null}
+                {workInfo ? (
+                    <div className='profileTextInformationNetworkInstitution'>
+                        <p>{workInfo}</p>
+                    </div>
+                ) : null}
                 <div className='profileTextInformationNetworkProgressContainer'>
                     <StarRatings
                         starDimension='20px'
