@@ -43,7 +43,7 @@ export default class extends React.Component {
 
     async sendContactRequestAccept() {
         const response = await fetch(
-            `http://localhost/api/users/${this.props.userId}/contact/`,
+            `http://localhost/api/users/${this.props.userId}/contact/accept`,
             {
                 method: 'post',
                 headers: {
