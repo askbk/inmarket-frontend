@@ -76,6 +76,20 @@ class Settings extends React.Component {
 
     updateSettings(){
         console.log(this)
+        let body = {}
+        //Check if one of them is empty
+        if(this.state.currentPassword != ""){
+
+            body.password = this.state.currentPassword
+            if(this.state.newEmail != ""){
+                body.newEmail = this.state.newEmail
+            }
+            if(this.state.newPassword != ""){
+                body.newPassword = this.state.newPassword
+            }
+
+            console.log(body)
+        }
     }
 }
 
