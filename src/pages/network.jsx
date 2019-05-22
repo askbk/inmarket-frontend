@@ -69,26 +69,37 @@ class Network extends React.Component {
     }
 
     componentDidMount() {
-        //TODO: Fetch just my connections
-        fetch('http://localhost/api/users')
+        const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+        // Fetch just my connections
+        fetch(`http://localhost/api/users/${userId}/contacts`, {
+            method: 'get',
+            headers: {
+                authorization: localStorage.jwt
+            }
+        })
             .then(res => {
                 return res.json();
             })
             .then(users => {
                 if (users.success) {
-                    this.setState({ pendingRequests: users.data });
+                    this.setState({ networkUsers: users });
                 } else {
                     console.error(users.message);
                 }
             });
-        //TODO: Fetch just pending connections
-        fetch('http://localhost/api/users')
+        // Fetch just pending connections
+        fetch(`http://localhost/api/users/${userId}/contacts/requests`, {
+            method: 'get',
+            headers: {
+                authorization: localStorage.jwt
+            }
+        })
             .then(res => {
                 return res.json();
             })
             .then(users => {
                 if (users.success) {
-                    this.setState({ networkUsers: users.data });
+                    this.setState({ pendingRequests: users });
                 } else {
                     console.error(users.message);
                 }
@@ -99,20 +110,24 @@ class Network extends React.Component {
     // with the given id, or an accept has been sent. This updates the users
     // connection status, and moves them to the appropriate list.
     // It is used for rerendering the list.
-    // TODO: Implement for deny as well.
     handleContactRequest(id, status) {
         this.setState(state => {
-            //TODO: Remove when fetching real data
+            //TODO: Remove placeholder logic when fetching real data
             for (let i = 0; i < state.testProfiles.length; i++) {
                 if (state.testProfiles[i].id === id) {
                     state.testProfiles[i].connectionStatus = status;
+                    if (status === 'noContact') {
+                        state.testProfiles.splice(i, 1);
+                    }
                     break;
                 }
             }
             for (let i = 0; i < state.pendingRequests.length; i++) {
                 if (state.pendingRequests[i].id === id) {
                     state.pendingRequests[i].connectionStatus = status;
-                    state.networkUsers.push(state.pendingRequests[i]);
+                    if (status === 'contact') {
+                        state.networkUsers.push(state.pendingRequests[i]);
+                    }
                     state.pendingRequests.splice(i, 1);
                     break;
                 }
@@ -126,12 +141,12 @@ class Network extends React.Component {
     render() {
         //TODO: These should be rewritten when using real data
         const pendingRequests = this.state.pendingRequests.success
-            ? this.state.pendingRequests
+            ? this.state.pendingRequests.data
             : this.state.testProfiles.filter(u =>
                   ['request', 'requested'].includes(u.connectionStatus)
               );
         const networkUsers = this.state.networkUsers.success
-            ? this.state.networkUsers
+            ? this.state.networkUsers.data
             : this.state.testProfiles.filter(
                   u => u.connectionStatus === 'contact'
               );

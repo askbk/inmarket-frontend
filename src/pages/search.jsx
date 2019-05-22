@@ -40,7 +40,6 @@ class Search extends React.Component {
     // Called after a contact request has been successfully sent to the user
     // with the given id, or an accept has been sent. This updates the users
     // connection status, and is used for rerendering the list.
-    // TODO: Implement appropriate actions for denying requests.
     handleContactRequest(id, status) {
         this.setState(state => {
             for (let i = 0; i < state.data.length; i++) {

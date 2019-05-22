@@ -69,8 +69,30 @@ export default class extends React.Component {
     }
 
     async sendContactRequestDeny() {
-        //TODO
-        return;
+        const response = await fetch(
+            `http://localhost/api/users/${this.props.userId}/contact/decline`,
+            {
+                method: 'post',
+                headers: {
+                    authorization: localStorage.jwt
+                }
+            }
+        );
+
+        const res = await response.json();
+        if (res.success) {
+            this.setState(state => {
+                return {
+                    ...state,
+                    requestSent: 'noContact'
+                };
+            });
+            setTimeout(() => {
+                this.props.contactRequest(this.props.userId, 'noContact');
+            }, 400);
+        } else {
+            console.error(res.message);
+        }
     }
 
     getButtons(status) {
