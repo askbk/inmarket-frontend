@@ -21,7 +21,7 @@ export default class extends React.Component {
                     name={this.props.name}
                     birth={this.props.birth}
                     role={this.props.role}
-                    workplace={this.props.workplace}
+                    location={this.props.location}
                     rating={this.props.rating}
                 />
             </div>

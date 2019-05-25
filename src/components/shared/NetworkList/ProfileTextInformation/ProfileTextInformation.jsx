@@ -38,7 +38,7 @@ export default class extends React.Component {
         const basicInfo = this.getBasicInfo(this.props.name, this.props.birth);
         const workInfo = this.getWorkInfo(
             this.props.role,
-            this.props.workplace
+            this.props.location
         );
 
         return (

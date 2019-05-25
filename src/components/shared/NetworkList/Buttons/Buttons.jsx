@@ -30,11 +30,11 @@ export default class extends React.Component {
         const res = await response.json();
         if (res.success) {
             this.setState(state => {
-                return { ...state, requestSent: 'requested' };
+                return { ...state, requestSent: 'requestSent' };
             });
 
             setTimeout(() => {
-                this.props.contactRequest(this.props.userId, 'requested');
+                this.props.contactRequest(this.props.userId, 'requestSent');
             }, 400);
         } else {
             console.error(res.message);
@@ -109,7 +109,7 @@ export default class extends React.Component {
                     </Button>
                 );
                 break;
-            case 'request':
+            case 'requestReceived':
                 return (
                     <div>
                         <Button
@@ -145,7 +145,7 @@ export default class extends React.Component {
                     </div>
                 );
                 break;
-            case 'requested':
+            case 'requestSent':
                 return (
                     <Button small className='networkViewButton' disabled>
                         Sendt
