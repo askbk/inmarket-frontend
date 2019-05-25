@@ -107,7 +107,7 @@ class Register extends React.Component {
 
         console.log(user);
 
-        fetch('http://localhost:5000/api/users', {
+        fetch('http://localhost/api/users', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {

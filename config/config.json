@@ -1,0 +1,26 @@
+{
+  "development": {
+    "config_id": "development",
+    "port": 80,
+    "db_domain_name": "localhost",
+    "db_top_level_domain" : null
+  },
+  "testing": {
+    "config_id": "testing",
+    "port": 80,
+    "db_domain_name": "localhost",
+    "db_top_level_domain" : ""
+  },
+  "staging": {
+    "config_id": "staging",
+    "port": 80,
+    "db_domain_name": "localhost",
+    "db_top_level_domain" : ""
+  },
+  "production": {
+    "config_id": "production",
+    "port": 80,
+    "db_domain_name": "app.inmarket",
+    "db_top_level_domain" : "com"
+  }
+}

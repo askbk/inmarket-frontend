@@ -22,42 +22,6 @@ export default class extends React.Component {
                     address: 'Wessels Gate 20A',
                     state: ''
                 },
-                {
-                    id:2,
-                    header: 'Inmarket - Prosjekt',
-                    informationText: '',
-                    start_date: '2019-05-12',
-                    end_date: '2019-06-14',
-                    start_time: '11:30:00',
-                    end_time: '14:05:00',
-                    frequency: [true, false, true, true, true],
-                    address: 'Wessels Gate 20A',
-                    state: 'accepted'
-                },
-                {
-                    id:3,
-                    header: 'Inmarket - Hospitering',
-                    informationText: 'Vi ser veldig frem til å ha deg her.',
-                    start_date: '2019-04-11',
-                    end_date: '2019-06-12',
-                    start_time: '11:30:00',
-                    end_time: '14:05:00',
-                    frequency: [true, false, true, true, true],
-                    address: 'Wessels Gate 20A',
-                    state: ''
-                },
-                {
-                    id:4,
-                    header: 'Inmarket - Annet',
-                    informationText: '',
-                    start_date: '2019-04-11',
-                    end_date: '2019-06-15',
-                    start_time: '14:30:00',
-                    end_time: '14:05:00',
-                    frequency: [true, false, true, false, false],
-                    address: 'Wessels Gate 20A',
-                    state: 'cancelled'
-                }
             ]
         };
     }
@@ -72,9 +36,6 @@ export default class extends React.Component {
         return (
             <div className='conversationsActivitiesViewContainer'>
                 <div className='conversationsActivitiesViewInnerContainer'>
-                    <div className='conversationsActivitiesViewSearchbarContainer'>
-                        <Searchbar onChange={this.handleChange.bind(this)} />
-                    </div>
                     <List
                         noHairlines
                         noHairlinesBetween

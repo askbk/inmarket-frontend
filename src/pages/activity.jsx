@@ -10,46 +10,24 @@ import {
     Toolbar,
     Link
 } from 'framework7-react';
+import ActivitiesView from '../components/Activity/ActivitiesView/ActivitiesView.jsx';
+import ActivitiesInstance from '../components/Activity/ActivitiesInstance/ActivitiesInstance.jsx';
 
-import NetworkView from '../components/network/NetworkView/NetworkView.jsx';
 import Header from '../components/Header/Header.jsx';
 
 import '../css/toolbar.css';
 
-class Network extends React.Component {
+class Activities extends React.Component {
     constructor() {
         super();
-        this.state = {
-            data: []
-        };
-    }
-
-    componentDidMount() {
-        fetch('http://localhost/api/users')
-            .then(res => {
-                return res.json();
-            })
-            .then(users => {
-                this.setState({ data: users.data });
-            });
     }
 
     render() {
-        let networkList;
-        if (this.state.data) {
-            networkList = this.state.data.map(user => (
-                <ListItem title={user.first_name} key={user.id.toString()} />
-            ));
-        } else {
-            networkList = <ListItem title='no people here' />;
-        }
-
         return (
-            <Page>
-                <Header backLink title='Nettverk' />
-                <NetworkView />
-                <BlockTitle strong>Ditt nettverk</BlockTitle>
-                <List>{networkList}</List>
+            <Page className='theme-dark'>
+                <Header backLink title='Activities' />
+                <ActivitiesView />
+
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
@@ -58,12 +36,12 @@ class Network extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        tabLinkActive
                         href='/nettverk/'
                         iconF7='search'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
+                        tabLinkActive
                         href='/activities/'
                         iconF7='email'
                     />
@@ -73,9 +51,10 @@ class Network extends React.Component {
                         iconF7='person_round'
                     />
                 </Toolbar>
+
             </Page>
         );
     }
 }
 
-export default Network;
+export default Activities;

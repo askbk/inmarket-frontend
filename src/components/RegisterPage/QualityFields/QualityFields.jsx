@@ -27,7 +27,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/qualities')
+        fetch('http://localhost/api/qualities')
             .then(res => {
                 return res.json();
             })

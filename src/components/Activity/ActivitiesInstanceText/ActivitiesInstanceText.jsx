@@ -83,7 +83,6 @@ export default class extends React.Component {
         }
 
         return (
-            <Link href={"/activities/" + this.props.id}>
             <Block
                 strong
                 inset
@@ -105,7 +104,6 @@ export default class extends React.Component {
                     </div>
                 </div>
             </Block>
-            </Link>
         );
     }
 }
