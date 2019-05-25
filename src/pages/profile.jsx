@@ -29,7 +29,7 @@ class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      profileText:
+      profileDescription:
           'Jeg er tidligere finalist i Norsk Informatikkolympiade, tar mastergrad i datateknologi ved NTNU, og har hovedansvaret for utvikling av InMarkets nettsider og app.',
       skills: [
         { text: 'Hacking', rating: 4.1 },
@@ -42,7 +42,7 @@ class Profile extends React.Component {
       currentForm: '',
       firstName: 'Ask',
       lastName: 'Kolltveit',
-      birthday: '1997-01-01',
+      birthDate: '1997-01-01',
       role: 'Teknologidirektør',
       institution: 'Inmarket AS',
       formerEmployers: ''
@@ -52,15 +52,14 @@ class Profile extends React.Component {
 
   componentDidMount() {
     let id = this.$f7route.params.id;
-    if (id === "") {
-
-      id = "me";
-    }
-    if(id === "me"){
+    if(id === "me" || id === ""){
       id = (JSON.parse(atob(localStorage.jwt.split(".")[1]))).sub;
     }
 
-      fetch(`http://localhost/api/users/${id}`, {headers:{ authorization:localStorage.jwt}})
+    const url = gConfig.url + "/users/" + id;
+    console.log(url);
+
+      fetch(url, {headers:{ authorization:localStorage.jwt}})
         .then(res => {
           return res.json();
         })
@@ -72,25 +71,25 @@ class Profile extends React.Component {
 
   setInitialData(data){
       this.setState(
-          {profileText:data.profileDescription,
-
-
+          {profileDescription:data.profileDescription,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              role: data.employee.role,
+              institution: data.employee.company ? data.employee.company : '',
           }
-
-
           );
   }
 
   handleChange(data, information_type) {
     if (information_type === 'BIO') {
-      this.setState({ profileText: data });
+      this.setState({ profileDescription: data });
     } else if (information_type === 'First Name') {
       this.setState({ firstName: data });
     } else if (information_type === 'Last Name') {
       this.setState({ lastName: data });
     } else if (information_type === 'Birthday') {
       const date = new Date(data);
-      this.setState({ birthday: date });
+      this.setState({ birthDate: date });
     } else if (information_type === 'Role') {
       this.setState({ role: data });
     } else if (information_type === 'Institution') {
@@ -126,7 +125,7 @@ class Profile extends React.Component {
 
   render() {
     const {
-      profileText,
+      profileDescription,
       rating,
       skills,
       activeSkills,
@@ -134,19 +133,13 @@ class Profile extends React.Component {
       currentForm,
       firstName,
       lastName,
-      birthday,
+      birthDate,
       role,
       institution,
       formerEmployers
     } = this.state;
-/*
-    let user = this.state.user;
-    if(!user){
-      return null;
-    }
 
 
-    console.log(user);*/
     const isCurrentUser = true;
 
     let profilePageHeader = (
@@ -154,7 +147,7 @@ class Profile extends React.Component {
           <ProfilePageHeader
               firstName={firstName}
               lastName={lastName}
-              birthday={birthday}
+              birthday={birthDate}
               rating={rating}
               role={role}
               institution={institution}
@@ -164,7 +157,7 @@ class Profile extends React.Component {
     );
 
     let profileInformation = (
-        <ProfileInformation>{user.profileDescription}</ProfileInformation>
+        <ProfileInformation>{profileDescription}</ProfileInformation>
     );
 
     let profileSkills = (
@@ -226,7 +219,7 @@ class Profile extends React.Component {
               onChange={this.handleChange.bind(this)}
               firstName={firstName}
               lastName={lastName}
-              birthday={birthday}
+              birthday={birthDate}
               role={role}
               institution={institution}
               formerEmployers={formerEmployers}
@@ -236,7 +229,7 @@ class Profile extends React.Component {
       form = (
           <BioForm
               onChange={this.handleChange.bind(this)}
-              bio={profileText}
+              bio={profileDescription}
           />
       );
     } else {
@@ -262,7 +255,8 @@ class Profile extends React.Component {
               */}
           </Row>
           {profileInformation}
-          {profileSkills}
+            {/*
+          {profileSkills} */}
           <Toolbar className='bottomToolbar' tabbar labels bottom>
             <Link
                 className='bottomToolbarLink toolbarIcon'
