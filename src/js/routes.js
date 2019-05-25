@@ -94,6 +94,43 @@ var routes = [
             app.preloader.show();
 
             // User ID from request
+            let id = routeTo.params.userId;
+
+            fetch(`http://localhost/api/users/${id}`, {headers:{ authorization:localStorage.jwt}})
+                .then(res => {
+                    return res.json();
+                })
+                .then(user => {
+                    // Hide Preloader
+                    app.preloader.hide();
+
+                    // Resolve route to load page
+                    resolve(
+                        {
+                            component: Profile
+                        },
+                        {
+                            context: {
+                                user: user
+                            }
+                        }
+                    );
+                });
+        }
+    },
+    {
+        path: '/request-and-load/user/:userId/',
+        async: function(routeTo, routeFrom, resolve, reject) {
+            // Router instance
+            var router = this;
+
+            // App instance
+            var app = router.app;
+
+            // Show Preloader
+            app.preloader.show();
+
+            // User ID from request
             var userId = routeTo.params.userId;
 
             // Simulate Ajax Request
