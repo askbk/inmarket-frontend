@@ -53,16 +53,32 @@ class Profile extends React.Component {
   componentDidMount() {
     let id = this.$f7route.params.id;
     if (id === "") {
+
       id = "me";
     }
-    fetch(`http://localhost/api/users/${id}`, {headers:{ authorization:localStorage.jwt}})
+    if(id === "me"){
+      id = (JSON.parse(atob(localStorage.jwt.split(".")[1]))).sub;
+    }
+
+      fetch(`http://localhost/api/users/${id}`, {headers:{ authorization:localStorage.jwt}})
         .then(res => {
           return res.json();
         })
         .then(user => {
-          this.setState({ user: user });
-          console.log(this.state.user);
+            this.setInitialData(user.data);
+            console.log(user.data);
         });
+  }
+
+  setInitialData(data){
+      this.setState(
+          {profileText:data.profileDescription,
+
+
+          }
+
+
+          );
   }
 
   handleChange(data, information_type) {
@@ -123,22 +139,22 @@ class Profile extends React.Component {
       institution,
       formerEmployers
     } = this.state;
-
+/*
     let user = this.state.user;
     if(!user){
       return null;
     }
 
 
-    console.log(user);
+    console.log(user);*/
     const isCurrentUser = true;
 
     let profilePageHeader = (
         <div>
           <ProfilePageHeader
-              firstName={user.firstName}
-              lastName={user.lastName}
-              birthday={user.birthday}
+              firstName={firstName}
+              lastName={lastName}
+              birthday={birthday}
               rating={rating}
               role={role}
               institution={institution}
@@ -240,8 +256,10 @@ class Profile extends React.Component {
           <Header backLink title='Profil' />
           {profilePageHeader}
           <Row className='profilePageButtonContainer'>
+              {/*
             <Button>SE LOGG</Button>
             <Button>SE ANSATTE</Button>
+              */}
           </Row>
           {profileInformation}
           {profileSkills}
