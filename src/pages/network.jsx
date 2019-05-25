@@ -88,7 +88,7 @@ class Network extends React.Component {
                 }
             });
         // Fetch just pending connections
-        fetch(`http://localhost/api/users/${userId}/contacts/requests`, {
+        fetch(`http://localhost/api/users/${userId}/contact/requests`, {
             method: 'get',
             headers: {
                 authorization: localStorage.jwt
@@ -140,16 +140,20 @@ class Network extends React.Component {
 
     render() {
         //TODO: These should be rewritten when using real data
+        // const pendingRequests = this.state.pendingRequests.success
+        //     ? this.state.pendingRequests.data
+        //     : this.state.testProfiles.filter(u =>
+        //           ['requestReceived', 'requestSent'].includes(u.connectionStatus)
+        //       );
+        // const networkUsers = this.state.networkUsers.success
+        //     ? this.state.networkUsers.data
+        //     : this.state.testProfiles.filter(
+        //           u => u.connectionStatus === 'contact'
+        //       );
         const pendingRequests = this.state.pendingRequests.success
-            ? this.state.pendingRequests.data
-            : this.state.testProfiles.filter(u =>
-                  ['request', 'requested'].includes(u.connectionStatus)
-              );
+            ? this.state.pendingRequests.data : [];
         const networkUsers = this.state.networkUsers.success
-            ? this.state.networkUsers.data
-            : this.state.testProfiles.filter(
-                  u => u.connectionStatus === 'contact'
-              );
+            ? this.state.networkUsers.data : [];
 
         return (
             <Page>
