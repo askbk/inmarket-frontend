@@ -13,73 +13,80 @@ import {
 } from 'framework7-react';
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
-import InterestsFields from '../InterestsFields/InterestsFields.jsx';
 import BasisInformationInput from '../BasisInformationInput/BasisInformationInput.jsx';
 
 export default class extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
-            <Tab id="tab-company" labels className="">
-
+            <Tab id='tab-company' labels className=''>
                 <Block>
                     <h1>Hello</h1>
-                    <p>Engasjer folk i arbeidet dere gjør og øk samtidig sjansen for å finne de beste ansatte for din bedrift.​</p>
+                    <p>
+                        Engasjer folk i arbeidet dere gjør og øk samtidig
+                        sjansen for å finne de beste ansatte for din bedrift.​
+                    </p>
                 </Block>
 
                 <Tabs>
-
-                    <Tab id="tab-company-basis" tabActive>
+                    <Tab id='tab-company-basis' tabActive>
                         <List form>
-                            <ListInput
-                                label="Bedriftens navn"
-                                type="text"
-                                name="company"
-                                placeholder=""
-                            ></ListInput>
+                            {/* wrap inputs in fragment to remove ul parent element */}
+                            <React.Fragment>
+                                <ListInput
+                                    label='Bedriftens navn'
+                                    type='text'
+                                    name='name'
+                                    placeholder=''
+                                    onChange={this.props.onInputChange}
+                                />
 
-                            <ListInput
-                                label="Bedriftens organisasjonsnummer"
-                                type="text"
-                                name="org"
-                                placeholder=""
-                            ></ListInput>
+                                <ListInput
+                                    label='Bedriftens organisasjonsnummer'
+                                    type='text'
+                                    name='orgNumber'
+                                    placeholder=''
+                                    onChange={this.props.onInputChange}
+                                />
+
+                                <ListInput
+                                    label='Kode'
+                                    type='text'
+                                    name='registrationCode'
+                                    placeholder='Hvis bedriften din har en kode, oppgi den her'
+                                    onChange={this.props.onInputChange}
+                                />
+
+                                <ListInput
+                                    label='Bedriftens nettside'
+                                    type='url'
+                                    name='webpage'
+                                    placeholder='(valgfritt)'
+                                    onChange={this.props.onInputChange}
+                                />
+                            </React.Fragment>
                         </List>
 
                         <Block>
-                            <InterestsFields />
-                        </Block>
-
-                        <Block>
-                            <Button raised fill large tabLink="#tab-company-extra">Neste</Button>
+                            <Button
+                                raised
+                                fill
+                                large
+                                tabLink='#tab-company-extra'
+                            >
+                                Neste
+                            </Button>
                         </Block>
                     </Tab>
 
-                    <Tab id="tab-company-extra">
+                    <Tab id='tab-company-extra'>
                         <List form>
-                            <BasisInformationInput />
-
-                            <ListInput
-                                label="Stilling"
-                                type="text"
-                                name="position"
-                                placeholder=""
-                            ></ListInput>
-
-                            <ListInput
-                                label="Kode"
-                                type="text"
-                                placeholder=""
-                            ></ListInput>
-
-                            <ListInput
-                                label="Bedriftens nettside"
-                                type="url"
-                                placeholder="(valgfritt)"
-                            ></ListInput>
+                            <BasisInformationInput
+                                onInputChange={this.props.onInputChange}
+                            />
                         </List>
 
                         <Block>
@@ -88,17 +95,32 @@ export default class extends React.Component {
 
                         <Block>
                             <Row>
-                                <Col width="50">
-                                    <Button raised fill large tabLink="#tab-company-basis">Tilbake</Button>
+                                <Col width='50'>
+                                    <Button
+                                        raised
+                                        fill
+                                        large
+                                        tabLink='#tab-company-basis'
+                                    >
+                                        Tilbake
+                                    </Button>
                                 </Col>
-                                <Col width="50">
-                                    <Button raised fill large>Registrer</Button>
+                                <Col width='50'>
+                                    <Button
+                                        raised
+                                        fill
+                                        large
+                                        onClick={this.props.onRegisterClick}
+                                        id='companyRegisterButton'
+                                    >
+                                        Registrer
+                                    </Button>
                                 </Col>
                             </Row>
                         </Block>
                     </Tab>
                 </Tabs>
             </Tab>
-        )
+        );
     }
 }

@@ -1,33 +1,33 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
 import {
-  Page,
-  Navbar,
-  List,
-  ListInput,
-  ListItem,
-  ListButton,
-  Toggle,
-  BlockTitle,
-  Row,
-  Button,
-  Range,
-  Block,
-  BlockHeader,
-  View,
-  Card,
-  CardHeader,
-  CardFooter,
-  CardContent,
-  Col,
-  Views,
-  Tabs,
-  Tab,
-  Toolbar,
-  Link
+    Page,
+    Navbar,
+    List,
+    ListInput,
+    ListItem,
+    ListButton,
+    Toggle,
+    BlockTitle,
+    Row,
+    Button,
+    Range,
+    Block,
+    BlockHeader,
+    View,
+    Card,
+    CardHeader,
+    CardFooter,
+    CardContent,
+    Col,
+    Views,
+    Tabs,
+    Tab,
+    Toolbar,
+    Link
 } from 'framework7-react';
 
-import Header from '../components/Header/Header.jsx'
+import Header from '../components/Header/Header.jsx';
 import RegisterUser from '../components/RegisterPage/RegisterUser/RegisterUser.jsx';
 import RegisterCompany from '../components/RegisterPage/RegisterCompany/RegisterCompany.jsx';
 
@@ -38,60 +38,96 @@ class Register extends React.Component {
         super();
         this.state = {
             user: {
-                userType: -1,
+                // either company, jobseeker or employee
+                // TODO: interface does not permit creation of employees. need to implement.
+                userType: 'jobseeker',
+
                 //  Basisinformasjon for den som registrerer brukeren
-                name: "",
+                firstName: '',
+                lastName: '',
+                // birthDate: "",
+                phoneNumber: '',
+                municipality: '',
+
+                // Credentials
                 email: '',
-                password: "",
-                phone: "",
-                municipality: "",
+                password: '',
 
                 //  Brukes for undervisningssted og høyest utdanning
-                school: "",
-                program: "",
+                education: '',
 
                 //  Stilling dersom man er bedriftsansatt
-                position: "",
+                position: '',
 
                 //  Bedriften man registrerer/jobber for
-                company_name: "",
-                org: "",
+                name: '',
+                orgNumber: '',
 
                 //  Rabattkode for bedrifter
-                code: "",
+                registrationCode: '',
 
                 //  Nettside for bedrifter
-                webpage: "",
+                webpage: '',
+
+                skills: [],
+                interests: []
             }
-        }
+        };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
+        this.skillsChanged = this.skillsChanged.bind(this);
+        this.interestsChanged = this.interestsChanged.bind(this);
     }
 
-    submitRegistration() {
-        console.log("submitting...");
-        console.log(this.state.user);
-        fetch("http://localhost:5000/api/register", {
-            method: "post",
-            body: JSON.stringify(this.state.user),
+    submitRegistration(e) {
+        const user = this.state.user;
+
+        if (e.target.id === 'companyRegisterButton') {
+            user.userType = 'company';
+        }
+        const skillIds = this.state.user.skills
+            .filter(skill => {
+                return skill.selectedBy;
+            })
+            .map(skill => {
+                return skill.id;
+            });
+
+        const interestIds = this.state.user.interests
+            .filter(interest => {
+                return interest.selectedBy;
+            })
+            .map(interest => {
+                return interest.id;
+            });
+
+        user.skills = skillIds;
+        user.interests = interestIds;
+
+        console.log(user);
+
+        fetch('http://localhost/api/users', {
+            method: 'post',
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
-            console.log("submitted");
-            return res.json();
-        }).then(eyah => {
-            console.log(eyah);
-        }).catch((err) => {
-            console.error(err);
         })
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                console.error(err);
+            });
     }
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value =
+            target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        // console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
@@ -99,32 +135,57 @@ class Register extends React.Component {
                     ...prevState.user,
                     [name]: value
                 }
-            }
+            };
+        });
+    }
+
+    skillsChanged(skills) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    skills: skills
+                }
+            };
+        });
+    }
+
+    interestsChanged(interests) {
+        this.setState(state => {
+            return {
+                user: {
+                    ...state.user,
+                    interests: interests
+                }
+            };
         });
     }
 
     render() {
         return (
             <Page noNavbar>
-                <Navbar title="Registrering" backLink="Back" themeDark></Navbar>
-                <Toolbar tabbar slot="fixed" position="top">
-                    <Link tabLink="#tab-user" tabLinkActive text="Bruker"></Link>
-                    <Link tabLink="#tab-company" text="Virksomhet"></Link>
+                <Toolbar tabbar slot='fixed' position='top'>
+                    <Link tabLink='#tab-user' tabLinkActive text='Bruker' />
+                    <Link tabLink='#tab-company' text='Virksomhet' />
                 </Toolbar>
 
                 <Tabs>
-                    <RegisterUser />
+                    <RegisterUser
+                        onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        skillsChanged={this.skillsChanged}
+                        interestsChanged={this.interestsChanged}
+                        userType={this.state.user.userType}
+                    />
 
-                    <RegisterCompany />
+                    <RegisterCompany
+                        onInputChange={this.handleInputChange}
+                        onRegisterClick={this.submitRegistration}
+                        userType={this.state.user.userType}
+                    />
                 </Tabs>
-                <Toolbar className="bottomToolbar" tabbar labels bottom>
-                  <Link className="bottomToolbarLink toolbarIcon" href="/" iconF7="home" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/nettverk/" iconF7="search" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/activities/" iconF7="email" />
-                  <Link className="bottomToolbarLink toolbarIcon" href="/profile/me" iconF7="person_round" />
-                </Toolbar>
             </Page>
-        )
+        );
     }
 }
 
