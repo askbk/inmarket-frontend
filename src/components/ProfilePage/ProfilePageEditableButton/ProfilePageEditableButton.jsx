@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../shared/Button/StyledButton';
 
-const ProfilePageEditabelButton = props => {
+const ProfilePageEditableButton = props => {
     return (
         <div className='profilePageEditButtonsContainer'>
             <button
@@ -14,4 +14,4 @@ const ProfilePageEditabelButton = props => {
     );
 };
 
-export default ProfilePageEditabelButton;
+export default ProfilePageEditableButton;

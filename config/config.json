@@ -19,8 +19,8 @@
   },
   "production": {
     "config_id": "production",
-    "port": 500,
-    "db_domain_name": "amazonserverhostingservicethingthang",
+    "port": 80,
+    "db_domain_name": "app.inmarket",
     "db_top_level_domain" : "com"
   }
 }
