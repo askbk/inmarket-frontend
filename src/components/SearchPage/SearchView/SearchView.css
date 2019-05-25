@@ -1,15 +1,16 @@
-.networkViewOuterContainer{
+.searchViewOuterContainer {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 20px 0;
 }
 
-.networkViewInnerContainer{
+.searchViewInnerContainer {
     width: 100%;
     max-width: 600px;
 }
 
-.networkViewProfileContainer{
-    width: 100%;
+.searchTitle {
+    display: flex;
+    justify-content: center;
 }

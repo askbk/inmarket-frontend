@@ -13,12 +13,15 @@ export default class extends React.Component {
     render() {
         return (
             <div className='profileInformationContainer'>
-                <NetworkAvatar />
+                <NetworkAvatar
+                    profilePic={this.props.profilePic}
+                    status={this.props.connectionStatus}
+                />
                 <ProfileTextInformation
                     name={this.props.name}
                     birth={this.props.birth}
                     role={this.props.role}
-                    workplace={this.props.workplace}
+                    location={this.props.location}
                     rating={this.props.rating}
                 />
             </div>

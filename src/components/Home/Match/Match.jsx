@@ -37,13 +37,12 @@ class Match extends React.Component {
                         <p>{`${this.props.user.firstName}`}</p>
                     </div>
                     { this.props.user.userType === "employee" ?
-
                         <div className='profileTextInstitution'>
-                            <p>{`${this.props.user.role}, ${this.props.user.name}`}</p>
+                            <p>{`${this.props.user.employee.role}, ${this.props.user.employee.company}`}</p>
                         </div>
                     :
                         <div className='profileTextInstitution'>
-                            <p>{`${this.props.user.type}, ${this.props.user.education}`}</p>
+                            <p>{`${this.props.user.jobseeker.type}, ${this.props.user.jobseeker.education}`}</p>
                         </div>
                     }
                     <div className='profileTextProgressContainer'>

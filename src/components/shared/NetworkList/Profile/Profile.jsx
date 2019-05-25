@@ -13,15 +13,22 @@ export default class extends React.Component {
             <div className='profileContainer'>
                 <div className='profileProfileInformationContainer'>
                     <ProfileInformation
+                        userId={this.props.userId}
                         name={this.props.name}
                         birth={this.props.birth}
                         role={this.props.role}
-                        workplace={this.props.workplace}
+                        location={this.props.location}
                         rating={this.props.rating}
+                        profilePic={this.props.profilePic}
+                        connectionStatus={this.props.connectionStatus}
                     />
                 </div>
                 <div className='profileButtonContainer'>
-                    <Buttons />
+                    <Buttons
+                        userId={this.props.userId}
+                        connectionStatus={this.props.connectionStatus}
+                        contactRequest={this.props.contactRequest}
+                    />
                 </div>
             </div>
         );

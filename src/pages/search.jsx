@@ -1,32 +1,24 @@
 import React from 'react';
-
+import Framework7 from 'framework7/framework7.esm.bundle.js';
 import { Page, Toolbar, Link } from 'framework7-react';
 
+import SearchView from '../components/SearchPage/SearchView/SearchView.jsx';
 import Header from '../components/Header/Header.jsx';
-import VideosContainer from '../components/Home/VideosContainer/VideosContainer.jsx';
-import MatchesContainer from '../components/Home/MatchesContainer/MatchesContainer.jsx';
 
 import '../css/toolbar.css';
 
-class Home extends React.Component {
+class Search extends React.Component {
     constructor() {
         super();
         this.state = {
             data: []
         };
 
-        this.handleContactRequestSent = this.handleContactRequestSent.bind(
-            this
-        );
+        this.handleContactRequest = this.handleContactRequest.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentDidMount() {
-        // For now it simply won't try to fetch any recommendation if no token
-        // is found.
-        if (!localStorage.jwt) {
-            return false;
-        }
-
         const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub,
             recommend =
                 localStorage.userType === 'employee'
@@ -37,23 +29,22 @@ class Home extends React.Component {
             .then(res => {
                 return res.json();
             })
-            .then(users => {
-                if (users.success) {
-                    this.setState({ data: users.data });
+            .then(profiles => {
+                if (profiles.success) this.setState({ data: profiles.data });
+                else {
+                    console.error(profiles.message);
                 }
             });
     }
 
     // Called after a contact request has been successfully sent to the user
-    // with the given id. It removes the contacted user from the array of
-    // contact recommendations. This is because the SwiperSlide component in
-    // MatchesContainer is still taking up space, even when it is empty. This is
-    // a brute force solution to that.
-    handleContactRequestSent(id) {
+    // with the given id, or an accept has been sent. This updates the users
+    // connection status, and is used for rerendering the list.
+    handleContactRequest(id, status) {
         this.setState(state => {
             for (let i = 0; i < state.data.length; i++) {
                 if (state.data[i].id === id) {
-                    state.data.splice(i, 1);
+                    state.data[i].connectionStatus = status;
                     break;
                 }
             }
@@ -64,25 +55,48 @@ class Home extends React.Component {
         });
     }
 
-    render() {
-        const users = this.state.data;
+    handleSearch(value) {
+        // If no search value, fetch the initial recommended users
+        if (value === '') {
+            this.componentDidMount();
+        } else {
+            fetch(`http://localhost/api/users?search=${value}`, {
+                method: 'get',
+                headers: {
+                    authorization: localStorage.jwt
+                }
+            })
+                .then(res => {
+                    return res.json();
+                })
+                .then(profiles => {
+                    if (profiles.success)
+                        this.setState({ data: profiles.data });
+                    else {
+                        console.error(profiles.message);
+                    }
+                });
+        }
+    }
 
+    render() {
         return (
-            <Page name='home'>
-                <Header />
-                <MatchesContainer
-                    users={users}
-                    contactRequestSent={this.handleContactRequestSent}
+            <Page>
+                <Header backLink title='Søk' />
+                <SearchView
+                    profiles={this.state.data}
+                    contactRequest={this.handleContactRequest}
+                    search={this.handleSearch}
                 />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        tabLinkActive
                         href='/'
                         iconF7='home'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
+                        tabLinkActive
                         href='/sok/'
                         iconF7='search'
                     />
@@ -102,4 +116,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default Search;
