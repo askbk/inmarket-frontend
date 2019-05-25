@@ -64,19 +64,16 @@ class Profile extends React.Component {
                 return res.json();
             })
             .then(user => {
-                this.setInitialData(user.data);
+                const data = user.data;
+                this.setState({
+                    profileDescription: data.profileDescription,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    role: data.employee.role,
+                    institution: data.employee.company ? data.employee.company : ''
+                });
                 console.log(user.data);
             });
-    }
-
-    setInitialData(data) {
-        this.setState({
-            profileDescription: data.profileDescription,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            role: data.employee.role,
-            institution: data.employee.company ? data.employee.company : ''
-        });
     }
 
     handleChange(data, information_type) {
