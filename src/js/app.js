@@ -18,9 +18,8 @@ import '../css/app.css';
 // Import App Component
 import App from '../components/app.jsx';
 
-
 // Init F7 Vue Plugin
-Framework7.use(Framework7React)
+Framework7.use(Framework7React);
 // requires
 const _ = require('lodash');
 
@@ -36,20 +35,17 @@ const domain = finalConfig['db_domain_name'];
 const topDomain = finalConfig['db_top_level_domain'];
 
 //Construct the url for easy access
-let url = "http://" + domain;
-if(port !== 80){
-    url += ":" + finalConfig["port"];
+let url = 'http://' + domain;
+if (port !== 80) {
+    url += ':' + finalConfig['port'];
 }
-if(topDomain){
-    url += "." + topDomain;
+if (topDomain) {
+    url += '.' + topDomain;
 }
-url += "/api";
+url += '/api';
 finalConfig['url'] = url;
 
 global.gConfig = finalConfig;
 
 // Mount React App
-ReactDOM.render(
-  React.createElement(App),
-  document.getElementById('app'),
-);
+ReactDOM.render(React.createElement(App), document.getElementById('app'));
