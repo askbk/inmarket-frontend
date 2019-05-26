@@ -48,6 +48,7 @@ export default class extends React.Component {
                             <BasisInformationInput
                                 onInputChange={this.props.onInputChange}
                                 userType={this.props.userType}
+                                type={this.props.type}
                             />
                         </List>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
-import { ListInput, ListItem, Radio, List } from 'framework7-react';
+import {ListInput, ListItem, Radio, List} from 'framework7-react';
 
 export default class extends React.Component {
     constructor(props) {
@@ -18,9 +18,8 @@ export default class extends React.Component {
                         title='Arbeidssøker'
                         name='user-type-radio'
                         value='jobseeker'
-                        checked={
-                            this.props.userType === 'jobseeker'
-                        }
+                        checked={this.props.userType === 'jobseeker'
+}
                         onClick={() => {
                             this.props.onInputChange({
                                 target: {
@@ -28,8 +27,7 @@ export default class extends React.Component {
                                     name: 'userType'
                                 }
                             });
-                        }}
-                        />
+                        }}/>
 
                     <ListItem
                         radio
@@ -44,8 +42,7 @@ export default class extends React.Component {
                                     name: 'userType'
                                 }
                             });
-                        }}
-                        />
+                        }}/>
                 </List>
 
                 <ListInput
@@ -53,44 +50,102 @@ export default class extends React.Component {
                     type='email'
                     name='email'
                     placeholder='E-postadresse for å logge inn'
-                    onChange={this.props.onInputChange}
-                />
+                    onChange={this.props.onInputChange}/>
 
                 <ListInput
                     label='Passord'
                     type='password'
                     name='password'
                     placeholder='Velg et passord for brukeren din'
-                    onChange={this.props.onInputChange}
-                />
+                    onChange={this.props.onInputChange}/>
 
                 <ListInput
                     label='Fornavn'
                     type='text'
                     name='firstName'
                     placeholder='Hva heter du?'
-                    onChange={this.props.onInputChange}
-                />
+                    onChange={this.props.onInputChange}/>
 
                 <ListInput
                     label='Etternavn'
                     type='text'
                     name='lastName'
                     placeholder='Hva heter du?'
-                    onChange={this.props.onInputChange}
-                />
+                    onChange={this.props.onInputChange}/> {
+                    this.props.userType === 'employee'
+                        ? <ListInput
+                                label='Bedrift'
+                                type='text'
+                                name='company'
+                                placeholder='Hvor arbeider du?'
+                                onChange={this.props.onInputChange}/>
+                        : <ListInput
+                                label='Utdanning'
+                                type='text'
+                                name='education'
+                                placeholder='Hva slags utdanning har du?'
+                                onChange={this.props.onInputChange}/>
+                }
 
-            {this.props.userType === 'employee' ?
-                <ListInput
-                    label='Bedrift'
-                    type='text'
-                    name='company'
-                    placeholder='Hvor arbeider du?'
-                    onChange={this.props.onInputChange}
-                    />
-            : null}
+                {
+                    this.props.userType === 'employee'
+                        ? <ListInput
+                                label='Stilling'
+                                type='text'
+                                name='role'
+                                placeholder='Hva slags stilling har du?'
+                                onChange={this.props.onInputChange}/>
+                        : <React.Fragment>
+                                <ListItem header='Velg det som passer best til din situasjon:'></ListItem>
+                                <ListItem
+                                    radio
+                                    title='Elev'
+                                    name='type-radio'
+                                    value='pupil'
+                                    checked={this.props.type === 'pupil'
+}
+                                    onClick={() => {
+                                        this.props.onInputChange({
+                                            target: {
+                                                value: 'pupil',
+                                                name: 'type'
+                                            }
+                                        });
+                                    }}/>
 
-            {/*
+                                <ListItem
+                                    radio
+                                    title='Student'
+                                    name='type-radio'
+                                    value='student'
+                                    checked={this.props.type === 'student'}
+                                    onClick={() => {
+                                        this.props.onInputChange({
+                                            target: {
+                                                value: 'student',
+                                                name: 'type'
+                                            }
+                                        });
+                                    }}/>
+
+                                <ListItem
+                                    radio
+                                    title='Arbeidssøker'
+                                    name='type-radio'
+                                    value='jobseeker'
+                                    checked={this.props.type === 'jobseeker'}
+                                    onClick={() => {
+                                        this.props.onInputChange({
+                                            target: {
+                                                value: 'jobseeker',
+                                                name: 'type'
+                                            }
+                                        });
+                                    }}/>
+                            </React.Fragment>
+                }
+
+                {/*
                 <ListInput
                 label='Telefonnummer'
                 type='tel'
@@ -106,7 +161,8 @@ export default class extends React.Component {
                 placeholder='Din kommune (valgfritt)'
                 onChange={this.props.onInputChange}
                 />
-                */}
+                */
+                }
             </React.Fragment>
         );
     }

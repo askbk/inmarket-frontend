@@ -41,6 +41,7 @@ class Register extends React.Component {
                 // either company, jobseeker or employee
                 // TODO: interface does not permit creation of employees. need to implement.
                 userType: 'jobseeker',
+                type: 'pupil',
 
                 //  Basisinformasjon for den som registrerer brukeren
                 firstName: '',
@@ -172,6 +173,7 @@ class Register extends React.Component {
                     skillsChanged={this.skillsChanged}
                     interestsChanged={this.interestsChanged}
                     userType={this.state.user.userType}
+                    type={this.state.user.type}
                     />
                 {/* Disable company registration for demo.
 
