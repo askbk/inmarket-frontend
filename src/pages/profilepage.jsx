@@ -13,7 +13,6 @@ import Header from '../components/Header/Header.jsx';
 import AboutForm from '../components/ProfilePage/ProfilePageAboutForm/ProfilePageAboutForm';
 import BioForm from '../components/ProfilePage/ProfilePageBioForm/ProfilePageBioForm';
 import ProfilePageSkillsForm from '../components/ProfilePage/ProfilePageSkillsForm/ProfilePageSkillsForm';
-import EditableButton from '../components/ProfilePage/ProfilePageEditableButton/ProfilePageEditableButton';
 
 import {
     Page,
@@ -26,11 +25,11 @@ import {
     NavLeft
 } from 'framework7-react';
 
-class Profile extends React.Component {
+class ProfilePage extends React.Component {
     constructor() {
         super();
         this.state = {
-            profileDescription:
+            profileText:
                 'Jeg er tidligere finalist i Norsk Informatikkolympiade, tar mastergrad i datateknologi ved NTNU, og har hovedansvaret for utvikling av InMarkets nettsider og app.',
             skills: [
                 { text: 'Hacking', rating: 4.1 },
@@ -43,49 +42,23 @@ class Profile extends React.Component {
             currentForm: '',
             firstName: 'Ask',
             lastName: 'Kolltveit',
-            birthDate: '1997-01-01',
+            birthday: '1997-01-01',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
             formerEmployers: ''
         };
     }
 
-    componentDidMount() {
-        let id = this.$f7route.params.id;
-        if (id === 'me' || id === '') {
-            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
-        }
-
-        const url = gConfig.url + '/users/' + id;
-        console.log(url);
-
-        fetch(url, { headers: { authorization: localStorage.jwt } })
-            .then(res => {
-                return res.json();
-            })
-            .then(user => {
-                const data = user.data;
-                this.setState({
-                    profileDescription: data.profileDescription,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    role: data.employee.role,
-                    institution: data.employee.company ? data.employee.company : ''
-                });
-                console.log(user.data);
-            });
-    }
-
     handleChange(data, information_type) {
         if (information_type === 'BIO') {
-            this.setState({ profileDescription: data });
+            this.setState({ profileText: data });
         } else if (information_type === 'First Name') {
             this.setState({ firstName: data });
         } else if (information_type === 'Last Name') {
             this.setState({ lastName: data });
         } else if (information_type === 'Birthday') {
             const date = new Date(data);
-            this.setState({ birthDate: date });
+            this.setState({ birthday: date });
         } else if (information_type === 'Role') {
             this.setState({ role: data });
         } else if (information_type === 'Institution') {
@@ -121,7 +94,7 @@ class Profile extends React.Component {
 
     render() {
         const {
-            profileDescription,
+            profileText,
             rating,
             skills,
             activeSkills,
@@ -129,18 +102,20 @@ class Profile extends React.Component {
             currentForm,
             firstName,
             lastName,
-            birthDate,
+            birthday,
             role,
             institution,
             formerEmployers
         } = this.state;
+
+        const isCurrentUser = true;
 
         let profilePageHeader = (
             <div>
                 <ProfilePageHeader
                     firstName={firstName}
                     lastName={lastName}
-                    birthday={birthDate}
+                    birthday={birthday}
                     rating={rating}
                     role={role}
                     institution={institution}
@@ -150,50 +125,58 @@ class Profile extends React.Component {
         );
 
         let profileInformation = (
-            <ProfileInformation>{profileDescription}</ProfileInformation>
+            <ProfileInformation>{profileText}</ProfileInformation>
         );
 
         let profileSkills = (
             <ProfileSkills activeSkills={activeSkills} skills={skills} />
         );
 
-        const isCurrentUser = true;
-
-        //Take the elements above and wrap them in a editable button
         if (isCurrentUser) {
             profilePageHeader = (
-                <EditableButton
-                    onClick={() =>
-                        this.setState({
-                            popupOpen: true,
-                            currentForm: 'about'
-                        })
-                    }
-                    information={profilePageHeader}
-                />
+                <div className='profilePageEditButtonsContainer'>
+                    <button
+                        className='profilePagePopupButton'
+                        onClick={() =>
+                            this.setState({
+                                popupOpen: true,
+                                currentForm: 'about'
+                            })
+                        }
+                    >
+                        {profilePageHeader}
+                    </button>
+                </div>
             );
-
             profileInformation = (
-                <EditableButton
-                    onClick={() =>
-                        this.setState({
-                            popupOpen: true,
-                            currentForm: 'bio'
-                        })
-                    }
-                    information={profileInformation}
-                />
+                <div className='profilePageEditButtonsContainer'>
+                    <button
+                        className='profilePagePopupButton'
+                        onClick={() =>
+                            this.setState({
+                                popupOpen: true,
+                                currentForm: 'bio'
+                            })
+                        }
+                    >
+                        {profileInformation}
+                    </button>
+                </div>
             );
             profileSkills = (
-                <EditableButton
-                    onClick={() =>
-                        this.setState({
-                            popupOpen: true,
-                            currentForm: 'skills'
-                        })
-                    }
-                    information={profileSkills}
-                />
+                <div className='profilePageEditButtonsContainer'>
+                    <button
+                        className='profilePagePopupButton'
+                        onClick={() =>
+                            this.setState({
+                                popupOpen: true,
+                                currentForm: 'skills'
+                            })
+                        }
+                    >
+                        {profileSkills}
+                    </button>
+                </div>
             );
         }
 
@@ -204,7 +187,7 @@ class Profile extends React.Component {
                     onChange={this.handleChange.bind(this)}
                     firstName={firstName}
                     lastName={lastName}
-                    birthday={birthDate}
+                    birthday={birthday}
                     role={role}
                     institution={institution}
                     formerEmployers={formerEmployers}
@@ -214,7 +197,7 @@ class Profile extends React.Component {
             form = (
                 <BioForm
                     onChange={this.handleChange.bind(this)}
-                    bio={profileDescription}
+                    bio={profileText}
                 />
             );
         } else {
@@ -234,15 +217,11 @@ class Profile extends React.Component {
                 <Header backLink title='Profil' />
                 {profilePageHeader}
                 <Row className='profilePageButtonContainer'>
-                    {/*
-            <Button>SE LOGG</Button>
-            <Button>SE ANSATTE</Button>
-              */}
-                    <Link href="/activities/create"> INVITER</Link>
+                    <Button>SE LOGG</Button>
+                    <Button>SE ANSATTE</Button>
                 </Row>
                 {profileInformation}
-                {/*
-          {profileSkills} */}
+                {profileSkills}
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
@@ -262,7 +241,7 @@ class Profile extends React.Component {
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         tabLinkActive
-                        href='/profile/me'
+                        href='/profilepage/'
                         iconF7='person_round'
                     />
                 </Toolbar>
@@ -287,4 +266,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default ProfilePage;

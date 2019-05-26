@@ -53,7 +53,6 @@ export default class extends React.Component {
                         {/* props.subtext */}
                     </span>
                     <div className='profileTextInformationNetworkProgressContainer'>
-                        {/*
                         <StarRatings
                             starDimension='20px'
                             starSpacing='2px'
@@ -61,7 +60,6 @@ export default class extends React.Component {
                             starRatedColor='#c08d42'
                             starEmptyColor='black'
                         />
-                        */}
                     </div>
                     <span className='profilePageHeaderText-3'>
                         {formerEmployers} {/* props.adress */}
