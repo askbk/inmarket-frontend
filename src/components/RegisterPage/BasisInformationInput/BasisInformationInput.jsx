@@ -102,12 +102,12 @@ export default class extends React.Component {
                                     title='Elev'
                                     name='type-radio'
                                     value='pupil'
-                                    checked={this.props.type === 'pupil'
+                                    checked={this.props.type === 'Elev'
 }
                                     onClick={() => {
                                         this.props.onInputChange({
                                             target: {
-                                                value: 'pupil',
+                                                value: 'Elev',
                                                 name: 'type'
                                             }
                                         });
@@ -118,11 +118,11 @@ export default class extends React.Component {
                                     title='Student'
                                     name='type-radio'
                                     value='student'
-                                    checked={this.props.type === 'student'}
+                                    checked={this.props.type === 'Student'}
                                     onClick={() => {
                                         this.props.onInputChange({
                                             target: {
-                                                value: 'student',
+                                                value: 'Student',
                                                 name: 'type'
                                             }
                                         });
@@ -133,11 +133,11 @@ export default class extends React.Component {
                                     title='Arbeidssøker'
                                     name='type-radio'
                                     value='jobseeker'
-                                    checked={this.props.type === 'jobseeker'}
+                                    checked={this.props.type === 'Arbeidssøker'}
                                     onClick={() => {
                                         this.props.onInputChange({
                                             target: {
-                                                value: 'jobseeker',
+                                                value: 'Arbeidssøker',
                                                 name: 'type'
                                             }
                                         });
