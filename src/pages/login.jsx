@@ -66,22 +66,6 @@ class Login extends React.Component {
                     </ListButton>
                     <ListButton href='/registrering/'>Registrer deg</ListButton>
                 </List>
-                <Toolbar
-                    className='bottomToolbar'
-                    tabbar
-                    labels
-                    bottom>
-                    <Link className='bottomToolbarLink toolbarIcon' href='/' iconF7='home'/>
-                    <Link className='bottomToolbarLink toolbarIcon' href='/sok/' iconF7='search'/>
-                    <Link
-                        className='bottomToolbarLink toolbarIcon'
-                        href='/activities/'
-                        iconF7='email'/>
-                    <Link
-                        className='bottomToolbarLink toolbarIcon'
-                        href='/profile/me'
-                        iconF7='person_round'/>
-                </Toolbar>
             </Page>
         );
     }
