@@ -12,6 +12,7 @@ import ConversationsPage from '../pages/conversations.jsx';
 import ActivitiesPage from '../pages/activities.jsx';
 import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
+import SearchPage from '../pages/search.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 import Profile from '../pages/profile';
@@ -76,7 +77,10 @@ var routes = [
         path: '/conversations/:chatId',
         component: ChatPage
     },
-
+    {
+        path: '/sok/',
+        component: SearchPage
+    },
     {
         path: '(.*)',
         component: NotFoundPage

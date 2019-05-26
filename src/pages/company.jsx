@@ -42,7 +42,7 @@ class Company extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        href='/nettverk/'
+                        href='/sok/'
                         iconF7='search'
                     />
                     <Link
