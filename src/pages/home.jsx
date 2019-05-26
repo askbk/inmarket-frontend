@@ -93,9 +93,8 @@ class Home extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        href='/profilepage/'
-                        iconF7='person_round'
-                    />
+                        href='/profile/me'
+                        iconF7='person_round'/>
                 </Toolbar>
             </Page>
         );

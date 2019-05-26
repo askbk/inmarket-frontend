@@ -45,7 +45,7 @@ class Activities extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        href='/profilepage/'
+                        href='/profile/me'
                         iconF7='person_round'
                     />
                 </Toolbar>

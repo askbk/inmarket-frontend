@@ -15,10 +15,10 @@ export default class extends React.Component {
     }
 
     getAge(birth) {
-        const birthdate = new Date(birth);
+        const birthday = new Date(birth);
         const now = new Date(Date.now());
         return parseInt(
-            (now.getTime() - birthdate.getTime()) / (1000 * 60 * 60 * 24 * 365)
+            (now.getTime() - birthday.getTime()) / (1000 * 60 * 60 * 24 * 365)
         );
     }
 
