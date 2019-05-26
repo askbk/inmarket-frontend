@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button, Row, Col, List, ListInput } from 'framework7-react';
-import ProfileSkills from '../ProfileSkills/ProfileSkills';
+import ProfileQualities from '../ProfileQualities/ProfileQualities';
 import ProfilePageAddNewSkill from './ProfilePageAddNewSkill';
 
 export default class extends React.Component {
@@ -24,12 +24,12 @@ export default class extends React.Component {
     </Col>*/}
                 </Row>
                 <div>
-                    <ProfileSkills
+                    <ProfileQualities
                         removeSkill={this.props.removeSkill}
                         onChecked={this.props.onChecked}
                         editIsActive={true}
-                        activeSkills={this.props.activeSkills}
-                        skills={this.props.skills}
+                        activeQualities={this.props.activeSkills}
+                        qualities={this.props.skills}
                     />
                 </div>
                 <ProfilePageAddNewSkill handleAdd={this.handleAdd.bind(this)} />

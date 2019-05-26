@@ -2,12 +2,12 @@ import React from 'react';
 import StarRatings from '../../../../../node_modules/react-star-ratings';
 
 //import styles
-import './ProfileSkill.css';
+import './ProfileQuality.css';
 
-const profileSkill = props => {
-    const skillMarginClass = props.editIsActive ? '' : ' profileSkillMargin';
+const profileQuality = props => {
+    const qualityMarginClass = props.editIsActive ? '' : ' profileQualityMargin';
     return (
-        <div className={'profileSkillContainer' + skillMarginClass}>
+        <div className={'profileQualityContainer' + qualityMarginClass}>
             <span>{props.text}</span>
             <StarRatings
                 starDimension='20px'
@@ -20,4 +20,4 @@ const profileSkill = props => {
     );
 };
 
-export default profileSkill;
+export default profileQuality;
