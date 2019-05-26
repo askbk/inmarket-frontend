@@ -80,7 +80,7 @@ class Register extends React.Component {
         this.interestsChanged = this.interestsChanged.bind(this);
     }
 
-    submitRegistration(e) {
+    async submitRegistration(e) {
         const user = this.state.user;
 
         if (e.target.id === 'companyRegisterButton') {
@@ -107,19 +107,21 @@ class Register extends React.Component {
 
         console.log(user);
 
-        fetch('http://localhost/api/users', {
+        const request = await fetch('http://localhost/api/users', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-            .then(res => {
-                return res.json();
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        });
+
+        const response = await request.json();
+
+        if (response.success) {
+            this.$f7router.navigate('/logginn/');
+        } else {
+            console.error(response.message);
+        }
     }
 
     handleInputChange(event) {
