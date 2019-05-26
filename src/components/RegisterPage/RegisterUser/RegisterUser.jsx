@@ -3,14 +3,12 @@ import Framework7 from 'framework7/framework7.esm.bundle.js';
 import {
     List,
     ListInput,
-    ListItem,
     Row,
     Button,
     Block,
     Col,
     Tabs,
     Tab,
-    Radio
 } from 'framework7-react';
 
 import TermsCheckbox from '../TermsCheckbox/TermsCheckbox.jsx';
@@ -30,7 +28,7 @@ export default class extends React.Component {
                         <h1>Vi åpner dørene for deg.</h1>
                         <p>
                             Lag en gratis bruker for å komme deg ut i
-                            arbeidslivet.​
+                            arbeidslivet.​ Møt bedrifter og bygg din karriere.
                         </p>
                     </Block>
                 ) : (
@@ -49,6 +47,7 @@ export default class extends React.Component {
                         <List form>
                             <BasisInformationInput
                                 onInputChange={this.props.onInputChange}
+                                userType={this.props.userType}
                             />
                         </List>
 
@@ -60,45 +59,6 @@ export default class extends React.Component {
                     </Tab>
 
                     <Tab id='tab-user-extra'>
-                        <List>
-                            <React.Fragment>
-                                <ListItem>Velg det som passer best:</ListItem>
-                                {/* TODO: bad practice in onClick props. rewrite*/}
-                                <ListItem
-                                    radio
-                                    title='Arbeidssøker'
-                                    name='user-type-radio'
-                                    value='jobseeker'
-                                    checked={
-                                        this.props.userType === 'jobseeker'
-                                    }
-                                    onClick={() => {
-                                        this.props.onInputChange({
-                                            target: {
-                                                value: 'jobseeker',
-                                                name: 'userType'
-                                            }
-                                        });
-                                    }}
-                                />
-                                <ListItem
-                                    radio
-                                    title='Bedriftsansatt'
-                                    name='user-type-radio'
-                                    value='employee'
-                                    checked={this.props.userType === 'employee'}
-                                    onClick={() => {
-                                        this.props.onInputChange({
-                                            target: {
-                                                value: 'employee',
-                                                name: 'userType'
-                                            }
-                                        });
-                                    }}
-                                />
-                            </React.Fragment>
-                        </List>
-
                         <Block>
                             {this.props.userType === 'jobseeker' ? (
                                 <p>Velg dine interesser og ferdigheter</p>

@@ -127,7 +127,7 @@ class Register extends React.Component {
         const value =
             target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        // console.log(`${name}: ${value}`);
+        console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
@@ -164,26 +164,28 @@ class Register extends React.Component {
     render() {
         return (
             <Page noNavbar>
+                <RegisterUser
+                    onInputChange={this.handleInputChange}
+                    onRegisterClick={this.submitRegistration}
+                    skillsChanged={this.skillsChanged}
+                    interestsChanged={this.interestsChanged}
+                    userType={this.state.user.userType}
+                    />
+                {/* Disable company registration for demo.
+
                 <Toolbar tabbar slot='fixed' position='top'>
                     <Link tabLink='#tab-user' tabLinkActive text='Bruker' />
                     <Link tabLink='#tab-company' text='Virksomhet' />
                 </Toolbar>
 
                 <Tabs>
-                    <RegisterUser
-                        onInputChange={this.handleInputChange}
-                        onRegisterClick={this.submitRegistration}
-                        skillsChanged={this.skillsChanged}
-                        interestsChanged={this.interestsChanged}
-                        userType={this.state.user.userType}
-                    />
-
                     <RegisterCompany
-                        onInputChange={this.handleInputChange}
-                        onRegisterClick={this.submitRegistration}
-                        userType={this.state.user.userType}
+                    onInputChange={this.handleInputChange}
+                    onRegisterClick={this.submitRegistration}
+                    userType={this.state.user.userType}
                     />
                 </Tabs>
+                */}
             </Page>
         );
     }
