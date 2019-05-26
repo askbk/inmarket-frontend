@@ -33,9 +33,13 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Page noToolbar noNavbar noSwipeback loginScreen themeDark>
-                <Header backLink title='Logg inn' />
-                <img className='loginPageLogo' src={Logo} />
+            <Page
+                noToolbar
+                noNavbar
+                noSwipeback
+                loginScreen
+                themeDark>
+                <img className='loginPageLogo' src={Logo}/>
                 <LoginScreenTitle>Logg inn</LoginScreenTitle>
                 <List form>
                     <ListInput
@@ -44,19 +48,17 @@ class Login extends React.Component {
                         placeholder='E-posten din'
                         value={this.state.username}
                         onInput={e => {
-                            this.setState({ username: e.target.value });
+                            this.setState({username: e.target.value});
                         }}
-                        className='loginListInput'
-                    />
+                        className='loginListInput'/>
                     <ListInput
                         label='Passord'
                         type='password'
                         placeholder='Passordet ditt'
                         value={this.state.password}
                         onInput={e => {
-                            this.setState({ password: e.target.value });
-                        }}
-                    />
+                            this.setState({password: e.target.value});
+                        }}/>
                 </List>
                 <List>
                     <ListButton onClick={this.signIn.bind(this)}>
@@ -64,27 +66,21 @@ class Login extends React.Component {
                     </ListButton>
                     <ListButton href='/registrering/'>Registrer deg</ListButton>
                 </List>
-                <Toolbar className='bottomToolbar' tabbar labels bottom>
-                    <Link
-                        className='bottomToolbarLink toolbarIcon'
-                        href='/'
-                        iconF7='home'
-                    />
-                    <Link
-                        className='bottomToolbarLink toolbarIcon'
-                        href='/sok/'
-                        iconF7='search'
-                    />
+                <Toolbar
+                    className='bottomToolbar'
+                    tabbar
+                    labels
+                    bottom>
+                    <Link className='bottomToolbarLink toolbarIcon' href='/' iconF7='home'/>
+                    <Link className='bottomToolbarLink toolbarIcon' href='/sok/' iconF7='search'/>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/activities/'
-                        iconF7='email'
-                    />
+                        iconF7='email'/>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/profile/me'
-                        iconF7='person_round'
-                    />
+                        iconF7='person_round'/>
                 </Toolbar>
             </Page>
         );
@@ -94,29 +90,26 @@ class Login extends React.Component {
         const router = this.$f7router;
         fetch('http://localhost/api/login', {
             method: 'post',
-            body: JSON.stringify({
-                email: this.state.username,
-                password: this.state.password
-            }),
+            body: JSON.stringify(
+                {email: this.state.username, password: this.state.password}
+            ),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-            .then(res => {
-                return res.json();
-            })
-            .then(res => {
-                if (res.jwt) {
-                    localStorage.jwt = res.jwt;
-                    localStorage.userType = res.userType ? res.userType : "jobseeker";
-                    router.navigate('/');
-                } else {
-                    // TODO: Let user know that login attempt was unsuccessful
-                    console.error(
-                        'No jwt in response - are your credentials correct?'
-                    );
-                }
-            });
+        }).then(res => {
+            return res.json();
+        }).then(res => {
+            if (res.jwt) {
+                localStorage.jwt = res.jwt;
+                localStorage.userType = res.userType
+                    ? res.userType
+                    : "jobseeker";
+                router.navigate('/');
+            } else {
+                // TODO: Let user know that login attempt was unsuccessful
+                console.error('No jwt in response - are your credentials correct?');
+            }
+        });
     }
 }
 
