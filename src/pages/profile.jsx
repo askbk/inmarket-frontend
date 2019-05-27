@@ -57,7 +57,7 @@ class Profile extends React.Component {
         }
 
         const url = `${gConfig.url}/users/${id}`;
-        console.log(url);
+        // console.log('url: ' + url);
 
         fetch(url, { headers: { authorization: localStorage.jwt } })
             .then(res => {
@@ -76,7 +76,7 @@ class Profile extends React.Component {
                     role: role ? role : '',
                     institution: institution ? institution : ''
                 });
-                console.log(user.data);
+                // console.log(user.data);
             });
     }
 
