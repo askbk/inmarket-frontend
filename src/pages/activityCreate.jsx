@@ -17,7 +17,7 @@ class ActivityCreate extends React.Component {
             data: []
         };
     }
-
+/*
     componentDidMount() {
         fetch('http://localhost:5000/api/users?page=1')
             .then(res => {
@@ -26,7 +26,7 @@ class ActivityCreate extends React.Component {
             .then(users => {
                 this.setState({ data: users.data });
             });
-    }
+    }*/
 
     render() {
         const users = this.state.data;
@@ -54,7 +54,7 @@ class ActivityCreate extends React.Component {
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        href='/profilepage/'
+                        href='/profile/me'
                         iconF7='person_round'
                     />
                 </Toolbar>
