@@ -8,10 +8,11 @@ import {
     List,
     ListItem,
     Toolbar,
-    Link
+    Link,
+    Searchbar
 } from 'framework7-react';
 import ActivitiesView from '../components/Activity/ActivitiesView/ActivitiesView.jsx';
-import ActivitiesInstance from '../components/Activity/ActivitiesInstance/ActivitiesInstance.jsx';
+import ActivitiesInstance from '../components/Activities/ActivitiesInstance/ActivitiesInstance.jsx';
 
 import Header from '../components/Header/Header.jsx';
 
@@ -26,7 +27,26 @@ class Activities extends React.Component {
         return (
             <Page className='theme-dark'>
                 <Header backLink title='Activities' />
-                <ActivitiesView />
+                <div className='conversationsActivitiesViewContainer'>
+                    <div className='conversationsActivitiesViewInnerContainer'>
+                        <List
+                            noHairlines
+                            noHairlinesBetween
+                            className='search-list searchbar-found conversationsActivitiesViewList'
+                        >
+                            <div className='conversationsActivitiesViewInstanceContainer'>
+                                <ListItem
+                                    className='conversationsActivitiesViewListItem'
+                                    key={1}
+                                >
+                                    <ActivitiesInstance
+                                        id={this.$f7route.params.id}
+                                    />
+                                </ListItem>
+                            </div>
+                        </List>
+                    </div>
+                </div>
 
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
@@ -51,7 +71,6 @@ class Activities extends React.Component {
                         iconF7='person_round'
                     />
                 </Toolbar>
-
             </Page>
         );
     }

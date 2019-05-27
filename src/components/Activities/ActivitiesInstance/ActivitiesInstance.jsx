@@ -7,10 +7,16 @@ import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesIn
 export default class extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {start_date:null}
+    }
+
+    formatHoursAndMinutes(time){
+        return time.getHours() + ":" + time.getMinutes();
     }
 
     formatTime(start_time, end_time) {
-        return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
+        return this.formatHoursAndMinutes(start_time) + "-" + this.formatHoursAndMinutes(end_time);
+        //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
     formatDate(start_date, end_date, frequency) {
@@ -98,19 +104,55 @@ export default class extends React.Component {
         return timeSinceStr;
     }
 
+
+    componentDidMount() {
+        let id = this.props.id;
+
+        const url = gConfig.url + '/activities/' + id;
+
+        fetch(url, { headers: { authorization: localStorage.jwt } })
+            .then(res => {
+
+                return res.json();
+            })
+            .then(user => {
+                console.log(user.message);
+                const data = user;
+                console.log(data);
+                console.log(this.props.id);
+
+                // TODO  address in backend, frequency? (probably recurrencePattern
+                this.setState({
+                    header: data.name,
+                    information: data.description,
+                    start_date: new Date(data.startDateUTC),
+                    end_date: new Date(data.endDateUTC),
+                    duration: data.duration,
+                    isRecurring: data.isRecurring,
+                    recurrencePattern: data.recurrencePattern,
+                    creatorId: data.creatorId,
+                    createdAt: data.createdAt,
+                    updatedAt: data.updatedAt
+                });
+                console.log(user.data);
+            });
+    }
+
+
     render() {
+        if(this.state.start_date === null){return null;}
         const date = this.formatDate(
-            this.props.start_date,
-            this.props.end_date,
-            this.props.frequency
+            this.state.start_date,
+            this.state.end_date,
+            [true, false, true, true, true]
         );
         const time = this.formatTime(
-            this.props.start_time,
-            this.props.end_time
+            this.state.start_date,
+            this.state.end_date
         );
         const chip_time_stamp = this.formatTimeStamp(
-            this.props.start_date,
-            this.props.start_time
+            this.state.start_date,
+            this.state.start_time
         );
 
         return (
@@ -121,12 +163,12 @@ export default class extends React.Component {
                 <div className='conversationActivitiesTextOuterContainer'>
                     <ActivitiesInstanceText
                         id={this.props.id}
-                        header={this.props.header}
-                        informationText={this.props.informationText}
+                        header={this.state.header}
+                        informationText={this.state.informationText}
                         date={date}
                         time={time}
-                        frequency={this.props.frequency}
-                        address={this.props.address}
+                        frequency={this.state.frequency}
+                        address={this.state.address ? null : null}
                     />
                 </div>
                 <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>

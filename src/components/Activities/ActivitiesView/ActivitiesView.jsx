@@ -9,6 +9,13 @@ export default class extends React.Component {
 
         this.state = {
             searchbarContent: '',
+            activities:[
+                {
+                    id:1
+                },
+                {id:2}
+            ]
+            /*
             activities: [
                 {
                     id:1,
@@ -58,7 +65,7 @@ export default class extends React.Component {
                     address: 'Wessels Gate 20A',
                     state: 'cancelled'
                 }
-            ]
+            ]*/
         };
     }
 
@@ -88,7 +95,7 @@ export default class extends React.Component {
                         className='search-list searchbar-found conversationsActivitiesViewList'
                     >
                         {this.state.activities
-                            .filter(a =>
+                            /*.filter(a =>
                                 a.header
                                     .toLowerCase()
                                     .includes(this.state.searchbarContent)
@@ -104,7 +111,7 @@ export default class extends React.Component {
                                         a.start_date + ' ' + a.start_time
                                     ) -
                                     new Date(b.start_date + ' ' + b.start_time)
-                            )
+                            )*/
                             .map((activity, index) => (
                                 <ListItem
                                     className='conversationsActivitiesViewListItem'

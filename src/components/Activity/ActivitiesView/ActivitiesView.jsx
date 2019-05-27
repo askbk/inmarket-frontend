@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../css/conversationsActivitiesViewShared.css';
-import ActivitiesInstance from '../ActivitiesInstance/ActivitiesInstance.jsx';
+import ActivitiesInstance from '../../Activities/ActivitiesInstance/ActivitiesInstance.jsx';
 import { List, ListItem, Searchbar } from 'framework7-react';
 
 export default class extends React.Component {
@@ -12,24 +12,11 @@ export default class extends React.Component {
             activities: [
                 {
                     id:1,
-                    header: 'Inmarket - Intervju',
-                    informationText: '',
-                    start_date: '2019-02-12',
-                    end_date: '2019-06-10',
-                    start_time: '11:30:00',
-                    end_time: '14:05:00',
-                    frequency: [true, false, true, true, true],
-                    address: 'Wessels Gate 20A',
-                    state: ''
                 },
             ]
         };
     }
 
-    handleChange(e) {
-        const value = e.target.value.toLowerCase();
-        this.setState({ searchbarContent: value });
-    }
 
 
     render() {
@@ -49,23 +36,6 @@ export default class extends React.Component {
                         className='search-list searchbar-found conversationsActivitiesViewList'
                     >
                         {this.state.activities
-                            .filter(a =>
-                                a.header
-                                    .toLowerCase()
-                                    .includes(this.state.searchbarContent)
-                            )
-                            .filter(
-                                a =>
-                                    new Date(a.end_date + ' ' + a.end_time) >=
-                                    new Date(Date.now())
-                            )
-                            .sort(
-                                (a, b) =>
-                                    new Date(
-                                        a.start_date + ' ' + a.start_time
-                                    ) -
-                                    new Date(b.start_date + ' ' + b.start_time)
-                            )
                             .map((activity, index) => (
                                 <ListItem
                                     className='conversationsActivitiesViewListItem'

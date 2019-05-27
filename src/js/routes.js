@@ -75,6 +75,10 @@ var routes = [
         path: '/activities/',
         component: ActivitiesPage
     },
+    {
+        path: '/activities/create/',
+        component: ActivityCreate
+    },
     /*If no userID, then just create an activity, else create and invite*/
     {
         path: '/activities/create/:id',

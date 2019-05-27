@@ -66,7 +66,7 @@ class ActivityForm extends React.Component {
         //Create and invite
         let url = gConfig.url + '/activities/users/' + id;
         //Only create
-        if (id === null || id === '') {
+        if (id === null || id === '' || id === undefined) {
             url = gConfig.url + '/activities/';
         }
 
