@@ -45,7 +45,8 @@ class Profile extends React.Component {
             firstName: 'Ask',
             lastName: 'Kolltveit',
             role: 'Teknologidirektør',
-            institution: 'Inmarket AS'
+            institution: 'Inmarket AS',
+            id: null
         };
         this.sendUpdatedProfile = this.sendUpdatedProfile.bind(this);
     }
@@ -53,7 +54,7 @@ class Profile extends React.Component {
     componentDidMount() {
         let id = this.$f7route.params.id;
         if (id === 'me' || id === '') {
-            id = atob(localStorage.jwt.split('.')[1]).sub;
+            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
 
         const url = `${gConfig.url}/users/${id}`;
@@ -128,11 +129,11 @@ class Profile extends React.Component {
     sendUpdatedProfile() {
         let id = this.$f7route.params.id;
         if (id === 'me' || id === '') {
-            id = atob(localStorage.jwt.split('.')[1]).sub;
+            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
         this.setState({ id: id });
         const url = `${gConfig.url}/users/${id}`;
-
+        this.setState({id: id});
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -143,6 +144,8 @@ class Profile extends React.Component {
             .then(res => res.text())
             .then(res => console.log(res));
         // console.log(this.state);
+        console.log(id);
+        console.log(this.state.id);
     }
 
     render() {
