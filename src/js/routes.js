@@ -17,7 +17,7 @@ import SearchPage from '../pages/search.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 import Profile from '../pages/profile';
-import ActivityCreate from '../pages/activityCreate'
+import ActivityCreate from '../pages/activityCreate';
 var routes = [
     {
         path: '/',
@@ -75,13 +75,14 @@ var routes = [
         path: '/activities/',
         component: ActivitiesPage
     },
+    /*If no userID, then just create an activity, else create and invite*/
     {
-        path: '/activities/create',
-        component: ActivityCreate,
+        path: '/activities/create/:id',
+        component: ActivityCreate
     },
     {
         path: '/activities/:id',
-        component: Activity,
+        component: Activity
     },
     {
         path: '/conversations/:chatId',

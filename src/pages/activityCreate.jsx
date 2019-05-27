@@ -7,7 +7,6 @@ import VideosContainer from '../components/Home/VideosContainer/VideosContainer.
 import MatchesContainer from '../components/Home/MatchesContainer/MatchesContainer.jsx';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 
-
 import '../css/toolbar.css';
 
 class ActivityCreate extends React.Component {
@@ -17,7 +16,7 @@ class ActivityCreate extends React.Component {
             data: []
         };
     }
-/*
+    /*
     componentDidMount() {
         fetch('http://localhost:5000/api/users?page=1')
             .then(res => {
@@ -34,7 +33,7 @@ class ActivityCreate extends React.Component {
         return (
             <Page name='home'>
                 <Header />
-                <ActivityForm/>
+                <ActivityForm id={this.$f7route.params.id} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
