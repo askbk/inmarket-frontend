@@ -45,8 +45,9 @@ class Profile extends React.Component {
             firstName: 'Ask',
             lastName: 'Kolltveit',
             role: 'Teknologidirektør',
-            institution: 'Inmarket AS',
+            institution: 'Inmarket AS'
         };
+        this.sendUpdatedProfile = this.sendUpdatedProfile.bind(this);
     }
 
     componentDidMount() {
@@ -64,8 +65,12 @@ class Profile extends React.Component {
             })
             .then(user => {
                 const data = user.data;
-                const role = data.employee ? data.employee.role : data.jobseeker.type;
-                const institution = data.employee ? data.employee.company : data.jobseeker.education;
+                const role = data.employee
+                    ? data.employee.role
+                    : data.jobseeker.type;
+                const institution = data.employee
+                    ? data.employee.company
+                    : data.jobseeker.education;
                 this.setState({
                     ...user.data,
                     role: role ? role : '',
@@ -114,8 +119,30 @@ class Profile extends React.Component {
 
     removeSkill(e, text) {
         let newQualities = this.state.skills.filter(a => a.text != text);
-        let newActiveQualities = this.state.activeQualities.filter(a => a != text);
+        let newActiveQualities = this.state.activeQualities.filter(
+            a => a != text
+        );
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
+    }
+
+    sendUpdatedProfile() {
+        let id = this.$f7route.params.id;
+        if (id === 'me' || id === '') {
+            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+        }
+        const url = `${gConfig.url}/users/${id}`;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: localStorage.jwt
+            },
+            body: this.state
+        })
+            .then(res => res.text())
+            .then(res => console.log(res));
+        // console.log(this.state);
     }
 
     render() {
@@ -130,7 +157,7 @@ class Profile extends React.Component {
             lastName,
             birthDate,
             role,
-            institution,
+            institution
         } = this.state;
 
         let profilePageHeader = (
@@ -149,13 +176,9 @@ class Profile extends React.Component {
             <ProfileInformation>{profileDescription}</ProfileInformation>
         );
 
-        let profileSkills = (
-            <ProfileQualities qualities={skills} />
-        );
+        let profileSkills = <ProfileQualities qualities={skills} />;
 
-        let profileInterests = (
-            <ProfileQualities qualities={interests} />
-        );
+        let profileInterests = <ProfileQualities qualities={interests} />;
 
         // const isCurrentUser = this.$f7route.params.id === 'me';
         const isCurrentUser = false; // Set always false for demo
@@ -232,6 +255,9 @@ class Profile extends React.Component {
                 <Header backLink title='Profil' />
                 {profilePageHeader}
                 <Row className='profilePageButtonContainer'>
+                    <Button clicked={this.sendUpdatedProfile}>
+                        Oppdater profil
+                    </Button>
                     {/*
                     <Button>SE LOGG</Button>
                     <Button>SE ANSATTE</Button>
