@@ -53,7 +53,7 @@ class Profile extends React.Component {
     componentDidMount() {
         let id = this.$f7route.params.id;
         if (id === 'me' || id === '') {
-            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+            id = atob(localStorage.jwt.split('.')[1]).sub;
         }
 
         const url = `${gConfig.url}/users/${id}`;
@@ -128,7 +128,7 @@ class Profile extends React.Component {
     sendUpdatedProfile() {
         let id = this.$f7route.params.id;
         if (id === 'me' || id === '') {
-            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+            id = atob(localStorage.jwt.split('.')[1]).sub;
         }
         this.setState({ id: id });
         const url = `${gConfig.url}/users/${id}`;
@@ -136,7 +136,6 @@ class Profile extends React.Component {
         fetch(url, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
                 authorization: localStorage.jwt
             },
             body: this.state
