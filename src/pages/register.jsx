@@ -130,7 +130,7 @@ class Register extends React.Component {
         const value =
             target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        console.log(`${name}: ${value}`);
+        // console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
