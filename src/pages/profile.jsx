@@ -46,7 +46,8 @@ class Profile extends React.Component {
             birthDate: '1997-01-01',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
-            formerEmployers: ''
+            formerEmployers: '',
+            id: null
         };
     }
 
@@ -55,6 +56,7 @@ class Profile extends React.Component {
         if (id === 'me' || id === '') {
             id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
+        this.setState({id:id});
 
         const url = gConfig.url + '/users/' + id;
         console.log(url);
@@ -238,7 +240,7 @@ class Profile extends React.Component {
             <Button>SE LOGG</Button>
             <Button>SE ANSATTE</Button>
               */}
-                    <Link href="/activities/create"> INVITER</Link>
+                    <Link href={"/activities/create/" + this.state.id}> INVITER</Link>
                 </Row>
                 {profileInformation}
                 {/*
