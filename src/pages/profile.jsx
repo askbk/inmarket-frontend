@@ -8,7 +8,7 @@ import '../css/toolbar.css';
 import Button from '../components/shared/Button/StyledButton';
 import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader/ProfilePageHeader';
 import ProfileInformation from '../components/shared/InformationBox/InformationBox';
-import ProfileSkills from '../components/ProfilePage/ProfileSkills/ProfileSkills';
+import ProfileQualities from '../components/ProfilePage/ProfileQualities/ProfileQualities';
 import Header from '../components/Header/Header.jsx';
 import AboutForm from '../components/ProfilePage/ProfilePageAboutForm/ProfilePageAboutForm';
 import BioForm from '../components/ProfilePage/ProfilePageBioForm/ProfilePageBioForm';
@@ -18,6 +18,7 @@ import EditableButton from '../components/ProfilePage/ProfilePageEditableButton/
 import {
     Page,
     Row,
+    Col,
     Toolbar,
     Link,
     Popup,
@@ -33,20 +34,18 @@ class Profile extends React.Component {
             profileDescription:
                 'Jeg er tidligere finalist i Norsk Informatikkolympiade, tar mastergrad i datateknologi ved NTNU, og har hovedansvaret for utvikling av InMarkets nettsider og app.',
             skills: [
-                { text: 'Hacking', rating: 4.1 },
-                { text: 'Programmering', rating: 5.0 },
-                { text: 'Lederegenskaper', rating: 4.3 }
+                { name: 'Hacking', rating: 4.1 },
+                { name: 'Programmering', rating: 5.0 },
+                { name: 'Lederegenskaper', rating: 4.3 }
             ],
-            activeSkills: ['Hacking', 'Programmering'],
+            interests: [],
             rating: 4.5,
             popupOpen: false,
             currentForm: '',
             firstName: 'Ask',
             lastName: 'Kolltveit',
-            birthDate: '1997-01-01',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
-            formerEmployers: ''
         };
     }
 
@@ -56,7 +55,7 @@ class Profile extends React.Component {
             id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
 
-        const url = gConfig.url + '/users/' + id;
+        const url = `${gConfig.url}/users/${id}`;
         console.log(url);
 
         fetch(url, { headers: { authorization: localStorage.jwt } })
@@ -65,12 +64,12 @@ class Profile extends React.Component {
             })
             .then(user => {
                 const data = user.data;
+                const role = data.employee ? data.employee.role : data.jobseeker.type;
+                const institution = data.employee ? data.employee.company : data.jobseeker.education;
                 this.setState({
-                    profileDescription: data.profileDescription,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    role: data.employee.role,
-                    institution: data.employee.company ? data.employee.company : ''
+                    ...user.data,
+                    role: role ? role : '',
+                    institution: institution ? institution : ''
                 });
                 console.log(user.data);
             });
@@ -101,21 +100,21 @@ class Profile extends React.Component {
 
     handleChecked(e, text) {
         const checked = e.target.checked;
-        let newActiveSkills = this.state.activeSkills;
-        if (newActiveSkills.length >= 3) {
+        let newActiveQualities = this.state.activeQualities;
+        if (newActiveQualities.length >= 3) {
             e.target.checked = false;
         }
-        if (checked && newActiveSkills.length < 3) {
-            newActiveSkills.push(text);
+        if (checked && newActiveQualities.length < 3) {
+            newActiveQualities.push(text);
         } else if (!checked) {
-            newActiveSkills = newActiveSkills.filter(a => a != text);
+            newActiveQualities = newActiveQualities.filter(a => a != text);
         }
-        this.setState({ activeSkills: newActiveSkills });
+        this.setState({ activeQualities: newActiveQualities });
     }
 
     removeSkill(e, text) {
-        let newSkills = this.state.skills.filter(a => a.text != text);
-        let newActiveSkills = this.state.activeSkills.filter(a => a != text);
+        let newQualities = this.state.skills.filter(a => a.text != text);
+        let newActiveQualities = this.state.activeQualities.filter(a => a != text);
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
     }
 
@@ -124,7 +123,7 @@ class Profile extends React.Component {
             profileDescription,
             rating,
             skills,
-            activeSkills,
+            interests,
             popupOpen,
             currentForm,
             firstName,
@@ -132,7 +131,6 @@ class Profile extends React.Component {
             birthDate,
             role,
             institution,
-            formerEmployers
         } = this.state;
 
         let profilePageHeader = (
@@ -140,11 +138,9 @@ class Profile extends React.Component {
                 <ProfilePageHeader
                     firstName={firstName}
                     lastName={lastName}
-                    birthday={birthDate}
-                    rating={rating}
+                    rating={4.2}
                     role={role}
                     institution={institution}
-                    formerEmployers={formerEmployers}
                 />
             </div>
         );
@@ -154,11 +150,15 @@ class Profile extends React.Component {
         );
 
         let profileSkills = (
-            <ProfileSkills activeSkills={activeSkills} skills={skills} />
+            <ProfileQualities qualities={skills} />
         );
 
-        const isCurrentUser = true;
+        let profileInterests = (
+            <ProfileQualities qualities={interests} />
+        );
 
+        // const isCurrentUser = this.$f7route.params.id === 'me';
+        const isCurrentUser = false; // Set always false for demo
         //Take the elements above and wrap them in a editable button
         if (isCurrentUser) {
             profilePageHeader = (
@@ -204,10 +204,8 @@ class Profile extends React.Component {
                     onChange={this.handleChange.bind(this)}
                     firstName={firstName}
                     lastName={lastName}
-                    birthday={birthDate}
                     role={role}
                     institution={institution}
-                    formerEmployers={formerEmployers}
                 />
             );
         } else if (currentForm === 'bio') {
@@ -222,7 +220,7 @@ class Profile extends React.Component {
                 <ProfilePageSkillsForm
                     removeSkill={this.removeSkill.bind(this)}
                     onChecked={this.handleChecked.bind(this)}
-                    activeSkills={activeSkills}
+                    activeSkills={skills}
                     handleAdd={this.handleChange.bind(this)}
                     skills={skills}
                 />
@@ -235,13 +233,13 @@ class Profile extends React.Component {
                 {profilePageHeader}
                 <Row className='profilePageButtonContainer'>
                     {/*
-            <Button>SE LOGG</Button>
-            <Button>SE ANSATTE</Button>
-              */}
+                    <Button>SE LOGG</Button>
+                    <Button>SE ANSATTE</Button>
+                      */}
                 </Row>
                 {profileInformation}
-                {/*
-          {profileSkills} */}
+                {profileSkills}
+                {profileInterests}
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'

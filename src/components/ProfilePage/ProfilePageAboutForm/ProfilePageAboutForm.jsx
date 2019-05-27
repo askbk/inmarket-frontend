@@ -15,38 +15,28 @@ export default class extends React.Component {
         const {
             firstName,
             lastName,
-            birthday,
             role,
-            institution,
-            formerEmployers
+            institution
         } = this.props;
 
         return (
             <List noHairlines>
                 <ListInput
-                    label='First name'
+                    label='Fornavn'
                     floatingLabel
                     type='text'
-                    placeholder='First Name'
+                    placeholder='Fornavn'
                     clearButton
                     defaultValue={firstName}
                     onChange={this.handleChange.bind(this)}
                 />
                 <ListInput
-                    label='Last name'
+                    label='Etternavn'
                     floatingLabel
                     type='text'
-                    placeholder='Last Name'
+                    placeholder='Etternavn'
                     clearButton
                     defaultValue={lastName}
-                    onChange={this.handleChange.bind(this)}
-                />
-                <ListInput
-                    label='Birthday'
-                    type='date'
-                    placeholder='Birthday'
-                    clearButton
-                    defaultValue={birthday}
                     onChange={this.handleChange.bind(this)}
                 />
                 <ListInput
@@ -65,15 +55,6 @@ export default class extends React.Component {
                     placeholder='Institution'
                     clearButton
                     defaultValue={institution}
-                    onChange={this.handleChange.bind(this)}
-                />
-                <ListInput
-                    label='Former Employers'
-                    floatingLabel
-                    type='textarea'
-                    placeholder='Former Employers'
-                    clearButton
-                    defaultValue={formerEmployers}
                     onChange={this.handleChange.bind(this)}
                 />
             </List>
