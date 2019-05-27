@@ -87,21 +87,17 @@ class Register extends React.Component {
         if (e.target.id === 'companyRegisterButton') {
             user.userType = 'company';
         }
-        const skillIds = this.state.user.skills
-            .filter(skill => {
-                return skill.selectedBy;
-            })
-            .map(skill => {
-                return skill.id;
-            });
+        const skillIds = this.state.user.skills.filter(skill => {
+            return skill.selectedBy;
+        }).map(skill => {
+            return skill.id;
+        });
 
-        const interestIds = this.state.user.interests
-            .filter(interest => {
-                return interest.selectedBy;
-            })
-            .map(interest => {
-                return interest.id;
-            });
+        const interestIds = this.state.user.interests.filter(interest => {
+            return interest.selectedBy;
+        }).map(interest => {
+            return interest.id;
+        });
 
         user.skills = skillIds;
         user.interests = interestIds;
@@ -127,8 +123,9 @@ class Register extends React.Component {
 
     handleInputChange(event) {
         const target = event.target;
-        const value =
-            target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.type === 'checkbox'
+            ? target.checked
+            : target.value;
         const name = target.name;
         console.log(`${name}: ${value}`);
 
@@ -173,9 +170,7 @@ class Register extends React.Component {
                     skillsChanged={this.skillsChanged}
                     interestsChanged={this.interestsChanged}
                     userType={this.state.user.userType}
-                    type={this.state.user.type}
-                    />
-                {/* Disable company registration for demo.
+                    type={this.state.user.type}/> {/* Disable company registration for demo.
 
                 <Toolbar tabbar slot='fixed' position='top'>
                     <Link tabLink='#tab-user' tabLinkActive text='Bruker' />
@@ -189,7 +184,8 @@ class Register extends React.Component {
                     userType={this.state.user.userType}
                     />
                 </Tabs>
-                */}
+                */
+                }
             </Page>
         );
     }
