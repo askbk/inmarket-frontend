@@ -102,7 +102,7 @@ class Register extends React.Component {
         user.skills = skillIds;
         user.interests = interestIds;
 
-        console.log(user);
+        // console.log(user);
 
         const request = await fetch('http://localhost/api/users', {
             method: 'post',
@@ -127,7 +127,7 @@ class Register extends React.Component {
             ? target.checked
             : target.value;
         const name = target.name;
-        console.log(`${name}: ${value}`);
+        // console.log(`${name}: ${value}`);
 
         this.setState(prevState => {
             return {
