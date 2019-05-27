@@ -130,6 +130,7 @@ class Profile extends React.Component {
         if (id === 'me' || id === '') {
             id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
+        this.setState({ id: id });
         const url = `${gConfig.url}/users/${id}`;
 
         fetch(url, {
