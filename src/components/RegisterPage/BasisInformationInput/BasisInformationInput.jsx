@@ -73,29 +73,30 @@ export default class extends React.Component {
                     placeholder='Hva heter du?'
                     onChange={this.props.onInputChange}/> {
                     this.props.userType === 'employee'
-                        ? <ListInput
+                        ? (
+                        <ListInput
                                 label='Bedrift'
                                 type='text'
                                 name='company'
                                 placeholder='Hvor arbeider du?'
                                 onChange={this.props.onInputChange}/>
-                        : <ListInput
-                                label='Utdanning'
-                                type='text'
-                                name='education'
-                                placeholder='Hva slags utdanning har du?'
-                                onChange={this.props.onInputChange}/>
-                }
-
-                {
-                    this.props.userType === 'employee'
-                        ? <ListInput
+                        
+                        <ListInput
                                 label='Stilling'
                                 type='text'
                                 name='role'
                                 placeholder='Hva slags stilling har du?'
                                 onChange={this.props.onInputChange}/>
-                        : <React.Fragment>
+                        )
+                        : (
+                        <ListInput
+                                label='Utdanning'
+                                type='text'
+                                name='education'
+                                placeholder='Hva slags utdanning har du?'
+                                onChange={this.props.onInputChange}/>
+                        
+                        <React.Fragment>
                                 <ListItem header='Velg det som passer best til din situasjon:'></ListItem>
                                 <ListItem
                                     radio
@@ -143,8 +144,8 @@ export default class extends React.Component {
                                         });
                                     }}/>
                             </React.Fragment>
-                }
-
+                        )
+                    }
                 {/*
                 <ListInput
                 label='Telefonnummer'
