@@ -47,7 +47,7 @@ export default class extends React.Component {
 
                 <Tabs>
                     <Tab id='tab-user-basis' tabActive>
-                        <List form="form">
+                        <List form>
                             <BasisInformationInput
                                 onInputChange={this.props.onInputChange}
                                 userType={this.props.userType}

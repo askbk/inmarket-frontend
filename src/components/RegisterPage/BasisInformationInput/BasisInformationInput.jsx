@@ -18,8 +18,7 @@ export default class extends React.Component {
                         title='Arbeidssøker'
                         name='user-type-radio'
                         value='jobseeker'
-                        checked={this.props.userType === 'jobseeker'
-}
+                        checked={this.props.userType === 'jobseeker'}
                         onClick={() => {
                             this.props.onInputChange({
                                 target: {
@@ -74,37 +73,38 @@ export default class extends React.Component {
                     onChange={this.props.onInputChange}/> {
                     this.props.userType === 'employee'
                         ? (
-                        <ListInput
-                                label='Bedrift'
-                                type='text'
-                                name='company'
-                                placeholder='Hvor arbeider du?'
-                                onChange={this.props.onInputChange}/>
-                        
-                        <ListInput
-                                label='Stilling'
-                                type='text'
-                                name='role'
-                                placeholder='Hva slags stilling har du?'
-                                onChange={this.props.onInputChange}/>
+                            <React.Fragment>
+                                <ListInput
+                                    label='Bedrift'
+                                    type='text'
+                                    name='company'
+                                    placeholder='Hvor arbeider du?'
+                                    onChange={this.props.onInputChange}/>
+
+                                <ListInput
+                                    label='Stilling'
+                                    type='text'
+                                    name='role'
+                                    placeholder='Hva slags stilling har du?'
+                                    onChange={this.props.onInputChange}/>
+                            </React.Fragment>
                         )
                         : (
-                        <ListInput
-                                label='Utdanning'
-                                type='text'
-                                name='education'
-                                placeholder='Hva slags utdanning har du?'
-                                onChange={this.props.onInputChange}/>
-                        
-                        <React.Fragment>
+                            <React.Fragment>
+                                <ListInput
+                                    label='Utdanning'
+                                    type='text'
+                                    name='education'
+                                    placeholder='Hva slags utdanning har du?'
+                                    onChange={this.props.onInputChange}/>
+
                                 <ListItem header='Velg det som passer best til din situasjon:'></ListItem>
                                 <ListItem
                                     radio
                                     title='Elev'
                                     name='type-radio'
                                     value='pupil'
-                                    checked={this.props.type === 'Elev'
-}
+                                    checked={this.props.type === 'Elev'}
                                     onClick={() => {
                                         this.props.onInputChange({
                                             target: {
@@ -145,7 +145,7 @@ export default class extends React.Component {
                                     }}/>
                             </React.Fragment>
                         )
-                    }
+                }
                 {/*
                 <ListInput
                 label='Telefonnummer'
