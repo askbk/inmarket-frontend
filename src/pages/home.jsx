@@ -24,6 +24,7 @@ class Home extends React.Component {
         // For now it simply won't try to fetch any recommendation if no token
         // is found.
         if (!localStorage.jwt) {
+            this.$f7router.navigate('/logginn/');
             return false;
         }
 
