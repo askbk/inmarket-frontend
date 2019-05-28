@@ -127,7 +127,7 @@ class Profile extends React.Component {
     }
 
     logout(){
-        localStorage.removeItem("jtw");
+        localStorage.removeItem("jwt");
         localStorage.removeItem("userType");
         localStorage.removeItem("userId");
         this.$f7router.navigate("/logginn/");

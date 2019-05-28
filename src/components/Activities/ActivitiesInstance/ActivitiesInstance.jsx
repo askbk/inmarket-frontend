@@ -145,6 +145,7 @@ export default class extends React.Component {
                             address={this.props.address}
                             startDate={this.props.startDate}
                             endDate={this.props.endDate}
+                            creator={this.props.creator}
                         />
                     </div>
                     {/*</Link>*/}
