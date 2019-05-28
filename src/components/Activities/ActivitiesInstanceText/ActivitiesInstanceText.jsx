@@ -30,12 +30,15 @@ export default class extends React.Component {
                         <h1>{this.props.header}</h1>
                     </div>
                     <div className='conversationsActivitiesTextMessageContainer'>
-                        <p>{this.props.date}</p>
+                        <p>{this.props.date} {this.props.time} </p>
                     </div>
                     <div className='conversationsActivitiesTextMessageContainer'>
-                        <p>{this.props.time}</p>
+                        <p>
+                        {this.props.address}
+                        </p>
                     </div>
                     {information}
+
                     {/*<div className='conversationsActivitiesTextMessageContainer activitiesTextAddress'>
                             <p>{this.props.address}</p>
                         </div>*/}

@@ -247,7 +247,7 @@ class Profile extends React.Component {
                             )
                         }
                     >
-                        INVITER
+                        INVITER TIL NY AKTIVITET
                     </Button>
                 </Row>
                 {profileInformation}

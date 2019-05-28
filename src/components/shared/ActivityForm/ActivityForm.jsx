@@ -59,6 +59,7 @@ class ActivityForm extends React.Component {
             endDateUTC: state.endDate,
             isRecurring: state.recurringActivity,
             recurrencePattern: state.repeatEvery,
+            location: state.location,
             duration: 0
         };
         const id = this.props.id;
@@ -70,6 +71,7 @@ class ActivityForm extends React.Component {
             url = `${gConfig.url}/activities/`;
         }
 
+        console.log(data);
         fetch(url, {
             method: 'post',
             body: JSON.stringify(data),
