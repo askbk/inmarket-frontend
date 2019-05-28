@@ -1,0 +1,38 @@
+.conversationsActivitiesInstanceInnerContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.conversationsMessageLink{
+    width: 100%;
+}
+
+.conversationsActivitiesAvatarOuterContainer{
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0 0 0;
+}
+
+.conversationActivitiesTextOuterContainer{
+    flex: 4;
+}
+
+.conversationActivitiesReactOuterContainer{
+    display: flex;
+    align-items: center;
+}
+
+.activitiesButtonsContainer{
+    margin: 0 0 0 1rem;
+    flex: 1;
+    max-width: 8rem;
+    align-items: flex-start;
+}
+
+@media screen and (max-width: 500px){
+    .activitiesButtonsContainer{
+        margin: 0;
+    }
+}
+

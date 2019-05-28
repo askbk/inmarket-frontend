@@ -1,0 +1,8 @@
+#terms-box {
+    display: flex;
+    flex-direction: row;
+}
+
+#terms-checkbox {
+    margin-right: 8px;
+}

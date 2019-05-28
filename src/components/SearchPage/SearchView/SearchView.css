@@ -1,0 +1,16 @@
+.searchViewOuterContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.searchViewInnerContainer {
+    width: 100%;
+    max-width: 600px;
+}
+
+.searchTitle {
+    display: flex;
+    justify-content: center;
+}

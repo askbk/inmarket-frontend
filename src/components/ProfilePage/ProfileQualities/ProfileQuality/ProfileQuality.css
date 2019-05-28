@@ -1,0 +1,10 @@
+.profileQualityContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin: 0 1.5rem 0 0;
+}
+
+.profileQualityMargin{
+  margin: 0 auto;
+}

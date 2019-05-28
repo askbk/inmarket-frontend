@@ -17,9 +17,10 @@ module.exports = {
     }],
   ],
   plugins: [
-    // "@babel/plugin-transform-runtime",
-    "transform-class-properties",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-transform-runtime",
+    '@babel/plugin-syntax-dynamic-import',
+    // "transform-class-properties",
+    // "@babel/plugin-proposal-class-properties"
   ],
 };
 

@@ -1,0 +1,61 @@
+.dateContent {
+  font-size: 12px;
+  max-width: 10%;
+}
+
+.dateGrid {
+  width: 50%;
+}
+
+.dateDesc {
+  height: 40px;
+}
+
+.dateCol {
+  display: flex;
+}
+
+.datePic img{
+  height: 6%;
+  width: 6%;
+  min-height: 30px;
+  min-width: 30px;
+}
+
+.locationDesc{
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding-left: 6px;
+  padding-top: 6px;
+}
+
+.fieldStyling {
+  background-color: black;
+  color: white;
+  border: 1px solid #c08d42;
+  margin-bottom: 10px;
+  min-width: fit-content;
+  max-width: 100px;
+}
+
+.inputStyling {
+  background-color: black;
+  color: white;
+  border: 1px solid #c08d42;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding-left: 6px;
+  padding-top: 6px;
+}
+
+@media (max-width: 793px){
+  .dateGrid {
+    width: 95%;
+  }
+
+  .dateTimeContainer {
+   margin: 0 auto;
+  }
+}

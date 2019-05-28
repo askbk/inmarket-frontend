@@ -1,0 +1,23 @@
+.buttonsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.networkButton,
+.networkContactButton,
+.networkRequestButton,
+.networkViewButton {
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin: 5px;
+    color: black;
+}
+
+.networkViewButton {
+    background: black;
+    color: white;
+}

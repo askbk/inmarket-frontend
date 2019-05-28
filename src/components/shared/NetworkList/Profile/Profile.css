@@ -1,0 +1,21 @@
+.profileContainer{
+  display: flex;
+  flex-direction: row;
+  height: 130px;
+}
+
+.profileProfileInformationContainer{
+  display: flex;
+  align-items: center;
+  order: 1;
+  flex: 4; 
+
+}
+
+.profileButtonContainer{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  order: 2;
+  height: 100%;
+}

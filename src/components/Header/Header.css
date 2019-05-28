@@ -1,0 +1,49 @@
+/* Navbar */
+
+.navbar {
+  
+  background-color: black;
+}
+
+/* Navbar content */
+
+.navbarcontent {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo in navbar */
+.navbarlogo {
+  height: 66px;
+  margin-left: 6%;
+  margin-right: 20%;
+}
+
+/* Navbar title */
+.navbartitle {
+  color: white;
+}
+
+/* Navbar right-slider */ 
+.navright {
+  color: white;
+}
+
+
+@media (max-width: 768px){
+  .navbar {
+    height: 55px;
+  }
+
+  .navbartitle {
+    font-size: 9px;
+  }
+
+  .navbarlogo {
+    height: 40px;
+    margin-right: 10%;
+  }
+}

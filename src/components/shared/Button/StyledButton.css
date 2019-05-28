@@ -1,0 +1,15 @@
+.styledPageButton {
+  background-color: black;
+  color: white;
+  border: 1px solid #c08d42; 
+  margin-right: 10px;
+  margin-left: 10px;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+@media (max-width: 769px){
+  .styledPageButton {
+    margin-top: 10px;
+  }
+}

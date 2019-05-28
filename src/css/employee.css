@@ -1,0 +1,30 @@
+.employeePageButtonContainer {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+.datePickerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.dateButtonContainer{
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 769px){
+ 
+  .employeePageButtonContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .datePickerContainer {
+    flex-direction: column;
+    align-items: center; 
+  }
+}

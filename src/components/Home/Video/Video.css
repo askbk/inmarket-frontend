@@ -1,0 +1,20 @@
+.video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.videoThumbnail {
+  height: 200px;
+}
+
+.videoTitle {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: medium;
+  width: 100%;
+}
