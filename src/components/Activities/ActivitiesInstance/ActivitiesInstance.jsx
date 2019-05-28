@@ -3,6 +3,7 @@ import '../../../css/conversationsActivitiesInstanceShared.css';
 import ConversationsMessageAvatar from '../../Conversations/ConversationsMessageAvatar/ConversationsMessageAvatar.jsx';
 import ActivitiesInstanceText from '../ActivitiesInstanceText/ActivitiesInstanceText.jsx';
 import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesInstanceButtons.jsx';
+import { Link } from 'framework7-react';
 
 export default class extends React.Component {
     constructor(props) {
@@ -123,20 +124,24 @@ export default class extends React.Component {
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
-                <div className='conversationsActivitiesAvatarOuterContainer'>
-                    <ConversationsMessageAvatar time_stamp={chip_time_stamp} />
-                </div>
-                <div className='conversationActivitiesTextOuterContainer'>
-                    <ActivitiesInstanceText
-                        id={this.props.id}
-                        header={this.props.header}
-                        informationText={this.props.description}
-                        date={date}
-                        time={time}
-                        frequency={this.props.frequency}
-                        address={null}
-                    />
-                </div>
+                <Link href={`/activities/${this.props.id}`}>
+                    <div className='conversationsActivitiesAvatarOuterContainer'>
+                        <ConversationsMessageAvatar
+                            time_stamp={chip_time_stamp}
+                        />
+                    </div>
+                    <div className='conversationActivitiesTextOuterContainer'>
+                        <ActivitiesInstanceText
+                            id={this.props.id}
+                            header={this.props.header}
+                            informationText={this.props.description}
+                            date={date}
+                            time={time}
+                            frequency={this.props.frequency}
+                            address={null}
+                        />
+                    </div>
+                </Link>
                 <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
                     <ActivitiesInstanceButtons status={this.props.status} />
                 </div>

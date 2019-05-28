@@ -96,23 +96,23 @@ export default class extends React.Component {
                         className='search-list searchbar-found conversationsActivitiesViewList'
                     >
                         {this.state.activities
-                            /*.filter(a =>
+                            .filter(a =>
                                 a.header
                                     .toLowerCase()
                                     .includes(this.state.searchbarContent)
-                            )
+                            )/*
                             .filter(
                                 a =>
                                     new Date(a.end_date + ' ' + a.end_time) >=
                                     new Date(Date.now())
-                            )
+                            )*/
                             .sort(
                                 (a, b) =>
                                     new Date(
                                         a.start_date + ' ' + a.start_time
                                     ) -
                                     new Date(b.start_date + ' ' + b.start_time)
-                            )*/
+                            )
                             .map((activity, index) => (
                                 <ListItem
                                     className='conversationsActivitiesViewListItem'
