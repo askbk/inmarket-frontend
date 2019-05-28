@@ -10,13 +10,6 @@ const Sidebar = () => (
     <Panel right cover>
         <Page>
             <List>
-                {/* Must implement edit profile tab and insert here */}
-                <ListItem
-                    panelClose='right'
-                    link='/about/'
-                    title='REDIGER PROFIL'
-                    media={EditProfile}
-                />
                 {/* Must implement settings tab and insert here */}
                 <ListItem
                     panelClose='right'
