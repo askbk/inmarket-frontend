@@ -81,6 +81,20 @@ class Register extends React.Component {
         this.interestsChanged = this.interestsChanged.bind(this);
     }
 
+
+    unsuccessfulDialog(feedback) {
+        const app = this.$f7;
+        app.dialog.alert(`${feedback}`, () => {
+            app.loginScreen.close();
+        });
+    }
+    successfulDialog() {
+        const app = this.$f7;
+        app.dialog.alert('Din bruker er registrert. Vennligst logg inn', () => {
+            app.loginScreen.close();
+        });
+    }
+
     async submitRegistration(e) {
         const user = this.state.user;
 
@@ -118,8 +132,10 @@ class Register extends React.Component {
 
         if (response.success) {
             this.$f7router.navigate('/logginn/');
+            this.successfulDialog();
         } else {
             console.error(response.message);
+            this.unsuccessfulDialog("Noe gikk feil.");
         }
     }
 
