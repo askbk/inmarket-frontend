@@ -45,6 +45,7 @@ export default class extends React.Component {
                         creator: activity.creator,
                         createdAt: activity.createdAt,
                         updatedAt: activity.updatedAt,
+                        address: activity.location,
                         status: 'accepted'
                     };
                 });
@@ -64,6 +65,7 @@ export default class extends React.Component {
                             creator: activity.creator,
                             createdAt: activity.createdAt,
                             updatedAt: activity.updatedAt,
+                            address: activity.location,
                             status: 'invited'
                         };
                     }

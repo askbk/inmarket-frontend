@@ -24,10 +24,10 @@ export default class extends React.Component {
         //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
-    formatDate(startDate, endDate, frequency) {
-        const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
+    formatDate(startDate, endDate/*, frequency*/) {
+        /*const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
         let workdays = '';
-        let formattedDate = '';
+        */let formattedDate = '';
         if (startDate === endDate) {
             const date = new Date(startDate);
             const month =
@@ -58,7 +58,9 @@ export default class extends React.Component {
                 end.getDate().toString() < 10
                     ? '0' + end.getDate().toString()
                     : end.getDate().toString();
-            let dayCount = 0;
+            /*let dayCount = 0;
+
+
             for (let i = 0; i < 5; i++) {
                 if (frequency[i]) {
                     workdays +=
@@ -69,6 +71,7 @@ export default class extends React.Component {
             if (dayCount === 5) {
                 workdays = 'Alle hverdager';
             }
+            */
             formattedDate +=
                 start_day +
                 '.' +
@@ -76,10 +79,10 @@ export default class extends React.Component {
                 '-' +
                 end_day +
                 '.' +
-                end_month +
+                end_month;/* +
                 ' (' +
                 workdays +
-                ')';
+                ')';*/
             return formattedDate;
         }
     }
@@ -112,13 +115,13 @@ export default class extends React.Component {
         if (!this.props.startDate) {
             return null;
         }
-        const date = this.formatDate(this.props.startDate, this.props.endDate, [
+        const date = this.formatDate(this.props.startDate, this.props.endDate/*, [
             true,
             false,
             true,
             true,
             true
-        ]);
+        ]*/);
         const time = this.formatTime(this.props.startDate, this.props.endDate);
         const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
 
@@ -138,7 +141,7 @@ export default class extends React.Component {
                             date={date}
                             time={time}
                             frequency={this.props.frequency}
-                            address={null}
+                            address={this.props.address}
                         />
                     </div>
                 </Link>
