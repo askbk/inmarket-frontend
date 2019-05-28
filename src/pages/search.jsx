@@ -103,7 +103,7 @@ class Search extends React.Component {
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/activities/'
-                        iconF7='email'
+                        iconF7='calendar'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'

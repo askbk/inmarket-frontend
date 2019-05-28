@@ -1,47 +1,53 @@
 import React from 'react';
-import Framework7 from 'framework7/framework7.esm.bundle.js';
-import {
-    Page,
-    Navbar,
-    Block,
-    BlockTitle,
-    List,
-    ListItem,
-    Toolbar,
-    Link
-} from 'framework7-react';
-import ActivitiesView from '../components/Activities/ActivitiesView/ActivitiesView.jsx';
-import ActivitiesInstance from '../components/Activities/ActivitiesInstance/ActivitiesInstance.jsx';
+
+import { Page, Toolbar, Link } from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx';
+import VideosContainer from '../components/Home/VideosContainer/VideosContainer.jsx';
+import MatchesContainer from '../components/Home/MatchesContainer/MatchesContainer.jsx';
+import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 
 import '../css/toolbar.css';
 
-class Activities extends React.Component {
+class ActivityCreate extends React.Component {
     constructor() {
         super();
+        this.state = {
+            data: []
+        };
     }
+    /*
+    componentDidMount() {
+        fetch('http://localhost:5000/api/users?page=1')
+            .then(res => {
+                return res.json();
+            })
+            .then(users => {
+                this.setState({ data: users.data });
+            });
+    }*/
 
     render() {
-        return (
-            <Page className='theme-dark'>
-                <Header backLink title='Activities' />
-                <ActivitiesView />
+        const users = this.state.data;
 
+        return (
+            <Page name='home'>
+                <Header />
+                <ActivityForm id={this.$f7route.params.id} />
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
+                        tabLinkActive
                         href='/'
                         iconF7='home'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        href='/sok/'
+                        href='/nettverk/'
                         iconF7='search'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
-                        tabLinkActive
                         href='/activities/'
                         iconF7='calendar'
                     />
@@ -51,10 +57,9 @@ class Activities extends React.Component {
                         iconF7='person_round'
                     />
                 </Toolbar>
-
             </Page>
         );
     }
 }
 
-export default Activities;
+export default ActivityCreate;

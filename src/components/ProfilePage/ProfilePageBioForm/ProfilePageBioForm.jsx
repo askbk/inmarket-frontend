@@ -16,10 +16,10 @@ export default class extends React.Component {
         return (
             <List noHairlines noHairlinesBetween>
                 <ListInput
-                    label='Bio'
+                    label='Beskrivelse'
                     floatingLabel
                     type='textarea'
-                    placeholder='Bio'
+                    placeholder='Skriv litt om deg selv...'
                     clearButton
                     defaultValue={text}
                     onChange={this.handleChange.bind(this)}

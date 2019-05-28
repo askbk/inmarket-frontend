@@ -282,7 +282,8 @@ class DatePicker extends Component {
                             : 'styledPageButton'
                     }
                     style={{
-                        maxWidth: '1000px'
+                        maxWidth: '1000px',
+                        padding: '40px!important'
                     }}
                 >
                     <span>
@@ -293,7 +294,7 @@ class DatePicker extends Component {
                               )
                             : this.props.text
                             ? this.props.text
-                            : 'Dato'}
+                            : 'Velg dato'}
                     </span>
                 </Button>
                 {this.renderFromDate(dateConfig)}

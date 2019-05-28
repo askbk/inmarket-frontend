@@ -26,14 +26,13 @@ export default class extends React.Component {
         const {
             firstName,
             lastName,
-            birthday,
             role,
             institution,
             rating,
-            formerEmployers
+            // formerEmployers
         } = this.props;
-        const age = this.getAge(birthday).toString();
-        const basic_info = firstName + ' ' + lastName + ', ' + age;
+        // const age = this.getAge(birthday).toString();
+        const basic_info = firstName + ' ' + lastName;
         const work_info = role + ', ' + institution;
 
         return (
@@ -61,9 +60,6 @@ export default class extends React.Component {
                             starEmptyColor='black'
                         />
                     </div>
-                    <span className='profilePageHeaderText-3'>
-                        {formerEmployers} {/* props.adress */}
-                    </span>
                 </div>
             </div>
         );

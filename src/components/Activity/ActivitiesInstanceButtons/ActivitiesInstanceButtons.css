@@ -1,0 +1,23 @@
+.activitiesInstanceButtonsInnerContainer{
+    width: 100%;
+}
+
+.activitiesInstanceButton{
+    margin: 0.5rem 0;
+    font-size: 0.6rem;
+}
+
+.regularActivitiesInstanceButton{
+    background: #1f1f1f;
+}
+
+.acceptedButton, .canceledButton{
+    color: #000;
+}
+
+@media screen and (max-width: 500px){
+    .activitiesInstanceButton{
+        font-size: 0.5rem;
+        height: 1.5rem
+    }
+}
