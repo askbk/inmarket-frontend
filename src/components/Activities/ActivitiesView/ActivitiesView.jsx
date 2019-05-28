@@ -20,8 +20,8 @@ export default class extends React.Component {
 
     componentDidMount() {
         // const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
-        const url = gConfig.url + '/activities/users/' + localStorage.userId;
 
+        const url = `${gConfig.url}/activities/users/${localStorage.userId}`;
         fetch(url, {
             headers: {
                 authorization: localStorage.jwt

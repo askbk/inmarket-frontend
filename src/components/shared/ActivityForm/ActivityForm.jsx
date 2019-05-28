@@ -64,10 +64,10 @@ class ActivityForm extends React.Component {
         const id = this.props.id;
 
         //Create and invite
-        let url = gConfig.url + '/activities/users/' + id;
+        let url = `${gConfig.url}/activities/users/${id}`;
         //Only create
         if (id === null || id === '' || id === undefined) {
-            url = gConfig.url + '/activities/';
+            url = `${gConfig.url}/activities/`;
         }
 
         fetch(url, {
