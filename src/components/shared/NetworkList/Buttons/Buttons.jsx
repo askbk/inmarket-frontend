@@ -139,7 +139,7 @@ export default class extends React.Component {
                             Se logg
                         </Button>
                         */}
-                        <Button small className='networkViewButton' fill>
+                        <Button small className='networkViewButton' fill href={`/activities/create/${this.props.userId}`}>
                             Inviter
                         </Button>
                     </div>
