@@ -7,7 +7,7 @@ import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesIn
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { start_date: null };
+        this.state = { startDate: null };
     }
 
     formatHoursAndMinutes(time) {
@@ -23,12 +23,12 @@ export default class extends React.Component {
         //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
-    formatDate(start_date, end_date, frequency) {
+    formatDate(startDate, endDate, frequency) {
         const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
         let workdays = '';
         let formattedDate = '';
-        if (start_date === end_date) {
-            const date = new Date(start_date);
+        if (startDate === endDate) {
+            const date = new Date(startDate);
             const month =
                 date.getMonth().toString() < 9
                     ? '0' + (date.getMonth() + 1).toString()
@@ -39,8 +39,8 @@ export default class extends React.Component {
                     : date.getDate().toString();
             return day + '.' + month;
         } else {
-            const start = new Date(start_date);
-            const end = new Date(end_date);
+            const start = new Date(startDate);
+            const end = new Date(endDate);
             const start_month =
                 start.getMonth().toString() < 9
                     ? '0' + (start.getMonth() + 1).toString()
@@ -107,71 +107,36 @@ export default class extends React.Component {
         return timeSinceStr;
     }
 
-    componentDidMount() {
-        let id = this.props.id;
-
-        const url = gConfig.url + '/activities/' + id;
-
-        fetch(url, { headers: { authorization: localStorage.jwt } })
-            .then(res => {
-                return res.json();
-            })
-            .then(user => {
-                console.log(user.message);
-                const data = user;
-                console.log(data);
-                console.log(this.props.id);
-
-                // TODO  address in backend, frequency? (probably recurrencePattern
-                this.setState({
-                    header: data.name,
-                    information: data.description,
-                    start_date: new Date(data.startDateUTC),
-                    end_date: new Date(data.endDateUTC),
-                    duration: data.duration,
-                    isRecurring: data.isRecurring,
-                    recurrencePattern: data.recurrencePattern,
-                    creatorId: data.creatorId,
-                    createdAt: new Date(data.createdAt),
-                    updatedAt: new Date(data.updatedAt)
-                });
-                console.log(user.data);
-            });
-    }
-
     render() {
-        if (this.state.start_date === null) {
+        if (!this.props.startDate) {
             return null;
         }
         const date = this.formatDate(
-            this.state.start_date,
-            this.state.end_date,
-            [true, false, false, false, true]
+            this.props.startDate,
+            this.props.endDate,
+            [true, false, true, true, true]
         );
-        const time = this.formatTime(
-            this.state.start_date,
-            this.state.end_date
-        );
-        const chip_time_stamp = this.formatTimeStamp(this.state.start_date);
+        const time = this.formatTime(this.props.startDate, this.props.endDate);
+        const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
                 <div className='conversationsActivitiesAvatarOuterContainer'>
-                    <ConversationsMessageAvatar time_stamp={chip_time_stamp} />
+                    <ConversationsMessageAvatar time_stamp={chip_time_stamp}/>
                 </div>
                 <div className='conversationActivitiesTextOuterContainer'>
                     <ActivitiesInstanceText
                         id={this.props.id}
-                        header={this.state.header}
-                        informationText={this.state.informationText}
+                        header={this.props.header}
+                        informationText={this.props.description}
                         date={date}
                         time={time}
-                        frequency={this.state.frequency}
-                        address={this.state.address ? null : null}
-                    />
+                        frequency={this.props.frequency}
+                        address={null}/>
                 </div>
-                <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
-                    <ActivitiesInstanceButtons state={this.props.state} />
+                <div
+                    className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
+                    <ActivitiesInstanceButtons status={this.props.status}/>
                 </div>
             </div>
         );
