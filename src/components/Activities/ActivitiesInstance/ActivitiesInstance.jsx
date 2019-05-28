@@ -111,18 +111,20 @@ export default class extends React.Component {
         if (!this.props.startDate) {
             return null;
         }
-        const date = this.formatDate(
-            this.props.startDate,
-            this.props.endDate,
-            [true, false, true, true, true]
-        );
+        const date = this.formatDate(this.props.startDate, this.props.endDate, [
+            true,
+            false,
+            true,
+            true,
+            true
+        ]);
         const time = this.formatTime(this.props.startDate, this.props.endDate);
         const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
                 <div className='conversationsActivitiesAvatarOuterContainer'>
-                    <ConversationsMessageAvatar time_stamp={chip_time_stamp}/>
+                    <ConversationsMessageAvatar time_stamp={chip_time_stamp} />
                 </div>
                 <div className='conversationActivitiesTextOuterContainer'>
                     <ActivitiesInstanceText
@@ -132,11 +134,11 @@ export default class extends React.Component {
                         date={date}
                         time={time}
                         frequency={this.props.frequency}
-                        address={null}/>
+                        address={null}
+                    />
                 </div>
-                <div
-                    className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
-                    <ActivitiesInstanceButtons status={this.props.status}/>
+                <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
+                    <ActivitiesInstanceButtons status={this.props.status} />
                 </div>
             </div>
         );
