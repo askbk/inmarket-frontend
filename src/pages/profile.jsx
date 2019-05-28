@@ -42,11 +42,15 @@ class Profile extends React.Component {
             rating: 4.5,
             popupOpen: false,
             currentForm: '',
-            firstName: 'Ask',
-            lastName: 'Kolltveit',
+            firstName: JSON.parse(
+                atob(localStorage.jwt.split('.')[1])
+            ).name.split(' ')[0],
+            lastName: JSON.parse(
+                atob(localStorage.jwt.split('.')[1])
+            ).name.split(' ')[1],
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
-            id: null
+            id: JSON.parse(atob(localStorage.jwt.split('.')[1])).sub
         };
         this.sendUpdatedProfile = this.sendUpdatedProfile.bind(this);
     }
@@ -129,23 +133,26 @@ class Profile extends React.Component {
     sendUpdatedProfile() {
         let id = this.$f7route.params.id;
         if (id === 'me' || id === '') {
-            id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+            id = JSON.parse(atob(localStorage.jwt.split('.')[1]));
+            id = id.sub;
         }
         this.setState({ id: id });
         const url = `${gConfig.url}/users/${id}`;
-        this.setState({id: id});
+        this.setState({ id: id });
         fetch(url, {
             method: 'PUT',
             headers: {
-                authorization: localStorage.jwt
+                authorization: localStorage.jwt,
+                "Content-Type" : "application/json"
             },
-            body: this.state
+            body: JSON.stringify(this.state)
         })
             .then(res => res.text())
             .then(res => console.log(res));
         // console.log(this.state);
-        console.log(id);
-        console.log(this.state.id);
+        // console.log(id);
+        console.log(this.state);
+        console.log(this)
     }
 
     render() {
@@ -184,7 +191,7 @@ class Profile extends React.Component {
         let profileInterests = <ProfileQualities qualities={interests} />;
 
         // const isCurrentUser = this.$f7route.params.id === 'me';
-        const isCurrentUser = false; // Set always false for demo
+        const isCurrentUser = true; // Set always false for demo
         //Take the elements above and wrap them in a editable button
         if (isCurrentUser) {
             profilePageHeader = (
