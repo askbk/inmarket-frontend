@@ -34,7 +34,10 @@ class Home extends React.Component {
                     ? 'jobseekers'
                     : 'employees';
 
-        fetch(`http://localhost/api/recommendations/${userId}/${recommend}`)
+
+        const url = `${gConfig.url}/recommendations/${userId}/${recommend}`;
+
+        fetch(url)
             .then(res => {
                 return res.json();
             })

@@ -25,7 +25,9 @@ class Search extends React.Component {
                     ? 'jobseekers'
                     : 'employees';
 
-        fetch(`http://localhost/api/recommendations/${userId}/${recommend}`)
+        const url = `${gConfig.url}/recommendations/${userId}/${recommend}`;
+
+        fetch(url)
             .then(res => {
                 return res.json();
             })
@@ -60,7 +62,10 @@ class Search extends React.Component {
         if (value === '') {
             this.componentDidMount();
         } else {
-            fetch(`http://localhost/api/users?search=${value}`, {
+
+
+            const url = `${gConfig.url}/users?search=${value}`;
+            fetch(url, {
                 method: 'get',
                 headers: {
                     authorization: localStorage.jwt
