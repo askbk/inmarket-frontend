@@ -10,12 +10,14 @@ import NotFoundPage from '../pages/404.jsx';
 import CompanyPage from '../pages/company.jsx';
 import ConversationsPage from '../pages/conversations.jsx';
 import ActivitiesPage from '../pages/activities.jsx';
+import Activity from '../pages/activity.jsx';
 import EmployeePage from '../pages/employee.jsx';
 import ChatPage from '../pages/chatPage.jsx';
 import SearchPage from '../pages/search.jsx';
 import DatePicker from '../components/shared/DatePicker/DatePicker';
 import ActivityForm from '../components/shared/ActivityForm/ActivityForm';
 import Profile from '../pages/profile';
+import ActivityCreate from '../pages/activityCreate';
 var routes = [
     {
         path: '/',
@@ -72,6 +74,19 @@ var routes = [
     {
         path: '/activities/',
         component: ActivitiesPage
+    },
+    {
+        path: '/activities/create/',
+        component: ActivityCreate
+    },
+    /*If no userID, then just create an activity, else create and invite*/
+    {
+        path: '/activities/create/:id',
+        component: ActivityCreate
+    },
+    {
+        path: '/activities/:id',
+        component: Activity
     },
     {
         path: '/conversations/:chatId',

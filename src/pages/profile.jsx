@@ -46,6 +46,7 @@ class Profile extends React.Component {
             lastName: 'Kolltveit',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
+            id: null
         };
     }
 
@@ -54,6 +55,7 @@ class Profile extends React.Component {
         if (id === 'me' || id === '') {
             id = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
         }
+        this.setState({ id: id });
 
         const url = `${gConfig.url}/users/${id}`;
         console.log(url);
@@ -64,8 +66,12 @@ class Profile extends React.Component {
             })
             .then(user => {
                 const data = user.data;
-                const role = data.employee ? data.employee.role : data.jobseeker.type;
-                const institution = data.employee ? data.employee.company : data.jobseeker.education;
+                const role = data.employee
+                    ? data.employee.role
+                    : data.jobseeker.type;
+                const institution = data.employee
+                    ? data.employee.company
+                    : data.jobseeker.education;
                 this.setState({
                     ...user.data,
                     role: role ? role : '',
@@ -114,7 +120,9 @@ class Profile extends React.Component {
 
     removeSkill(e, text) {
         let newQualities = this.state.skills.filter(a => a.text != text);
-        let newActiveQualities = this.state.activeQualities.filter(a => a != text);
+        let newActiveQualities = this.state.activeQualities.filter(
+            a => a != text
+        );
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
     }
 
@@ -130,7 +138,7 @@ class Profile extends React.Component {
             lastName,
             birthDate,
             role,
-            institution,
+            institution
         } = this.state;
 
         let profilePageHeader = (
@@ -149,13 +157,9 @@ class Profile extends React.Component {
             <ProfileInformation>{profileDescription}</ProfileInformation>
         );
 
-        let profileSkills = (
-            <ProfileQualities qualities={skills} />
-        );
+        let profileSkills = <ProfileQualities qualities={skills} />;
 
-        let profileInterests = (
-            <ProfileQualities qualities={interests} />
-        );
+        let profileInterests = <ProfileQualities qualities={interests} />;
 
         // const isCurrentUser = this.$f7route.params.id === 'me';
         const isCurrentUser = false; // Set always false for demo
@@ -236,6 +240,10 @@ class Profile extends React.Component {
                     <Button>SE LOGG</Button>
                     <Button>SE ANSATTE</Button>
                       */}
+                    <Link href={'/activities/create/' + this.state.id}>
+                        {' '}
+                        INVITER
+                    </Link>
                 </Row>
                 {profileInformation}
                 {profileSkills}

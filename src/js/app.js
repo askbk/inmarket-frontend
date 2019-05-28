@@ -20,7 +20,7 @@ import App from '../components/app.jsx';
 
 
 // Init F7 Vue Plugin
-Framework7.use(Framework7React)
+Framework7.use(Framework7React);
 // requires
 const _ = require('lodash');
 

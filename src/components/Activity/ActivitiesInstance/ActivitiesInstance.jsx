@@ -3,33 +3,22 @@ import '../../../css/conversationsActivitiesInstanceShared.css';
 import ConversationsMessageAvatar from '../../Conversations/ConversationsMessageAvatar/ConversationsMessageAvatar.jsx';
 import ActivitiesInstanceText from '../ActivitiesInstanceText/ActivitiesInstanceText.jsx';
 import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesInstanceButtons.jsx';
-import { Link } from 'framework7-react';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { startDate: null };
-    }
-
-    formatHoursAndMinutes(time) {
-        return time.getHours() + ':' + time.getMinutes();
     }
 
     formatTime(start_time, end_time) {
-        return (
-            this.formatHoursAndMinutes(start_time) +
-            '-' +
-            this.formatHoursAndMinutes(end_time)
-        );
-        //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
+        return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
-    formatDate(startDate, endDate/*, frequency*/) {
-        /*const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
+    formatDate(start_date, end_date, frequency) {
+        const WEEKDAYS = ['man', 'tirs', 'ons', 'tor', 'fre'];
         let workdays = '';
-        */let formattedDate = '';
-        if (startDate === endDate) {
-            const date = new Date(startDate);
+        let formattedDate = '';
+        if (start_date === end_date) {
+            const date = new Date(start_date);
             const month =
                 date.getMonth().toString() < 9
                     ? '0' + (date.getMonth() + 1).toString()
@@ -40,8 +29,8 @@ export default class extends React.Component {
                     : date.getDate().toString();
             return day + '.' + month;
         } else {
-            const start = new Date(startDate);
-            const end = new Date(endDate);
+            const start = new Date(start_date);
+            const end = new Date(end_date);
             const start_month =
                 start.getMonth().toString() < 9
                     ? '0' + (start.getMonth() + 1).toString()
@@ -58,9 +47,7 @@ export default class extends React.Component {
                 end.getDate().toString() < 10
                     ? '0' + end.getDate().toString()
                     : end.getDate().toString();
-            /*let dayCount = 0;
-
-
+            let dayCount = 0;
             for (let i = 0; i < 5; i++) {
                 if (frequency[i]) {
                     workdays +=
@@ -71,7 +58,6 @@ export default class extends React.Component {
             if (dayCount === 5) {
                 workdays = 'Alle hverdager';
             }
-            */
             formattedDate +=
                 start_day +
                 '.' +
@@ -79,32 +65,33 @@ export default class extends React.Component {
                 '-' +
                 end_day +
                 '.' +
-                end_month;/* +
+                end_month +
                 ' (' +
                 workdays +
-                ')';*/
+                ')';
             return formattedDate;
         }
     }
 
-    formatTimeStamp(time) {
+    formatTimeStamp(start_date, start_time) {
         const now = new Date(Date.now());
-        let minutesUntilStart = parseInt(
+        const time = new Date(start_date + ' ' + start_time);
+        let timeSinceInt = parseInt(
             (time.getTime() - now.getTime()) / (1000 * 60)
         );
         let timeSinceStr = '';
-        if (minutesUntilStart > 60 * 24) {
-            minutesUntilStart = parseInt(minutesUntilStart / (60 * 24));
+        if (timeSinceInt > 60 * 24) {
+            timeSinceInt = parseInt(timeSinceInt / (60 * 24));
             timeSinceStr =
-                minutesUntilStart.toString() +
-                (minutesUntilStart === 1 ? ' dag' : ' dager');
-        } else if (minutesUntilStart > 60) {
-            minutesUntilStart = parseInt(minutesUntilStart / 60);
+                timeSinceInt.toString() +
+                (timeSinceInt === 1 ? ' dag' : ' dager');
+        } else if (timeSinceInt > 60) {
+            timeSinceInt = parseInt(timeSinceInt / 60);
             timeSinceStr =
-                minutesUntilStart.toString() +
-                (minutesUntilStart === 1 ? ' time' : ' timer');
-        } else if (minutesUntilStart > 0) {
-            timeSinceStr = minutesUntilStart.toString() + ' min';
+                timeSinceInt.toString() +
+                (timeSinceInt === 1 ? ' time' : ' timer');
+        } else if (timeSinceInt > 0) {
+            timeSinceStr = timeSinceInt.toString() + ' min';
         } else {
             timeSinceStr = 'Ongoing';
         }
@@ -112,41 +99,38 @@ export default class extends React.Component {
     }
 
     render() {
-        if (!this.props.startDate) {
-            return null;
-        }
-        const date = this.formatDate(this.props.startDate, this.props.endDate/*, [
-            true,
-            false,
-            true,
-            true,
-            true
-        ]*/);
-        const time = this.formatTime(this.props.startDate, this.props.endDate);
-        const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
+        const date = this.formatDate(
+            this.props.start_date,
+            this.props.end_date,
+            this.props.frequency
+        );
+        const time = this.formatTime(
+            this.props.start_time,
+            this.props.end_time
+        );
+        const chip_time_stamp = this.formatTimeStamp(
+            this.props.start_date,
+            this.props.start_time
+        );
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
-                {/*<Link href={`/activities/${this.props.id}`} > */}
-                    <div className='conversationsActivitiesAvatarOuterContainer'>
-                        <ConversationsMessageAvatar
-                            time_stamp={chip_time_stamp}
-                        />
-                    </div>
-                    <div className='conversationActivitiesTextOuterContainer'>
-                        <ActivitiesInstanceText
-                            id={this.props.id}
-                            header={this.props.header}
-                            informationText={this.props.description}
-                            date={date}
-                            time={time}
-                            frequency={this.props.frequency}
-                            address={this.props.address}
-                        />
-                    </div>
-                    {/*</Link>*/}
+                <div className='conversationsActivitiesAvatarOuterContainer'>
+                    <ConversationsMessageAvatar time_stamp={chip_time_stamp} />
+                </div>
+                <div className='conversationActivitiesTextOuterContainer'>
+                    <ActivitiesInstanceText
+                        id={this.props.id}
+                        header={this.props.header}
+                        informationText={this.props.informationText}
+                        date={date}
+                        time={time}
+                        frequency={this.props.frequency}
+                        address={this.props.address}
+                    />
+                </div>
                 <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
-                    <ActivitiesInstanceButtons status={this.props.status} id={this.props.id} />
+                    <ActivitiesInstanceButtons state={this.props.state} />
                 </div>
             </div>
         );

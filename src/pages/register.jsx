@@ -104,7 +104,9 @@ class Register extends React.Component {
 
         // console.log(user);
 
-        const request = await fetch('http://localhost/api/users', {
+        const url = `${gConfig.url}/users`;
+
+        const request = await fetch(url, {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
