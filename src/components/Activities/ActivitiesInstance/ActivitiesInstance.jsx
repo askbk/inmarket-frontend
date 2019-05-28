@@ -7,95 +7,93 @@ import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesIn
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {start_date:null}
+        this.state = {
+            startDate: null
+        }
     }
 
-    formatHoursAndMinutes(time){
+    formatHoursAndMinutes(time) {
         return time.getHours() + ":" + time.getMinutes();
     }
 
     formatTime(start_time, end_time) {
-        return this.formatHoursAndMinutes(start_time) + "-" + this.formatHoursAndMinutes(end_time);
+        return this.formatHoursAndMinutes(start_time) + "-" + this.formatHoursAndMinutes(
+            end_time
+        );
         //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
-    formatDate(start_date, end_date, frequency) {
+    formatDate(startDate, endDate, frequency) {
         const WEEKDAYS = ['man', 'tirs', 'ons', 'tor', 'fre'];
         let workdays = '';
         let formattedDate = '';
-        if (start_date === end_date) {
-            const date = new Date(start_date);
-            const month =
-                date.getMonth().toString() < 9
-                    ? '0' + (date.getMonth() + 1).toString()
-                    : (date.getMonth() + 1).toString();
-            const day =
-                date.getDate().toString() < 10
-                    ? '0' + date.getDate().toString()
-                    : date.getDate().toString();
+        if (startDate === endDate) {
+            const date = new Date(startDate);
+            const month = date.getMonth().toString() < 9
+                ? '0' + (
+                    date.getMonth() + 1
+                ).toString()
+                : (date.getMonth() + 1).toString();
+            const day = date.getDate().toString() < 10
+                ? '0' + date.getDate().toString()
+                : date.getDate().toString();
             return day + '.' + month;
         } else {
-            const start = new Date(start_date);
-            const end = new Date(end_date);
-            const start_month =
-                start.getMonth().toString() < 9
-                    ? '0' + (start.getMonth() + 1).toString()
-                    : (start.getMonth() + 1).toString();
-            const start_day =
-                start.getDate().toString() < 10
-                    ? '0' + start.getDate().toString()
-                    : start.getDate().toString();
-            const end_month =
-                end.getMonth().toString() < 9
-                    ? '0' + (end.getMonth() + 1).toString()
-                    : (end.getMonth() + 1).toString();
-            const end_day =
-                end.getDate().toString() < 10
-                    ? '0' + end.getDate().toString()
-                    : end.getDate().toString();
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const start_month = start.getMonth().toString() < 9
+                ? '0' + (
+                    start.getMonth() + 1
+                ).toString()
+                : (start.getMonth() + 1).toString();
+            const start_day = start.getDate().toString() < 10
+                ? '0' + start.getDate().toString()
+                : start.getDate().toString();
+            const end_month = end.getMonth().toString() < 9
+                ? '0' + (
+                    end.getMonth() + 1
+                ).toString()
+                : (end.getMonth() + 1).toString();
+            const end_day = end.getDate().toString() < 10
+                ? '0' + end.getDate().toString()
+                : end.getDate().toString();
             let dayCount = 0;
             for (let i = 0; i < 5; i++) {
                 if (frequency[i]) {
-                    workdays +=
-                        workdays === '' ? WEEKDAYS[i] : ', ' + WEEKDAYS[i];
+                    workdays += workdays === ''
+                        ? WEEKDAYS[i]
+                        : ', ' + WEEKDAYS[i];
                     dayCount += 1;
                 }
             }
             if (dayCount === 5) {
                 workdays = 'Alle hverdager';
             }
-            formattedDate +=
-                start_day +
-                '.' +
-                start_month +
-                '-' +
-                end_day +
-                '.' +
-                end_month +
-                ' (' +
-                workdays +
-                ')';
+            formattedDate += start_day + '.' + start_month + '-' + end_day + '.' + end_month + ' (' +
+                    workdays + ')';
             return formattedDate;
         }
     }
 
-    formatTimeStamp(start_date, start_time) {
+    formatTimeStamp(startDate) {
         const now = new Date(Date.now());
-        const time = new Date(start_date + ' ' + start_time);
-        let timeSinceInt = parseInt(
-            (time.getTime() - now.getTime()) / (1000 * 60)
-        );
+        const time = new Date(startDate);
+        let timeSinceInt = parseInt((time.getTime() - now.getTime()) / (1000 * 60));
         let timeSinceStr = '';
         if (timeSinceInt > 60 * 24) {
             timeSinceInt = parseInt(timeSinceInt / (60 * 24));
-            timeSinceStr =
-                timeSinceInt.toString() +
-                (timeSinceInt === 1 ? ' dag' : ' dager');
+            timeSinceStr = timeSinceInt.toString() + (
+                timeSinceInt === 1
+                    ? ' dag'
+                    : ' dager'
+            );
         } else if (timeSinceInt > 60) {
             timeSinceInt = parseInt(timeSinceInt / 60);
-            timeSinceStr =
-                timeSinceInt.toString() +
-                (timeSinceInt === 1 ? ' time' : ' timer');
+            timeSinceStr = timeSinceInt.toString() + (
+                timeSinceInt === 1
+                    ? ' time'
+                    : ' timer'
+            );
         } else if (timeSinceInt > 0) {
             timeSinceStr = timeSinceInt.toString() + ' min';
         } else {
@@ -104,75 +102,38 @@ export default class extends React.Component {
         return timeSinceStr;
     }
 
-
-    componentDidMount() {
-        let id = this.props.id;
-
-        const url = gConfig.url + '/activities/' + id;
-
-        fetch(url, { headers: { authorization: localStorage.jwt } })
-            .then(res => {
-
-                return res.json();
-            })
-            .then(user => {
-                console.log(user.message);
-                const data = user;
-                console.log(data);
-                console.log(this.props.id);
-
-                // TODO  address in backend, frequency? (probably recurrencePattern
-                this.setState({
-                    header: data.name,
-                    information: data.description,
-                    start_date: new Date(data.startDateUTC),
-                    end_date: new Date(data.endDateUTC),
-                    duration: data.duration,
-                    isRecurring: data.isRecurring,
-                    recurrencePattern: data.recurrencePattern,
-                    creatorId: data.creatorId,
-                    createdAt: data.createdAt,
-                    updatedAt: data.updatedAt
-                });
-                console.log(user.data);
-            });
-    }
-
-
     render() {
-        if(this.state.start_date === null){return null;}
+        if (!this.props.startDate) {
+            return null;
+        }
         const date = this.formatDate(
-            this.state.start_date,
-            this.state.end_date,
+            this.props.startDate,
+            this.props.endDate,
             [true, false, true, true, true]
         );
-        const time = this.formatTime(
-            this.state.start_date,
-            this.state.end_date
-        );
-        const chip_time_stamp = this.formatTimeStamp(
-            this.state.start_date,
-            this.state.start_time
-        );
+        const time = this.formatTime(this.props.startDate, this.props.endDate);
+        const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
                 <div className='conversationsActivitiesAvatarOuterContainer'>
-                    <ConversationsMessageAvatar time_stamp={chip_time_stamp} />
+                    <ConversationsMessageAvatar time_stamp={chip_time_stamp}/>
                 </div>
                 <div className='conversationActivitiesTextOuterContainer'>
                     <ActivitiesInstanceText
                         id={this.props.id}
-                        header={this.state.header}
-                        informationText={this.state.informationText}
+                        header={this.props.header}
+                        informationText={this.props.description}
                         date={date}
                         time={time}
-                        frequency={this.state.frequency}
-                        address={this.state.address ? null : null}
-                    />
+                        frequency={this.props.frequency}
+                        address={this.props.address
+                            ? null
+                            : null}/>
                 </div>
-                <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
-                    <ActivitiesInstanceButtons state={this.props.state} />
+                <div
+                    className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
+                    <ActivitiesInstanceButtons status={this.props.status}/>
                 </div>
             </div>
         );

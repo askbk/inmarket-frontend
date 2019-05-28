@@ -21,6 +21,32 @@ import '../css/toolbar.css';
 class Activities extends React.Component {
     constructor() {
         super();
+        this.state = {};
+    }
+
+    componentDidMount() {
+        const url = gConfig.url + '/activities/' + this.$f7route.params.id;
+
+        fetch(url, { headers: { authorization: localStorage.jwt } })
+            .then(res => {
+                return res.json();
+            })
+            .then(activity => {
+                this.setState({
+                    id: activity.id,
+                    header: activity.name,
+                    description: activity.description,
+                    start_date: new Date(activity.startDateUTC),
+                    end_date: new Date(activity.endDateUTC),
+                    duration: activity.duration,
+                    isRecurring: activity.isRecurring,
+                    recurrencePattern: activity.recurrencePattern,
+                    creatorId: activity.creatorId,
+                    creator: activity.creator,
+                    createdAt: activity.createdAt,
+                    updatedAt: activity.updatedAt,
+                });
+            });
     }
 
     render() {
@@ -40,7 +66,16 @@ class Activities extends React.Component {
                                     key={1}
                                 >
                                     <ActivitiesInstance
-                                        id={this.$f7route.params.id}
+                                        id={this.state.id}
+                                        header={this.state.header}
+                                        description={
+                                            this.state.description
+                                        }
+                                        startDate={this.state.start_date}
+                                        endDate={this.state.end_date}
+                                        frequency={this.state.frequency}
+                                        address={this.state.address}
+                                        status={this.state.status}
                                     />
                                 </ListItem>
                             </div>
