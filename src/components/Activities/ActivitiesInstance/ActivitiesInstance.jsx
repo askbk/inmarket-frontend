@@ -127,7 +127,7 @@ export default class extends React.Component {
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
-                <Link href={`/activities/${this.props.id}`} >
+                {/*<Link href={`/activities/${this.props.id}`} > */}
                     <div className='conversationsActivitiesAvatarOuterContainer'>
                         <ConversationsMessageAvatar
                             time_stamp={chip_time_stamp}
@@ -144,7 +144,7 @@ export default class extends React.Component {
                             address={this.props.address}
                         />
                     </div>
-                </Link>
+                    {/*</Link>*/}
                 <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
                     <ActivitiesInstanceButtons status={this.props.status} id={this.props.id} />
                 </div>
