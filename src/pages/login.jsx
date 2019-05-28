@@ -87,7 +87,8 @@ class Login extends React.Component {
                 localStorage.jwt = res.jwt;
                 localStorage.userType = res.userType
                     ? res.userType
-                    : "jobseeker";
+                    : 'jobseeker';
+                localStorage.userId = JSON.parse(atob(res.jwt.split('.')[1])).sub;
                 router.navigate('/');
             } else {
                 // TODO: Let user know that login attempt was unsuccessful
