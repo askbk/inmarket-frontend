@@ -74,10 +74,14 @@ class Home extends React.Component {
         return (
             <Page name='home'>
                 <Header />
-                <MatchesContainer
-                    users={users}
-                    contactRequestSent={this.handleContactRequestSent}
-                />
+                {this.state.data.length === 0 ? <h2>Det er ingen flere matches. Søk etter folk <Link href={'sok/'}>her</Link>  </h2>
+                :
+                    <MatchesContainer
+                        users={users}
+                        contactRequestSent={this.handleContactRequestSent}
+                    />
+                }
+
                 <Toolbar className='bottomToolbar' tabbar labels bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
