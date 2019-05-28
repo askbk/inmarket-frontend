@@ -11,7 +11,7 @@ const profileQualities = props => {
     const removeQuality = e => {
         props.removeQuality(e, e.target.parentElement.id);
     };
-    console.log(props);
+    // console.log(props);
     let qualities;
 
     if (

@@ -42,11 +42,17 @@ class Profile extends React.Component {
             rating: 4.5,
             popupOpen: false,
             currentForm: '',
-            firstName: 'Ask',
-            lastName: 'Kolltveit',
+            firstName: JSON.parse(
+                atob(localStorage.jwt.split('.')[1])
+            ).name.split(' ')[0],
+            lastName: JSON.parse(
+                atob(localStorage.jwt.split('.')[1])
+            ).name.split(' ')[1],
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
+            id: JSON.parse(atob(localStorage.jwt.split('.')[1])).sub
         };
+        this.sendUpdatedProfile = this.sendUpdatedProfile.bind(this);
     }
 
     componentDidMount() {
@@ -56,7 +62,7 @@ class Profile extends React.Component {
         }
 
         const url = `${gConfig.url}/users/${id}`;
-        console.log(url);
+        // console.log('url: ' + url);
 
         fetch(url, { headers: { authorization: localStorage.jwt } })
             .then(res => {
@@ -64,14 +70,18 @@ class Profile extends React.Component {
             })
             .then(user => {
                 const data = user.data;
-                const role = data.employee ? data.employee.role : data.jobseeker.type;
-                const institution = data.employee ? data.employee.company : data.jobseeker.education;
+                const role = data.employee
+                    ? data.employee.role
+                    : data.jobseeker.type;
+                const institution = data.employee
+                    ? data.employee.company
+                    : data.jobseeker.education;
                 this.setState({
                     ...user.data,
                     role: role ? role : '',
                     institution: institution ? institution : ''
                 });
-                console.log(user.data);
+                // console.log(user.data);
             });
     }
 
@@ -114,8 +124,35 @@ class Profile extends React.Component {
 
     removeSkill(e, text) {
         let newQualities = this.state.skills.filter(a => a.text != text);
-        let newActiveQualities = this.state.activeQualities.filter(a => a != text);
+        let newActiveQualities = this.state.activeQualities.filter(
+            a => a != text
+        );
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
+    }
+
+    sendUpdatedProfile() {
+        let id = this.$f7route.params.id;
+        if (id === 'me' || id === '') {
+            id = JSON.parse(atob(localStorage.jwt.split('.')[1]));
+            id = id.sub;
+        }
+        this.setState({ id: id });
+        const url = `${gConfig.url}/users/${id}`;
+        this.setState({ id: id });
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                authorization: localStorage.jwt,
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(this.state)
+        })
+            .then(res => res.text())
+            .then(res => console.log(res));
+        // console.log(this.state);
+        // console.log(id);
+        console.log(this.state);
+        console.log(this)
     }
 
     render() {
@@ -130,7 +167,7 @@ class Profile extends React.Component {
             lastName,
             birthDate,
             role,
-            institution,
+            institution
         } = this.state;
 
         let profilePageHeader = (
@@ -149,16 +186,12 @@ class Profile extends React.Component {
             <ProfileInformation>{profileDescription}</ProfileInformation>
         );
 
-        let profileSkills = (
-            <ProfileQualities qualities={skills} />
-        );
+        let profileSkills = <ProfileQualities qualities={skills} />;
 
-        let profileInterests = (
-            <ProfileQualities qualities={interests} />
-        );
+        let profileInterests = <ProfileQualities qualities={interests} />;
 
         // const isCurrentUser = this.$f7route.params.id === 'me';
-        const isCurrentUser = false; // Set always false for demo
+        const isCurrentUser = true; // Set always false for demo
         //Take the elements above and wrap them in a editable button
         if (isCurrentUser) {
             profilePageHeader = (
@@ -232,6 +265,9 @@ class Profile extends React.Component {
                 <Header backLink title='Profil' />
                 {profilePageHeader}
                 <Row className='profilePageButtonContainer'>
+                    <Button clicked={this.sendUpdatedProfile}>
+                        Oppdater profil
+                    </Button>
                     {/*
                     <Button>SE LOGG</Button>
                     <Button>SE ANSATTE</Button>
