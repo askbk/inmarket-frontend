@@ -2,6 +2,8 @@ import React from 'react';
 import Framework7 from 'framework7/framework7.esm.bundle.js';
 import {ListInput, ListItem, Radio, List} from 'framework7-react';
 
+import './BasisInformationInput.css';
+
 export default class extends React.Component {
     constructor(props) {
         super(props);

@@ -23,12 +23,10 @@ export default class extends React.Component {
         if(this.state.status !== 'invited'){
             return;
         }
-        let url =
-            gConfig.url + '/activities/' +
-            this.props.id +
-            '/invitations/' +
-            localStorage.userId +
-            '/accept';
+
+
+        const url = `${gConfig.url}/activities/${this.props.id}/invitations/${localStorage.userId}/accept`;
+
 
         fetch(url, {
             method: 'post',
@@ -52,12 +50,8 @@ export default class extends React.Component {
         if(this.state.status !== 'invited'){
             return;
         }
-        let url =
-            gConfig.url + '/activities/' +
-            this.props.id +
-            '/invitations/' +
-            localStorage.userId +
-            '/decline';
+        const url = `${gConfig.url}/activities/${this.props.id}/invitations/${localStorage.userId}/decline`;
+
 
         fetch(url, {
             method: 'post',

@@ -20,8 +20,8 @@ export default class extends React.Component {
 
     componentDidMount() {
         // const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
-        const url = gConfig.url + '/activities/users/' + localStorage.userId;
 
+        const url = `${gConfig.url}/activities/users/${localStorage.userId}`;
         fetch(url, {
             headers: {
                 authorization: localStorage.jwt
@@ -111,9 +111,9 @@ export default class extends React.Component {
                             .sort(
                                 (a, b) =>
                                     new Date(
-                                        a.start_date + ' ' + a.start_time
+                                        a.start_date
                                     ) -
-                                    new Date(b.start_date + ' ' + b.start_time)
+                                    new Date(b.start_date)
                             )
                             .map((activity, index) => (
                                 <ListItem
