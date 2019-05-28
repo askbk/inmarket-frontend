@@ -25,9 +25,11 @@ class Header extends Component {
                 <Navbar className='navbar' sliding={false}>
                     <div className='navbarcontent'>
                         <img className='navbarlogo' src={Logo} />
+                        /*
                         <NavTitle className='navbartitle' style={{left: "15%"}}>
                             <Link href='/conversations/' iconF7='chat' />
                         </NavTitle>
+                         */
                         <NavRight className='navright'>
                             <Link panelOpen='right' iconF7='menu' />
                         </NavRight>
