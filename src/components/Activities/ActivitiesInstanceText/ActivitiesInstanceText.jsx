@@ -2,6 +2,8 @@ import React from 'react';
 import '../../../css/conversationsActivititesTextShared.css';
 import { Block, Link } from 'framework7-react';
 
+import DatePicker from '../../shared/DatePicker/DatePicker';
+
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -30,12 +32,7 @@ export default class extends React.Component {
                         <h1>{this.props.header}</h1>
                     </div>
                     <div className='conversationsActivitiesTextMessageContainer'>
-                        <p>{this.props.date} {this.props.time} </p>
-                    </div>
-                    <div className='conversationsActivitiesTextMessageContainer'>
-                        <p>
-                        {this.props.address}
-                        </p>
+                        <p>{DatePicker.dateFormatFromAndTo(this.props.startDate,this.props.endDate)} at {this.props.address}</p>
                     </div>
                     {information}
 

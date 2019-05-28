@@ -115,15 +115,18 @@ export default class extends React.Component {
         if (!this.props.startDate) {
             return null;
         }
-        const date = this.formatDate(this.props.startDate, this.props.endDate/*, [
+        /*
+        const date = this.formatDate(this.props.startDate, this.props.endDate, [
             true,
             false,
             true,
             true,
             true
-        ]*/);
+        ]);
         const time = this.formatTime(this.props.startDate, this.props.endDate);
+        */
         const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
+
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
@@ -138,10 +141,10 @@ export default class extends React.Component {
                             id={this.props.id}
                             header={this.props.header}
                             informationText={this.props.description}
-                            date={date}
-                            time={time}
                             frequency={this.props.frequency}
                             address={this.props.address}
+                            startDate={this.props.startDate}
+                            endDate={this.props.endDate}
                         />
                     </div>
                     {/*</Link>*/}
