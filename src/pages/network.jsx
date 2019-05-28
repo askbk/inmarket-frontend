@@ -70,8 +70,10 @@ class Network extends React.Component {
 
     componentDidMount() {
         const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub;
+
+        const url = `${gConfig.url}/users/${userId}/contacts`;
         // Fetch just my connections
-        fetch(`http://localhost/api/users/${userId}/contacts`, {
+        fetch(url, {
             method: 'get',
             headers: {
                 authorization: localStorage.jwt
@@ -87,8 +89,11 @@ class Network extends React.Component {
                     console.error(users.message);
                 }
             });
+
+
+        const url2 = `${gConfig.url}/users/${userId}/contact/requests`;
         // Fetch just pending connections
-        fetch(`http://localhost/api/users/${userId}/contact/requests`, {
+        fetch(url2, {
             method: 'get',
             headers: {
                 authorization: localStorage.jwt

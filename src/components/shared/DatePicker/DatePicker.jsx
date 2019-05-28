@@ -12,6 +12,7 @@ import DatePickerReact from 'react-mobile-datepicker';
 
 //import Framework7 grid-components
 import { Block, Row, Col, Button } from 'framework7-react';
+
 const monthMap = {
     '1': 'Jan',
     '2': 'Feb',
@@ -42,66 +43,6 @@ const monthMapFull = {
     '12': 'desember'
 };
 
-function IntervalsWith5(minutes) {
-    return Math.ceil(minutes / 5) * 5;
-}
-function getMinutes(date) {
-    let minutes = date.getMinutes();
-    if (parseInt(minutes) < 10) {
-        minutes = '0' + minutes;
-    }
-    return minutes;
-}
-
-function getHours(date) {
-    let minutes = date.getHours();
-    if (parseInt(minutes) < 10) {
-        minutes = '0' + minutes;
-    }
-    return minutes;
-}
-
-function dateFormat(date) {
-    let year = date.getFullYear();
-    if (year === new Date().getFullYear()) {
-        year = '';
-    }
-    return (
-        ' ' +
-        date.getDate() +
-        '. ' +
-        monthMapFull[parseInt(date.getMonth()) + 1] +
-        ' ' +
-        year +
-        ' kl ' +
-        getHours(date) +
-        ':' +
-        getMinutes(date)
-    );
-}
-
-function dateFormatFromAndTo(from, to) {
-    let fromString = dateFormat(from);
-    let toString = '';
-    if (
-        from.getFullYear() === to.getFullYear() &&
-        from.getMonth() === to.getMonth() &&
-        from.getDate() === to.getDate()
-    ) {
-        toString = '-' + getHours(to) + ':' + getMinutes(to);
-        if (
-            from.getHours() === to.getHours() &&
-            from.getMinutes() === to.getMinutes()
-        ) {
-            toString = '';
-        }
-    } else {
-        toString = ' til ';
-        toString += dateFormat(to);
-    }
-    return '' + fromString + '' + toString;
-}
-
 class DatePicker extends Component {
     constructor(props) {
         super(props);
@@ -122,6 +63,72 @@ class DatePicker extends Component {
         };
     }
 
+    static get monthMap() {
+        return monthMap;
+    }
+    static get monthMapFull() {
+        return monthMapFull;
+    }
+    static IntervalsWith5(minutes) {
+        return Math.ceil(minutes / 5) * 5;
+    }
+    static getMinutes(date) {
+        let minutes = date.getMinutes();
+        if (parseInt(minutes) < 10) {
+            minutes = '0' + minutes;
+        }
+        return minutes;
+    }
+
+    static getHours(date) {
+        let minutes = date.getHours();
+        if (parseInt(minutes) < 10) {
+            minutes = '0' + minutes;
+        }
+        return minutes;
+    }
+
+    static dateFormat(date) {
+        let year = date.getFullYear();
+        if (year === new Date().getFullYear()) {
+            year = '';
+        }
+        return (
+            ' ' +
+            date.getDate() +
+            '. ' +
+            monthMapFull[parseInt(date.getMonth()) + 1] +
+            ' ' +
+            year +
+            ' kl ' +
+            DatePicker.getHours(date) +
+            ':' +
+            DatePicker.getMinutes(date)
+        );
+    }
+
+    static dateFormatFromAndTo(from, to) {
+        let fromString = DatePicker.dateFormat(from);
+        let toString = '';
+        if (
+            from.getFullYear() === to.getFullYear() &&
+            from.getMonth() === to.getMonth() &&
+            from.getDate() === to.getDate()
+        ) {
+            toString = '-' + DatePicker.getHours(to) + ':' + DatePicker.getMinutes(to);
+            if (
+                from.getHours() === to.getHours() &&
+                from.getMinutes() === to.getMinutes()
+            ) {
+                toString = '';
+            }
+        } else {
+            toString = ' til ';
+            toString += DatePicker.dateFormat(to);
+        }
+        return '' + fromString + '' + toString;
+    }
+
     handleClick() {
         /*Datepickeren har lavere z-index enn det framework-7 bruker. så vi må tvinge den til å bli høyere*/
         let datepickers = document.getElementsByClassName('datepicker-modal');
@@ -131,7 +138,7 @@ class DatePicker extends Component {
 
         let value = null;
         let now = new Date();
-        now.setMinutes(IntervalsWith5(now.getMinutes()));
+        now.setMinutes(DatePicker.IntervalsWith5(now.getMinutes()));
         value = this.state.startDate ? this.state.startDate : now;
 
         this.setState({ isOpen: true, selectedDate: 1, value: value });
@@ -249,7 +256,7 @@ class DatePicker extends Component {
                 step: 1
             },
             month: {
-                format: value => monthMap[value.getMonth() + 1],
+                format: value => DatePicker.monthMap[value.getMonth() + 1],
                 caption: 'Måned',
                 step: 1
             },
@@ -288,7 +295,7 @@ class DatePicker extends Component {
                 >
                     <span>
                         {this.state.startDate
-                            ? dateFormatFromAndTo(
+                            ? DatePicker.dateFormatFromAndTo(
                                   this.state.startDate,
                                   this.state.endDate
                               )

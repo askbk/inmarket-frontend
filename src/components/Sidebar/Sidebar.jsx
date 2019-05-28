@@ -18,12 +18,12 @@ const Sidebar = () => (
                     media={EditProfile}
                 />
                 {/* Must implement settings tab and insert here */}
-                <ListItem
+                {/*<ListItem
                     panelClose='right'
                     link='/form/'
                     title='INNSTILLINGER'
                     media={Settings}
-                />
+                />*/}
                 {/* Must implement network tab and insert here */}
                 <ListItem
                     panelClose='right'

@@ -43,7 +43,7 @@ class Login extends React.Component {
                 <LoginScreenTitle>Logg inn</LoginScreenTitle>
                 <List form>
                     <ListInput
-                        label='Brukernavn'
+                        label='Email'
                         type='text'
                         placeholder='E-posten din'
                         value={this.state.username}
