@@ -240,10 +240,15 @@ class Profile extends React.Component {
                     <Button>SE LOGG</Button>
                     <Button>SE ANSATTE</Button>
                       */}
-                    <Link href={'/activities/create/' + this.state.id}>
-                        {' '}
+                    <Button
+                        clicked={() =>
+                            this.$f7router.navigate(
+                                '/activities/create/' + this.state.id
+                            )
+                        }
+                    >
                         INVITER
-                    </Link>
+                    </Button>
                 </Row>
                 {profileInformation}
                 {profileSkills}
