@@ -7,20 +7,24 @@ import ActivitiesInstanceButtons from '../ActivitiesInstanceButtons/ActivitiesIn
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {start_date:null}
+        this.state = { start_date: null };
     }
 
-    formatHoursAndMinutes(time){
-        return time.getHours() + ":" + time.getMinutes();
+    formatHoursAndMinutes(time) {
+        return time.getHours() + ':' + time.getMinutes();
     }
 
     formatTime(start_time, end_time) {
-        return this.formatHoursAndMinutes(start_time) + "-" + this.formatHoursAndMinutes(end_time);
+        return (
+            this.formatHoursAndMinutes(start_time) +
+            '-' +
+            this.formatHoursAndMinutes(end_time)
+        );
         //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
     formatDate(start_date, end_date, frequency) {
-        const WEEKDAYS = ['man', 'tirs', 'ons', 'tor', 'fre'];
+        const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
         let workdays = '';
         let formattedDate = '';
         if (start_date === end_date) {
@@ -79,31 +83,29 @@ export default class extends React.Component {
         }
     }
 
-    formatTimeStamp(start_date, start_time) {
+    formatTimeStamp(time) {
         const now = new Date(Date.now());
-        const time = new Date(start_date + ' ' + start_time);
-        let timeSinceInt = parseInt(
+        let minutesUntilStart = parseInt(
             (time.getTime() - now.getTime()) / (1000 * 60)
         );
         let timeSinceStr = '';
-        if (timeSinceInt > 60 * 24) {
-            timeSinceInt = parseInt(timeSinceInt / (60 * 24));
+        if (minutesUntilStart > 60 * 24) {
+            minutesUntilStart = parseInt(minutesUntilStart / (60 * 24));
             timeSinceStr =
-                timeSinceInt.toString() +
-                (timeSinceInt === 1 ? ' dag' : ' dager');
-        } else if (timeSinceInt > 60) {
-            timeSinceInt = parseInt(timeSinceInt / 60);
+                minutesUntilStart.toString() +
+                (minutesUntilStart === 1 ? ' dag' : ' dager');
+        } else if (minutesUntilStart > 60) {
+            minutesUntilStart = parseInt(minutesUntilStart / 60);
             timeSinceStr =
-                timeSinceInt.toString() +
-                (timeSinceInt === 1 ? ' time' : ' timer');
-        } else if (timeSinceInt > 0) {
-            timeSinceStr = timeSinceInt.toString() + ' min';
+                minutesUntilStart.toString() +
+                (minutesUntilStart === 1 ? ' time' : ' timer');
+        } else if (minutesUntilStart > 0) {
+            timeSinceStr = minutesUntilStart.toString() + ' min';
         } else {
             timeSinceStr = 'Ongoing';
         }
         return timeSinceStr;
     }
-
 
     componentDidMount() {
         let id = this.props.id;
@@ -112,7 +114,6 @@ export default class extends React.Component {
 
         fetch(url, { headers: { authorization: localStorage.jwt } })
             .then(res => {
-
                 return res.json();
             })
             .then(user => {
@@ -131,29 +132,27 @@ export default class extends React.Component {
                     isRecurring: data.isRecurring,
                     recurrencePattern: data.recurrencePattern,
                     creatorId: data.creatorId,
-                    createdAt: data.createdAt,
-                    updatedAt: data.updatedAt
+                    createdAt: new Date(data.createdAt),
+                    updatedAt: new Date(data.updatedAt)
                 });
                 console.log(user.data);
             });
     }
 
-
     render() {
-        if(this.state.start_date === null){return null;}
+        if (this.state.start_date === null) {
+            return null;
+        }
         const date = this.formatDate(
             this.state.start_date,
             this.state.end_date,
-            [true, false, true, true, true]
+            [true, false, false, false, true]
         );
         const time = this.formatTime(
             this.state.start_date,
             this.state.end_date
         );
-        const chip_time_stamp = this.formatTimeStamp(
-            this.state.start_date,
-            this.state.start_time
-        );
+        const chip_time_stamp = this.formatTimeStamp(this.state.start_date);
 
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
