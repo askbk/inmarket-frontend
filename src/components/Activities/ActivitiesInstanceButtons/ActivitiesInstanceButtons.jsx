@@ -20,7 +20,7 @@ export default class extends React.Component {
     });*/
     acceptActivity() {
         /*router.post('/:activityId/invitations/:userId/accept',*/
-        if(this.state.status === 'accepted' || this.state.status === 'cancelled'){
+        if(this.state.status !== 'invited'){
             return;
         }
         let url =
@@ -49,6 +49,9 @@ export default class extends React.Component {
     }
 
     declineActivity() {
+        if(this.state.status !== 'invited'){
+            return;
+        }
         let url =
             gConfig.url + '/activities/' +
             this.props.id +
@@ -97,9 +100,10 @@ export default class extends React.Component {
                 <Button onClick={() => this.acceptActivity()} small outline className={acceptButtonClass} fill>
                     {status === 'accepted' ? 'Akseptert' : 'Aksepter'}
                 </Button>
+                {/*
                 <Button small outline className={postponedButtonClass} fill>
                     Utsett
-                </Button>
+                </Button>*/}
                 <Button onClick={() => this.declineActivity()} small outline className={canceledButtonClass} fill>
                     {status === 'cancelled' ? 'Avbrutt' : 'Avbryt'}
                 </Button>
