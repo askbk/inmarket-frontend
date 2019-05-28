@@ -98,7 +98,7 @@ class Activities extends React.Component {
                         className='bottomToolbarLink toolbarIcon'
                         tabLinkActive
                         href='/activities/'
-                        iconF7='email'
+                        iconF7='calendar'
                     />
                     <Link
                         className='bottomToolbarLink toolbarIcon'
