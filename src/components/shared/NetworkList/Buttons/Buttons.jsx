@@ -18,7 +18,7 @@ export default class extends React.Component {
 
     async sendContactRequest() {
         const response = await fetch(
-            `http://localhost/api/users/${this.props.userId}/contact`,
+            `${gConfig.url}/users/${this.props.userId}/contact`,
             {
                 method: 'post',
                 headers: {
@@ -43,7 +43,7 @@ export default class extends React.Component {
 
     async sendContactRequestAccept() {
         const response = await fetch(
-            `http://localhost/api/users/${this.props.userId}/contact/accept`,
+            `${gConfig.url}/users/${this.props.userId}/contact/accept`,
             {
                 method: 'post',
                 headers: {
@@ -70,7 +70,7 @@ export default class extends React.Component {
 
     async sendContactRequestDeny() {
         const response = await fetch(
-            `http://localhost/api/users/${this.props.userId}/contact/decline`,
+            `${gConfig.url}/users/${this.props.userId}/contact/decline`,
             {
                 method: 'post',
                 headers: {

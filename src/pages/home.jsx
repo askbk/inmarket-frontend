@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Page, Toolbar, Link } from 'framework7-react';
+import {Page, Toolbar, Link, Block} from 'framework7-react';
 
 import Header from '../components/Header/Header.jsx';
 import VideosContainer from '../components/Home/VideosContainer/VideosContainer.jsx';
@@ -15,44 +15,37 @@ class Home extends React.Component {
             data: []
         };
 
-        this.handleContactRequestSent = this.handleContactRequestSent.bind(
-            this
-        );
+        this.handleContactRequestSent = this.handleContactRequestSent.bind(this);
     }
 
     componentDidMount() {
-        // For now it simply won't try to fetch any recommendation if no token
-        // is found.
+        // For now it simply won't try to fetch any recommendation if no token is found.
         if (!localStorage.jwt) {
             this.$f7router.navigate('/logginn/');
             return false;
         }
 
         const userId = JSON.parse(atob(localStorage.jwt.split('.')[1])).sub,
-            recommend =
-                localStorage.userType === 'employee'
-                    ? 'jobseekers'
-                    : 'employees';
-
+            recommend = localStorage.userType === 'employee'
+                ? 'jobseekers'
+                : 'employees';
 
         const url = `${gConfig.url}/recommendations/${userId}/${recommend}`;
 
-        fetch(url)
-            .then(res => {
-                return res.json();
-            })
-            .then(users => {
-                if (users.success) {
-                    this.setState({ data: users.data });
-                }
-            });
+        fetch(url).then(res => {
+            return res.json();
+        }).then(users => {
+            if (users.success) {
+                this.setState({data: users.data});
+            }
+        });
     }
 
-    // Called after a contact request has been successfully sent to the user
-    // with the given id. It removes the contacted user from the array of
-    // contact recommendations. This is because the SwiperSlide component in
-    // MatchesContainer is still taking up space, even when it is empty. This is
-    // a brute force solution to that.
+    // Called after a contact request has been successfully sent to the user with
+    // the given id. It removes the contacted user from the array of contact
+    // recommendations. This is because the SwiperSlide component in
+    // MatchesContainer is still taking up space, even when it is empty. This is a
+    // brute force solution to that.
     handleContactRequestSent(id) {
         this.setState(state => {
             for (let i = 0; i < state.data.length; i++) {
@@ -73,32 +66,31 @@ class Home extends React.Component {
 
         return (
             <Page name='home'>
-                <Header />
-                {this.state.data.length === 0 ? <h2>Det er ingen flere matches. Søk etter folk <Link href={'sok/'}>her</Link>  </h2>
-                :
-                    <MatchesContainer
-                        users={users}
-                        contactRequestSent={this.handleContactRequestSent}
-                    />
+                <Header/> {
+                    this.state.data.length === 0
+                        ? <Block>
+                                <h2>Du har ingen flere anbefalinger. Søk etter folk <Link href='/sok/'>her.</Link></h2>
+                            </Block>
+                        : <MatchesContainer
+                                users={users}
+                                contactRequestSent={this.handleContactRequestSent}/>
                 }
 
-                <Toolbar className='bottomToolbar' tabbar labels bottom>
+                <Toolbar
+                    className='bottomToolbar'
+                    tabbar
+                    labels
+                    bottom>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         tabLinkActive
                         href='/'
-                        iconF7='home'
-                    />
-                    <Link
-                        className='bottomToolbarLink toolbarIcon'
-                        href='/sok/'
-                        iconF7='search'
-                    />
+                        iconF7='home'/>
+                    <Link className='bottomToolbarLink toolbarIcon' href='/sok/' iconF7='search'/>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/activities/'
-                        iconF7='calendar'
-                    />
+                        iconF7='calendar'/>
                     <Link
                         className='bottomToolbarLink toolbarIcon'
                         href='/profile/me'
