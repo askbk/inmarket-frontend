@@ -31,6 +31,7 @@ class Login extends React.Component {
         };
     }
 
+
     render() {
         return (
             <Page
@@ -70,9 +71,17 @@ class Login extends React.Component {
         );
     }
 
+    unsuccessfulDialog(feedback) {
+        const app = this.$f7;
+        app.dialog.alert(`${feedback}`, () => {
+            app.loginScreen.close();
+        });
+    }
+
     signIn() {
         const router = this.$f7router;
-        fetch('http://localhost/api/login', {
+        const url = `${gConfig.url}/login`;
+        fetch(url, {
             method: 'post',
             body: JSON.stringify(
                 {email: this.state.username, password: this.state.password}
@@ -93,6 +102,7 @@ class Login extends React.Component {
             } else {
                 // TODO: Let user know that login attempt was unsuccessful
                 console.error('No jwt in response - are your credentials correct?');
+                this.unsuccessfulDialog("Brukernavn eller passord er feil");
             }
         });
     }

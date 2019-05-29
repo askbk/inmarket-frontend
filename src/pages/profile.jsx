@@ -46,6 +46,7 @@ class Profile extends React.Component {
             lastName: 'Kolltveit',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
+            connectionStatus: 'noContact',
             id: null
         };
     }
@@ -126,6 +127,11 @@ class Profile extends React.Component {
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
     }
 
+    logout() {
+        localStorage.clear();
+        this.$f7router.navigate('/logginn/');
+    }
+
     render() {
         const {
             profileDescription,
@@ -161,7 +167,15 @@ class Profile extends React.Component {
 
         let profileInterests = <ProfileQualities qualities={interests} />;
 
-        // const isCurrentUser = this.$f7route.params.id === 'me';
+        const isActuallyCurrentUser = this.$f7route.params.id === 'me';
+
+        let logoutButton = null;
+        if (isActuallyCurrentUser) {
+            logoutButton = (
+                <Button clicked={() => this.logout()}>Logg ut</Button>
+            );
+        }
+
         const isCurrentUser = false; // Set always false for demo
         //Take the elements above and wrap them in a editable button
         if (isCurrentUser) {
@@ -235,20 +249,25 @@ class Profile extends React.Component {
             <Page name='home' className='profilePage'>
                 <Header backLink title='Profil' />
                 {profilePageHeader}
+
                 <Row className='profilePageButtonContainer'>
                     {/*
                     <Button>SE LOGG</Button>
                     <Button>SE ANSATTE</Button>
                       */}
-                    <Button
-                        clicked={() =>
-                            this.$f7router.navigate(
-                                '/activities/create/' + this.state.id
-                            )
-                        }
-                    >
-                        INVITER TIL NY AKTIVITET
-                    </Button>
+                    {logoutButton}
+                    {isActuallyCurrentUser ||
+                    !(this.state.connectionStatus === 'contact') ? null : (
+                        <Button
+                            clicked={() =>
+                                this.$f7router.navigate(
+                                    '/activities/create/' + this.state.id
+                                )
+                            }
+                        >
+                            INVITER TIL NY AKTIVITET
+                        </Button>
+                    )}
                 </Row>
                 {profileInformation}
                 {profileSkills}

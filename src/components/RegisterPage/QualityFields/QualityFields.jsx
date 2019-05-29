@@ -27,7 +27,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost/api/qualities')
+        fetch(`${gConfig.url}/qualities`)
             .then(res => {
                 return res.json();
             })

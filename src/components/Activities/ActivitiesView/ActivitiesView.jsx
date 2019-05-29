@@ -131,6 +131,8 @@ export default class extends React.Component {
                                             frequency={activity.frequency}
                                             address={activity.address}
                                             status={activity.status}
+                                            creator={activity.creator}
+                                            creatorId={activity.creatorId}
                                         />
                                     </div>
                                 </ListItem>
