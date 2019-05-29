@@ -18,7 +18,7 @@
 
   .avatarNetworkImage{
     object-fit: cover;
-    max-height: 100px;
+    max-height: 90px;
     width: 90px;
   }
 

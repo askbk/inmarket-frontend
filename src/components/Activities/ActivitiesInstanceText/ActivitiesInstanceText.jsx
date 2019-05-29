@@ -28,11 +28,26 @@ export default class extends React.Component {
                 style={{ minWidth: '180px' }}
             >
                 <div className='conversationsActivitiesTextContentContainer'>
+                    <div className='conversationsActivitiesTextMessageContainer'>
+                        <p>
+                            {this.props.creator.firstName +
+                                ' ' +
+                                this.props.creator.lastName}{' '}
+                            inviterer deg på
+                        </p>
+                    </div>
                     <div className='conversationsActivitiesTextHeaderContainer'>
                         <h1>{this.props.header}</h1>
                     </div>
                     <div className='conversationsActivitiesTextMessageContainer'>
-                        <p>{DatePicker.dateFormatFromAndTo(this.props.startDate,this.props.endDate)} at {this.props.address}</p>
+                        <p>
+                            {' '}
+                            I {this.props.address},{' '}
+                            {DatePicker.dateFormatFromAndTo(
+                                this.props.startDate,
+                                this.props.endDate
+                            )}
+                        </p>
                     </div>
                     {information}
 

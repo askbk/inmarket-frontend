@@ -36,7 +36,7 @@ export default class extends React.Component {
                         )
                         : (
                             <Block>
-                                <h1>Hello</h1>
+                                <h1>Hei</h1>
                                 <p>
                                     Engasjer folk i arbeidet dere gjør og øk samtidig sjansen for å finne de beste
                                     ansatte for din bedrift.​
