@@ -127,9 +127,9 @@ class Profile extends React.Component {
         this.setState({ skills: newSkills, activeSkills: newActiveSkills });
     }
 
-    logout(){
+    logout() {
         localStorage.clear();
-        this.$f7router.navigate("/logginn/");
+        this.$f7router.navigate('/logginn/');
     }
 
     render() {
@@ -167,11 +167,13 @@ class Profile extends React.Component {
 
         let profileInterests = <ProfileQualities qualities={interests} />;
 
-        const isActuallyCurrentUser = this.$f7route.params.id === "me";
+        const isActuallyCurrentUser = this.$f7route.params.id === 'me';
 
-        let logoutButton = (null);
-        if(isActuallyCurrentUser){
-            logoutButton = (<Button clicked={()=>this.logout()}>Logg ut</Button>);
+        let logoutButton = null;
+        if (isActuallyCurrentUser) {
+            logoutButton = (
+                <Button clicked={() => this.logout()}>Logg ut</Button>
+            );
         }
 
         const isCurrentUser = false; // Set always false for demo
@@ -254,18 +256,18 @@ class Profile extends React.Component {
                     <Button>SE ANSATTE</Button>
                       */}
                     {logoutButton}
-                    {isActuallyCurrentUser || !(this.state.connectionStatus === "contact") ?
-                    null
-                    :
-                    <Button
-                        clicked={() =>
-                            this.$f7router.navigate(
-                                '/activities/create/' + this.state.id
-                            )
-                        }
+                    {isActuallyCurrentUser ||
+                    !(this.state.connectionStatus === 'contact') ? null : (
+                        <Button
+                            clicked={() =>
+                                this.$f7router.navigate(
+                                    '/activities/create/' + this.state.id
+                                )
+                            }
                         >
-                        INVITER TIL NY AKTIVITET
-                    </Button>}
+                            INVITER TIL NY AKTIVITET
+                        </Button>
+                    )}
                 </Row>
                 {profileInformation}
                 {profileSkills}

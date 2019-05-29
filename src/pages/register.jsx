@@ -53,6 +53,7 @@ class Register extends React.Component {
                 // Credentials
                 email: '',
                 password: '',
+                company: '',
 
                 //  Brukes for undervisningssted og høyest utdanning
                 education: '',
