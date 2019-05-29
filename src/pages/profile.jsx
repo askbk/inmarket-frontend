@@ -46,6 +46,7 @@ class Profile extends React.Component {
             lastName: 'Kolltveit',
             role: 'Teknologidirektør',
             institution: 'Inmarket AS',
+            connectionStatus: 'noContact',
             id: null
         };
     }
@@ -253,7 +254,7 @@ class Profile extends React.Component {
                     <Button>SE ANSATTE</Button>
                       */}
                     {logoutButton}
-                    {isActuallyCurrentUser ?
+                    {isActuallyCurrentUser || !(this.state.connectionStatus === "contact") ?
                     null
                     :
                     <Button
