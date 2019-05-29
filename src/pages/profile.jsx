@@ -127,9 +127,7 @@ class Profile extends React.Component {
     }
 
     logout(){
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("userType");
-        localStorage.removeItem("userId");
+        localStorage.clear();
         this.$f7router.navigate("/logginn/");
     }
 
@@ -255,15 +253,18 @@ class Profile extends React.Component {
                     <Button>SE ANSATTE</Button>
                       */}
                     {logoutButton}
+                    {isActuallyCurrentUser ?
+                    null
+                    :
                     <Button
                         clicked={() =>
                             this.$f7router.navigate(
                                 '/activities/create/' + this.state.id
                             )
                         }
-                    >
+                        >
                         INVITER TIL NY AKTIVITET
-                    </Button>
+                    </Button>}
                 </Row>
                 {profileInformation}
                 {profileSkills}
