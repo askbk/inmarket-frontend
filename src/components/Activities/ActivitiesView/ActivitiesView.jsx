@@ -132,6 +132,7 @@ export default class extends React.Component {
                                             address={activity.address}
                                             status={activity.status}
                                             creator={activity.creator}
+                                            creatorId={activity.creatorId}
                                         />
                                     </div>
                                 </ListItem>

@@ -24,10 +24,11 @@ export default class extends React.Component {
         //return start_time.substring(0, 5) + '-' + end_time.substring(0, 5);
     }
 
-    formatDate(startDate, endDate/*, frequency*/) {
+    formatDate(startDate, endDate /*, frequency*/) {
         /*const WEEKDAYS = ['man', 'tir', 'ons', 'tor', 'fre'];
         let workdays = '';
-        */let formattedDate = '';
+        */ let formattedDate =
+            '';
         if (startDate === endDate) {
             const date = new Date(startDate);
             const month =
@@ -79,7 +80,7 @@ export default class extends React.Component {
                 '-' +
                 end_day +
                 '.' +
-                end_month;/* +
+                end_month; /* +
                 ' (' +
                 workdays +
                 ')';*/
@@ -127,30 +128,35 @@ export default class extends React.Component {
         */
         const chip_time_stamp = this.formatTimeStamp(this.props.startDate);
 
-
         return (
             <div className='conversationsActivitiesInstanceInnerContainer'>
                 {/*<Link href={`/activities/${this.props.id}`} > */}
-                    <div className='conversationsActivitiesAvatarOuterContainer'>
+                <div className='conversationsActivitiesAvatarOuterContainer'>
+                    <Link href={`/profile/${this.props.creatorId}`}>
                         <ConversationsMessageAvatar
                             time_stamp={chip_time_stamp}
                         />
-                    </div>
-                    <div className='conversationActivitiesTextOuterContainer'>
-                        <ActivitiesInstanceText
-                            id={this.props.id}
-                            header={this.props.header}
-                            informationText={this.props.description}
-                            frequency={this.props.frequency}
-                            address={this.props.address}
-                            startDate={this.props.startDate}
-                            endDate={this.props.endDate}
-                            creator={this.props.creator}
-                        />
-                    </div>
-                    {/*</Link>*/}
+                    </Link>
+                </div>
+                <div className='conversationActivitiesTextOuterContainer'>
+                    <ActivitiesInstanceText
+                        id={this.props.id}
+                        header={this.props.header}
+                        informationText={this.props.description}
+                        frequency={this.props.frequency}
+                        address={this.props.address}
+                        startDate={this.props.startDate}
+                        endDate={this.props.endDate}
+                        creator={this.props.creator}
+                        creatorId={this.props.creatorId}
+                    />
+                </div>
+                {/*</Link>*/}
                 <div className='conversationActivitiesReactOuterContainer  activitiesButtonsContainer'>
-                    <ActivitiesInstanceButtons status={this.props.status} id={this.props.id} />
+                    <ActivitiesInstanceButtons
+                        status={this.props.status}
+                        id={this.props.id}
+                    />
                 </div>
             </div>
         );
