@@ -170,7 +170,7 @@ class Profile extends React.Component {
 
         let logoutButton = (null);
         if(isActuallyCurrentUser){
-            logoutButton = (<Button clicked={()=>this.logout()}>Logout</Button>);
+            logoutButton = (<Button clicked={()=>this.logout()}>Logg ut</Button>);
         }
 
         const isCurrentUser = false; // Set always false for demo
