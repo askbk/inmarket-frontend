@@ -62,9 +62,7 @@ class Search extends React.Component {
         if (value === '') {
             this.componentDidMount();
         } else {
-
-
-            const url = `${gConfig.url}/users?search=${value}`;
+            const url = `${gConfig.url}/users?searchNameOrCompany=${value}`;
             fetch(url, {
                 method: 'get',
                 headers: {
