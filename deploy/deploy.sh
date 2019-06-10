@@ -2,7 +2,8 @@
 #and remotely execute the deployment script.
 
 #copy the build directory to the server
-scp -i ~/.ssh/id_dsa -r ./www/ ec2-user@172.32.112.3:/tmp
+#scp -i ~/.ssh/id_dsa -r ./www/ ec2-user@172.32.112.3:/tmp
+echo 'Deploying...'
 
 #connect to the server and execute the deployment script
 #ssh -i ~/.ssh/id_dsa ec2-user@172.32.112.3
