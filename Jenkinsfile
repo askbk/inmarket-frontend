@@ -12,5 +12,11 @@ pipeline {
                 sh 'npm run build-prod'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh './deploy/deploy.sh'
+            }
+        }
     }
 }
